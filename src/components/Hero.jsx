@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <section
-      className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-[85vh] md:min-h-screen flex items-center justify-center overflow-hidden py-10 sm:py-0"
       style={{
         backgroundImage:
           "url(https://images.unsplash.com/photo-1516321318423-f06f85e504b3)",
@@ -15,7 +15,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/65"></div>
 
       {/* CONTENT */}
-      <div className="relative z-10 w-full px-4 sm:px-6 md:px-10 py-16 md:py-0">
+      <div className="relative z-10 w-full px-4 sm:px-6 md:px-10">
 
         <div className="max-w-4xl mx-auto text-center text-white">
 
@@ -72,7 +72,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6"
+            className="mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pb-6 sm:pb-0"
           >
             <div className="bg-white/10 backdrop-blur rounded-2xl p-4 sm:p-5">
               <h3 className="text-xl sm:text-2xl font-bold">Modern</h3>
