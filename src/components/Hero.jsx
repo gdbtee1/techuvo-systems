@@ -72,25 +72,30 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="mt-10 sm:mt-14 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pb-6 sm:pb-0"
+            className="
+              mt-10 sm:mt-14 
+              grid grid-cols-2 sm:grid-cols-3 
+              gap-3 sm:gap-6 
+              pb-10 sm:pb-0
+            "
           >
             <div className="bg-white/10 backdrop-blur rounded-2xl p-4 sm:p-5">
-              <h3 className="text-xl sm:text-2xl font-bold">Modern</h3>
-              <p className="text-xs sm:text-sm text-gray-300 mt-1">
+              <h3 className="text-lg sm:text-2xl font-bold">Modern</h3>
+              <p className="text-[11px] sm:text-sm text-gray-300 mt-1">
                 Clean UI & scalable systems
               </p>
             </div>
 
             <div className="bg-white/10 backdrop-blur rounded-2xl p-4 sm:p-5">
-              <h3 className="text-xl sm:text-2xl font-bold">Responsive</h3>
-              <p className="text-xs sm:text-sm text-gray-300 mt-1">
+              <h3 className="text-lg sm:text-2xl font-bold">Responsive</h3>
+              <p className="text-[11px] sm:text-sm text-gray-300 mt-1">
                 Optimized for every device
               </p>
             </div>
 
-            <div className="bg-white/10 backdrop-blur rounded-2xl p-4 sm:p-5">
-              <h3 className="text-xl sm:text-2xl font-bold">Fast</h3>
-              <p className="text-xs sm:text-sm text-gray-300 mt-1">
+            <div className="bg-white/10 backdrop-blur rounded-2xl p-4 sm:p-5 col-span-2 sm:col-span-1">
+              <h3 className="text-lg sm:text-2xl font-bold">Fast</h3>
+              <p className="text-[11px] sm:text-sm text-gray-300 mt-1">
                 Built for performance & growth
               </p>
             </div>
