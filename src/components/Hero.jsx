@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -58,13 +59,19 @@ export default function Hero() {
             transition={{ delay: 0.35 }}
             className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           >
-            <button className="w-full sm:w-auto bg-white text-black px-6 sm:px-7 py-3 rounded-xl font-medium hover:scale-105 transition">
+            <Link
+              to="/contact"
+              className="w-full sm:w-auto bg-white text-black px-6 sm:px-7 py-3 rounded-xl font-medium hover:scale-105 transition text-center"
+            >
               Start Your Project
-            </button>
+            </Link>
 
-            <button className="w-full sm:w-auto border border-white px-6 sm:px-7 py-3 rounded-xl hover:bg-white hover:text-black transition">
+            <Link
+              to="/services"
+              className="w-full sm:w-auto border border-white px-6 sm:px-7 py-3 rounded-xl hover:bg-white hover:text-black transition text-center"
+            >
               View Services
-            </button>
+            </Link>
           </motion.div>
 
           {/* STATS */}
