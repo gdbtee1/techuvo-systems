@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function SplitSection() {
   return (
@@ -17,14 +18,12 @@ export default function SplitSection() {
             className="relative"
           >
 
-            {/* MAIN IMAGE */}
             <img
               src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3"
               alt="Techuvo Web Design"
               className="w-full h-[350px] sm:h-[500px] object-cover rounded-3xl shadow-xl"
             />
 
-            {/* FLOATING CARD */}
             <div className="absolute -bottom-6 sm:-bottom-8 right-4 sm:right-8 bg-white shadow-2xl rounded-2xl p-5 w-[220px] sm:w-[260px]">
 
               <p className="uppercase tracking-[0.25em] text-[10px] sm:text-xs text-gray-500 mb-2">
@@ -74,7 +73,6 @@ export default function SplitSection() {
                 <h3 className="font-semibold mb-2">
                   Modern UI
                 </h3>
-
                 <p className="text-sm text-gray-600 leading-relaxed">
                   Clean, premium interfaces built with modern
                   design standards.
@@ -85,7 +83,6 @@ export default function SplitSection() {
                 <h3 className="font-semibold mb-2">
                   Performance
                 </h3>
-
                 <p className="text-sm text-gray-600 leading-relaxed">
                   Fast-loading websites optimized for users
                   and search engines.
@@ -96,7 +93,6 @@ export default function SplitSection() {
                 <h3 className="font-semibold mb-2">
                   Mobile First
                 </h3>
-
                 <p className="text-sm text-gray-600 leading-relaxed">
                   Fully responsive layouts designed for every
                   screen size.
@@ -107,7 +103,6 @@ export default function SplitSection() {
                 <h3 className="font-semibold mb-2">
                   Scalable Systems
                 </h3>
-
                 <p className="text-sm text-gray-600 leading-relaxed">
                   Structured development built for future
                   growth and expansion.
@@ -119,9 +114,12 @@ export default function SplitSection() {
             {/* BUTTON */}
             <div className="mt-10">
 
-              <button className="w-full sm:w-auto bg-black text-white px-8 py-3 rounded-xl hover:scale-105 transition">
+              <Link
+                to="/contact"
+                className="w-full sm:w-auto inline-block bg-black text-white px-8 py-3 rounded-xl hover:scale-105 transition text-center"
+              >
                 Learn More
-              </button>
+              </Link>
 
             </div>
 

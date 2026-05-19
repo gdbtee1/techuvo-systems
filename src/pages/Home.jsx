@@ -3,6 +3,7 @@ import Gallery from "../components/Gallery";
 import SplitSection from "../components/SplitSection";
 
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -118,13 +119,19 @@ export default function Home() {
             {/* BUTTONS */}
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
 
-              <button className="w-full sm:w-auto bg-white text-black px-8 py-3 rounded-xl font-medium hover:scale-105 transition">
+              <Link
+                to="/contact"
+                className="w-full sm:w-auto bg-white text-black px-8 py-3 rounded-xl font-medium hover:scale-105 transition text-center"
+              >
                 Book A Consultation
-              </button>
+              </Link>
 
-              <button className="w-full sm:w-auto border border-white px-8 py-3 rounded-xl hover:bg-white hover:text-black transition">
+              <Link
+                to="/services"
+                className="w-full sm:w-auto border border-white px-8 py-3 rounded-xl hover:bg-white hover:text-black transition text-center"
+              >
                 Explore Services
-              </button>
+              </Link>
 
             </div>
 
