@@ -31,11 +31,9 @@ const projects = [
 export default function Portfolio() {
   return (
     <div className="bg-white overflow-hidden">
-
       {/* HERO */}
       <section className="bg-black text-white py-20 sm:py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-
           <p className="uppercase tracking-[0.25em] text-[10px] sm:text-xs text-gray-400 mb-4">
             Our Work
           </p>
@@ -55,7 +53,6 @@ export default function Portfolio() {
           >
             Start a Project
           </Link>
-
         </div>
       </section>
 
@@ -88,7 +85,6 @@ export default function Portfolio() {
       {/* PROJECT GRID */}
       <section className="px-4 sm:px-6 pb-16 sm:pb-20">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-
           {projects.map((project, i) => (
             <motion.div
               key={i}
@@ -98,8 +94,6 @@ export default function Portfolio() {
               whileHover={{ scale: 1.02 }}
               className="border rounded-2xl overflow-hidden bg-white flex flex-col"
             >
-
-              {/* IMAGE */}
               <div className="h-52 sm:h-56 overflow-hidden">
                 <img
                   src={project.image}
@@ -108,32 +102,24 @@ export default function Portfolio() {
                 />
               </div>
 
-              {/* CONTENT */}
               <div className="p-6 flex flex-col flex-1">
-
-                {/* CATEGORY */}
                 <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-blue-600">
                   {project.category}
                 </p>
 
-                {/* TITLE */}
                 <h3 className="text-lg sm:text-xl font-semibold mt-2">
                   {project.title}
                 </h3>
 
-                {/* RESULT */}
                 <p className="text-sm text-gray-600 mt-2 leading-relaxed">
                   {project.result}
                 </p>
 
-                {/* TECH STRIP */}
                 <p className="text-[11px] text-gray-400 mt-3">
                   React • UI Systems • Performance Optimized
                 </p>
 
-                {/* BUTTONS */}
                 <div className="flex gap-3 mt-5">
-
                   <Link
                     to={project.link}
                     className="bg-black text-white px-4 py-2 rounded-lg text-xs sm:text-sm hover:opacity-80 transition"
@@ -141,26 +127,21 @@ export default function Portfolio() {
                     View Case Study
                   </Link>
 
-                  <a
-                    href="#"
+                  <Link
+                    to={project.link}
                     className="border px-4 py-2 rounded-lg text-xs sm:text-sm hover:bg-gray-100 transition"
                   >
                     Live Demo
-                  </a>
-
+                  </Link>
                 </div>
-
               </div>
-
             </motion.div>
           ))}
-
         </div>
       </section>
 
       {/* CTA */}
       <section className="bg-gray-50 py-16 sm:py-20 text-center px-4 sm:px-6">
-
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
           Have a project in mind?
         </h2>
@@ -175,9 +156,7 @@ export default function Portfolio() {
         >
           Contact Us
         </Link>
-
       </section>
-
     </div>
   );
 }
