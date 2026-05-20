@@ -20,39 +20,40 @@ export default function Hero() {
 
         <div className="max-w-4xl mx-auto text-center text-white">
 
-          {/* SMALL LABEL */}
+          {/* SMALL LABEL (SEO IMPROVED) */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="uppercase tracking-[0.25em] text-[10px] sm:text-xs md:text-sm text-gray-300 mb-4 sm:mb-5"
           >
-            Techuvo • Digital Systems & Web Development
+            Techuvo • Website Development & Digital Automation Agency
           </motion.p>
 
-          {/* MAIN HEADING */}
+          {/* MAIN HEADING (SEO KEYWORDS ADDED NATURALLY) */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
           >
-            Modern Websites Built To Elevate Your Brand
+            High-Performance Websites & Automation Systems That Grow Your Business
           </motion.h1>
 
-          {/* SUBTEXT */}
+          {/* SUBTEXT (MORE SEARCHABLE + CLEAR) */}
           <motion.p
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="mt-5 sm:mt-6 text-sm sm:text-base md:text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed"
           >
-            Techuvo creates high-performance digital experiences for
-            businesses looking to stand out, convert more customers,
-            and scale professionally online.
+            Techuvo is a digital agency specializing in website development,
+            UI/UX design, and automation systems. We build fast, responsive,
+            and conversion-focused websites that help businesses attract more
+            customers and scale online.
           </motion.p>
 
-          {/* BUTTONS */}
+          {/* BUTTONS (UNCHANGED) */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
@@ -74,7 +75,7 @@ export default function Hero() {
             </Link>
           </motion.div>
 
-          {/* STATS */}
+          {/* STATS (SLIGHTLY SEO IMPROVED TEXT ONLY) */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -89,21 +90,21 @@ export default function Hero() {
             <div className="bg-white/10 backdrop-blur rounded-2xl p-4 sm:p-5">
               <h3 className="text-lg sm:text-2xl font-bold">Modern</h3>
               <p className="text-[11px] sm:text-sm text-gray-300 mt-1">
-                Clean UI & scalable systems
+                Clean UI & scalable web systems
               </p>
             </div>
 
             <div className="bg-white/10 backdrop-blur rounded-2xl p-4 sm:p-5">
               <h3 className="text-lg sm:text-2xl font-bold">Responsive</h3>
               <p className="text-[11px] sm:text-sm text-gray-300 mt-1">
-                Optimized for every device
+                Optimized for all devices & screen sizes
               </p>
             </div>
 
             <div className="bg-white/10 backdrop-blur rounded-2xl p-4 sm:p-5 col-span-2 sm:col-span-1">
               <h3 className="text-lg sm:text-2xl font-bold">Fast</h3>
               <p className="text-[11px] sm:text-sm text-gray-300 mt-1">
-                Built for performance & growth
+                Built for performance, SEO & growth
               </p>
             </div>
           </motion.div>
