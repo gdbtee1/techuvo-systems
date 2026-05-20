@@ -59,6 +59,18 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* PORTFOLIO NOTE */}
+<div className="text-center px-4 sm:px-6 pt-6 sm:pt-8">
+        <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
+          These are representative project examples. Our full portfolio and
+          detailed case studies are shared directly based on your project needs —{" "}
+          <Link to="/contact" className="underline font-medium">
+            send us a quick message
+          </Link>{" "}
+          and we’ll personally send relevant work.
+        </p>
+      </div>
+
       {/* FILTER BAR */}
       <div className="px-4 sm:px-6 py-8 sm:py-10 flex flex-wrap gap-3 sm:gap-4 justify-center text-xs sm:text-sm">
         {["All", "Websites", "Automation", "Branding", "AI Systems"].map(
