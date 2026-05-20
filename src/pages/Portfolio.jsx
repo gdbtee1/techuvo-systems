@@ -60,7 +60,7 @@ export default function Portfolio() {
       </section>
 
       {/* PORTFOLIO NOTE */}
-<div className="text-center px-4 sm:px-6 pt-6 sm:pt-8">
+      <div className="text-center px-4 sm:px-6 pt-6 sm:pt-8">
         <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
           These are representative project examples. Our full portfolio and
           detailed case studies are shared directly based on your project needs —{" "}
@@ -95,35 +95,60 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="border rounded-2xl overflow-hidden hover:shadow-xl transition bg-white"
+              whileHover={{ scale: 1.02 }}
+              className="border rounded-2xl overflow-hidden bg-white flex flex-col"
             >
 
-              <img
-                src={project.image}
-                className="h-48 sm:h-52 md:h-56 w-full object-cover"
-                alt={project.title}
-              />
+              {/* IMAGE */}
+              <div className="h-52 sm:h-56 overflow-hidden">
+                <img
+                  src={project.image}
+                  className="w-full h-full object-cover hover:scale-105 transition duration-500"
+                  alt={project.title}
+                />
+              </div>
 
-              <div className="p-5 sm:p-6">
+              {/* CONTENT */}
+              <div className="p-6 flex flex-col flex-1">
 
-                <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-gray-500">
+                {/* CATEGORY */}
+                <p className="text-[10px] sm:text-xs uppercase tracking-[0.2em] text-blue-600">
                   {project.category}
                 </p>
 
-                <h3 className="text-lg sm:text-xl font-bold mt-2 leading-snug">
+                {/* TITLE */}
+                <h3 className="text-lg sm:text-xl font-semibold mt-2">
                   {project.title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-gray-600 mt-2">
+                {/* RESULT */}
+                <p className="text-sm text-gray-600 mt-2 leading-relaxed">
                   {project.result}
                 </p>
 
-                <Link
-                  to={project.link}
-                  className="inline-block mt-4 sm:mt-5 text-xs sm:text-sm font-medium underline"
-                >
-                  View Project
-                </Link>
+                {/* TECH STRIP */}
+                <p className="text-[11px] text-gray-400 mt-3">
+                  React • UI Systems • Performance Optimized
+                </p>
+
+                {/* BUTTONS */}
+                <div className="flex gap-3 mt-5">
+
+                  <Link
+                    to={project.link}
+                    className="bg-black text-white px-4 py-2 rounded-lg text-xs sm:text-sm hover:opacity-80 transition"
+                  >
+                    View Case Study
+                  </Link>
+
+                  <a
+                    href="#"
+                    className="border px-4 py-2 rounded-lg text-xs sm:text-sm hover:bg-gray-100 transition"
+                  >
+                    Live Demo
+                  </a>
+
+                </div>
 
               </div>
 
