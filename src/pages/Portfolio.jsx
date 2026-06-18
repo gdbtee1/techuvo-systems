@@ -2,333 +2,363 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   ArrowUpRight,
-  Star,
-  Quote,
+  Bot,
+  BrainCircuit,
+  ChartSpline,
   CheckCircle,
+  Cpu,
+  DatabaseZap,
+  Globe2,
+  Layers3,
+  MonitorSmartphone,
+  Network,
+  Search,
   Sparkles,
+  Workflow,
 } from "lucide-react";
 
-const reviews = [
-  {
-    name: "Marcus J.",
-    role: "Service Business Owner",
-    text: "Techuvo made our business look more established instantly.",
-  },
-  {
-    name: "Alicia R.",
-    role: "Consulting Founder",
-    text: "The design made my brand feel premium and trustworthy.",
-  },
-  {
-    name: "David K.",
-    role: "Startup Operator",
-    text: "Sharp layout, clean process, and a stronger online presence.",
-  },
+const stats = [
+  ["15+", "Projects Delivered"],
+  ["8+", "Industries Served"],
+  ["100%", "Client Satisfaction"],
+  ["24/7", "Active Systems"],
+];
+
+const categories = [
+  "Web Development",
+  "AI Systems",
+  "Automation",
+  "Branding",
+  "Lead Generation",
 ];
 
 const projects = [
   {
-    title: "Tech Startup Website",
-    category: "Website Development",
-    result: "A high-converting web experience built for trust, speed, and clarity.",
-    image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d",
-    tags: ["React", "UX", "Performance"],
+    name: "Carolina Brake & Diagnostics",
+    industry: "Mobile Auto Service",
+    services: ["Website", "Brand Positioning", "Lead Flow"],
+    outcome: "A premium digital presence for a mobile brake and diagnostics company.",
+    challenge: "The business needed to look more professional online and communicate trust quickly to vehicle owners.",
+    solution: "Techuvo built a sharp service-focused website with clear offers, service areas, trust signals, and booking direction.",
+    result: "The company gained a stronger brand image, cleaner customer journey, and a more credible online presence.",
+    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7",
+    url: "https://carolinabrakes.com",
   },
   {
-    title: "Automation Dashboard",
-    category: "Business Systems",
-    result: "A streamlined dashboard for managing operations with confidence.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-    tags: ["Dashboard", "Automation", "Systems"],
+    name: "Golden Cares LLC",
+    industry: "Healthcare Services",
+    services: ["Website", "Careers Page", "Trust System"],
+    outcome: "A healthcare platform designed for clarity, trust, and inquiries.",
+    challenge: "Golden Cares needed a professional website that explained services clearly and made the company feel established.",
+    solution: "Techuvo created a modern multi-section site with service pages, careers direction, FAQs, and contact flow.",
+    result: "The brand now presents itself with stronger credibility and a cleaner path for families, applicants, and partners.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef",
+    url: "https://mygoldencares.com",
   },
   {
-    title: "Brand Identity System",
-    category: "Brand Strategy",
-    result: "A cleaner identity system designed to raise perceived value.",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-    tags: ["Branding", "Design", "Trust"],
+    name: "Hubby Hub",
+    industry: "Author Brand / Media",
+    services: ["Website", "Shop Experience", "Brand System"],
+    outcome: "A content and commerce-ready platform for an author brand.",
+    challenge: "The brand needed a central online home for books, content, reviews, and audience connection.",
+    solution: "Techuvo built a clean author platform with shop direction, book presentation, blog structure, and contact flow.",
+    result: "Hubby Hub gained a stronger digital identity and a more organized platform for future growth.",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    url: "https://gdbtee1.github.io/hubbyhub/",
   },
+  {
+    name: "Monroe Media TV",
+    industry: "Media / Entertainment",
+    services: ["Website", "Booking Flow", "Content Platform"],
+    outcome: "A media website built to support booking, casting, and audience engagement.",
+    challenge: "The company needed more than a basic site — it needed a platform for viewers, bookings, and media presence.",
+    solution: "Techuvo designed a multi-page digital system with watch, booking, casting, and member-focused sections.",
+    result: "The platform now feels more organized, professional, and ready for audience growth.",
+    image: "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+    url: "https://gdbtee1.github.io/Monroe-Media/",
+  },
+  {
+    name: "Kids First Educational Learning Centers",
+    industry: "Education",
+    services: ["Website", "Parent Experience", "Lead Generation"],
+    outcome: "An education website built for trust, enrollment, and parent clarity.",
+    challenge: "The learning center needed to communicate value quickly to parents and create a smoother inquiry experience.",
+    solution: "Techuvo built a polished tutoring and learning center website with service sections, trust points, and contact CTA.",
+    result: "The business now has a more professional digital presence built to support parent inquiries and enrollment.",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7",
+    url: "https://kidsfirstllc.com",
+  },
+];
+const stack = [
+  ["React", MonitorSmartphone],
+  ["Tailwind CSS", Layers3],
+  ["AI Integrations", BrainCircuit],
+  ["Automation Systems", Workflow],
+  ["SEO Optimization", Search],
+  ["Analytics", ChartSpline],
 ];
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen overflow-hidden bg-[#f7f5ef] text-black">
+    <div className="min-h-screen overflow-hidden bg-[#020403] text-white">
       {/* HERO */}
-      <section className="relative px-4 pb-12 pt-20 sm:px-6 md:pb-20 md:pt-28">
-        <div className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-black/10 blur-3xl md:h-[420px] md:w-[420px]" />
+      <section className="relative px-4 pb-20 pt-24 sm:px-6 md:pb-28 md:pt-32">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(16,185,129,.25),transparent_34%),radial-gradient(circle_at_85%_25%,rgba(59,130,246,.16),transparent_30%),linear-gradient(to_bottom,#020403,#030712_55%,#020403)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.06)_1px,transparent_1px)] bg-[size:72px_72px] opacity-20" />
 
         <div className="relative mx-auto max-w-7xl">
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-300/15 bg-white/[0.04] px-4 py-2 text-[10px] font-black uppercase tracking-[0.24em] text-emerald-200 backdrop-blur-xl sm:text-xs"
+          >
+            <Sparkles size={14} />
+            Techuvo Portfolio
+          </motion.div>
+
+          <div className="grid gap-10 lg:grid-cols-[1.1fr_.9fr] lg:items-end">
             <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-gray-500 shadow-sm">
-                <Sparkles size={14} />
-                Techuvo Portfolio
-              </div>
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.08 }}
+                className="max-w-6xl text-5xl font-black leading-[0.88] tracking-[-0.07em] sm:text-7xl md:text-8xl lg:text-9xl"
+              >
+                Work That Moves Businesses Forward.
+              </motion.h1>
 
-              <h1 className="max-w-4xl text-5xl font-black leading-[0.92] tracking-tight sm:text-6xl md:text-8xl">
-                Premium digital presence for serious brands.
-              </h1>
-
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-gray-600 md:text-lg">
-                Websites, brand systems, and automation tools designed to make
-                businesses look sharper, more trusted, and ready for growth.
+              <p className="mt-7 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">
+                Explore the websites, digital systems, automation platforms, and
+                growth infrastructure built by Techuvo.
               </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-7 py-4 text-sm font-black text-white shadow-xl shadow-black/20 transition hover:-translate-y-1"
-                >
-                  Start a Project
-                  <ArrowUpRight size={16} />
-                </Link>
-
-                <Link
-                  to="/services"
-                  className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-7 py-4 text-sm font-black text-black shadow-sm transition hover:bg-gray-100"
-                >
-                  View Services
-                </Link>
-              </div>
             </div>
 
-            {/* EYE-CATCHING VISUAL */}
-            <motion.div
-              initial={{ opacity: 0, y: 35, rotate: -2 }}
-              animate={{ opacity: 1, y: 0, rotate: 0 }}
-              transition={{ duration: 0.6 }}
-              className="relative"
-            >
-              <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-black shadow-2xl shadow-black/20 md:rounded-[3rem]">
-                <img
-                  src="https://images.unsplash.com/photo-1497366754035-f200968a6e72"
-                  alt="Premium workspace"
-                  className="h-[340px] w-full object-cover opacity-90 sm:h-[440px] lg:h-[560px]"
-                />
-
-                <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-t from-black/80 via-black/20 to-transparent md:rounded-[3rem]" />
-
-                <div className="absolute bottom-5 left-5 right-5 rounded-[1.5rem] border border-white/10 bg-white/10 p-5 text-white backdrop-blur-xl md:bottom-7 md:left-7 md:right-7">
-                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-gray-300">
-                    Global Standard
+            <div className="grid grid-cols-2 gap-3">
+              {stats.map(([number, label]) => (
+                <div
+                  key={label}
+                  className="rounded-[1.5rem] border border-white/10 bg-white/[0.05] p-5 backdrop-blur-xl"
+                >
+                  <p className="text-3xl font-black tracking-tight text-emerald-300 md:text-5xl">
+                    {number}
                   </p>
-
-                  <h2 className="mt-2 text-2xl font-black leading-tight md:text-4xl">
-                    Design that makes the business feel bigger.
-                  </h2>
+                  <p className="mt-2 text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
+                    {label}
+                  </p>
                 </div>
-              </div>
-
-              <div className="absolute -right-2 -top-5 rounded-2xl bg-white px-4 py-3 shadow-xl sm:-right-5">
-                <p className="text-xs font-black text-gray-500">Built for</p>
-                <p className="text-sm font-black">Trust + Conversion</p>
-              </div>
-            </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* REVIEWS */}
-      <section className="px-4 py-10 sm:px-6">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-5 md:grid-cols-3">
-            {reviews.map((review, i) => (
-              <motion.div
-                key={review.name}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="rounded-[2rem] border border-black/10 bg-white p-6 shadow-xl shadow-black/5"
+          <div className="mt-10 flex flex-wrap gap-3">
+            {categories.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.18em] text-slate-300"
               >
-                <div className="mb-5 flex items-center justify-between">
-                  <div className="flex gap-1">
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <Star
-                        key={index}
-                        size={15}
-                        fill="currentColor"
-                        strokeWidth={0}
-                      />
-                    ))}
-                  </div>
-                  <Quote size={22} className="text-gray-300" />
-                </div>
-
-                <p className="text-lg font-black leading-snug">
-                  “{review.text}”
-                </p>
-
-                <div className="mt-6 border-t border-black/10 pt-4">
-                  <p className="font-black">{review.name}</p>
-                  <p className="mt-1 text-sm text-gray-500">{review.role}</p>
-                </div>
-              </motion.div>
+                {item}
+              </span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* VALUE STRIP */}
-      <section className="px-4 py-8 sm:px-6">
-        <div className="mx-auto grid max-w-7xl gap-4 rounded-[2rem] bg-black p-4 text-white sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            "Premium visual hierarchy",
-            "Mobile-first design",
-            "Conversion-focused pages",
-            "Clean digital systems",
-          ].map((item) => (
-            <div
-              key={item}
-              className="flex items-center gap-3 rounded-[1.5rem] border border-white/10 bg-white/5 p-4 text-sm font-bold"
-            >
-              <CheckCircle size={17} />
-              {item}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* PROJECTS */}
-      <section className="px-4 py-16 sm:px-6">
+      {/* CASE STUDIES */}
+      <section className="px-4 py-20 sm:px-6 md:py-28">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-10 max-w-3xl">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500">
-              Selected Work
+          <div className="mb-12 max-w-4xl">
+            <p className="text-xs font-black uppercase tracking-[0.3em] text-emerald-300">
+              Featured Projects
             </p>
-            <h2 className="mt-3 text-4xl font-black tracking-tight md:text-6xl">
-              Project systems built to look expensive.
+            <h2 className="mt-4 text-4xl font-black leading-[0.95] tracking-[-0.055em] md:text-7xl">
+              These are not just websites. They are business systems.
             </h2>
           </div>
 
-          <div className="grid gap-8">
-            {projects.map((project, i) => (
-              <motion.div
-                key={project.title}
+          <div className="grid gap-10">
+            {projects.map((project, index) => (
+              <motion.article
+                key={project.name}
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className={`group grid overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-xl shadow-black/5 md:grid-cols-2 md:rounded-[2.5rem] ${
-                  i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
-                }`}
+                transition={{ delay: index * 0.05 }}
+                className="group overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/[0.04] backdrop-blur-xl transition hover:border-emerald-300/40 md:rounded-[2.75rem]"
               >
-                <div className="relative h-72 overflow-hidden sm:h-96 md:h-auto">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-5 left-5 rounded-full bg-white px-4 py-2 text-xs font-black">
-                    {project.category}
-                  </div>
-                </div>
-
-                <div className="flex flex-col justify-center p-7 md:p-12">
-                  <h3 className="text-3xl font-black tracking-tight md:text-5xl">
-                    {project.title}
-                  </h3>
-
-                  <p className="mt-4 max-w-xl text-sm leading-relaxed text-gray-600 md:text-base">
-                    {project.result}
-                  </p>
-
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-gray-100 px-4 py-2 text-xs font-black text-gray-600"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                <div className="grid lg:grid-cols-[1.05fr_.95fr]">
+                  <div className="relative min-h-[300px] overflow-hidden sm:min-h-[420px] lg:min-h-full">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#020403] via-black/30 to-transparent" />
+                    <div className="absolute bottom-5 left-5 right-5 rounded-[1.5rem] border border-white/10 bg-black/35 p-5 backdrop-blur-xl">
+                      <p className="text-xs font-black uppercase tracking-[0.25em] text-emerald-300">
+                        {project.industry}
+                      </p>
+                      <h3 className="mt-3 text-3xl font-black tracking-[-0.04em] md:text-5xl">
+                        {project.name}
+                      </h3>
+                    </div>
                   </div>
 
-                  <Link
-                    to="/contact"
-                    className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-black text-white transition hover:-translate-y-1"
-                  >
-                    Discuss Similar Work
-                    <ArrowUpRight size={15} />
-                  </Link>
+                  <div className="p-7 sm:p-10 md:p-12">
+                    <p className="text-sm leading-7 text-slate-300">
+                      {project.outcome}
+                    </p>
+
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {project.services.map((service) => (
+                        <span
+                          key={service}
+                          className="rounded-full bg-emerald-300/10 px-4 py-2 text-xs font-black text-emerald-300"
+                        >
+                          {service}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="mt-8 grid gap-5">
+                      {[
+                        ["Challenge", project.challenge],
+                        ["Solution", project.solution],
+                        ["Result", project.result],
+                      ].map(([title, text]) => (
+                        <div
+                          key={title}
+                          className="rounded-[1.5rem] border border-white/10 bg-black/25 p-5"
+                        >
+                          <p className="text-xs font-black uppercase tracking-[0.25em] text-emerald-300">
+                            {title}
+                          </p>
+                          <p className="mt-3 text-sm leading-7 text-slate-400">
+                            {text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+<a
+  href={project.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mt-8 inline-flex items-center gap-2 rounded-full bg-emerald-300 px-6 py-3 text-sm font-black text-black transition hover:-translate-y-1"
+>
+  Launch Project
+  <ArrowUpRight size={16} />
+</a>
+                  </div>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="px-4 pb-16 sm:px-6">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-black text-white">
-          <div className="grid items-center gap-8 md:grid-cols-[1fr_0.8fr]">
-            <div className="p-8 md:p-14">
-              <h2 className="max-w-3xl text-4xl font-black tracking-tight md:text-6xl">
-                Make your business look premium from the first click.
-              </h2>
-
-              <p className="mt-5 max-w-xl text-sm leading-relaxed text-gray-300 md:text-base">
-                Techuvo creates the digital foundation your business needs to
-                look cleaner, sharper, and more trusted online.
+      {/* TECHNOLOGY STACK */}
+      <section className="px-4 py-20 sm:px-6 md:py-28">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.3em] text-emerald-300">
+                Technology Stack
               </p>
-
-              <Link
-                to="/contact"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-black text-black transition hover:-translate-y-1"
-              >
-                Start Your Project
-                <ArrowUpRight size={16} />
-              </Link>
+              <h2 className="mt-4 text-4xl font-black leading-[0.95] tracking-[-0.055em] md:text-7xl">
+                Built with modern tools for speed, scale, and growth.
+              </h2>
             </div>
 
-            <div className="hidden h-full min-h-[360px] md:block">
-              <img
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72"
-                alt="Business meeting"
-                className="h-full w-full object-cover opacity-80"
-              />
+            <p className="max-w-2xl text-base leading-8 text-slate-400">
+              Techuvo combines frontend engineering, AI infrastructure,
+              automation workflows, SEO strategy, and analytics to create systems
+              that businesses can actually use to grow.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {stack.map(([name, Icon]) => (
+              <div
+                key={name}
+                className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 transition hover:-translate-y-2 hover:border-emerald-300/40"
+              >
+                <Icon className="text-emerald-300" size={28} />
+                <h3 className="mt-10 text-2xl font-black">{name}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BUILT FOR GROWTH */}
+      <section className="px-4 py-20 sm:px-6 md:py-28">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.75rem] bg-emerald-300 text-black">
+          <div className="grid gap-10 p-8 md:grid-cols-[.9fr_1.1fr] md:p-14">
+            <div>
+              <Network size={44} />
+              <h2 className="mt-8 text-4xl font-black leading-[0.95] tracking-[-0.06em] md:text-7xl">
+                Built for Growth.
+              </h2>
+            </div>
+
+            <div className="flex flex-col justify-center">
+              <p className="text-lg font-semibold leading-8 text-black/75">
+                Techuvo does not just build websites. We create complete digital
+                systems designed to generate leads, improve customer experience,
+                support operations, and help businesses grow with confidence.
+              </p>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {[
+                  "More trust",
+                  "Cleaner customer flow",
+                  "Better lead capture",
+                  "Scalable infrastructure",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 rounded-2xl bg-black px-5 py-4 text-sm font-black text-emerald-300"
+                  >
+                    <CheckCircle size={18} />
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-black/10 bg-white px-4 py-12 sm:px-6">
-        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
-          <div>
-            <h3 className="text-2xl font-black">Techuvo</h3>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-gray-600">
-              Websites, brand systems, and automation tools for businesses that
-              want to look more established online.
-            </p>
-          </div>
+      {/* FINAL CTA */}
+      <section className="px-4 pb-24 pt-8 sm:px-6">
+        <div className="mx-auto max-w-7xl rounded-[2.75rem] border border-emerald-300/20 bg-[radial-gradient(circle_at_top,rgba(16,185,129,.18),transparent_35%),rgba(255,255,255,.04)] p-8 text-center md:p-16">
+          <DatabaseZap className="mx-auto text-emerald-300" size={44} />
 
-          <div>
-            <p className="font-black">Pages</p>
-            <div className="mt-4 space-y-3 text-sm text-gray-600">
-              <Link to="/" className="block hover:text-black">Home</Link>
-              <Link to="/services" className="block hover:text-black">Services</Link>
-              <Link to="/portfolio" className="block hover:text-black">Portfolio</Link>
-              <Link to="/contact" className="block hover:text-black">Contact</Link>
-            </div>
-          </div>
+          <h2 className="mx-auto mt-8 max-w-5xl text-4xl font-black leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            Ready to Become Our Next Success Story?
+          </h2>
 
-          <div>
-            <p className="font-black">Services</p>
-            <div className="mt-4 space-y-3 text-sm text-gray-600">
-              <p>Website Development</p>
-              <p>Brand Identity</p>
-              <p>Automation Systems</p>
-              <p>AI Business Tools</p>
-            </div>
+          <p className="mx-auto mt-6 max-w-2xl text-slate-300">
+            Let&apos;s build the digital foundation your business deserves.
+          </p>
+
+          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-300 px-9 py-4 text-sm font-black text-black transition hover:-translate-y-1"
+            >
+              Start a Project
+              <ArrowUpRight size={17} />
+            </Link>
+
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/[0.04] px-9 py-4 text-sm font-black text-white backdrop-blur-xl transition hover:bg-white hover:text-black"
+            >
+              Book a Strategy Call
+            </Link>
           </div>
         </div>
-
-        <div className="mx-auto mt-10 flex max-w-7xl flex-col gap-3 border-t border-black/10 pt-6 text-xs text-gray-500 sm:flex-row sm:justify-between">
-          <p>© {new Date().getFullYear()} Techuvo. All rights reserved.</p>
-          <p>Digital systems for modern businesses.</p>
-        </div>
-      </footer>
+      </section>
     </div>
   );
 }

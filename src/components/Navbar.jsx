@@ -9,7 +9,7 @@ import {
   Phone,
   Sparkles,
 } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -38,12 +38,13 @@ const signalItems = [
 ];
 
 export default function Navbar() {
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const phoneNumber = "313-000-0000";
+  const phoneNumber = "313-450-7265";
 
   const filteredServices = services.filter((service) =>
     service.toLowerCase().includes(searchTerm.toLowerCase())
@@ -64,16 +65,16 @@ export default function Navbar() {
             <Link to="/" onClick={closeAll}>
               <div className="flex flex-col leading-none">
                 <span className="text-2xl font-black tracking-tight md:text-3xl">
-                  Techuvo
+                  TECHUVO
                 </span>
-                <span className="mt-1 text-[10px] uppercase tracking-[0.32em] text-gray-500">
-                  Digital Systems
+                <span className="mt-1 text-[10px] uppercase tracking-[0.26em] text-gray-500">
+                  Web • AI • Automation
                 </span>
               </div>
             </Link>
 
             {/* Desktop Nav */}
-            <div className="hidden items-center gap-2 rounded-full border border-black/10 bg-white/70 px-2 py-2 shadow-sm md:flex">
+            <div className="hidden items-center gap-2 rounded-full border border-black/10 bg-white/70 px-2 py-2 shadow-sm lg:flex">
               <NavLink
                 to="/"
                 className={({ isActive }) =>
@@ -91,6 +92,7 @@ export default function Navbar() {
                 <button
                   onClick={() => setServicesOpen((prev) => !prev)}
                   className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-black/5 hover:text-black"
+                  aria-expanded={servicesOpen}
                 >
                   Services <ChevronDown size={15} />
                 </button>
@@ -139,7 +141,7 @@ export default function Navbar() {
 
             {/* Right Side */}
             <div className="flex items-center gap-3">
-              <div className="relative hidden sm:block">
+              <div className="relative hidden lg:block">
                 <button
                   onClick={() => setSearchOpen((prev) => !prev)}
                   className="rounded-full border border-black/10 bg-white p-3 transition hover:bg-gray-100"
@@ -191,17 +193,18 @@ export default function Navbar() {
                 to="/contact"
                 className="hidden rounded-full bg-black px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-gray-900 sm:block"
               >
-                Start a Project
+                Get Free Quote
               </Link>
 
               <button
                 onClick={() => setMobileOpen((prev) => !prev)}
-                className={`relative z-[160] rounded-full border p-3 transition md:hidden ${
+                className={`relative z-[160] rounded-full border p-3 transition lg:hidden ${
                   mobileOpen
                     ? "border-white/20 bg-white text-black"
                     : "border-black/10 bg-white text-black hover:bg-gray-100"
                 }`}
                 aria-label="Toggle menu"
+                aria-expanded={mobileOpen}
               >
                 {mobileOpen ? <X size={21} /> : <Menu size={21} />}
               </button>
@@ -211,7 +214,7 @@ export default function Navbar() {
       </nav>
 
       {/* Signal Rail */}
-      {!mobileOpen && (
+      {location.pathname === "/" && !mobileOpen && (
         <div className="sticky top-20 z-[80] border-b border-black/10 bg-white/70 backdrop-blur-2xl">
           <div className="mx-auto max-w-7xl overflow-hidden px-4 sm:px-6 lg:px-10">
             <motion.div
@@ -272,7 +275,7 @@ export default function Navbar() {
               duration: 0.55,
               ease: [0.76, 0, 0.24, 1],
             }}
-            className="fixed inset-0 z-[100] overflow-y-auto bg-[#050816] px-4 pb-8 pt-28 text-white md:hidden"
+            className="fixed inset-0 z-[100] overflow-y-auto bg-[#050816] px-4 pb-8 pt-28 text-white lg:hidden"
           >
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,#2563eb55,transparent_35%),radial-gradient(circle_at_bottom_left,#14b8a655,transparent_35%)]" />
 
@@ -331,6 +334,19 @@ export default function Navbar() {
                   Get your quote today.
                 </h3>
 
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {["Website Systems", "AI Workforce", "Lead Generation"].map((item) => (
+                    <Link
+                      key={item}
+                      to={item === "Lead Generation" ? "/services" : item === "AI Workforce" ? "/shop" : "/services"}
+                      onClick={closeAll}
+                      className="rounded-full border border-cyan-300/20 bg-white/[0.07] px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-cyan-100"
+                    >
+                      {item}
+                    </Link>
+                  ))}
+                </div>
+
                 <div className="mt-5 grid gap-3">
                   <a
                     href={`tel:${phoneNumber.replaceAll("-", "")}`}
@@ -345,7 +361,7 @@ export default function Navbar() {
                     onClick={closeAll}
                     className="flex items-center justify-center gap-2 rounded-full bg-cyan-300 px-5 py-4 text-sm font-black text-black"
                   >
-                    Get Your Quote
+                    Get Free Quote
                     <ArrowUpRight size={16} />
                   </Link>
                 </div>
