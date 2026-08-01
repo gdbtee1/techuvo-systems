@@ -452,8 +452,7 @@ function Navbar() {
               }
               aria-expanded={mobileOpen}
               aria-controls="mobile-navigation-panel"
-              onClick={(event) => {
-                event.stopPropagation();
+              onClick={() => {
                 setMobileOpen((current) => !current);
               }}
               className={`relative z-[220] grid h-11 w-11 shrink-0 touch-manipulation place-items-center cursor-pointer select-none lg:hidden ${
@@ -514,109 +513,48 @@ function Navbar() {
       </header>
 
       {/* Mobile navigation */}
-      <div
-        className={`fixed inset-0 z-[180] bg-slate-950/35 backdrop-blur-sm transition duration-300 lg:hidden ${
-          mobileOpen
-            ? "visible pointer-events-auto opacity-100"
-            : "invisible pointer-events-none opacity-0"
-        }`}
-        onClick={() => setMobileOpen(false)}
-      />
+      {mobileOpen && (
+        <>
+          <button
+            type="button"
+            aria-label="Close mobile navigation"
+            className="fixed inset-0 z-[190] cursor-default bg-slate-950/45 backdrop-blur-[2px] lg:hidden"
+            onClick={() => setMobileOpen(false)}
+          />
 
-      <aside
-        id="mobile-navigation-panel"
-        className={`fixed inset-x-3 top-[5.5rem] z-[210] max-h-[calc(100dvh-6.5rem)] overflow-y-auto overscroll-contain border border-slate-200 bg-white shadow-[0_30px_90px_rgba(15,23,42,0.2)] transition-[transform,opacity,visibility] duration-300 ease-out lg:hidden ${
-          mobileOpen
-            ? "visible pointer-events-auto translate-y-0 opacity-100"
-            : "invisible pointer-events-none -translate-y-4 opacity-0"
-        }`}
-        onClick={(event) => event.stopPropagation()}
-      >
-        <nav
-          aria-label="Mobile navigation"
-          className="p-3"
-        >
-          {navigationLinks.map((link, index) => {
-            const hasChildren =
-              Boolean(link.children);
+          <aside
+            id="mobile-navigation-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
+            className="fixed inset-x-3 top-[5.5rem] z-[210] max-h-[calc(100dvh-6.5rem)] overflow-y-auto overscroll-contain border border-slate-200 bg-white shadow-[0_30px_90px_rgba(15,23,42,0.28)] animate-[mobileMenuIn_260ms_ease-out_both] lg:hidden"
+          >
+            <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+              <div>
+                <p className="text-[0.6rem] font-extrabold uppercase tracking-[0.18em] text-blue-700">
+                  Navigation
+                </p>
 
-            const dropdownOpen =
-              mobileDropdown === link.label;
+                <p className="mt-1 text-sm font-bold text-slate-500">
+                  Explore Techuvo
+                </p>
+              </div>
 
-            if (hasChildren) {
-              return (
-                <div
-                  key={link.label}
-                  className="border-b border-slate-100 last:border-b-0"
-                >
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setMobileDropdown((current) =>
-                        current === link.label
-                          ? null
-                          : link.label,
-                      )
-                    }
-                    className="flex w-full items-center justify-between px-4 py-5 text-left"
-                  >
-                    <span className="flex items-center gap-4">
-                      <span className="text-xs font-black text-blue-700">
-                        {String(index + 1).padStart(
-                          2,
-                          "0",
-                        )}
-                      </span>
+              <button
+                type="button"
+                aria-label="Close navigation"
+                onClick={() => setMobileOpen(false)}
+                className="grid h-10 w-10 shrink-0 touch-manipulation place-items-center border border-slate-200 bg-slate-50 text-slate-950"
+              >
+                <MenuIcon open />
+              </button>
+            </div>
 
-                      <span className="text-lg font-black text-slate-950">
-                        {link.label}
-                      </span>
-                    </span>
-
-                    <ChevronIcon
-                      open={dropdownOpen}
-                    />
-                  </button>
-
-                  <div
-                    className={`grid transition-all duration-300 ${
-                      dropdownOpen
-                        ? "grid-rows-[1fr] opacity-100"
-                        : "grid-rows-[0fr] opacity-0"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="mb-3 ml-10 border-l border-blue-200 pl-4">
-                        {link.children.map(
-                          (child) => (
-                            <Link
-                              key={child.to}
-                              to={child.to}
-                              className="block py-3"
-                            >
-                              <span className="block text-sm font-extrabold text-slate-900">
-                                {child.label}
-                              </span>
-
-                              <span className="mt-1 block text-xs leading-5 text-slate-500">
-                                {child.description}
-                              </span>
-                            </Link>
-                          ),
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            }
-
-            return (
+            <nav aria-label="Mobile navigation links" className="p-3">
               <NavLink
-                key={link.to}
-                to={link.to}
+                to="/"
                 className={({ isActive }) =>
-                  `flex items-center justify-between border-b border-slate-100 px-4 py-5 last:border-b-0 ${
+                  `flex items-center justify-between border-b border-slate-100 px-4 py-5 ${
                     isActive
                       ? "bg-blue-50 text-blue-700"
                       : "text-slate-950"
@@ -625,31 +563,144 @@ function Navbar() {
               >
                 <span className="flex items-center gap-4">
                   <span className="text-xs font-black text-blue-700">
-                    {String(index + 1).padStart(
-                      2,
-                      "0",
-                    )}
+                    01
                   </span>
 
                   <span className="text-lg font-black">
-                    {link.label}
+                    Home
                   </span>
                 </span>
 
                 <ArrowIcon />
               </NavLink>
-            );
-          })}
 
-          <Link
-            to="/contact"
-            className="mt-3 flex min-h-14 items-center justify-between bg-blue-600 px-5 text-sm font-extrabold text-white"
-          >
-            Start your project
-            <ArrowIcon />
-          </Link>
-        </nav>
-      </aside>
+              {navigationLinks.map((link, index) => {
+                const hasChildren = Boolean(link.children);
+                const dropdownOpen =
+                  mobileDropdown === link.label;
+
+                if (hasChildren) {
+                  return (
+                    <div
+                      key={link.label}
+                      className="border-b border-slate-100 last:border-b-0"
+                    >
+                      <button
+                        type="button"
+                        aria-expanded={dropdownOpen}
+                        onClick={() =>
+                          setMobileDropdown((current) =>
+                            current === link.label
+                              ? null
+                              : link.label,
+                          )
+                        }
+                        className="flex w-full touch-manipulation items-center justify-between px-4 py-5 text-left text-slate-950"
+                      >
+                        <span className="flex items-center gap-4">
+                          <span className="text-xs font-black text-blue-700">
+                            {String(index + 2).padStart(2, "0")}
+                          </span>
+
+                          <span className="text-lg font-black">
+                            {link.label}
+                          </span>
+                        </span>
+
+                        <ChevronIcon open={dropdownOpen} />
+                      </button>
+
+                      <div
+                        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                          dropdownOpen
+                            ? "grid-rows-[1fr] opacity-100"
+                            : "grid-rows-[0fr] opacity-0"
+                        }`}
+                      >
+                        <div className="overflow-hidden">
+                          <div className="mb-4 ml-10 border-l border-blue-200 pl-4">
+                            {link.children.map((child) => (
+                              <Link
+                                key={child.to}
+                                to={child.to}
+                                className="block border-b border-slate-100 py-3 last:border-b-0"
+                              >
+                                <span className="block text-sm font-extrabold text-slate-900">
+                                  {child.label}
+                                </span>
+
+                                <span className="mt-1 block text-xs leading-5 text-slate-500">
+                                  {child.description}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <NavLink
+                    key={link.to}
+                    to={link.to}
+                    className={({ isActive }) =>
+                      `flex items-center justify-between border-b border-slate-100 px-4 py-5 ${
+                        isActive
+                          ? "bg-blue-50 text-blue-700"
+                          : "text-slate-950"
+                      }`
+                    }
+                  >
+                    <span className="flex items-center gap-4">
+                      <span className="text-xs font-black text-blue-700">
+                        {String(index + 2).padStart(2, "0")}
+                      </span>
+
+                      <span className="text-lg font-black">
+                        {link.label}
+                      </span>
+                    </span>
+
+                    <ArrowIcon />
+                  </NavLink>
+                );
+              })}
+
+              <Link
+                to="/contact"
+                className="mt-3 flex min-h-14 items-center justify-between bg-blue-600 px-5 text-sm font-extrabold text-white"
+              >
+                Start your project
+                <ArrowIcon />
+              </Link>
+            </nav>
+          </aside>
+        </>
+      )}
+
+      <style>
+        {`
+          @keyframes mobileMenuIn {
+            from {
+              opacity: 0;
+              transform: translateY(-14px) scale(0.985);
+            }
+
+            to {
+              opacity: 1;
+              transform: translateY(0) scale(1);
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            #mobile-navigation-panel {
+              animation: none;
+            }
+          }
+        `}
+      </style>
 
       {/* Reserves space beneath the fixed header */}
       <div
