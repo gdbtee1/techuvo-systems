@@ -298,7 +298,7 @@ function Navbar() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        className={`fixed inset-x-0 top-0 z-[200] transition-all duration-500 ${
           isScrolled
             ? "px-3 pt-3 sm:px-5"
             : "bg-white px-0 pt-0"
@@ -451,10 +451,12 @@ function Navbar() {
                   : "Open navigation"
               }
               aria-expanded={mobileOpen}
-              onClick={() =>
-                setMobileOpen((current) => !current)
-              }
-              className={`grid h-11 w-11 place-items-center lg:hidden ${
+              aria-controls="mobile-navigation-panel"
+              onClick={(event) => {
+                event.stopPropagation();
+                setMobileOpen((current) => !current);
+              }}
+              className={`relative z-[220] grid h-11 w-11 shrink-0 touch-manipulation place-items-center cursor-pointer select-none lg:hidden ${
                 isScrolled
                   ? "border border-white/25 text-white"
                   : "border border-slate-200 bg-slate-50 text-slate-950"
@@ -513,20 +515,22 @@ function Navbar() {
 
       {/* Mobile navigation */}
       <div
-        className={`fixed inset-0 z-40 bg-slate-950/35 backdrop-blur-sm transition duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[180] bg-slate-950/35 backdrop-blur-sm transition duration-300 lg:hidden ${
           mobileOpen
-            ? "visible opacity-100"
-            : "invisible opacity-0"
+            ? "visible pointer-events-auto opacity-100"
+            : "invisible pointer-events-none opacity-0"
         }`}
         onClick={() => setMobileOpen(false)}
       />
 
       <aside
-        className={`fixed inset-x-3 top-[5.5rem] z-50 max-h-[calc(100dvh-6.5rem)] overflow-y-auto border border-slate-200 bg-white shadow-[0_30px_90px_rgba(15,23,42,0.2)] transition-all duration-300 lg:hidden ${
+        id="mobile-navigation-panel"
+        className={`fixed inset-x-3 top-[5.5rem] z-[210] max-h-[calc(100dvh-6.5rem)] overflow-y-auto overscroll-contain border border-slate-200 bg-white shadow-[0_30px_90px_rgba(15,23,42,0.2)] transition-[transform,opacity,visibility] duration-300 ease-out lg:hidden ${
           mobileOpen
-            ? "visible translate-y-0 opacity-100"
-            : "invisible -translate-y-4 opacity-0"
+            ? "visible pointer-events-auto translate-y-0 opacity-100"
+            : "invisible pointer-events-none -translate-y-4 opacity-0"
         }`}
+        onClick={(event) => event.stopPropagation()}
       >
         <nav
           aria-label="Mobile navigation"
