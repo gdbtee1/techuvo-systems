@@ -1466,7 +1466,7 @@ textarea.form-control {
    ========================================================= */
 
 header {
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 header nav {
