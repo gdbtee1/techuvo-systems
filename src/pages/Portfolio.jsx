@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import ryneWritesPreview from "../assets/images/ryne-writes-preview.jpg";
 
 const projects = [
   {
@@ -158,6 +159,32 @@ const projects = [
     ],
     color: "cyan",
   },
+  {
+    id: "ryne-writes",
+    fileNumber: "007",
+    title: "Ryne Writes",
+    category: "Creative Portfolio",
+    type: "Interactive Portfolio",
+    year: "2026",
+    location: "United States",
+    websiteUrl: "https://rynewrites.com",
+    status: "Live",
+    description:
+      "An interactive portfolio designed around a unique gaming-inspired experience that transforms a traditional portfolio into something memorable.",
+    brief:
+      "The client wanted an experience instead of a traditional website. Every interaction was designed to feel playful while still presenting professional work.",
+    build:
+      "Techuvo designed and developed a completely custom interactive portfolio featuring cinematic transitions, retro-inspired visuals, responsive layouts, and immersive navigation.",
+    capabilities: [
+      "Interactive experience",
+      "Creative UI",
+      "Responsive development",
+      "Custom animations",
+      "Portfolio design",
+      "Performance optimization",
+    ],
+    color: "cyan",
+  },
 ];
 
 const categories = [
@@ -167,6 +194,7 @@ const categories = [
   "Education",
   "Media",
   "Publishing",
+  "Creative Portfolio",
 ];
 
 const colorStyles = {
@@ -314,7 +342,11 @@ function BlueprintFallback({ project, compact = false }) {
 
 function ProjectScreenshot({ project, compact = false }) {
   const [failed, setFailed] = useState(false);
-  const screenshotUrl = getScreenshotUrl(project);
+
+  const isRyneWrites = project.id === "ryne-writes";
+  const screenshotUrl = isRyneWrites
+    ? ryneWritesPreview
+    : getScreenshotUrl(project);
 
   if (!screenshotUrl || failed) {
     return <BlueprintFallback project={project} compact={compact} />;
@@ -326,7 +358,9 @@ function ProjectScreenshot({ project, compact = false }) {
       alt={`${project.title} website preview`}
       loading="lazy"
       onError={() => setFailed(true)}
-      className="h-full w-full object-cover object-top"
+      className={`h-full w-full object-cover ${
+        isRyneWrites ? "object-center" : "object-top"
+      }`}
     />
   );
 }
@@ -611,7 +645,7 @@ function ReservedFile() {
       <div className="relative flex h-full flex-1 flex-col">
         <div className="flex items-center justify-between">
           <p className="text-[0.58rem] font-extrabold uppercase tracking-[0.18em] text-blue-700">
-            File 007
+            File 008
           </p>
 
           <span className="relative flex h-2.5 w-2.5">
@@ -773,9 +807,9 @@ function Portfolio() {
 
           <div className="mt-8 grid grid-cols-2 gap-px border border-blue-200 bg-blue-200 sm:grid-cols-4">
             {[
-              ["06", "Projects"],
-              ["05", "Industries"],
-              ["03", "Live"],
+              ["07", "Projects"],
+              ["06", "Industries"],
+              ["04", "Live"],
               ["01", "Reserved"],
             ].map(([value, label]) => (
               <div key={label} className="bg-white/85 px-4 py-3.5">
@@ -877,7 +911,7 @@ function Portfolio() {
         <div className="relative mx-auto grid max-w-[100rem] gap-7 px-5 py-12 sm:px-8 sm:py-14 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12">
           <div>
             <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-blue-300">
-              File 007
+              File 008
             </p>
 
             <h2 className="mt-3 max-w-3xl text-4xl font-black tracking-[-0.06em] sm:text-5xl">
