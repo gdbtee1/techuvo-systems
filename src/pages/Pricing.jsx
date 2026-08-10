@@ -958,12 +958,12 @@ function Pricing() {
                   {servicePackage.serviceLabel}
                 </p>
 
-                <h3 className="mt-4 text-2xl font-bold tracking-[-0.04em] sm:text-3xl">
+                <h3 className="mt-4 text-2xl font-bold tracking-[-0.04em] sm:text-3xl lg:min-h-[4.5rem]">
                   {servicePackage.name}
                 </h3>
 
                 <p
-                  className={`mt-4 text-sm leading-7 ${
+                  className={`mt-4 text-sm leading-7 lg:min-h-[5.25rem] ${
                     servicePackage.highlighted
                       ? "text-slate-300"
                       : "text-slate-600"
@@ -1008,7 +1008,7 @@ function Pricing() {
                 />
 
                 <div
-                  className={`rounded-[1.2rem] border p-4 ${
+                  className={`rounded-[1.2rem] border p-4 lg:min-h-[9.25rem] ${
                     servicePackage.highlighted
                       ? "border-white/10 bg-white/[0.055]"
                       : "border-slate-200 bg-slate-50"
@@ -1035,7 +1035,7 @@ function Pricing() {
                   </p>
                 </div>
 
-                <ul className="mt-6 space-y-3">
+                <ul className="mt-6 space-y-3 lg:min-h-[22.5rem]">
                   {servicePackage.features.map(
                     (feature) => (
                       <li

@@ -147,7 +147,7 @@ function About() {
 
   return (
     <>
-      <section className="hero-section architecture-grid">
+      <section className="hero-section architecture-grid lg:!pt-10 lg:!pb-16 xl:!pt-12 xl:!pb-20">
         <div
           aria-hidden="true"
           className="glow-orb"
@@ -206,7 +206,7 @@ function About() {
 
             <div className="relative">
               <div className="surface-card overflow-hidden p-3 sm:p-4">
-                <div className="founder-image-shell min-h-[34rem]">
+                <div className="founder-image-shell min-h-[34rem] lg:min-h-[30rem] xl:min-h-[32rem]">
                   <img
                     src={founderImage}
                     alt="Luan Hunt, founder of Techuvo"
