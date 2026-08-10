@@ -130,7 +130,7 @@ function MobileActionBar() {
         </a>
 
         <a
-          href="#featured-work"
+          href="/portfolio"
           className="inline-flex min-h-12 flex-1 items-center justify-center rounded-[0.9rem] border border-slate-200 bg-white px-4 text-sm font-extrabold text-slate-950 transition active:scale-[0.98]"
         >
           View work
