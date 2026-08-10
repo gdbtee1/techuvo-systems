@@ -315,7 +315,7 @@ function Contact() {
     };
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -323,9 +323,7 @@ function Contact() {
 
     const name = formData.get("name")?.trim();
     const email = formData.get("email")?.trim();
-    const phone = formData.get("phone")?.trim();
     const business = formData.get("business")?.trim();
-    const website = formData.get("website")?.trim();
     const service = formData.get("service")?.trim();
     const budget = formData.get("budget")?.trim();
     const timeline = formData.get("timeline")?.trim();
@@ -344,29 +342,26 @@ function Contact() {
       return;
     }
 
-    const subject = encodeURIComponent(
-      `New Techuvo project inquiry from ${name}`,
-    );
+    try {
+      setFormStatus("submitting");
 
-    const body = encodeURIComponent(
-      [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone || "Not provided"}`,
-        `Business: ${business}`,
-        `Current website: ${website || "Not provided"}`,
-        `Service: ${service}`,
-        `Budget: ${budget}`,
-        `Timeline: ${timeline}`,
-        "",
-        "Project details:",
-        message,
-      ].join("\n"),
-    );
+      const response = await fetch("https://formspree.io/f/mnjprdge", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-    window.location.href = `mailto:hello@techuvo.dev?subject=${subject}&body=${body}`;
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
 
-    setFormStatus("success");
+      form.reset();
+      setFormStatus("success");
+    } catch (error) {
+      setFormStatus("error");
+    }
   };
 
   return (
@@ -608,9 +603,8 @@ function Contact() {
                 </h2>
 
                 <p className="body-copy mt-4 max-w-2xl">
-                  This version prepares an email using the information you enter
-                  and opens your email application. You can later replace it
-                  with a database, CRM, or form service.
+                  Share your project details below and Techuvo will review your
+                  request and follow up with the clearest next step.
                 </p>
               </div>
 
@@ -849,17 +843,18 @@ function Contact() {
                     role="status"
                     className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700"
                   >
-                    Your email application should now open with your project
-                    details prepared.
+                    Your project request was submitted successfully. Techuvo will
+                    review your details and follow up soon.
                   </p>
                 )}
 
                 <div className="flex flex-col gap-3 pt-2 sm:flex-row">
                   <button
                     type="submit"
+                    disabled={formStatus === "submitting"}
                     className="button button-primary w-full sm:w-auto"
                   >
-                    Prepare project email
+                    {formStatus === "submitting" ? "Submitting..." : "Submit project request"}
                     <ArrowIcon />
                   </button>
 
@@ -873,8 +868,7 @@ function Contact() {
                 </div>
 
                 <p className="text-xs leading-5 text-slate-500">
-                  Required fields are used only to prepare your project inquiry.
-                  This version does not store submissions in a database.
+                  Required fields are used only to review and respond to your project inquiry.
                 </p>
               </form>
             </div>
@@ -1008,9 +1002,8 @@ function Contact() {
                 </h2>
 
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
-                  The booking link is currently a placeholder. Replace the
-                  `bookingUrl` constant at the top of this file with your live
-                  Calendly or scheduling link.
+                  Use the project form above to share your goals, timeline, and
+                  business needs before scheduling a strategy call.
                 </p>
               </div>
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const services = [
   {
     number: "01",
-    title: "Ann Arbor Website Design",
+    title: "Ann Arbor Website Development",
     description:
       "Custom website design for companies that need a polished, modern, and highly credible digital presence.",
     to: "/services/website-development",
@@ -94,19 +94,19 @@ const processSteps = [
 
 const frequentlyAskedQuestions = [
   {
-    question: "How much does website design cost in Ann Arbor?",
+    question: "How much does website development cost in Ann Arbor, MI?",
     answer:
-      "Website pricing depends on the number of pages, design requirements, content needs, integrations, custom functionality, and ongoing support. Techuvo offers focused landing pages, small business websites, redesigns, and larger custom website systems.",
+      "Website development pricing in Ann Arbor depends on the number of pages, design requirements, content, integrations, custom functionality, and ongoing support. Techuvo builds landing pages, small business websites, redesigns, and larger custom web experiences for Ann Arbor-area organizations.",
   },
   {
-    question: "Does Techuvo work with Ann Arbor startups?",
+    question: "Does Techuvo provide web design for Ann Arbor small businesses and startups?",
     answer:
-      "Yes. Techuvo can help startups establish a clear website structure, launch messaging, responsive design, brand direction, lead capture, and scalable digital foundations.",
+      "Yes. Techuvo provides web design and website development for Ann Arbor small businesses, startups, professionals, and organizations that need clear messaging, responsive design, lead capture, and a scalable digital foundation.",
   },
   {
-    question: "Can Techuvo redesign an existing company website?",
+    question: "Can you redesign an existing business website in Ann Arbor?",
     answer:
-      "Yes. Techuvo can rebuild an outdated, confusing, slow, or poorly structured website with clearer messaging, stronger visual presentation, responsive layouts, and better customer journeys.",
+      "Yes. Techuvo can redesign outdated or underperforming Ann Arbor business websites with clearer messaging, stronger visual presentation, responsive layouts, improved structure, and better customer journeys.",
   },
   {
     question: "Can you build landing pages for advertising campaigns?",
@@ -114,9 +114,9 @@ const frequentlyAskedQuestions = [
       "Yes. Techuvo creates focused landing pages for paid advertising, event registrations, service promotions, product launches, consultations, and other conversion goals.",
   },
   {
-    question: "Can you help my company appear in Ann Arbor searches?",
+    question: "Can you help my business improve its visibility in Ann Arbor Google searches?",
     answer:
-      "Techuvo can build local-search foundations through useful Ann Arbor content, descriptive titles, strong service pages, internal linking, responsive structure, and technical organization. Rankings also depend on competition, reviews, links, business prominence, and ongoing activity.",
+      "Techuvo can build local-search foundations through useful Ann Arbor content, descriptive titles, relevant service pages, internal linking, responsive structure, and technical organization. Local and organic rankings also depend on proximity, competition, reviews, backlinks, business prominence, Google Business Profile signals, and ongoing activity.",
   },
   {
     question: "Can Techuvo connect analytics, booking, forms, or a CRM?",
@@ -215,10 +215,10 @@ function AnnArbor() {
     const previousTitle = document.title;
 
     document.title =
-      "Ann Arbor Website Design Company | Web Development | Techuvo";
+      "Website Development Ann Arbor, MI | Web Design | Techuvo";
 
     const description =
-      "Techuvo provides custom website design, responsive development, landing pages, redesigns, branding, and digital automation for Ann Arbor businesses.";
+      "Looking for website development in Ann Arbor, MI? Techuvo provides custom web design, responsive development, landing pages, redesigns, and digital solutions for Ann Arbor businesses.";
 
     let metaDescription = document.querySelector(
       'meta[name="description"]',
@@ -236,6 +236,32 @@ function AnnArbor() {
       metaDescription.getAttribute("content");
 
     metaDescription.setAttribute("content", description);
+
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    const createdKeywords = !metaKeywords;
+    if (!metaKeywords) {
+      metaKeywords = document.createElement("meta");
+      metaKeywords.setAttribute("name", "keywords");
+      document.head.appendChild(metaKeywords);
+    }
+    const previousKeywords = metaKeywords.getAttribute("content");
+    metaKeywords.setAttribute(
+      "content",
+      "website development Ann Arbor, web design Ann Arbor, web developer Ann Arbor, website designer Ann Arbor, Ann Arbor website development, Ann Arbor web design, small business website Ann Arbor, website redesign Ann Arbor, Michigan web developer",
+    );
+
+    let robots = document.querySelector('meta[name="robots"]');
+    const createdRobots = !robots;
+    if (!robots) {
+      robots = document.createElement("meta");
+      robots.setAttribute("name", "robots");
+      document.head.appendChild(robots);
+    }
+    const previousRobots = robots.getAttribute("content");
+    robots.setAttribute(
+      "content",
+      "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    );
 
     let canonical = document.querySelector(
       'link[rel="canonical"]',
@@ -266,18 +292,34 @@ function AnnArbor() {
       "@graph": [
         {
           "@type": "ProfessionalService",
+          "@id": "https://techuvo.dev/#business",
           name: "Techuvo",
           url: "https://techuvo.dev/locations/ann-arbor",
           email: "hello@techuvo.dev",
           description,
-          areaServed: {
-            "@type": "City",
-            name: "Ann Arbor",
-            containedInPlace: {
-              "@type": "State",
-              name: "Michigan",
+          knowsAbout: [
+            "Website Development",
+            "Web Design",
+            "Responsive Web Development",
+            "Website Redesign",
+            "Landing Page Design",
+            "Local SEO",
+            "Business Automation",
+          ],
+          areaServed: [
+            {
+              "@type": "City",
+              name: "Ann Arbor",
+              containedInPlace: {
+                "@type": "State",
+                name: "Michigan",
+              },
             },
-          },
+            {
+              "@type": "AdministrativeArea",
+              name: "Washtenaw County",
+            },
+          ],
           serviceType: [
             "Website Design",
             "Website Development",
@@ -286,6 +328,19 @@ function AnnArbor() {
             "Brand Identity",
             "Business Automation",
           ],
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://techuvo.dev/locations/ann-arbor#webpage",
+          url: "https://techuvo.dev/locations/ann-arbor",
+          name: "Website Development Ann Arbor, MI | Web Design | Techuvo",
+          description,
+          about: {
+            "@id": "https://techuvo.dev/#business",
+          },
+          mainEntity: {
+            "@id": "https://techuvo.dev/#business",
+          },
         },
         {
           "@type": "BreadcrumbList",
@@ -340,6 +395,22 @@ function AnnArbor() {
         metaDescription.removeAttribute("content");
       }
 
+      if (createdKeywords) {
+        metaKeywords.remove();
+      } else if (previousKeywords !== null) {
+        metaKeywords.setAttribute("content", previousKeywords);
+      } else {
+        metaKeywords.removeAttribute("content");
+      }
+
+      if (createdRobots) {
+        robots.remove();
+      } else if (previousRobots !== null) {
+        robots.setAttribute("content", previousRobots);
+      } else {
+        robots.removeAttribute("content");
+      }
+
       if (createdCanonical) {
         canonical.remove();
       } else if (previousCanonical !== null) {
@@ -382,21 +453,21 @@ function AnnArbor() {
               </div>
 
               <h1 className="page-heading mt-6">
-                Ann Arbor website design for ambitious modern businesses.
+               Website Development & Web Design in Ann Arbor, Michigan
               </h1>
 
               <p className="body-large mt-6">
-                Techuvo creates polished websites, landing pages, brand
-                systems, and digital workflows for Ann Arbor businesses that
-                value strong design, clear communication, and scalable
-                technology.
+                Techuvo provides custom website development and web design for
+                Ann Arbor businesses, startups, professionals, and organizations
+                that need a fast, responsive, credible digital presence built to
+                generate inquiries and support growth.
               </p>
 
               <p className="body-copy mt-5 max-w-2xl">
-                Whether you are launching a new company, modernizing an existing
-                website, promoting a focused offer, or improving customer
-                workflows, Techuvo builds around the actual goals of your
-                organization.
+                Whether you need a new business website, an Ann Arbor web
+                developer for a redesign, a high-converting landing page, or a
+                scalable digital system, Techuvo builds around your customers,
+                services, goals, and local market.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -519,11 +590,11 @@ function AnnArbor() {
           <div className="section-header">
             <div className="section-header-copy">
               <span className="eyebrow">
-                Ann Arbor Digital Services
+                Ann Arbor Web Development Services
               </span>
 
               <h2 className="section-heading">
-                Website and digital services designed for modern companies.
+                Website development and web design for Ann Arbor businesses.
               </h2>
             </div>
 
@@ -576,23 +647,24 @@ function AnnArbor() {
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
             <div>
               <span className="eyebrow">
-                Ann Arbor Industries
+                Website Development for Ann Arbor Businesses
               </span>
 
               <h2 className="section-heading mt-5">
-                Built around how customers evaluate your specific industry.
+                Local web design built around your industry and customers.
               </h2>
 
               <p className="body-large mt-6">
-                Different businesses need different content, trust signals,
-                calls to action, and digital experiences.
+                Ann Arbor businesses need more than attractive pages. Effective
+                web development combines clear content, trust signals, responsive
+                design, search-friendly structure, and focused calls to action.
               </p>
 
               <p className="body-copy mt-5">
-                A startup may need clear product positioning. A consultant may
-                need authority and lead capture. A healthcare provider may need
-                reassurance and accessible service information. Techuvo shapes
-                the experience around how your audience makes decisions.
+                Techuvo works with startups, professional services, healthcare
+                and care providers, contractors, consultants, restaurants,
+                creatives, nonprofits, and other organizations serving Ann Arbor
+                and surrounding Washtenaw County communities.
               </p>
 
               <Link
@@ -673,25 +745,26 @@ function AnnArbor() {
           <div className="grid gap-5 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="surface-card p-5 sm:p-7 lg:p-9">
               <span className="eyebrow">
-                Ann Arbor Search Visibility
+                Ann Arbor Website Development & Local Visibility
               </span>
 
               <h2 className="section-heading mt-5">
-                Local search pages should be useful, distinct, and connected.
+                Built to support visibility for relevant Ann Arbor searches.
               </h2>
 
               <p className="body-large mt-6">
-                Visibility begins with helpful content, clear service relevance,
-                strong technical structure, and a business that genuinely
-                serves the market.
+                Customers searching for website development in Ann Arbor, web
+                design in Ann Arbor, or a local web developer need a page that
+                clearly connects Techuvo's services with the Ann Arbor market.
               </p>
 
               <p className="body-copy mt-5">
-                This page combines Ann Arbor-specific positioning, service
-                information, industry context, internal links, frequently asked
-                questions, responsive design, metadata, and structured data.
-                Those foundations can support your reviews, local citations,
-                Google Business Profile, backlinks, and ongoing content.
+                This Ann Arbor service page combines local business context,
+                website development services, internal links, responsive design,
+                descriptive metadata, FAQs, and structured data. These foundations
+                support organic search visibility alongside reviews, local
+                citations, backlinks, Google Business Profile signals, and
+                ongoing content.
               </p>
 
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -734,28 +807,27 @@ function AnnArbor() {
 
               <div className="relative">
                 <p className="text-xs font-extrabold uppercase tracking-[0.15em] text-blue-300">
-                  Local search foundation
+                  Ann Arbor web development
                 </p>
 
                 <h3 className="mt-4 text-3xl font-bold tracking-[-0.045em] sm:text-4xl">
-                  Build local relevance around real services and customer
-                  needs.
+                  Website development services for businesses across Ann Arbor.
                 </h3>
 
                 <p className="mt-5 text-sm leading-7 text-slate-300 sm:text-base">
-                  The strongest local pages explain what the company does, who
-                  it serves, how the process works, and why the business is
-                  relevant to that specific market.
+                  Techuvo provides custom web development, responsive web design,
+                  landing pages, redesigns, and digital systems for businesses
+                  serving customers throughout Ann Arbor and Washtenaw County.
                 </p>
 
                 <div className="mt-8 space-y-3">
                   {[
-                    "Ann Arbor website design",
-                    "Ann Arbor web development",
+                    "Website development Ann Arbor",
+                    "Web design Ann Arbor",
+                    "Web developer Ann Arbor",
                     "Ann Arbor business websites",
-                    "Ann Arbor landing page design",
-                    "Ann Arbor website redesign",
-                    "Ann Arbor responsive web design",
+                    "Website redesign Ann Arbor",
+                    "Responsive web design Ann Arbor",
                   ].map((topic, index) => (
                     <div
                       key={topic}
@@ -790,11 +862,11 @@ function AnnArbor() {
           <div className="section-header">
             <div className="section-header-copy">
               <span className="eyebrow">
-                Ann Arbor Website FAQ
+                Ann Arbor Web Design & Development FAQ
               </span>
 
               <h2 className="section-heading">
-                Common questions before starting a project.
+                Common questions about website development in Ann Arbor.
               </h2>
             </div>
 
@@ -908,13 +980,13 @@ function AnnArbor() {
                 </p>
 
                 <h2 className="mt-4 max-w-4xl text-4xl font-bold tracking-[-0.055em] sm:text-5xl">
-                  Build a website that reflects the level your Ann Arbor
-                  company is reaching.
+                  Build a high-performing website for your Ann Arbor business.
                 </h2>
 
                 <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
-                  Tell Techuvo what your company does, what your current digital
-                  presence is missing, and what you want customers to do next.
+                  Tell Techuvo what your Ann Arbor business does, what your
+                  current online presence is missing, and what you want customers
+                  to do next.
                 </p>
               </div>
 
