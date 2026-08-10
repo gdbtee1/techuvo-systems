@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
-const bookingUrl = "#book-project-call";
+const bookingUrl = "https://calendly.com/techuvo-dev/new-meeting";
 
 const serviceOptions = [
   "Website Development",
@@ -338,7 +336,7 @@ function Contact() {
       !timeline ||
       !message
     ) {
-      setFormStatus("error");
+      setFormStatus("validation-error");
       return;
     }
 
@@ -360,7 +358,7 @@ function Contact() {
       form.reset();
       setFormStatus("success");
     } catch (error) {
-      setFormStatus("error");
+      setFormStatus("submission-error");
     }
   };
 
@@ -411,6 +409,8 @@ function Contact() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={bookingUrl}
+                  target="_blank"
+                  rel="noreferrer"
                   className="button button-primary"
                 >
                   Book a strategy call
@@ -828,13 +828,23 @@ function Contact() {
                   />
                 </div>
 
-                {formStatus === "error" && (
+                {formStatus === "validation-error" && (
                   <p
                     role="alert"
                     className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"
                   >
                     Complete every required field before submitting your
                     request.
+                  </p>
+                )}
+
+                {formStatus === "submission-error" && (
+                  <p
+                    role="alert"
+                    className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"
+                  >
+                    Your request could not be submitted right now. Please try
+                    again or email hello@techuvo.dev.
                   </p>
                 )}
 
@@ -860,6 +870,8 @@ function Contact() {
 
                   <a
                     href={bookingUrl}
+                    target="_blank"
+                    rel="noreferrer"
                     className="button button-secondary w-full sm:w-auto"
                   >
                     Book strategy call
@@ -876,158 +888,159 @@ function Contact() {
         </div>
       </section>
 
-      <section className="section architecture-grid">
+      <section className="section architecture-grid overflow-hidden">
         <div className="site-container">
-          <div className="section-header">
-            <div className="section-header-copy">
-              <span className="eyebrow">
-                What Happens Next
-              </span>
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:gap-16">
+            <div className="lg:sticky lg:top-28">
+              <span className="eyebrow">What Happens Next</span>
 
-              <h2 className="section-heading">
+              <h2 className="section-heading mt-5">
                 A clear path from inquiry to project start.
               </h2>
+
+              <p className="body-copy mt-5 max-w-md">
+                You should understand the next step before committing to a
+                project or paying a deposit.
+              </p>
+
+              <div className="mt-8 hidden items-center gap-3 text-xs font-extrabold uppercase tracking-[0.14em] text-slate-400 lg:flex">
+                <span className="relative block h-px w-16 overflow-hidden bg-slate-200">
+                  <span className="techuvo-process-scan absolute inset-y-0 left-0 w-8 bg-blue-600" />
+                </span>
+                Project path
+              </div>
             </div>
 
-            <p className="section-header-description">
-              You should understand the next step before committing to a
-              project or paying a deposit.
-            </p>
-          </div>
+            <div className="relative">
+              <div className="absolute bottom-6 left-[1.45rem] top-6 hidden w-px bg-slate-200 sm:block" />
+              <div className="techuvo-process-line absolute left-[1.45rem] top-6 hidden w-px bg-blue-600 sm:block" />
 
-          <div className="grid gap-5 md:grid-cols-2">
-            {nextSteps.map((step) => (
-              <article
-                key={step.number}
-                className="grid gap-5 rounded-[1.55rem] border border-slate-200 bg-white p-5 shadow-sm sm:grid-cols-[4rem_1fr] sm:p-7"
-              >
-                <span className="grid h-12 w-12 place-items-center rounded-2xl border border-blue-200 bg-blue-50 text-sm font-extrabold text-blue-700">
-                  {step.number}
-                </span>
+              <div className="space-y-0">
+                {nextSteps.map((step, index) => (
+                  <article
+                    key={step.number}
+                    className="group relative border-b border-slate-200 py-7 first:pt-0 last:border-b-0 last:pb-0 sm:grid sm:grid-cols-[4rem_1fr] sm:gap-6 sm:py-9"
+                  >
+                    <div className="relative z-10 mb-4 flex sm:mb-0">
+                      <span className="grid h-12 w-12 place-items-center rounded-full border border-blue-200 bg-white text-xs font-extrabold text-blue-700 shadow-[0_8px_30px_rgba(37,99,235,0.08)] transition duration-300 group-hover:-translate-y-1 group-hover:border-blue-400 group-hover:shadow-[0_12px_35px_rgba(37,99,235,0.16)]">
+                        {step.number}
+                      </span>
+                    </div>
 
-                <div>
-                  <h3 className="text-xl font-bold tracking-[-0.035em] text-slate-950">
-                    {step.title}
-                  </h3>
+                    <div className="transition duration-300 group-hover:translate-x-1">
+                      <div className="flex items-start justify-between gap-5">
+                        <h3 className="text-xl font-bold tracking-[-0.035em] text-slate-950 sm:text-2xl">
+                          {step.title}
+                        </h3>
 
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
-                    {step.description}
-                  </p>
-                </div>
-              </article>
-            ))}
+                        <span className="mt-1 text-xs font-extrabold text-slate-300 transition duration-300 group-hover:text-blue-600">
+                          0{index + 1}
+                        </span>
+                      </div>
+
+                      <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                        {step.description}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="section bg-white">
         <div className="site-container">
-          <div className="section-header">
-            <div className="section-header-copy">
-              <span className="eyebrow">
-                Contact FAQ
-              </span>
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+            <div>
+              <span className="eyebrow">Contact FAQ</span>
 
-              <h2 className="section-heading">
+              <h2 className="section-heading mt-5">
                 Common questions before contacting Techuvo.
               </h2>
-            </div>
 
-            <p className="section-header-description">
-              Learn what information to provide, when payment is required, and
-              how the project process begins.
-            </p>
-          </div>
+              <p className="body-copy mt-5 max-w-md">
+                Learn what information to provide, when payment is required, and
+                how the project process begins.
+              </p>
 
-          <div className="space-y-4">
-            {frequentlyAskedQuestions.map((faq, index) => (
-              <details
-                key={faq.question}
-                className="group rounded-[1.4rem] border border-slate-200 bg-slate-50 p-5 open:bg-white open:shadow-md sm:p-6"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-5">
-                  <span className="flex items-center gap-4">
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-blue-50 text-xs font-extrabold text-blue-700">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <span className="text-base font-bold text-slate-950 sm:text-lg">
-                      {faq.question}
-                    </span>
-                  </span>
-
-                  <span className="text-xl font-light text-blue-700 transition group-open:rotate-45">
-                    +
-                  </span>
-                </summary>
-
-                <p className="mt-5 border-t border-slate-200 pt-5 text-sm leading-7 text-slate-600 sm:ml-[3.25rem] sm:text-base">
-                  {faq.answer}
+              <div className="mt-8 border-l-2 border-blue-600 pl-5">
+                <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-400">
+                  Still have a question?
                 </p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="book-project-call"
-        className="section architecture-grid"
-      >
-        <div className="site-container">
-          <div className="relative overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-950 px-5 py-8 text-white shadow-[0_35px_90px_rgba(15,23,42,0.2)] sm:px-8 sm:py-10 lg:px-12 lg:py-14">
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 opacity-20"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
-                backgroundSize: "36px 36px",
-              }}
-            />
-
-            <div
-              aria-hidden="true"
-              className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-blue-500/35 blur-[100px]"
-            />
-
-            <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
-              <div>
-                <p className="text-xs font-extrabold uppercase tracking-[0.15em] text-blue-300">
-                  Strategy call
-                </p>
-
-                <h2 className="mt-4 max-w-4xl text-4xl font-bold tracking-[-0.055em] sm:text-5xl">
-                  Ready to define the right project for your business?
-                </h2>
-
-                <p className="mt-5 max-w-2xl text-base leading-8 text-slate-300">
-                  Use the project form above to share your goals, timeline, and
-                  business needs before scheduling a strategy call.
-                </p>
-              </div>
-
-              <div className="grid w-full gap-3 sm:w-auto">
                 <a
-                  href={bookingUrl}
-                  className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-extrabold text-slate-950 transition hover:-translate-y-1 hover:bg-blue-50"
+                  href="mailto:hello@techuvo.dev"
+                  className="mt-2 inline-flex items-center gap-2 text-base font-bold text-slate-950 transition hover:text-blue-700"
                 >
-                  Book strategy call
+                  hello@techuvo.dev
                   <ArrowIcon />
                 </a>
-
-                <Link
-                  to="/services/website-development"
-                  className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-6 text-sm font-extrabold text-white transition hover:-translate-y-1 hover:bg-white/[0.1]"
-                >
-                  Review website packages
-                  <ArrowIcon />
-                </Link>
               </div>
+            </div>
+
+            <div className="divide-y divide-slate-200 border-y border-slate-200">
+              {frequentlyAskedQuestions.map((faq, index) => (
+                <details key={faq.question} className="group">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-5 py-6 sm:py-7">
+                    <span className="flex min-w-0 items-start gap-4">
+                      <span className="mt-1 text-[0.65rem] font-extrabold tracking-[0.12em] text-slate-400 transition group-open:text-blue-700">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <span className="text-base font-bold leading-7 text-slate-950 sm:text-lg">
+                        {faq.question}
+                      </span>
+                    </span>
+
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-slate-200 text-lg font-light text-blue-700 transition duration-300 group-hover:border-blue-300 group-open:rotate-45 group-open:bg-blue-50">
+                      +
+                    </span>
+                  </summary>
+
+                  <div className="grid overflow-hidden pb-6 sm:grid-cols-[2.15rem_1fr] sm:pb-7">
+                    <span className="hidden sm:block" />
+                    <p className="max-w-2xl text-sm leading-7 text-slate-600 sm:text-base">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </details>
+              ))}
             </div>
           </div>
         </div>
       </section>
+
+      <style>{`
+        @keyframes techuvoProcessScan {
+          0% { transform: translateX(-140%); }
+          100% { transform: translateX(260%); }
+        }
+
+        @keyframes techuvoProcessLine {
+          0% { height: 0; opacity: 0; }
+          18% { opacity: 1; }
+          100% { height: calc(100% - 3rem); opacity: 1; }
+        }
+
+        .techuvo-process-scan {
+          animation: techuvoProcessScan 3.4s ease-in-out infinite;
+        }
+
+        .techuvo-process-line {
+          height: calc(100% - 3rem);
+          animation: techuvoProcessLine 1.6s ease-out both;
+          transform-origin: top;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .techuvo-process-scan,
+          .techuvo-process-line {
+            animation: none;
+          }
+        }
+      `}</style>
+
     </>
   );
 }
