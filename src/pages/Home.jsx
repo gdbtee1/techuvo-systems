@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import Hero from "../components/home/Hero";
 import SystemBridge from "../components/home/SystemBridge";
@@ -129,12 +130,12 @@ function MobileActionBar() {
           </span>
         </a>
 
-        <a
-          href="/portfolio"
+        <Link
+          to="/portfolio"
           className="inline-flex min-h-12 flex-1 items-center justify-center rounded-[0.9rem] border border-slate-200 bg-white px-4 text-sm font-extrabold text-slate-950 transition active:scale-[0.98]"
         >
           View work
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -243,3 +244,5 @@ function Home() {
     </main>
   );
 }
+
+export default Home;
