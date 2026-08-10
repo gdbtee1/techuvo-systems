@@ -487,6 +487,10 @@ function Navbar() {
                   <NavLink
                     key={link.to}
                     to={link.to}
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileDropdown(null);
+                    }}
                     className={({ isActive }) =>
                       `group relative inline-flex h-full items-center text-sm font-bold transition-colors ${
                         isActive
@@ -553,6 +557,10 @@ function Navbar() {
             <nav aria-label="Mobile navigation links" className="p-3">
               <NavLink
                 to="/"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setMobileDropdown(null);
+                }}
                 className={({ isActive }) =>
                   `flex items-center justify-between border-b border-slate-100 px-4 py-5 ${
                     isActive
@@ -623,6 +631,10 @@ function Navbar() {
                               <Link
                                 key={child.to}
                                 to={child.to}
+                                onClick={() => {
+                                  setMobileOpen(false);
+                                  setMobileDropdown(null);
+                                }}
                                 className="block border-b border-slate-100 py-3 last:border-b-0"
                               >
                                 <span className="block text-sm font-extrabold text-slate-900">
@@ -670,6 +682,10 @@ function Navbar() {
 
               <Link
                 to="/contact"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setMobileDropdown(null);
+                }}
                 className="mt-3 flex min-h-14 items-center justify-between bg-blue-600 px-5 text-sm font-extrabold text-white"
               >
                 Start your project
