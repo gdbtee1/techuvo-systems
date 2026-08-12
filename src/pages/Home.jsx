@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Hero from "../components/home/Hero";
+import ExplainerVideo from "../components/home/ExplainerVideo";
 import SystemBridge from "../components/home/SystemBridge";
 import OfficeMap from "../components/home/OfficeMap";
 
@@ -20,7 +21,6 @@ import Process from "../components/home/Process";
 import Testimonials from "../components/home/Testimonials";
 import Locations from "../components/home/Locations";
 import CallToAction from "../components/home/CallToAction";
-
 
 function SeasonalOffer() {
   return (
@@ -80,8 +80,8 @@ function SeasonalOffer() {
                 </h2>
 
                 <p className="mt-1.5 max-w-3xl text-sm leading-6 text-slate-300">
-                  Approve the direction and we continue. If it is not the right fit,
-                  your concept deposit is refunded.
+                  Approve the direction and we continue. If it is not the right
+                  fit, your concept deposit is refunded.
                 </p>
               </div>
             </div>
@@ -91,6 +91,7 @@ function SeasonalOffer() {
                 <p className="text-[0.64rem] font-extrabold uppercase tracking-[0.15em] text-slate-500">
                   Ongoing care
                 </p>
+
                 <p className="mt-1 text-sm font-bold text-white">
                   $49/mo hosting, security & support
                 </p>
@@ -112,7 +113,6 @@ function SeasonalOffer() {
     </section>
   );
 }
-
 
 function MobileActionBar() {
   return (
@@ -190,6 +190,8 @@ function Home() {
   return (
     <main className="overflow-hidden">
       <Hero />
+
+      <ExplainerVideo />
 
       <SeasonalOffer />
 

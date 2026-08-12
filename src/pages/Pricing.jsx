@@ -671,7 +671,7 @@ function Pricing() {
 
   return (
     <>
-      <section className="hero-section architecture-grid">
+      <section className="hero-section architecture-grid lg:!pt-10 lg:!pb-16 xl:!pt-12 xl:!pb-20">
         <div
           aria-hidden="true"
           className="glow-orb"
@@ -936,34 +936,37 @@ function Pricing() {
             {filteredPackages.map((servicePackage) => (
               <article
                 key={servicePackage.id}
-                className={`relative flex min-h-full flex-col overflow-hidden rounded-[1.7rem] border p-5 shadow-[0_18px_55px_rgba(15,23,42,0.08)] sm:p-7 ${
+                className={`relative flex min-h-full flex-col overflow-hidden rounded-[1.7rem] border p-5 shadow-[0_18px_55px_rgba(15,23,42,0.08)] sm:p-7 lg:grid lg:grid-rows-[auto_5.5rem_8.5rem_8rem_auto_10rem_1fr_auto] ${
                   servicePackage.highlighted
                     ? "border-blue-500 bg-slate-950 text-white shadow-[0_30px_80px_rgba(37,99,235,0.22)]"
                     : "border-slate-200 bg-white text-slate-950"
                 }`}
               >
-                {servicePackage.highlighted && (
-                  <span className="absolute right-5 top-5 rounded-full bg-blue-500 px-3 py-1.5 text-[0.62rem] font-extrabold uppercase tracking-[0.13em] text-white">
-                    Most popular
-                  </span>
-                )}
+                <div className="flex items-center gap-3">
+                  <p
+                    className={`text-xs font-extrabold uppercase tracking-[0.15em] ${
+                      servicePackage.highlighted
+                        ? "text-blue-300"
+                        : "text-blue-700"
+                    }`}
+                  >
+                    {servicePackage.serviceLabel}
+                  </p>
 
-                <p
-                  className={`text-xs font-extrabold uppercase tracking-[0.15em] ${
-                    servicePackage.highlighted
-                      ? "text-blue-300"
-                      : "text-blue-700"
-                  }`}
-                >
-                  {servicePackage.serviceLabel}
-                </p>
+                  {servicePackage.highlighted && (
+                    <span className="inline-flex items-center gap-1.5 text-[0.56rem] font-extrabold uppercase tracking-[0.12em] text-blue-300/70">
+                      <span className="h-1.5 w-1.5 rounded-full bg-blue-400" />
+                      Popular
+                    </span>
+                  )}
+                </div>
 
-                <h3 className="mt-4 text-2xl font-bold tracking-[-0.04em] sm:text-3xl lg:min-h-[4.5rem]">
+                <h3 className="mt-4 text-2xl font-bold tracking-[-0.04em] sm:text-3xl">
                   {servicePackage.name}
                 </h3>
 
                 <p
-                  className={`mt-4 text-sm leading-7 lg:min-h-[5.25rem] ${
+                  className={`mt-4 text-sm leading-7 ${
                     servicePackage.highlighted
                       ? "text-slate-300"
                       : "text-slate-600"
@@ -1008,7 +1011,7 @@ function Pricing() {
                 />
 
                 <div
-                  className={`rounded-[1.2rem] border p-4 lg:min-h-[9.25rem] ${
+                  className={`rounded-[1.2rem] border p-4 ${
                     servicePackage.highlighted
                       ? "border-white/10 bg-white/[0.055]"
                       : "border-slate-200 bg-slate-50"
@@ -1035,7 +1038,7 @@ function Pricing() {
                   </p>
                 </div>
 
-                <ul className="mt-6 space-y-3 lg:min-h-[22.5rem]">
+                <ul className="mt-6 space-y-3">
                   {servicePackage.features.map(
                     (feature) => (
                       <li
@@ -1066,7 +1069,7 @@ function Pricing() {
                   )}
                 </ul>
 
-                <div className="mt-auto grid gap-3 pt-8">
+                <div className="mt-auto grid gap-3 pt-8 lg:mt-0">
                   <a
                     href={servicePackage.depositUrl}
                     className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 text-sm font-extrabold transition hover:-translate-y-1 ${
@@ -1107,11 +1110,7 @@ function Pricing() {
             ))}
           </div>
 
-          <p className="mt-6 text-center text-xs leading-6 text-slate-500">
-            Deposit and booking URLs are placeholders. Replace the constants
-            at the top of this file with your live Stripe and scheduling
-            links.
-          </p>
+       
         </div>
       </section>
 
