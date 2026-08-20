@@ -322,7 +322,7 @@ function Navbar() {
            <Link
   to="/"
   aria-label="Return to Techuvo home"
-  className="group relative flex min-w-0 shrink items-center gap-3 sm:gap-4 lg:mr-10 lg:shrink-0 xl:mr-12"
+  className="group relative flex min-w-0 items-center gap-4"
 >
   <div
     className={`transition-transform duration-500 ease-out group-hover:-rotate-6 group-hover:scale-[1.04] ${
@@ -366,7 +366,7 @@ function Navbar() {
           : "text-[0.62rem] tracking-[0.26em] text-slate-500 sm:text-[0.68rem]"
       }`}
     >
-      Managed website service
+      Digital design company
     </p>
 
     {location.pathname !== "/" && (
@@ -383,100 +383,54 @@ function Navbar() {
 
 
             {/* Desktop navigation inside compressed bar */}
- <nav
- aria-label="Primary navigation"
- className={`hidden min-w-0 flex-1 items-center justify-start gap-4 lg:flex xl:gap-6 2xl:gap-8 ${
- isScrolled ? "" : "lg:hidden"
- }`}
- >
- {navigationLinks
- .filter(
- (link) =>
- link.label !== "Contact",
- )
- .map((link) =>
- link.children ? (
- <DesktopDropdown
- key={link.label}
- link={link}
- pathname={location.pathname}
- isScrolled={isScrolled}
- />
- ) : (
- <NavLink
- key={link.to}
- to={link.to}
- className={({ isActive }) =>
- `group relative py-4 text-sm font-bold transition-colors ${
- isActive
- ? "text-white"
- : "text-white/75 hover:text-white"
- }`
- }
- >
- {link.label}
+            <nav
+              aria-label="Primary navigation"
+              className={`hidden items-center gap-8 lg:flex ${
+                isScrolled ? "" : "lg:hidden"
+              }`}
+            >
+              {navigationLinks
+                .filter(
+                  (link) =>
+                    link.label !== "Contact",
+                )
+                .map((link) =>
+                  link.children ? (
+                    <DesktopDropdown
+                      key={link.label}
+                      link={link}
+                      pathname={location.pathname}
+                      isScrolled={isScrolled}
+                    />
+                  ) : (
+                    <NavLink
+                      key={link.to}
+                      to={link.to}
+                      className={({ isActive }) =>
+                        `group relative py-4 text-sm font-bold transition-colors ${
+                          isActive
+                            ? "text-white"
+                            : "text-white/75 hover:text-white"
+                        }`
+                      }
+                    >
+                      {link.label}
 
- <span className="absolute inset-x-0 bottom-1 h-[2px] origin-left scale-x-0 bg-white transition-transform duration-300 group-hover:scale-x-100" />
- </NavLink>
- ),
- )}
+                      <span className="absolute inset-x-0 bottom-1 h-[2px] origin-left scale-x-0 bg-white transition-transform duration-300 group-hover:scale-x-100" />
+                    </NavLink>
+                  ),
+                )}
 
- {/* TECHUVO_50_OFFER_BADGE */}
- <Link
- to="/start"
- aria-label="View the $50 website offer"
- className="group relative ml-auto inline-flex min-h-11 min-w-[8.75rem] shrink-0 items-center justify-center whitespace-nowrap border border-yellow-200 bg-yellow-300 px-5 text-sm font-black text-slate-950 shadow-[0_8px_24px_rgba(250,204,21,0.22)] transition duration-300 hover:-translate-y-0.5 hover:bg-yellow-200"
- >
- <span
- aria-hidden="true"
- className="relative mr-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-700 animate-[offerDot_1.8s_ease-in-out_infinite]"
- />
+              <Link
+                to="/contact"
+                className="inline-flex min-h-11 items-center gap-2 border border-white/30 bg-white px-5 text-sm font-extrabold text-blue-700 transition hover:-translate-y-0.5 hover:bg-blue-50"
+              >
+                Start a project
+                <ArrowIcon />
+              </Link>
+            </nav>
 
- <span className="relative shrink-0 whitespace-nowrap">
- $50 OFFER
- </span>
-
- <span
- aria-hidden="true"
- className="pointer-events-none absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-blue-700 transition-transform duration-300 group-hover:scale-x-100"
- />
- </Link>
-
- <Link
- to="/contact"
- className="inline-flex min-h-11 items-center gap-2 border border-white/30 bg-white px-5 text-sm font-extrabold text-blue-700 transition hover:-translate-y-0.5 hover:bg-blue-50"
- >
- Start a project
- <ArrowIcon />
- </Link>
- </nav>
-
- {/* $50 website offer before scroll */}
- <Link
- to="/start"
- aria-label="View the $50 website offer"
- className={`group relative hidden min-h-12 items-center gap-2 overflow-hidden border px-5 text-sm font-black transition duration-500 lg:inline-flex ${
- isScrolled
- ? "pointer-events-none absolute opacity-0"
- : "border-blue-200 bg-blue-50 text-blue-700 shadow-[0_10px_28px_rgba(37,99,235,0.12)] hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-100"
- }`}
- >
- <span
- aria-hidden="true"
- className="absolute inset-0 animate-[offerGlow_2.8s_ease-in-out_infinite] bg-blue-200/30"
- />
-
- <span
- aria-hidden="true"
- className="relative h-2 w-2 rounded-full bg-blue-600 animate-[offerDot_1.8s_ease-in-out_infinite]"
- />
-
- <span className="relative">
- $50 WEBSITE OFFER
- </span>
- </Link>
-
- {/* Desktop contact before scroll */}
+            {/* Desktop contact before scroll */}
             <Link
               to="/contact"
               className={`hidden items-center gap-3 border px-6 text-sm font-extrabold transition duration-500 lg:inline-flex ${
@@ -488,53 +442,6 @@ function Navbar() {
               Start a project
               <ArrowIcon />
             </Link>
-
-            <div className="ml-auto flex items-center gap-2 lg:hidden">
-              <Link
-                to="/start"
-                aria-label="View the $50 website offer"
-                onClick={() => {
-                  setMobileOpen(false);
-                  setMobileDropdown(null);
-                }}
-                className={`group relative inline-flex min-h-10 shrink-0 items-center gap-1.5 overflow-visible border px-2.5 text-[0.64rem] font-black uppercase tracking-[0.06em] transition duration-500 min-[390px]:px-3 min-[390px]:text-[0.68rem] sm:min-h-11 sm:px-4 sm:text-xs ${
-                  isScrolled
-                    ? "border-yellow-200 bg-yellow-300 text-slate-950 shadow-[0_8px_22px_rgba(250,204,21,0.2)]"
-                    : "border-blue-200 bg-blue-50 text-blue-700 shadow-[0_7px_20px_rgba(37,99,235,0.1)]"
-                } animate-[mobileOfferPop_3.8s_ease-in-out_infinite]`}
-              >
-                <span
-                  aria-hidden="true"
-                  className={`absolute inset-0 overflow-hidden animate-[offerGlow_2.8s_ease-in-out_infinite] ${
-                    isScrolled
-                      ? "bg-white/20"
-                      : "bg-blue-200/30"
-                  }`}
-                />
-
-                <span
-                  aria-hidden="true"
-                  className={`relative h-2 w-2 rounded-full animate-[offerDot_1.8s_ease-in-out_infinite] ${
-                    isScrolled
-                      ? "bg-blue-700"
-                      : "bg-blue-600"
-                  }`}
-                />
-
-                <span className="relative whitespace-nowrap">
-                  $50 Offer
-                </span>
-
-                <span
-                  className={`pointer-events-none absolute -top-[1.15rem] right-0 whitespace-nowrap border px-1.5 py-[1px] text-[0.42rem] font-black uppercase tracking-[0.1em] shadow-[2px_2px_0_rgba(15,23,42,0.18)] min-[390px]:-top-5 min-[390px]:px-2 min-[390px]:py-[2px] min-[390px]:text-[0.48rem] ${
-                    isScrolled
-                      ? "border-white/40 bg-white text-blue-700"
-                      : "border-blue-200 bg-blue-600 text-white"
-                  }`}
-                >
-                  Click me
-                </span>
-              </Link>
 
             <button
               type="button"
@@ -556,7 +463,6 @@ function Navbar() {
             >
               <MenuIcon open={mobileOpen} />
             </button>
-            </div>
           </div>
 
           {/* Full desktop nav before scroll */}
@@ -638,7 +544,14 @@ function Navbar() {
                 </p>
               </div>
 
-
+              <button
+                type="button"
+                aria-label="Close navigation"
+                onClick={() => setMobileOpen(false)}
+                className="grid h-10 w-10 shrink-0 touch-manipulation place-items-center border border-slate-200 bg-slate-50 text-slate-950"
+              >
+                <MenuIcon open />
+              </button>
             </div>
 
             <nav aria-label="Mobile navigation links" className="p-3">
@@ -785,64 +698,6 @@ function Navbar() {
 
       <style>
         {`
-          @keyframes offerGlow {
-            0%,
-            100% {
-              opacity: 0;
-              transform: translateX(-35%);
-            }
-
-            45% {
-              opacity: 0;
-            }
-
-            60% {
-              opacity: 1;
-            }
-
-            78% {
-              opacity: 0;
-              transform: translateX(35%);
-            }
-          }
-
-          @keyframes mobileOfferPop {
-            0%,
-            72%,
-            100% {
-              transform: translateY(0) scale(1);
-            }
-
-            78% {
-              transform: translateY(-4px) scale(1.04);
-            }
-
-            84% {
-              transform: translateY(0) scale(1);
-            }
-
-            89% {
-              transform: translateY(-2px) scale(1.02);
-            }
-
-            94% {
-              transform: translateY(0) scale(1);
-            }
-          }
-
-          @keyframes offerDot {
-            0%,
-            100% {
-              transform: scale(1);
-              opacity: 1;
-            }
-
-            50% {
-              transform: scale(1.45);
-              opacity: 0.55;
-            }
-          }
-
           @keyframes mobileMenuIn {
             from {
               opacity: 0;
@@ -857,12 +712,6 @@ function Navbar() {
 
           @media (prefers-reduced-motion: reduce) {
             #mobile-navigation-panel {
-              animation: none;
-            }
-
-            [class*="offerGlow"],
-            [class*="offerDot"],
-            [class*="mobileOfferPop"] {
               animation: none;
             }
           }
