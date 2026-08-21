@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -9,6 +9,7 @@ import {
   Image,
   Link2,
   Palette,
+  ShieldCheck,
   Sparkles,
   Upload,
   Video,
@@ -182,11 +183,88 @@ function UploadZone({
 function WebsiteOnboarding() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState(initialForm);
+  const [formStatus, setFormStatus] = useState("idle");
+  const [submissionMessage, setSubmissionMessage] = useState("");
+
+  const [paymentStatus, setPaymentStatus] = useState("checking");
+  const [paymentMessage, setPaymentMessage] = useState("");
+  const [verifiedSessionId, setVerifiedSessionId] = useState("");
 
   const [logoFiles, setLogoFiles] = useState([]);
   const [imageFiles, setImageFiles] = useState([]);
   const [videoFiles, setVideoFiles] = useState([]);
   const [documentFiles, setDocumentFiles] = useState([]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const verifyPayment = async () => {
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get("session_id");
+
+      if (!sessionId || !sessionId.startsWith("cs_")) {
+        if (!cancelled) {
+          setPaymentStatus("required");
+          setPaymentMessage(
+            "A completed $50 Stripe checkout is required before project onboarding.",
+          );
+        }
+        return;
+      }
+
+      try {
+        setPaymentStatus("checking");
+        setPaymentMessage("");
+
+        const response = await fetch(
+          `https://techuvo-checkout.techuvo-dev.workers.dev/verify-payment?session_id=${encodeURIComponent(
+            sessionId,
+          )}`,
+          {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+            },
+          },
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data?.paid) {
+          throw new Error(
+            data?.error ||
+              "Stripe has not confirmed this $50 payment as completed.",
+          );
+        }
+
+        if (cancelled) return;
+
+        setVerifiedSessionId(sessionId);
+        setPaymentStatus("verified");
+
+        setForm((current) => ({
+          ...current,
+          email: current.email || data.customerEmail || "",
+          contactName: current.contactName || data.customerName || "",
+        }));
+      } catch (error) {
+        if (cancelled) return;
+
+        setPaymentStatus("required");
+        setPaymentMessage(
+          error instanceof Error
+            ? error.message
+            : "We could not verify your Stripe payment.",
+        );
+      }
+    };
+
+    verifyPayment();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const progress = useMemo(
     () => ((step + 1) / steps.length) * 100,
@@ -221,6 +299,193 @@ function WebsiteOnboarding() {
       behavior: "smooth",
     });
   };
+
+  const handleSubmit = async () => {
+    const requiredFields = [
+      ["businessName", "business name"],
+      ["contactName", "your name"],
+      ["email", "email"],
+      ["phone", "phone number"],
+      ["websiteGoal", "main website goal"],
+    ];
+
+    const missing = requiredFields.find(
+      ([key]) => !String(form[key] || "").trim(),
+    );
+
+    if (missing) {
+      setFormStatus("validation-error");
+      setSubmissionMessage(
+        `Please add ${missing[1]} before submitting your website brief.`,
+      );
+      return;
+    }
+
+    try {
+      setFormStatus("submitting");
+      setSubmissionMessage("");
+
+      const payload = new FormData();
+
+      payload.append("_subject", `NEW $50 TECHUVO WEBSITE CLIENT — ${form.businessName}`);
+      payload.append("lead_source", "$50 Website Offer / Paid Onboarding");
+      payload.append("stripe_checkout_session", verifiedSessionId);
+      payload.append("payment_verified", "Yes");
+      payload.append("business_name", form.businessName);
+      payload.append("contact_name", form.contactName);
+      payload.append("email", form.email);
+      payload.append("phone", form.phone);
+      payload.append("industry", form.industry);
+      payload.append("city_service_area", form.city);
+      payload.append("existing_website", form.existingWebsite);
+
+      payload.append("website_goal", form.websiteGoal);
+      payload.append("services_products", form.services);
+      payload.append("pages_requested", form.pages);
+      payload.append("special_features", form.features);
+      payload.append("target_customer", form.targetCustomer);
+
+      payload.append("preferred_colors", form.colors);
+      payload.append("overall_style", form.style);
+      payload.append("website_inspiration", form.inspiration);
+      payload.append("things_to_avoid", form.avoid);
+      payload.append("final_notes", form.notes);
+
+      payload.append(
+        "file_summary",
+        `${logoFiles.length} logo/branding, ${imageFiles.length} photo, ${videoFiles.length} video, ${documentFiles.length} document file(s)`,
+      );
+
+      logoFiles.forEach((file) => payload.append("logo_branding_files", file));
+      imageFiles.forEach((file) => payload.append("photo_files", file));
+      videoFiles.forEach((file) => payload.append("video_files", file));
+      documentFiles.forEach((file) => payload.append("document_files", file));
+
+      const response = await fetch("https://formspree.io/f/mnjprdge", {
+        method: "POST",
+        body: payload,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => null);
+        const message =
+          data?.errors?.map((item) => item.message).join(" ") ||
+          "Your brief could not be submitted right now.";
+
+        throw new Error(message);
+      }
+
+      setFormStatus("success");
+      setSubmissionMessage(
+        "Your website brief was sent to Techuvo successfully. We now have your business details and project direction.",
+      );
+    } catch (error) {
+      setFormStatus("submission-error");
+      setSubmissionMessage(
+        error?.message ||
+          "Your brief could not be submitted right now. Please try again.",
+      );
+    }
+  };
+
+  const smsHref = `sms:+13134507265?body=${encodeURIComponent(
+    `Hi Techuvo, I just submitted my $50 website brief. Business: ${
+      form.businessName || "My business"
+    }. Name: ${form.contactName || "Client"}.`,
+  )}`;
+
+  if (paymentStatus === "checking") {
+    return (
+      <main className="grid min-h-screen place-items-center overflow-hidden bg-[#fff9ee] px-5 text-slate-950">
+        <div
+          className="fixed inset-0 pointer-events-none opacity-[0.25]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#dbeafe 1px, transparent 1px), linear-gradient(90deg, #dbeafe 1px, transparent 1px)",
+            backgroundSize: "34px 34px",
+          }}
+        />
+
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          className="relative w-full max-w-xl rounded-[2rem] border-[3px] border-slate-950 bg-white p-7 text-center shadow-[8px_9px_0_#0f172a] sm:p-10"
+        >
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{
+              duration: 1.1,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="mx-auto h-14 w-14 rounded-full border-[5px] border-slate-200 border-t-blue-600"
+          />
+
+          <p className="mt-7 text-xs font-black uppercase tracking-[0.18em] text-blue-600">
+            Secure checkout
+          </p>
+
+          <h1 className="mt-3 text-4xl font-black tracking-[-0.055em] sm:text-5xl">
+            Verifying your payment.
+          </h1>
+
+          <p className="mx-auto mt-4 max-w-md text-sm font-semibold leading-6 text-slate-500">
+            We&apos;re confirming your $50 Stripe payment before opening your
+            Techuvo project briefing.
+          </p>
+        </motion.div>
+      </main>
+    );
+  }
+
+  if (paymentStatus !== "verified") {
+    return (
+      <main className="grid min-h-screen place-items-center overflow-hidden bg-[#fff9ee] px-5 text-slate-950">
+        <div
+          className="fixed inset-0 pointer-events-none opacity-[0.25]"
+          style={{
+            backgroundImage:
+              "linear-gradient(#dbeafe 1px, transparent 1px), linear-gradient(90deg, #dbeafe 1px, transparent 1px)",
+            backgroundSize: "34px 34px",
+          }}
+        />
+
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          className="relative w-full max-w-xl rounded-[2rem] border-[3px] border-slate-950 bg-white p-7 text-center shadow-[8px_9px_0_#0f172a] sm:p-10"
+        >
+          <div className="mx-auto grid h-14 w-14 place-items-center rounded-full border-[3px] border-slate-950 bg-yellow-300 shadow-[3px_4px_0_#0f172a]">
+            <ShieldCheck className="h-6 w-6" />
+          </div>
+
+          <p className="mt-7 text-xs font-black uppercase tracking-[0.18em] text-blue-600">
+            Payment required
+          </p>
+
+          <h1 className="mt-3 text-4xl font-black tracking-[-0.055em] sm:text-5xl">
+            Start your project first.
+          </h1>
+
+          <p className="mx-auto mt-4 max-w-md text-sm font-semibold leading-6 text-slate-500">
+            {paymentMessage ||
+              "A completed $50 Stripe checkout is required before project onboarding."}
+          </p>
+
+          <a
+            href="/start"
+            className="mt-7 inline-flex min-h-14 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-blue-600 px-7 text-sm font-black text-white shadow-[5px_6px_0_#0f172a] transition hover:-translate-y-1"
+          >
+            Return to $50 Offer
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        </motion.div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#fff9ee] text-slate-950">
@@ -697,18 +962,74 @@ function WebsiteOnboarding() {
                       </div>
                     </div>
 
-                    <button
-                      type="button"
-                      className="mt-8 flex min-h-16 w-full items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-blue-600 px-7 text-base font-black text-white shadow-[7px_8px_0_#0f172a] transition hover:-translate-y-1"
-                    >
-                      Submit My Website Brief
-                      <ArrowRight className="h-5 w-5" />
-                    </button>
+                    {formStatus === "validation-error" && (
+                      <div
+                        role="alert"
+                        className="mt-6 rounded-[1.3rem] border-[3px] border-slate-950 bg-yellow-200 p-4 text-sm font-black shadow-[4px_5px_0_#0f172a]"
+                      >
+                        {submissionMessage}
+                      </div>
+                    )}
 
-                    <p className="mt-4 text-center text-xs font-semibold text-slate-500">
-                      Submission storage will be connected to your
-                      Techuvo project database in the next step.
-                    </p>
+                    {formStatus === "submission-error" && (
+                      <div
+                        role="alert"
+                        className="mt-6 rounded-[1.3rem] border-[3px] border-slate-950 bg-[#ff8c75] p-4 text-sm font-black shadow-[4px_5px_0_#0f172a]"
+                      >
+                        {submissionMessage}
+                      </div>
+                    )}
+
+                    {formStatus === "success" ? (
+                      <div className="mt-8 rounded-[2rem] border-[3px] border-slate-950 bg-white p-5 shadow-[7px_8px_0_#0f172a] sm:p-7">
+                        <div className="flex items-start gap-4">
+                          <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full border-[3px] border-slate-950 bg-[#6ee7b7] shadow-[3px_4px_0_#0f172a]">
+                            <Check className="h-5 w-5" strokeWidth={4} />
+                          </div>
+
+                          <div>
+                            <p className="text-xl font-black tracking-[-0.04em]">
+                              Brief received.
+                            </p>
+                            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                              {submissionMessage}
+                            </p>
+                          </div>
+                        </div>
+
+                        <a
+                          href={smsHref}
+                          className="mt-6 flex min-h-14 w-full items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-6 text-sm font-black text-slate-950 shadow-[5px_6px_0_#0f172a] transition hover:-translate-y-1"
+                        >
+                          Text Techuvo Now
+                          <ArrowRight className="h-4 w-4" />
+                        </a>
+
+                        <p className="mt-3 text-center text-[0.7rem] font-bold leading-5 text-slate-500">
+                          This opens a pre-filled text to Techuvo so we can connect
+                          immediately.
+                        </p>
+                      </div>
+                    ) : (
+                      <>
+                        <button
+                          type="button"
+                          onClick={handleSubmit}
+                          disabled={formStatus === "submitting"}
+                          className="mt-8 flex min-h-16 w-full items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-blue-600 px-7 text-base font-black text-white shadow-[7px_8px_0_#0f172a] transition hover:-translate-y-1 disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0"
+                        >
+                          {formStatus === "submitting"
+                            ? "Sending Website Brief..."
+                            : "Submit My Website Brief"}
+                          <ArrowRight className="h-5 w-5" />
+                        </button>
+
+                        <p className="mt-4 text-center text-xs font-semibold text-slate-500">
+                          Your brief is sent securely through Techuvo's project
+                          intake form.
+                        </p>
+                      </>
+                    )}
                   </div>
                 )}
               </motion.div>

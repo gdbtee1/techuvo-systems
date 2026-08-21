@@ -885,6 +885,8 @@ function ProjectModal({ project, onClose }) {
 function WebsiteOffer() {
   const [activeProject, setActiveProject] = useState(null);
   const [openFaq, setOpenFaq] = useState(0);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState("");
 
   useEffect(() => {
     document.body.style.overflow = activeProject ? "hidden" : "";
@@ -894,8 +896,62 @@ function WebsiteOffer() {
     };
   }, [activeProject]);
 
+  const startCheckout = async () => {
+    if (checkoutLoading) return;
+
+    try {
+      setCheckoutLoading(true);
+      setCheckoutError("");
+
+      const response = await fetch(
+        "https://techuvo-checkout.techuvo-dev.workers.dev/create-checkout-session",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data?.error || "Secure checkout could not be opened.",
+        );
+      }
+
+      if (!data?.url) {
+        throw new Error("Stripe Checkout URL was not returned.");
+      }
+
+      window.location.href = data.url;
+    } catch (error) {
+      console.error("Stripe checkout error:", error);
+      setCheckoutError(
+        error instanceof Error
+          ? error.message
+          : "Unable to open secure checkout. Please try again.",
+      );
+      setCheckoutLoading(false);
+    }
+  };
+
   return (
     <main className="min-h-screen overflow-hidden bg-[#fff9ee] text-slate-950 selection:bg-yellow-200">
+      <AnimatePresence>
+        {checkoutError && (
+          <motion.div
+            initial={{ opacity: 0, y: 22, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.97 }}
+            className="fixed bottom-5 left-1/2 z-[1000] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-[1.25rem] border-[3px] border-slate-950 bg-[#ff8c75] px-5 py-4 text-center text-sm font-black text-slate-950 shadow-[6px_7px_0_#0f172a]"
+            role="alert"
+          >
+            {checkoutError}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <section className="relative min-h-[100svh] overflow-hidden border-b-[3px] border-slate-950">
         <div
           aria-hidden="true"
@@ -936,13 +992,15 @@ function WebsiteOffer() {
             </div>
           </a>
 
-          <a
-            href="#start"
-            className="hidden min-h-12 items-center gap-2 rounded-full border-[3px] border-slate-950 bg-white px-5 text-sm font-black shadow-[4px_4px_0_#0f172a] transition hover:-translate-y-1 sm:inline-flex"
+          <button
+            type="button"
+            onClick={startCheckout}
+            disabled={checkoutLoading}
+            className="hidden min-h-12 items-center gap-2 rounded-full border-[3px] border-slate-950 bg-white px-5 text-sm font-black shadow-[4px_4px_0_#0f172a] transition hover:-translate-y-1 disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0 sm:inline-flex"
           >
-            Start for $50
+            {checkoutLoading ? "Opening checkout..." : "Start for $50"}
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </button>
         </div>
 
         <Mascot />
@@ -988,7 +1046,7 @@ function WebsiteOffer() {
                   rotate: -1,
                   scale: 1,
                 }}
-                className="relative inline-flex min-h-[105px] items-center gap-3 rounded-[1.7rem] border-[3px] border-slate-950 bg-white px-5 py-4 shadow-[7px_8px_0_#0f172a] sm:px-6"
+                className="relative flex min-h-[105px] w-full flex-col items-start justify-center gap-1 rounded-[1.7rem] border-[3px] border-slate-950 bg-white px-5 py-4 shadow-[7px_8px_0_#0f172a] sm:w-auto sm:flex-row sm:items-center sm:gap-3 sm:px-6"
               >
                 <span className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
                   Start for
@@ -1031,13 +1089,15 @@ function WebsiteOffer() {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#start"
-                className="group inline-flex min-h-16 items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-blue-600 px-8 text-base font-black text-white shadow-[6px_7px_0_#0f172a] transition hover:-translate-y-1"
+              <button
+                type="button"
+                onClick={startCheckout}
+                disabled={checkoutLoading}
+                className="group inline-flex min-h-16 items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-blue-600 px-8 text-base font-black text-white shadow-[6px_7px_0_#0f172a] transition hover:-translate-y-1 disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0"
               >
-                Start My Website
+                {checkoutLoading ? "Opening Secure Checkout..." : "Start My Website"}
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </a>
+              </button>
 
               <a
                 href="#work"
@@ -1762,20 +1822,18 @@ function WebsiteOffer() {
                 One-time setup fee
               </p>
 
-              {/*
-                REPLACE THE href BELOW WITH YOUR REAL STRIPE
-                OR PAYMENT LINK ONCE YOU HAVE IT.
-              */}
-              <a
-                href="/start/onboarding"
-                className="group mt-auto flex min-h-16 items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-white px-6 text-base font-black text-slate-950 shadow-[5px_6px_0_#0f172a] transition hover:-translate-y-1"
+              <button
+                type="button"
+                onClick={startCheckout}
+                disabled={checkoutLoading}
+                className="group mt-auto flex min-h-16 items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-white px-6 text-base font-black text-slate-950 shadow-[5px_6px_0_#0f172a] transition hover:-translate-y-1 disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0"
               >
-                Pay $50 & Start
+                {checkoutLoading ? "Opening Secure Checkout..." : "Pay $50 & Start"}
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </a>
+              </button>
 
               <p className="mt-4 text-center text-[10px] font-bold uppercase tracking-[0.12em] text-blue-100">
-                $49/month managed plan after setup
+                Secure Stripe checkout · $49/month managed plan after setup
               </p>
             </motion.div>
 
