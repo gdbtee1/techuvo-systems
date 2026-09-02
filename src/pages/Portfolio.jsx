@@ -4,34 +4,216 @@ import ryneWritesPreview from "../assets/images/ryne-writes-preview.jpg";
 
 const projects = [
   {
-    id: "carolina-brake",
+    id: "davis-asphalt",
     fileNumber: "001",
-    title: "Carolina Brake & Diagnostics",
-    category: "Automotive",
+    title: "Davis Asphalt",
+    category: "Paving",
     type: "Business Website",
     year: "2026",
-    location: "North Carolina",
-    websiteUrl: "https://carolinabrakes.com",
+    location: "United States",
+    websiteUrl: "https://gdbtee1.github.io/davis-asphalt/",
     status: "Live",
     description:
-      "A responsive automotive website built to explain services clearly, strengthen trust, and make contacting the shop easier.",
+      "A bold asphalt and paving website built to showcase services, establish local credibility, and turn visitors into qualified leads.",
     brief:
-      "The business needed a professional online presence that could organize its services and help local customers confidently request assistance.",
+      "The business needed a strong digital presence that could clearly present its paving work while feeling established, dependable, and easy to contact.",
     build:
-      "Techuvo created clear service navigation, responsive layouts, strong calls to action, and a professional automotive presentation.",
+      "Techuvo created a responsive service-focused website with strong visual hierarchy, prominent calls to action, project-focused messaging, and mobile optimization.",
     capabilities: [
       "Responsive website",
-      "Service pages",
-      "Lead-focused navigation",
-      "Contact pathways",
+      "Service presentation",
+      "Lead-focused layout",
       "Mobile optimization",
-      "Search-friendly structure",
+      "Contact pathways",
+      "Local business branding",
+    ],
+    color: "slate",
+  },
+  {
+    id: "pretty-patty-paradise",
+    fileNumber: "002",
+    title: "Pretty Patty Paradise",
+    category: "Food",
+    type: "Restaurant Website",
+    year: "2026",
+    location: "United States",
+    websiteUrl: "https://gdbtee1.github.io/pretty-patty-paradise",
+    status: "Live",
+    description:
+      "A colorful food brand website designed to make the menu, personality, and customer experience feel immediately recognizable.",
+    brief:
+      "The concept needed a lively digital presence that could showcase the brand's food, personality, and visual identity without feeling like a generic restaurant template.",
+    build:
+      "Techuvo developed a responsive, personality-driven restaurant experience with bold presentation, clear content sections, and direct customer pathways.",
+    capabilities: [
+      "Restaurant website",
+      "Brand presentation",
+      "Responsive development",
+      "Menu-focused structure",
+      "Customer pathways",
+      "Custom visual direction",
+    ],
+    color: "violet",
+  },
+  {
+    id: "fashion-brand",
+    fileNumber: "003",
+    title: "Fashion Brand",
+    category: "Fashion",
+    type: "Fashion Website",
+    year: "2026",
+    location: "United States",
+    websiteUrl: "https://gdbtee1.github.io/fashion-brand/",
+    status: "Live",
+    description:
+      "A modern fashion website concept built around strong imagery, editorial presentation, and a premium digital storefront feel.",
+    brief:
+      "The project needed to communicate fashion through visual hierarchy and atmosphere while remaining clean, responsive, and easy to explore.",
+    build:
+      "Techuvo created an editorial-inspired responsive experience with image-led sections, refined typography, product-focused presentation, and polished interactions.",
+    capabilities: [
+      "Fashion presentation",
+      "Editorial layout",
+      "Responsive development",
+      "Product storytelling",
+      "Visual hierarchy",
+      "Premium brand direction",
+    ],
+    color: "indigo",
+  },
+  {
+    id: "ryne-writes",
+    fileNumber: "004",
+    title: "Ryne Writes",
+    category: "Creative Portfolio",
+    type: "Interactive Portfolio",
+    year: "2026",
+    location: "United States",
+    websiteUrl: "https://rynewrites.com",
+    status: "Live",
+    description:
+      "An interactive portfolio designed around a unique gaming-inspired experience that transforms a traditional portfolio into something memorable.",
+    brief:
+      "The client wanted an experience instead of a traditional website. Every interaction was designed to feel playful while still presenting professional work.",
+    build:
+      "Techuvo designed and developed a completely custom interactive portfolio featuring cinematic transitions, retro-inspired visuals, responsive layouts, and immersive navigation.",
+    capabilities: [
+      "Interactive experience",
+      "Creative UI",
+      "Responsive development",
+      "Custom animations",
+      "Portfolio design",
+      "Performance optimization",
+    ],
+    color: "cyan",
+  },
+  {
+    id: "mojoy-records",
+    fileNumber: "005",
+    title: "Mojoy Records",
+    category: "Music",
+    type: "Record Label Website",
+    year: "2026",
+    location: "Detroit, Michigan",
+    websiteUrl: "https://gdbtee1.github.io/mojoy-records/",
+    status: "Live",
+    description:
+      "A digital home for an independent Detroit record label built to present artists, releases, and the identity behind the brand.",
+    brief:
+      "The label needed an online presence that could feel connected to Detroit's independent music culture while organizing artists, releases, and brand information.",
+    build:
+      "Techuvo created a responsive music-focused website with strong visual identity, artist presentation, release-focused sections, and scalable content structure.",
+    capabilities: [
+      "Record label website",
+      "Artist presentation",
+      "Release-focused content",
+      "Responsive development",
+      "Brand storytelling",
+      "Expandable architecture",
+    ],
+    color: "blue",
+  },
+  {
+    id: "xoxo-resells",
+    fileNumber: "006",
+    title: "XOXO Resells",
+    category: "E-Commerce",
+    type: "Resale Website",
+    year: "2026",
+    location: "United States",
+    websiteUrl: "https://xoxoresells.com",
+    status: "Live",
+    description:
+      "A resale-focused website built to showcase available items, strengthen the brand, and make shopping the collection easier.",
+    brief:
+      "The reseller needed a polished online presence that could organize inventory and make the business feel trustworthy, recognizable, and easy to shop.",
+    build:
+      "Techuvo developed a responsive resale experience with product-focused presentation, clear navigation, brand-forward styling, and direct shopping pathways.",
+    capabilities: [
+      "Resale website",
+      "Product presentation",
+      "Responsive development",
+      "E-commerce structure",
+      "Brand presentation",
+      "Customer navigation",
+    ],
+    color: "sky",
+  },
+  {
+    id: "retro-dental",
+    fileNumber: "007",
+    title: "Retro Dental",
+    category: "Healthcare",
+    type: "Dental Website",
+    year: "2026",
+    location: "United States",
+    websiteUrl: "https://gdbtee1.github.io/retro-dental/",
+    status: "Live",
+    description:
+      "A distinctive dental website concept that combines professional service information with a memorable retro-inspired visual identity.",
+    brief:
+      "The concept explored how a dental practice could stand apart from typical clinical websites while still communicating trust, services, and clear patient pathways.",
+    build:
+      "Techuvo created a responsive dental experience with custom visual direction, organized service content, prominent calls to action, and mobile-friendly layouts.",
+    capabilities: [
+      "Dental website",
+      "Custom visual identity",
+      "Service presentation",
+      "Responsive development",
+      "Patient pathways",
+      "Mobile optimization",
+    ],
+    color: "cyan",
+  },
+  {
+    id: "cleaning-business",
+    fileNumber: "008",
+    title: "Cleaning Business",
+    category: "Cleaning Services",
+    type: "Service Website",
+    year: "2026",
+    location: "United States",
+    websiteUrl: "https://gdbtee1.github.io/cleaning-business",
+    status: "Live",
+    description:
+      "A clean service-business website designed to explain offerings quickly, build trust, and make requesting service simple.",
+    brief:
+      "The cleaning concept needed a polished local-business presence that could communicate services clearly and guide visitors toward booking or contacting the company.",
+    build:
+      "Techuvo created a responsive service layout with clear offers, trust-focused content, straightforward navigation, and conversion-focused contact pathways.",
+    capabilities: [
+      "Cleaning service website",
+      "Service presentation",
+      "Responsive development",
+      "Lead-focused structure",
+      "Contact pathways",
+      "Local business branding",
     ],
     color: "blue",
   },
   {
     id: "golden-cares",
-    fileNumber: "002",
+    fileNumber: "009",
     title: "Golden Cares",
     category: "Care Services",
     type: "Service Website",
@@ -57,7 +239,7 @@ const projects = [
   },
   {
     id: "kids-first",
-    fileNumber: "003",
+    fileNumber: "010",
     title: "Kids First",
     category: "Education",
     type: "Education Website",
@@ -83,7 +265,7 @@ const projects = [
   },
   {
     id: "monroe-media-tv",
-    fileNumber: "004",
+    fileNumber: "011",
     title: "Monroe Media TV",
     category: "Media",
     type: "Media Platform",
@@ -108,34 +290,8 @@ const projects = [
     color: "indigo",
   },
   {
-    id: "pen-game-press",
-    fileNumber: "005",
-    title: "Pen Game Press",
-    category: "Publishing",
-    type: "Author Platform",
-    year: "2026",
-    location: "United States",
-    websiteUrl: "#",
-    status: "Archived",
-    description:
-      "A publishing platform designed to present books, creative work, brand information, and reader actions.",
-    brief:
-      "The publishing brand needed one organized digital space for showcasing its written work and engaging readers.",
-    build:
-      "Techuvo created book-focused sections, responsive presentation, reusable content areas, and clear reader pathways.",
-    capabilities: [
-      "Publishing website",
-      "Book presentation",
-      "Author branding",
-      "Responsive layouts",
-      "Reader navigation",
-      "Expandable content",
-    ],
-    color: "violet",
-  },
-  {
     id: "hubby-hub",
-    fileNumber: "006",
+    fileNumber: "012",
     title: "Hubby Hub",
     category: "Publishing",
     type: "Author Website",
@@ -159,42 +315,22 @@ const projects = [
     ],
     color: "cyan",
   },
-  {
-    id: "ryne-writes",
-    fileNumber: "007",
-    title: "Ryne Writes",
-    category: "Creative Portfolio",
-    type: "Interactive Portfolio",
-    year: "2026",
-    location: "United States",
-    websiteUrl: "https://rynewrites.com",
-    status: "Live",
-    description:
-      "An interactive portfolio designed around a unique gaming-inspired experience that transforms a traditional portfolio into something memorable.",
-    brief:
-      "The client wanted an experience instead of a traditional website. Every interaction was designed to feel playful while still presenting professional work.",
-    build:
-      "Techuvo designed and developed a completely custom interactive portfolio featuring cinematic transitions, retro-inspired visuals, responsive layouts, and immersive navigation.",
-    capabilities: [
-      "Interactive experience",
-      "Creative UI",
-      "Responsive development",
-      "Custom animations",
-      "Portfolio design",
-      "Performance optimization",
-    ],
-    color: "cyan",
-  },
 ];
 
 const categories = [
   "All",
-  "Automotive",
+  "Paving",
+  "Food",
+  "Fashion",
+  "Creative Portfolio",
+  "Music",
+  "E-Commerce",
+  "Healthcare",
+  "Cleaning Services",
   "Care Services",
   "Education",
   "Media",
   "Publishing",
-  "Creative Portfolio",
 ];
 
 const colorStyles = {
@@ -645,7 +781,7 @@ function ReservedFile() {
       <div className="relative flex h-full flex-1 flex-col">
         <div className="flex items-center justify-between">
           <p className="text-[0.58rem] font-extrabold uppercase tracking-[0.18em] text-blue-700">
-            File 008
+            File 013
           </p>
 
           <span className="relative flex h-2.5 w-2.5">
@@ -698,7 +834,7 @@ function Portfolio() {
     document.title = "Techuvo File Room | Website Design Portfolio";
 
     const description =
-      "Explore the Techuvo File Room, featuring responsive websites and digital projects created for automotive, education, care, media, and publishing businesses.";
+      "Explore the Techuvo File Room, featuring responsive websites and digital projects created for paving, food, fashion, music, retail, healthcare, education, media, and service businesses.";
 
     let metaDescription = document.querySelector(
       'meta[name="description"]',
@@ -807,9 +943,9 @@ function Portfolio() {
 
           <div className="mt-8 grid grid-cols-2 gap-px border border-blue-200 bg-blue-200 sm:grid-cols-4">
             {[
-              ["07", "Projects"],
-              ["06", "Industries"],
-              ["04", "Live"],
+              ["12", "Projects"],
+              ["12", "Industries"],
+              ["10", "Live"],
               ["01", "Reserved"],
             ].map(([value, label]) => (
               <div key={label} className="bg-white/85 px-4 py-3.5">
@@ -911,7 +1047,7 @@ function Portfolio() {
         <div className="relative mx-auto grid max-w-[100rem] gap-7 px-5 py-12 sm:px-8 sm:py-14 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12">
           <div>
             <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-blue-300">
-              File 008
+              File 013
             </p>
 
             <h2 className="mt-3 max-w-3xl text-4xl font-black tracking-[-0.06em] sm:text-5xl">
