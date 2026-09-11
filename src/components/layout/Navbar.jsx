@@ -420,63 +420,15 @@ function Navbar() {
  </NavLink>
  ),
  )}
-
- {/* TECHUVO_50_OFFER_BADGE */}
- <Link
- to="/start"
- aria-label="View the $50 website offer"
- className="group relative ml-auto inline-flex min-h-11 min-w-[8.75rem] shrink-0 items-center justify-center whitespace-nowrap border border-yellow-200 bg-yellow-300 px-5 text-sm font-black text-slate-950 shadow-[0_8px_24px_rgba(250,204,21,0.22)] transition duration-300 hover:-translate-y-0.5 hover:bg-yellow-200"
- >
- <span
- aria-hidden="true"
- className="relative mr-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-700 animate-[offerDot_1.8s_ease-in-out_infinite]"
- />
-
- <span className="relative shrink-0 whitespace-nowrap">
- $50 OFFER
- </span>
-
- <span
- aria-hidden="true"
- className="pointer-events-none absolute inset-x-0 bottom-0 h-[3px] origin-left scale-x-0 bg-blue-700 transition-transform duration-300 group-hover:scale-x-100"
- />
- </Link>
-
- <Link
+<Link
  to="/contact"
- className="inline-flex min-h-11 items-center gap-2 border border-white/30 bg-white px-5 text-sm font-extrabold text-blue-700 transition hover:-translate-y-0.5 hover:bg-blue-50"
+ className="ml-auto inline-flex min-h-11 items-center gap-2 border border-white/30 bg-white px-5 text-sm font-extrabold text-blue-700 transition hover:-translate-y-0.5 hover:bg-blue-50"
  >
  Start a project
  <ArrowIcon />
  </Link>
  </nav>
-
- {/* $50 website offer before scroll */}
- <Link
- to="/start"
- aria-label="View the $50 website offer"
- className={`group relative hidden min-h-12 items-center gap-2 overflow-hidden border px-5 text-sm font-black transition duration-500 lg:inline-flex ${
- isScrolled
- ? "pointer-events-none absolute opacity-0"
- : "border-blue-200 bg-blue-50 text-blue-700 shadow-[0_10px_28px_rgba(37,99,235,0.12)] hover:-translate-y-0.5 hover:border-blue-300 hover:bg-blue-100"
- }`}
- >
- <span
- aria-hidden="true"
- className="absolute inset-0 animate-[offerGlow_2.8s_ease-in-out_infinite] bg-blue-200/30"
- />
-
- <span
- aria-hidden="true"
- className="relative h-2 w-2 rounded-full bg-blue-600 animate-[offerDot_1.8s_ease-in-out_infinite]"
- />
-
- <span className="relative">
- $50 WEBSITE OFFER
- </span>
- </Link>
-
- {/* Desktop contact before scroll */}
+{/* Desktop contact before scroll */}
             <Link
               to="/contact"
               className={`hidden items-center gap-3 border px-6 text-sm font-extrabold transition duration-500 lg:inline-flex ${
@@ -490,52 +442,6 @@ function Navbar() {
             </Link>
 
             <div className="ml-auto flex items-center gap-2 lg:hidden">
-              <Link
-                to="/start"
-                aria-label="View the $50 website offer"
-                onClick={() => {
-                  setMobileOpen(false);
-                  setMobileDropdown(null);
-                }}
-                className={`group relative inline-flex min-h-10 shrink-0 items-center gap-1.5 overflow-visible border px-2.5 text-[0.64rem] font-black uppercase tracking-[0.06em] transition duration-500 min-[390px]:px-3 min-[390px]:text-[0.68rem] sm:min-h-11 sm:px-4 sm:text-xs ${
-                  isScrolled
-                    ? "border-yellow-200 bg-yellow-300 text-slate-950 shadow-[0_8px_22px_rgba(250,204,21,0.2)]"
-                    : "border-blue-200 bg-blue-50 text-blue-700 shadow-[0_7px_20px_rgba(37,99,235,0.1)]"
-                } animate-[mobileOfferPop_3.8s_ease-in-out_infinite]`}
-              >
-                <span
-                  aria-hidden="true"
-                  className={`absolute inset-0 overflow-hidden animate-[offerGlow_2.8s_ease-in-out_infinite] ${
-                    isScrolled
-                      ? "bg-white/20"
-                      : "bg-blue-200/30"
-                  }`}
-                />
-
-                <span
-                  aria-hidden="true"
-                  className={`relative h-2 w-2 rounded-full animate-[offerDot_1.8s_ease-in-out_infinite] ${
-                    isScrolled
-                      ? "bg-blue-700"
-                      : "bg-blue-600"
-                  }`}
-                />
-
-                <span className="relative whitespace-nowrap">
-                  $50 Offer
-                </span>
-
-                <span
-                  className={`pointer-events-none absolute -top-[1.15rem] right-0 whitespace-nowrap border px-1.5 py-[1px] text-[0.42rem] font-black uppercase tracking-[0.1em] shadow-[2px_2px_0_rgba(15,23,42,0.18)] min-[390px]:-top-5 min-[390px]:px-2 min-[390px]:py-[2px] min-[390px]:text-[0.48rem] ${
-                    isScrolled
-                      ? "border-white/40 bg-white text-blue-700"
-                      : "border-blue-200 bg-blue-600 text-white"
-                  }`}
-                >
-                  Click me
-                </span>
-              </Link>
-
             <button
               type="button"
               aria-label={
