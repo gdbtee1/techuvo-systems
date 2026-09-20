@@ -4,6 +4,7 @@ import {
   NavLink,
   useLocation,
 } from "react-router-dom";
+import techuvoLogo from "../../assets/techuvo-logo.png";
 
 const navigationLinks = [
   {
@@ -105,6 +106,40 @@ function ArrowIcon() {
   );
 }
 
+
+function OfferLink({ compact = false, mobile = false, onClick }) {
+  return (
+    <Link
+      to="/start"
+      onClick={onClick}
+      className={`group/offer relative isolate overflow-hidden border border-amber-500/70 bg-yellow-300 font-extrabold text-slate-950 transition duration-300 hover:-translate-y-0.5 hover:bg-yellow-200 ${
+        mobile
+          ? "mt-3 flex min-h-14 w-full items-center justify-between px-5 text-sm shadow-[0_10px_28px_rgba(250,204,21,0.28)] animate-[mobileOfferPop_6s_ease-in-out_infinite]"
+          : compact
+            ? "inline-flex min-h-10 items-center gap-2 px-4 text-xs shadow-[0_0_22px_rgba(250,204,21,0.22)] xl:text-sm"
+            : "inline-flex min-h-10 items-center gap-2 px-4 text-sm shadow-[0_0_24px_rgba(250,204,21,0.24)]"
+      }`}
+    >
+      <span
+        aria-hidden="true"
+        className="absolute -inset-y-4 -left-1/3 -z-0 w-1/3 skew-x-[-18deg] bg-white/55 blur-[2px] animate-[offerGlow_5.2s_ease-in-out_infinite]"
+      />
+
+      <span className="relative z-10 flex items-center gap-2">
+        <span
+          aria-hidden="true"
+          className="h-2 w-2 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.7)] animate-[offerDot_1.8s_ease-in-out_infinite]"
+        />
+        <span>Website Offer</span>
+      </span>
+
+      <span className="relative z-10 transition-transform duration-300 group-hover/offer:translate-x-1">
+        <ArrowIcon />
+      </span>
+    </Link>
+  );
+}
+
 function ChevronIcon({ open = false }) {
   return (
     <svg
@@ -157,13 +192,31 @@ function MenuIcon({ open }) {
 function BrandMark({ compact = false }) {
   return (
     <div
-      className={`grid shrink-0 place-items-center border-2 font-black transition-all duration-500 ${
+      className={`relative isolate shrink-0 transition-all duration-500 ${
         compact
-          ? "h-10 w-10 border-white/35 text-white"
-          : "h-12 w-12 border-blue-200 bg-blue-50 text-blue-700 sm:h-14 sm:w-14"
+          ? "h-12 w-12 sm:h-14 sm:w-14"
+          : "h-14 w-14 sm:h-[4.25rem] sm:w-[4.25rem]"
       }`}
     >
-      T
+      <span
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-[12%] -z-10 rounded-full blur-xl transition-all duration-500 ${
+          compact
+            ? "bg-cyan-300/20 opacity-70"
+            : "bg-blue-500/12 opacity-55 group-hover:bg-cyan-400/20 group-hover:opacity-90"
+        }`}
+      />
+
+      <img
+        src={techuvoLogo}
+        alt=""
+        aria-hidden="true"
+        className={`h-full w-full object-contain transition-all duration-500 ease-out ${
+          compact
+            ? "drop-shadow-[0_8px_16px_rgba(8,47,73,0.22)]"
+            : "drop-shadow-[0_10px_18px_rgba(15,23,42,0.16)] group-hover:drop-shadow-[0_12px_22px_rgba(37,99,235,0.22)]"
+        }`}
+      />
     </div>
   );
 }
@@ -420,13 +473,16 @@ function Navbar() {
  </NavLink>
  ),
  )}
-<Link
+<div className="ml-auto flex items-center gap-3">
+ <OfferLink compact />
+ <Link
  to="/contact"
- className="ml-auto inline-flex min-h-11 items-center gap-2 border border-white/30 bg-white px-5 text-sm font-extrabold text-blue-700 transition hover:-translate-y-0.5 hover:bg-blue-50"
+ className="inline-flex min-h-11 items-center gap-2 border border-white/30 bg-white px-5 text-sm font-extrabold text-blue-700 transition hover:-translate-y-0.5 hover:bg-blue-50"
  >
  Start a project
  <ArrowIcon />
  </Link>
+ </div>
  </nav>
 {/* Desktop contact before scroll */}
             <Link
@@ -511,6 +567,8 @@ function Navbar() {
                   </NavLink>
                 ),
               )}
+
+              <OfferLink />
             </div>
           </nav>
         </div>
@@ -672,6 +730,14 @@ function Navbar() {
                   </NavLink>
                 );
               })}
+
+              <OfferLink
+                mobile
+                onClick={() => {
+                  setMobileOpen(false);
+                  setMobileDropdown(null);
+                }}
+              />
 
               <Link
                 to="/contact"

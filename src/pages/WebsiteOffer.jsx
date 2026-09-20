@@ -605,7 +605,7 @@ function ProjectCard({ project, index, onOpen }) {
         <div className="flex h-full items-center justify-between gap-4 border-b-[3px] border-slate-950 p-4 sm:p-5">
           <div className="min-w-0">
             <p className="text-[9px] font-black uppercase tracking-[0.18em] sm:text-[10px]">
-              Project {project.number}
+              Featured build
             </p>
 
             <p className="mt-2 text-base font-black leading-tight sm:text-lg">
@@ -776,7 +776,7 @@ function ProjectModal({ project, onClose }) {
 
             <div>
               <p className="text-[9px] font-black uppercase tracking-[0.2em]">
-                Project {project.number}
+                Featured build
               </p>
 
               <p className="text-sm font-black">
@@ -882,870 +882,807 @@ function ProjectModal({ project, onClose }) {
   );
 }
 
+const servicePackages = [
+  {
+    id: "lead-funnel",
+    eyebrow: "Lead generation",
+    name: "1-Page Lead Funnel",
+    price: "$199",
+    accent: "#aeecef",
+    summary:
+      "A focused conversion page built to turn paid traffic into calls, forms, and real customer opportunities.",
+    bestFor: "Businesses ready to advertise one core service.",
+    features: [
+      "Custom conversion-focused layout",
+      "Instant lead alerts by text or email",
+      "Meta Pixel + conversion tracking setup",
+      "Mobile-first responsive build",
+    ],
+    examples: [
+      {
+        id: "home-services",
+        title: "Home Services",
+        subtitle: "Roofing / HVAC / Landscaping",
+        accent: "#aeecef",
+        hero: "Turn local searches into booked jobs.",
+        copy: "A direct-response layout that leads with the offer, trust, proof, service area, and one obvious action.",
+      },
+      {
+        id: "beauty",
+        title: "Beauty & Wellness",
+        subtitle: "Salon / Barber / Med Spa",
+        accent: "#ffd86b",
+        hero: "A premium first impression built to book.",
+        copy: "Strong visuals, service proof, social credibility, and a simple appointment path designed for mobile traffic.",
+      },
+      {
+        id: "professional",
+        title: "Professional Services",
+        subtitle: "Consulting / Legal / Finance",
+        accent: "#d6c7ff",
+        hero: "Make expertise feel obvious before the call.",
+        copy: "An authority-first funnel that explains the offer quickly, reduces uncertainty, and moves visitors toward inquiry.",
+      },
+    ],
+  },
+  {
+    id: "growth-bundle",
+    eyebrow: "Business presence",
+    name: "Business Growth Bundle",
+    price: "$499",
+    accent: "#ffd86b",
+    summary:
+      "Your lead funnel plus the core pages a growing business needs to look established, credible, and easy to understand.",
+    bestFor: "Businesses that need both credibility and lead generation.",
+    features: [
+      "Core 1-page lead funnel",
+      "About, Services + Gallery pages",
+      "Google Business Profile conversion mapping",
+      "Tracking infrastructure included",
+    ],
+    examples: [
+      {
+        id: "contractor",
+        title: "Local Contractor",
+        subtitle: "Funnel + service pages + proof",
+        accent: "#ffd86b",
+        hero: "One business. One clear path from discovery to quote.",
+        copy: "The funnel captures demand while supporting pages answer the questions customers ask before they commit.",
+      },
+      {
+        id: "studio",
+        title: "Private Studio",
+        subtitle: "Brand story + services + gallery",
+        accent: "#ffb6ae",
+        hero: "Turn the experience into the reason they choose you.",
+        copy: "An editorial structure that sells the atmosphere, shows the work, and gives visitors confidence before they book.",
+      },
+      {
+        id: "creative",
+        title: "Creative Business",
+        subtitle: "Portfolio + services + conversion",
+        accent: "#b7e9c9",
+        hero: "Show the work without losing the sale.",
+        copy: "A portfolio-led system with enough personality to stand out and enough structure to keep conversion obvious.",
+      },
+    ],
+  },
+  {
+    id: "authority",
+    eyebrow: "Local authority",
+    name: "Authority Ecosystem",
+    price: "$799",
+    accent: "#d6c7ff",
+    summary:
+      "A larger website architecture built for businesses that need dedicated service pages, stronger local search structure, and deeper trust.",
+    bestFor: "Established businesses expanding their local authority.",
+    features: [
+      "Up to 7 custom pages",
+      "Dedicated individual service pages",
+      "Local SEO-focused site architecture",
+      "Review-generation campaign setup",
+    ],
+    examples: [
+      {
+        id: "multi-service",
+        title: "Multi-Service Company",
+        subtitle: "Dedicated service architecture",
+        accent: "#d6c7ff",
+        hero: "Give every major service room to rank and convert.",
+        copy: "Each service gets its own focused page while the overall site still feels like one cohesive brand system.",
+      },
+      {
+        id: "regional",
+        title: "Regional Brand",
+        subtitle: "Locations + authority + proof",
+        accent: "#aeecef",
+        hero: "Build a stronger footprint across the market.",
+        copy: "A scalable structure for businesses serving multiple areas, with proof and conversion paths throughout the experience.",
+      },
+      {
+        id: "premium-service",
+        title: "Premium Service Brand",
+        subtitle: "Editorial authority experience",
+        accent: "#ffb6ae",
+        hero: "Make the website feel as premium as the service.",
+        copy: "A deeper brand experience with dedicated pages, refined positioning, and a stronger trust journey before inquiry.",
+      },
+    ],
+  },
+];
+
+function PackageExamplePreview({ example }) {
+  return (
+    <div className="relative min-h-[480px] overflow-hidden bg-[#fffaf0] sm:min-h-[560px]">
+      <div
+        className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(15,23,42,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.12) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+
+      <div className="relative flex min-h-[480px] flex-col sm:min-h-[560px]">
+        <div className="flex items-center justify-between border-b-[3px] border-slate-950 bg-white px-4 py-3 sm:px-6">
+          <div className="flex items-center gap-2">
+            <span className="h-3 w-3 rounded-full border-2 border-slate-950 bg-[#ff8c75]" />
+            <span className="h-3 w-3 rounded-full border-2 border-slate-950 bg-yellow-300" />
+            <span className="h-3 w-3 rounded-full border-2 border-slate-950 bg-[#6ee7b7]" />
+          </div>
+          <span className="text-[9px] font-black uppercase tracking-[0.14em] text-slate-500">
+            Example layout
+          </span>
+        </div>
+
+        <div className="grid flex-1 gap-0 lg:grid-cols-[1.05fr_.95fr]">
+          <div className="flex flex-col justify-center border-b-[3px] border-slate-950 p-6 sm:p-9 lg:border-b-0 lg:border-r-[3px] lg:p-12">
+            <span
+              className="inline-flex w-fit rounded-full border-[3px] border-slate-950 px-3 py-2 text-[10px] font-black uppercase tracking-[0.14em] shadow-[3px_4px_0_#0f172a]"
+              style={{ backgroundColor: example.accent }}
+            >
+              {example.title}
+            </span>
+
+            <h3 className="mt-7 max-w-[10ch] text-[clamp(2.8rem,7vw,6rem)] font-black leading-[0.84] tracking-[-0.07em]">
+              {example.hero}
+            </h3>
+
+            <p className="mt-6 max-w-xl text-sm font-semibold leading-7 text-slate-600 sm:text-base">
+              {example.copy}
+            </p>
+
+            <div className="mt-7 flex flex-wrap gap-2">
+              {["Clear offer", "Trust proof", "Strong CTA", "Mobile first"].map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border-2 border-slate-950 bg-white px-3 py-2 text-[10px] font-black uppercase tracking-[0.1em]"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative flex items-center justify-center p-6 sm:p-10">
+            <motion.div
+              initial={{ opacity: 0, y: 25, rotate: 2 }}
+              animate={{ opacity: 1, y: 0, rotate: -1 }}
+              transition={{ type: "spring", stiffness: 160, damping: 18 }}
+              className="w-full max-w-[420px] overflow-hidden rounded-[1.6rem] border-[3px] border-slate-950 bg-white shadow-[10px_12px_0_#0f172a]"
+            >
+              <div className="border-b-[3px] border-slate-950 p-4" style={{ backgroundColor: example.accent }}>
+                <div className="h-3 w-24 rounded-full bg-slate-950/20" />
+              </div>
+              <div className="p-5 sm:p-6">
+                <div className="h-4 w-20 rounded-full bg-slate-200" />
+                <div className="mt-5 h-8 w-[92%] rounded-md bg-slate-950" />
+                <div className="mt-2 h-8 w-[70%] rounded-md bg-slate-950" />
+                <div className="mt-5 h-3 w-full rounded-full bg-slate-200" />
+                <div className="mt-2 h-3 w-[84%] rounded-full bg-slate-200" />
+                <div className="mt-6 h-12 w-40 rounded-full border-[3px] border-slate-950" style={{ backgroundColor: example.accent }} />
+                <div className="mt-8 grid grid-cols-3 gap-3">
+                  {[0, 1, 2].map((item) => (
+                    <div key={item} className="aspect-square rounded-xl border-2 border-slate-950 bg-slate-100" />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PackageExamples({ packageItem, onClose }) {
+  const [activeExample, setActiveExample] = useState(null);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[600] overflow-y-auto bg-slate-950/70 p-2 backdrop-blur-md sm:p-5"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <motion.div
+        initial={{ opacity: 0, x: 55, scale: 0.985 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        exit={{ opacity: 0, x: 35, scale: 0.985 }}
+        transition={{ type: "spring", stiffness: 170, damping: 22 }}
+        className="mx-auto my-2 w-full max-w-7xl overflow-hidden rounded-[1.6rem] border-[3px] border-slate-950 bg-[#fff9ee] shadow-[12px_14px_0_#0f172a] sm:my-5 sm:rounded-[2rem]"
+      >
+        <div
+          className="sticky top-0 z-20 flex items-center justify-between gap-4 border-b-[3px] border-slate-950 px-4 py-4 sm:px-6"
+          style={{ backgroundColor: packageItem.accent }}
+        >
+          <div className="min-w-0">
+            <p className="text-[9px] font-black uppercase tracking-[0.18em] text-slate-600">
+              Website examples
+            </p>
+            <h2 className="truncate text-lg font-black tracking-[-0.04em] sm:text-2xl">
+              {activeExample ? activeExample.title : packageItem.name}
+            </h2>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => (activeExample ? setActiveExample(null) : onClose())}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full border-[3px] border-slate-950 bg-white shadow-[3px_4px_0_#0f172a] transition hover:-translate-y-1"
+            aria-label={activeExample ? "Back to examples" : "Close examples"}
+          >
+            {activeExample ? <ArrowRight className="h-5 w-5 rotate-180" /> : <X className="h-5 w-5" />}
+          </button>
+        </div>
+
+        <AnimatePresence mode="wait">
+          {activeExample ? (
+            <motion.div
+              key={activeExample.id}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -25 }}
+            >
+              <PackageExamplePreview example={activeExample} />
+              <div className="flex flex-col gap-3 border-t-[3px] border-slate-950 bg-white p-4 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+                <p className="max-w-2xl text-sm font-semibold leading-6 text-slate-600">
+                  This is a layout direction, not a fixed template. Your build is adapted to your business, content, offer, and brand.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setActiveExample(null)}
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-5 text-sm font-black shadow-[4px_5px_0_#0f172a]"
+                >
+                  View other examples
+                  <ArrowRight className="h-4 w-4 rotate-180" />
+                </button>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="files"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              className="p-5 sm:p-8 lg:p-10"
+            >
+              <div className="max-w-3xl">
+                <p className="text-sm font-semibold leading-7 text-slate-600 sm:text-base">
+                  Open a file to see how this package can be shaped for different kinds of businesses. These are example directions, not recycled templates.
+                </p>
+              </div>
+
+              <div className="mt-7 grid gap-5 md:grid-cols-3">
+                {packageItem.examples.map((example) => (
+                  <motion.button
+                    key={example.id}
+                    type="button"
+                    onClick={() => setActiveExample(example)}
+                    whileHover={{ y: -7, rotate: -0.6 }}
+                    whileTap={{ scale: 0.985 }}
+                    className="group relative min-h-[290px] overflow-hidden rounded-[1.4rem] border-[3px] border-slate-950 bg-white p-5 text-left shadow-[7px_8px_0_#0f172a] sm:p-6"
+                  >
+                    <div
+                      className="absolute inset-x-0 top-0 h-16 border-b-[3px] border-slate-950"
+                      style={{ backgroundColor: example.accent }}
+                    />
+                    <div className="relative pt-14">
+                      <div className="mb-8 h-16 w-14 rounded-lg border-[3px] border-slate-950 bg-[#fff9ee] shadow-[3px_4px_0_#0f172a]">
+                        <div className="ml-auto h-5 w-5 border-b-[3px] border-l-[3px] border-slate-950 bg-white" />
+                      </div>
+                      <p className="text-2xl font-black tracking-[-0.045em]">{example.title}</p>
+                      <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">{example.subtitle}</p>
+                      <div className="mt-8 flex items-center justify-between border-t-2 border-slate-950/10 pt-4 text-xs font-black uppercase tracking-[0.13em]">
+                        Open example
+                        <ArrowRight className="h-5 w-5 -rotate-45 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                      </div>
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function WebsiteOffer() {
   const [activeProject, setActiveProject] = useState(null);
+  const [activePackage, setActivePackage] = useState(null);
   const [openFaq, setOpenFaq] = useState(0);
-  const [checkoutLoading, setCheckoutLoading] = useState(false);
-  const [checkoutError, setCheckoutError] = useState("");
+  const [brandMode, setBrandMode] = useState(0);
 
   useEffect(() => {
-    document.body.style.overflow = activeProject ? "hidden" : "";
+    const timer = window.setInterval(() => {
+      setBrandMode((current) => (current === 0 ? 1 : 0));
+    }, 3200);
+    return () => window.clearInterval(timer);
+  }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = activeProject || activePackage ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [activeProject]);
+  }, [activeProject, activePackage]);
 
-  const startCheckout = async () => {
-    if (checkoutLoading) return;
-
-    try {
-      setCheckoutLoading(true);
-      setCheckoutError("");
-
-      const response = await fetch(
-        "https://techuvo-checkout.techuvo-dev.workers.dev/create-checkout-session",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data?.error || "Secure checkout could not be opened.",
-        );
-      }
-
-      if (!data?.url) {
-        throw new Error("Stripe Checkout URL was not returned.");
-      }
-
-      window.location.href = data.url;
-    } catch (error) {
-      console.error("Stripe checkout error:", error);
-      setCheckoutError(
-        error instanceof Error
-          ? error.message
-          : "Unable to open secure checkout. Please try again.",
-      );
-      setCheckoutLoading(false);
-    }
-  };
+  const contactHref = (subject = "a Techuvo website package") =>
+    `sms:+13134507265?body=${encodeURIComponent(
+      `Hi Techuvo, I'm interested in ${subject}.`,
+    )}`;
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#fff9ee] text-slate-950 selection:bg-yellow-200">
-      <AnimatePresence>
-        {checkoutError && (
-          <motion.div
-            initial={{ opacity: 0, y: 22, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.97 }}
-            className="fixed bottom-5 left-1/2 z-[1000] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 rounded-[1.25rem] border-[3px] border-slate-950 bg-[#ff8c75] px-5 py-4 text-center text-sm font-black text-slate-950 shadow-[6px_7px_0_#0f172a]"
-            role="alert"
-          >
-            {checkoutError}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <section className="relative min-h-[100svh] overflow-hidden border-b-[3px] border-slate-950">
+    <main className="min-h-screen overflow-hidden bg-[#fff8e8] text-slate-950 selection:bg-yellow-200">
+      {/* HERO */}
+      <section id="top" className="relative overflow-hidden border-b-[3px] border-slate-950">
         <div
           aria-hidden="true"
-          className="absolute inset-0 opacity-[0.28]"
+          className="absolute inset-0 opacity-[0.32]"
           style={{
             backgroundImage:
-              "linear-gradient(#dbeafe 1px, transparent 1px), linear-gradient(90deg, #dbeafe 1px, transparent 1px)",
-            backgroundSize: "34px 34px",
+              "linear-gradient(rgba(15,23,42,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(15,23,42,.08) 1px, transparent 1px)",
+            backgroundSize: "38px 38px",
           }}
         />
 
-        <motion.div
-          animate={{
-            y: [0, -13, 0],
-            rotate: [0, 5, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-          }}
-          className="absolute right-[7%] top-[10%] h-20 w-20 rounded-full border-[3px] border-slate-950 bg-yellow-300 shadow-[6px_7px_0_#0f172a] sm:h-28 sm:w-28"
-        />
-
-        <div className="relative z-40 mx-auto flex w-full max-w-[94rem] items-center justify-between px-5 py-5 sm:px-8 lg:px-12">
-          <a href="/" className="group flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-[14px] border-[3px] border-slate-950 bg-blue-600 text-sm font-black text-white shadow-[4px_4px_0_#0f172a] transition-transform group-hover:-rotate-6">
+        <nav className="relative z-40 mx-auto flex w-full max-w-[94rem] items-center justify-between gap-3 px-4 py-3 sm:px-7 sm:py-4 lg:px-10">
+          <a href="#top" className="group flex min-w-0 items-center gap-3">
+            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] border-[3px] border-slate-950 bg-[#16b7d3] text-sm font-black shadow-[4px_4px_0_#0f172a] transition-transform group-hover:-rotate-6 sm:h-11 sm:w-11">
               T
             </div>
-
-            <div>
-              <p className="text-lg font-black tracking-[-0.05em]">
-                Techuvo
-              </p>
-
-              <p className="text-[0.58rem] font-black uppercase tracking-[0.18em] text-slate-500">
-                Custom Websites
+            <div className="min-w-0">
+              <p className="truncate text-[0.98rem] font-black tracking-[-0.04em] sm:text-lg">Techuvo LLC</p>
+              <p className="hidden text-[0.55rem] font-black uppercase tracking-[0.16em] text-slate-500 sm:block sm:text-[0.6rem]">
+                Websites + growth systems
               </p>
             </div>
           </a>
 
-          <button
-            type="button"
-            onClick={startCheckout}
-            disabled={checkoutLoading}
-            className="hidden min-h-12 items-center gap-2 rounded-full border-[3px] border-slate-950 bg-white px-5 text-sm font-black shadow-[4px_4px_0_#0f172a] transition hover:-translate-y-1 disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0 sm:inline-flex"
-          >
-            {checkoutLoading ? "Opening checkout..." : "Start for $50"}
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
+          <div className="hidden items-center gap-7 text-sm font-black lg:flex">
+            <a href="#formula" className="transition hover:-translate-y-0.5">Why it works</a>
+            <a href="#services" className="transition hover:-translate-y-0.5">Services</a>
+            <a href="#work" className="transition hover:-translate-y-0.5">Work</a>
+            <a href="#faq" className="transition hover:-translate-y-0.5">FAQ</a>
+          </div>
 
-        <Mascot />
-
-        <div className="relative z-20 mx-auto grid min-h-[calc(100svh-86px)] w-full max-w-[94rem] items-center gap-10 px-5 pb-16 pt-8 sm:px-8 sm:pt-16 lg:grid-cols-[1.08fr_.92fr] lg:gap-14 lg:px-12 lg:pb-20 lg:pt-8">
-          <div className="relative z-20 pt-12 sm:pl-20 sm:pt-28 lg:pl-0 lg:pt-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              className="mb-5 inline-flex items-center gap-2 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-4 py-2 text-xs font-black uppercase tracking-[0.15em] shadow-[4px_4px_0_#0f172a]"
+          <div className="flex shrink-0 items-center gap-2">
+            <a
+              href="/"
+              className="inline-flex min-h-10 items-center gap-2 rounded-full border-[3px] border-slate-950 bg-white px-3 text-[11px] font-black shadow-[3px_4px_0_#0f172a] transition hover:-translate-y-1 sm:min-h-12 sm:px-4 sm:text-sm"
             >
-              <Sparkles className="h-4 w-4" />
-              Custom website offer
-            </motion.div>
+              <span className="sm:hidden">Company site</span>
+              <span className="hidden sm:inline">View company website</span>
+              <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            </a>
+
+            <a
+              href="#services"
+              className="hidden min-h-12 items-center gap-2 rounded-full border-[3px] border-slate-950 bg-slate-950 px-5 text-sm font-black text-white shadow-[4px_4px_0_#f7c948] transition hover:-translate-y-1 md:inline-flex"
+            >
+              View packages
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </nav>
+
+        <div className="relative z-20 mx-auto grid w-full max-w-[94rem] gap-8 px-4 pb-12 pt-3 sm:px-7 sm:pb-14 sm:pt-7 lg:grid-cols-[1.05fr_.95fr] lg:items-start lg:gap-12 lg:px-10 lg:pb-16 lg:pt-8 xl:gap-14">
+          <div>
+            <div className="mb-5 h-7 overflow-hidden sm:h-9">
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={brandMode}
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -30, opacity: 0 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  className="text-xs font-black uppercase tracking-[0.22em] sm:text-sm"
+                >
+                  {brandMode === 0 ? "Techuvo LLC" : "Growth Partner"}
+                </motion.p>
+              </AnimatePresence>
+            </div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{ delay: 0.08 }}
-              className="max-w-[10ch] text-[clamp(3.6rem,8vw,7.8rem)] font-black leading-[0.83] tracking-[-0.075em]"
+              animate={{ opacity: 1, y: 0 }}
+              className="max-w-[11ch] text-[clamp(2.8rem,11vw,7.25rem)] font-black leading-[0.84] tracking-[-0.075em] sm:text-[clamp(3.4rem,8vw,7.25rem)]"
             >
-              Your new
-              <span className="block text-blue-600">
-                website.
-              </span>
+              Build trust.
+              <span className="block text-[#ef4444]">Bring traffic.</span>
+              Grow the business.
             </motion.h1>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-stretch">
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  rotate: -4,
-                  scale: 0.92,
-                }}
-                animate={{
-                  opacity: 1,
-                  rotate: -1,
-                  scale: 1,
-                }}
-                className="relative flex min-h-[105px] w-full flex-col items-start justify-center gap-1 rounded-[1.7rem] border-[3px] border-slate-950 bg-white px-5 py-4 shadow-[7px_8px_0_#0f172a] sm:w-auto sm:flex-row sm:items-center sm:gap-3 sm:px-6"
-              >
-                <span className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
-                  Start for
-                </span>
-
-                <span className="text-5xl font-black tracking-[-0.07em] text-blue-600 sm:text-6xl">
-                  $50
-                </span>
-
-                <div className="absolute -right-3 -top-4 rotate-6 rounded-full border-[3px] border-slate-950 bg-[#ff8c75] px-3 py-2 text-[9px] font-black uppercase shadow-[3px_3px_0_#0f172a]">
-                  One-time setup
-                </div>
-              </motion.div>
-
-              <div className="flex min-h-[105px] flex-col justify-center rounded-[1.7rem] border-[3px] border-slate-950 bg-[#bfe2ff] px-5 py-4 shadow-[7px_8px_0_#0f172a] sm:min-w-[190px]">
-                <p className="text-[9px] font-black uppercase tracking-[0.18em]">
-                  Then
-                </p>
-
-                <div className="mt-1 flex items-end gap-1">
-                  <span className="text-4xl font-black tracking-[-0.06em]">
-                    $49
-                  </span>
-
-                  <span className="pb-1 text-xs font-black">
-                    /month
-                  </span>
-                </div>
-
-                <p className="mt-1 text-[10px] font-bold text-slate-600">
-                  Managed website plan
-                </p>
-              </div>
-            </div>
-
-            <p className="mt-8 max-w-[40rem] text-base font-semibold leading-7 text-slate-600 sm:text-lg sm:leading-8">
-              Get a custom-built website designed around your
-              business. Your $49/month managed plan includes hosting,
-              maintenance, security, support, and website leasing.
+            <p className="mt-5 max-w-[43rem] text-[0.98rem] font-semibold leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+              Techuvo builds conversion-focused websites and marketing systems for service businesses — so your online presence has somewhere to send customers and a reason for them to act.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={startCheckout}
-                disabled={checkoutLoading}
-                className="group inline-flex min-h-16 items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-blue-600 px-8 text-base font-black text-white shadow-[6px_7px_0_#0f172a] transition hover:-translate-y-1 disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0"
+            <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
+              <a
+                href="#services"
+                className="group inline-flex min-h-[60px] items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-7 py-4 text-sm font-black shadow-[6px_7px_0_#0f172a] transition hover:-translate-y-1 sm:text-base"
               >
-                {checkoutLoading ? "Opening Secure Checkout..." : "Start My Website"}
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </button>
-
+                Explore the packages
+                <ArrowRight className="h-5 w-5 rotate-90 transition-transform group-hover:translate-y-1" />
+              </a>
               <a
                 href="#work"
-                className="inline-flex min-h-16 items-center justify-center rounded-full border-[3px] border-slate-950 bg-white px-8 text-base font-black shadow-[6px_7px_0_#0f172a] transition hover:-translate-y-1"
+                className="inline-flex min-h-[60px] items-center justify-center rounded-full border-[3px] border-slate-950 bg-white px-7 py-4 text-sm font-black shadow-[6px_7px_0_#0f172a] transition hover:-translate-y-1 sm:text-base"
               >
-                See Our Work
+                See real work
               </a>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              {[
-                "Custom built",
-                "Mobile ready",
-                "Secure hosting",
-                "Ongoing support",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-2 text-xs font-black text-slate-600 sm:text-sm"
-                >
+            <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2.5 text-[11px] font-black text-slate-600 sm:mt-7 sm:gap-x-5 sm:text-sm">
+              {["Custom-built", "Mobile-first", "Conversion-focused", "Real support"].map((item) => (
+                <span key={item} className="flex items-center gap-2">
                   <span className="grid h-5 w-5 place-items-center rounded-full border-2 border-slate-950 bg-[#6ee7b7]">
                     <Check className="h-3 w-3" strokeWidth={4} />
                   </span>
-
                   {item}
-                </div>
+                </span>
               ))}
             </div>
-
-            <motion.div
-              animate={{
-                rotate: [-2, 1, -2],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-              }}
-              className="mt-8 inline-flex items-center gap-3 rounded-2xl border-[3px] border-slate-950 bg-[#6ee7b7] px-4 py-3 shadow-[4px_5px_0_#0f172a]"
-            >
-              <Code2 className="h-5 w-5" />
-
-              <div>
-                <p className="text-[9px] font-black uppercase tracking-[0.16em]">
-                  Different by design
-                </p>
-
-                <p className="text-sm font-black">
-                  Custom coded. Not another template.
-                </p>
-              </div>
-            </motion.div>
           </div>
 
           <motion.div
-            initial={{
-              opacity: 0,
-              x: 50,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              delay: 0.15,
-              duration: 0.8,
-            }}
-            className="relative mx-auto w-full max-w-[550px]"
+            initial={{ opacity: 0, x: 45 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.12, duration: 0.7 }}
+            className="relative mx-auto mt-2 w-full max-w-[560px] lg:mt-0 xl:max-w-[590px]"
           >
-            <motion.div
-              animate={{ rotate: [0, 4, 0] }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-              }}
-              className="absolute -right-2 -top-7 z-30 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-4 py-3 text-center text-[10px] font-black uppercase leading-4 shadow-[4px_5px_0_#0f172a] sm:-right-7 sm:text-xs"
-            >
-              Real founder.
-              <br />
-              Real support.
-            </motion.div>
-
-            <div className="relative overflow-hidden rounded-[2rem] border-[3px] border-slate-950 bg-[#bfe2ff] p-3 shadow-[9px_11px_0_#0f172a] sm:p-4">
-              <div className="relative aspect-[0.83] max-h-[640px] overflow-hidden rounded-[1.5rem] border-[3px] border-slate-950 bg-white">
-                <div className="absolute inset-x-0 top-0 z-20 flex h-11 items-center justify-between border-b-[3px] border-slate-950 bg-white px-4">
+            <div className="relative overflow-hidden rounded-[2rem] border-[3px] border-slate-950 bg-[#aeecef] p-3 shadow-[10px_12px_0_#0f172a] sm:p-4">
+              <div className="overflow-hidden rounded-[1.45rem] border-[3px] border-slate-950 bg-white">
+                <div className="flex items-center justify-between border-b-[3px] border-slate-950 px-4 py-3">
                   <div className="flex gap-2">
-                    <div className="h-3 w-3 rounded-full border-2 border-slate-950 bg-[#ff8c75]" />
-                    <div className="h-3 w-3 rounded-full border-2 border-slate-950 bg-yellow-300" />
-                    <div className="h-3 w-3 rounded-full border-2 border-slate-950 bg-[#6ee7b7]" />
+                    <span className="h-3 w-3 rounded-full border-2 border-slate-950 bg-[#ff8c75]" />
+                    <span className="h-3 w-3 rounded-full border-2 border-slate-950 bg-yellow-300" />
+                    <span className="h-3 w-3 rounded-full border-2 border-slate-950 bg-[#6ee7b7]" />
                   </div>
-
-                  <div className="rounded-full bg-slate-100 px-4 py-1 text-[8px] font-black uppercase tracking-[0.14em] text-slate-500">
-                    techuvo.dev
-                  </div>
+                  <span className="text-[9px] font-black uppercase tracking-[0.12em] text-slate-500">techuvo.dev</span>
                 </div>
 
-                <img
-                  src={founderImage}
-                  alt="Techuvo founder"
-                  className="h-full w-full object-cover object-center pt-11"
-                />
-
-                <div className="absolute inset-x-4 bottom-4 rounded-[1.3rem] border-[3px] border-slate-950 bg-white/95 p-4 shadow-[5px_6px_0_#0f172a] backdrop-blur sm:inset-x-5">
-                  <p className="text-[9px] font-black uppercase tracking-[0.14em] text-blue-600">
-                    Built by Techuvo
-                  </p>
-
-                  <p className="mt-1 text-sm font-bold leading-5 text-slate-700">
-                    Custom design with a real person behind the
-                    project.
-                  </p>
+                <div className="grid min-h-[300px] sm:min-h-[390px] lg:min-h-[430px] xl:min-h-[470px]">
+                  <img src={founderImage} alt="Techuvo founder" className="h-full min-h-[300px] w-full object-cover object-center sm:min-h-[390px] lg:min-h-[430px] xl:min-h-[470px]" />
                 </div>
               </div>
             </div>
 
             <motion.div
-              animate={{ y: [0, -7, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 3.3,
-              }}
-              className="absolute -bottom-6 -left-2 z-30 flex items-center gap-3 rounded-2xl border-[3px] border-slate-950 bg-[#6ee7b7] px-4 py-3 shadow-[5px_6px_0_#0f172a] sm:-left-6"
+              animate={{ y: [0, -7, 0], rotate: [-1, 1, -1] }}
+              transition={{ duration: 3.2, repeat: Infinity }}
+              className="absolute -bottom-5 left-2 rounded-[1rem] border-[3px] border-slate-950 bg-white px-4 py-3 shadow-[5px_6px_0_#0f172a] sm:-left-5"
             >
-              <ShieldCheck className="h-5 w-5" />
+              <p className="text-[9px] font-black uppercase tracking-[0.15em] text-slate-500">One partner</p>
+              <p className="mt-1 text-sm font-black">Website + growth</p>
+            </motion.div>
 
-              <div>
-                <p className="text-[8px] font-black uppercase tracking-[0.14em]">
-                  Included
-                </p>
-
-                <p className="text-xs font-black sm:text-sm">
-                  Hosting + Security
-                </p>
-              </div>
+            <motion.div
+              animate={{ rotate: [2, -2, 2] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="absolute -right-1 -top-5 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-4 py-3 text-xs font-black shadow-[4px_5px_0_#0f172a] sm:-right-5"
+            >
+              Built around your business
             </motion.div>
           </motion.div>
         </div>
+      </section>
 
-        <div className="relative z-20 overflow-hidden border-t-[3px] border-slate-950 bg-yellow-300 py-3">
-          <motion.div
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              duration: 18,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="flex w-max"
-          >
-            {[...Array(2)].map((_, group) => (
-              <div
-                key={group}
-                className="flex shrink-0 items-center"
+      {/* GROWTH FORMULA */}
+      <section id="formula" className="relative border-b-[3px] border-slate-950 bg-[#d8ccff] px-4 py-14 sm:px-7 sm:py-16 lg:px-10 lg:py-20">
+        <div className="mx-auto max-w-[94rem]">
+          <div className="grid gap-8 lg:grid-cols-[1.08fr_.92fr] lg:items-end">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em]">The growth formula</p>
+              <h2 className="mt-5 max-w-[11ch] text-[clamp(3.2rem,7vw,7rem)] font-black leading-[0.84] tracking-[-0.07em]">
+                A website is only
+                <span className="block text-[#ef4444]">half the system.</span>
+              </h2>
+            </div>
+            <p className="max-w-xl text-base font-semibold leading-7 text-slate-700 sm:text-lg sm:leading-8 lg:justify-self-end">
+              A beautiful website alone does not create demand. Techuvo combines the place customers land with the system that brings qualified traffic to it.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            <motion.div whileHover={{ y: -5 }} className="border-[3px] border-slate-950 bg-[#aeecef] p-6 shadow-[8px_9px_0_#0f172a] sm:p-8 lg:p-10">
+              <p className="text-xs font-black uppercase tracking-[0.16em]">Trust</p>
+              <h3 className="mt-4 text-5xl font-black tracking-[-0.06em] sm:text-6xl">The Funnel</h3>
+              <p className="mt-5 max-w-xl text-base font-semibold leading-7 text-slate-700">
+                Your website is the storefront: strong positioning, proof, visuals, and one clear action that makes the business feel credible immediately.
+              </p>
+              <p className="mt-7 border-t-[3px] border-slate-950 pt-5 text-sm font-black">Without trust, paid traffic gets wasted.</p>
+            </motion.div>
+
+            <motion.div whileHover={{ y: -5 }} className="border-[3px] border-slate-950 bg-yellow-300 p-6 shadow-[8px_9px_0_#0f172a] sm:p-8 lg:p-10">
+              <p className="text-xs font-black uppercase tracking-[0.16em]">Traffic</p>
+              <h3 className="mt-4 text-5xl font-black tracking-[-0.06em] sm:text-6xl">The Marketing</h3>
+              <p className="mt-5 max-w-xl text-base font-semibold leading-7 text-slate-700">
+                Targeted direct-response marketing puts the funnel in front of people in your service area who are more likely to need what you sell.
+              </p>
+              <p className="mt-7 border-t-[3px] border-slate-950 pt-5 text-sm font-black">Without traffic, even a great website can sit empty.</p>
+            </motion.div>
+          </div>
+
+          <div className="mt-5 border-[3px] border-slate-950 bg-[#fff8e8] p-5 shadow-[8px_9px_0_#0f172a] sm:p-7 lg:flex lg:items-center lg:justify-between lg:gap-8">
+            <h3 className="text-[clamp(2rem,5vw,4.8rem)] font-black leading-[0.9] tracking-[-0.06em]">
+              Trust <span className="text-[#ef4444]">×</span> Traffic = Customer Opportunities
+            </h3>
+            <p className="mt-4 max-w-lg text-sm font-semibold leading-6 text-slate-600 lg:mt-0">
+              Build either side independently, or connect both into one growth system.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="services" className="relative bg-[#fff8e8] px-4 py-16 sm:px-7 sm:py-20 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-[94rem]">
+          <div className="grid gap-6 lg:grid-cols-[1fr_.8fr] lg:items-end">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Website services</p>
+              <h2 className="mt-4 max-w-[11ch] text-[clamp(3.3rem,7vw,7rem)] font-black leading-[0.84] tracking-[-0.07em]">
+                Choose the build that fits where you are now.
+              </h2>
+            </div>
+            <p className="max-w-xl text-base font-semibold leading-7 text-slate-600 sm:text-lg lg:justify-self-end">
+              Start focused, expand later, or build the full authority system from day one. Every option is responsive across phones, tablets, laptops, and large displays.
+            </p>
+          </div>
+
+          <div className="mt-10 space-y-6">
+            {servicePackages.map((item, index) => (
+              <motion.article
+                key={item.id}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ delay: index * 0.06 }}
+                className="overflow-hidden border-[3px] border-slate-950 bg-white shadow-[8px_9px_0_#0f172a]"
               >
-                {[
-                  "$50 TO START",
-                  "$49/MONTH",
-                  "HOSTING INCLUDED",
-                  "MAINTENANCE INCLUDED",
-                  "SECURITY INCLUDED",
-                  "SUPPORT INCLUDED",
-                ].map((item) => (
-                  <div
-                    key={`${group}-${item}`}
-                    className="flex shrink-0 items-center"
-                  >
-                    <Star
-                      className="h-4 w-4 shrink-0"
-                      fill="currentColor"
-                    />
-
-                    <span className="px-5 text-xs font-black uppercase tracking-[0.16em] sm:px-8 sm:text-sm">
-                      {item}
-                    </span>
+                <div className="grid lg:grid-cols-[.88fr_1.12fr]">
+                  <div className="border-b-[3px] border-slate-950 p-5 sm:p-7 lg:border-b-0 lg:border-r-[3px] lg:p-9" style={{ backgroundColor: item.accent }}>
+                    <p className="text-xs font-black uppercase tracking-[0.17em]">{item.eyebrow}</p>
+                    <h3 className="mt-4 max-w-[9ch] text-[clamp(2.8rem,6vw,5.5rem)] font-black leading-[0.86] tracking-[-0.065em]">{item.name}</h3>
+                    <div className="mt-7 flex items-end gap-2">
+                      <span className="text-6xl font-black tracking-[-0.07em] sm:text-7xl">{item.price}</span>
+                      <span className="pb-2 text-xs font-black uppercase tracking-[0.12em]">one-time</span>
+                    </div>
+                    <p className="mt-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">{item.summary}</p>
+                    <p className="mt-6 border-t-[3px] border-slate-950 pt-5 text-sm font-black">Best for: {item.bestFor}</p>
                   </div>
-                ))}
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
 
-      <section
-        id="work"
-        className="relative overflow-hidden bg-white px-5 py-24 sm:px-8 sm:py-32 lg:px-12"
-      >
-        <div
-          className="absolute inset-0 opacity-[0.2]"
-          style={{
-            backgroundImage:
-              "radial-gradient(#2563eb 1px, transparent 1px)",
-            backgroundSize: "25px 25px",
-          }}
-        />
-
-        <div className="relative mx-auto max-w-[94rem]">
-          <div className="max-w-5xl">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
-              Selected Work / 03
-            </p>
-
-            <h2 className="mt-5 text-[clamp(3.7rem,8vw,8rem)] font-black leading-[0.82] tracking-[-0.075em]">
-              Three builds.
-              <span className="block text-slate-400">
-                Three different worlds.
-              </span>
-            </h2>
-
-            <p className="mt-8 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-lg">
-              No recycled visual formula. Tap a project and step
-              inside the experience.
-            </p>
-          </div>
-
-          <div className="mt-16 grid auto-rows-fr gap-7 sm:gap-9 lg:grid-cols-3 lg:items-stretch">
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-                onOpen={setActiveProject}
-              />
-            ))}
-          </div>
-
-          <div className="mt-16 flex justify-center">
-            <div className="inline-flex max-w-xl items-center gap-4 rounded-[1.5rem] border-[3px] border-slate-950 bg-yellow-300 px-5 py-4 text-sm font-black shadow-[5px_6px_0_#0f172a]">
-              <Sparkles className="h-5 w-5 shrink-0" />
-              Your business doesn't have to look like these. That's
-              the point — we build around you.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================================
-          HOW IT WORKS
-      ====================================================== */}
-      <section
-        id="how-it-works"
-        className="relative overflow-hidden border-t-[3px] border-slate-950 bg-[#fff9ee] px-5 py-24 sm:px-8 sm:py-32 lg:px-12"
-      >
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 opacity-[0.22]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#dbeafe 1px, transparent 1px), linear-gradient(90deg, #dbeafe 1px, transparent 1px)",
-            backgroundSize: "34px 34px",
-          }}
-        />
-
-        <div className="relative mx-auto max-w-[94rem]">
-          <div className="mx-auto max-w-5xl text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] shadow-[4px_4px_0_#0f172a]"
-            >
-              <Sparkles className="h-4 w-4" />
-              How it works
-            </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.08 }}
-              className="mt-6 text-[clamp(3.5rem,8vw,7.5rem)] font-black leading-[0.84] tracking-[-0.075em]"
-            >
-              Three steps.
-              <span className="block text-blue-600">
-                Then we build.
-              </span>
-            </motion.h2>
-
-            <p className="mx-auto mt-7 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-lg">
-              No complicated agency process. Start the project,
-              send us what we need, and Techuvo handles the website.
-            </p>
-          </div>
-
-          <div className="relative mt-16">
-            {/* desktop animated path */}
-            <div className="absolute left-[15%] right-[15%] top-[4.2rem] hidden h-[4px] overflow-hidden bg-slate-950 lg:block">
-              <motion.div
-                initial={{ width: "0%" }}
-                whileInView={{ width: "100%" }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 1.4,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="h-full bg-blue-600"
-              />
-            </div>
-
-            <div className="grid gap-8 lg:grid-cols-3">
-              {[
-                {
-                  number: "01",
-                  title: "Start with $50",
-                  description:
-                    "Pay the one-time $50 setup fee to begin your website project.",
-                  background: "#ffd84f",
-                  badge: "$50",
-                },
-                {
-                  number: "02",
-                  title: "Send us everything",
-                  description:
-                    "Complete your project brief and upload your logo, photos, videos, services, pricing and other content.",
-                  background: "#72dfbd",
-                  badge: "UPLOAD",
-                },
-                {
-                  number: "03",
-                  title: "We build & manage it",
-                  description:
-                    "Techuvo designs your site and your $49/month managed plan keeps hosting, maintenance, security and support handled.",
-                  background: "#bfe2ff",
-                  badge: "$49/MO",
-                },
-              ].map((item, index) => (
-                <motion.div
-                  key={item.number}
-                  initial={{
-                    opacity: 0,
-                    y: 50,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                    margin: "-70px",
-                  }}
-                  transition={{
-                    delay: index * 0.12,
-                    duration: 0.55,
-                  }}
-                  className="relative z-10"
-                >
-                  <div
-                    className="flex h-full min-h-[330px] flex-col rounded-[2rem] border-[3px] border-slate-950 p-6 shadow-[8px_9px_0_#0f172a] sm:p-7"
-                    style={{
-                      backgroundColor: item.background,
-                    }}
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="grid h-16 w-16 place-items-center rounded-full border-[3px] border-slate-950 bg-white text-lg font-black shadow-[4px_5px_0_#0f172a]">
-                        {item.number}
-                      </div>
-
-                      <motion.div
-                        animate={{
-                          rotate: [-3, 3, -3],
-                          y: [0, -4, 0],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          delay: index * 0.4,
-                        }}
-                        className="rounded-full border-[3px] border-slate-950 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.12em] shadow-[3px_4px_0_#0f172a]"
-                      >
-                        {item.badge}
-                      </motion.div>
+                  <div className="flex flex-col p-5 sm:p-7 lg:p-9">
+                    <p className="text-xs font-black uppercase tracking-[0.17em] text-slate-500">What you get</p>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                      {item.features.map((feature) => (
+                        <div key={feature} className="flex gap-3 border-b-2 border-slate-950/10 pb-3 text-sm font-bold leading-6">
+                          <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-slate-950 bg-[#6ee7b7]">
+                            <Check className="h-3.5 w-3.5" strokeWidth={4} />
+                          </span>
+                          {feature}
+                        </div>
+                      ))}
                     </div>
 
-                    <h3 className="mt-10 text-4xl font-black leading-[0.9] tracking-[-0.055em]">
-                      {item.title}
-                    </h3>
-
-                    <p className="mt-5 text-base font-semibold leading-7 text-slate-700">
-                      {item.description}
-                    </p>
-
-                    {index < 2 && (
-                      <motion.div
-                        animate={{
-                          y: [0, 5, 0],
-                        }}
-                        transition={{
-                          duration: 1.8,
-                          repeat: Infinity,
-                        }}
-                        className="mt-auto pt-7 text-3xl font-black lg:hidden"
+                    <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:mt-auto lg:pt-8">
+                      <button
+                        type="button"
+                        onClick={() => setActivePackage(item)}
+                        className="group inline-flex min-h-14 items-center justify-between gap-3 border-[3px] border-slate-950 bg-[#fff8e8] px-5 text-left text-sm font-black shadow-[5px_6px_0_#0f172a] transition hover:-translate-y-1"
                       >
-                        ↓
-                      </motion.div>
-                    )}
+                        <span>
+                          <span className="block text-[9px] uppercase tracking-[0.15em] text-slate-500">Example files</span>
+                          See example layouts
+                        </span>
+                        <ArrowRight className="h-5 w-5 -rotate-45 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                      </button>
+
+                      <a
+                        href={contactHref(item.name)}
+                        className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-slate-950 px-5 text-sm font-black text-white shadow-[5px_6px_0_#f7c948] transition hover:-translate-y-1"
+                      >
+                        Start this package
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GROWTH ENGINE */}
+      <section className="relative border-y-[3px] border-slate-950 bg-[#16b7d3] px-4 py-16 sm:px-7 sm:py-20 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-[94rem]">
+          <div className="grid gap-8 lg:grid-cols-[.92fr_1.08fr] lg:items-start">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em]">The growth engine</p>
+              <h2 className="mt-5 max-w-[10ch] text-[clamp(3.3rem,7vw,7rem)] font-black leading-[0.84] tracking-[-0.07em]">
+                Your website is built.
+                <span className="block text-white">Now give it traffic.</span>
+              </h2>
+              <p className="mt-6 max-w-xl text-base font-semibold leading-7 text-slate-900/75 sm:text-lg">
+                The 14-Day Growth Sprint connects paid traffic to your funnel so we can start gathering real response data and optimizing from day one.
+              </p>
+            </div>
+
+            <div className="grid gap-5">
+              <div className="border-[3px] border-slate-950 bg-[#fff8e8] p-6 shadow-[8px_9px_0_#0f172a] sm:p-8">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-500">14-Day Growth Sprint</p>
+                    <h3 className="mt-2 text-4xl font-black tracking-[-0.055em] sm:text-5xl">$0 management fee</h3>
+                  </div>
+                  <div className="w-fit rounded-full border-[3px] border-slate-950 bg-yellow-300 px-4 py-2 text-xs font-black shadow-[3px_4px_0_#0f172a]">$500 campaign investment</div>
+                </div>
+
+                <div className="mt-7 grid gap-4 sm:grid-cols-2">
+                  <div className="border-[3px] border-slate-950 bg-white p-5">
+                    <p className="text-4xl font-black tracking-[-0.06em]">$350</p>
+                    <p className="mt-2 text-sm font-bold leading-6 text-slate-600">Deployed over the initial 14 days at roughly $25/day.</p>
+                  </div>
+                  <div className="border-[3px] border-slate-950 bg-white p-5">
+                    <p className="text-4xl font-black tracking-[-0.06em]">$150</p>
+                    <p className="mt-2 text-sm font-bold leading-6 text-slate-600">Held as an active ad-spend reserve buffer for continued campaign activity.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-[3px] border-slate-950 bg-[#d8ccff] p-6 shadow-[8px_9px_0_#0f172a] sm:p-8">
+                <p className="text-xs font-black uppercase tracking-[0.16em]">Continue after the sprint</p>
+                <div className="mt-3 flex flex-wrap items-end gap-2">
+                  <span className="text-6xl font-black tracking-[-0.07em]">$399</span>
+                  <span className="pb-2 text-sm font-black">/ month</span>
+                </div>
+                <p className="mt-4 text-base font-semibold leading-7 text-slate-700">
+                  Ongoing ad management, creative refreshes, lead-quality tracking, monthly strategy updates, and landing-page hosting / maintenance.
+                </p>
+                <p className="mt-5 border-t-[3px] border-slate-950 pt-5 text-sm font-black">
+                  Starts only if you choose to keep the system active after Day 14.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* REAL WORK */}
+      <section id="work" className="relative overflow-hidden bg-white px-4 py-16 sm:px-7 sm:py-20 lg:px-10 lg:py-24">
+        <div
+          className="absolute inset-0 opacity-[0.16]"
+          style={{ backgroundImage: "radial-gradient(#2563eb 1px, transparent 1px)", backgroundSize: "25px 25px" }}
+        />
+        <div className="relative mx-auto max-w-[94rem]">
+          <div className="max-w-5xl">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">Selected work</p>
+            <h2 className="mt-5 text-[clamp(3.3rem,7vw,7rem)] font-black leading-[0.84] tracking-[-0.07em]">
+              Different businesses.
+              <span className="block text-slate-400">Different visual worlds.</span>
+            </h2>
+            <p className="mt-6 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-lg">
+              The goal is not to make every client look like Techuvo. The goal is to build around the business, offer, and customer.
+            </p>
+          </div>
+
+          <div className="mt-10 grid auto-rows-fr gap-6 lg:grid-cols-3 lg:items-stretch">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} onOpen={setActiveProject} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section id="how-it-works" className="border-y-[3px] border-slate-950 bg-[#fff8e8] px-4 py-16 sm:px-7 sm:py-20 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-[94rem]">
+          <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em]">How it works</p>
+              <h2 className="mt-5 text-[clamp(3.1rem,6vw,6.4rem)] font-black leading-[0.84] tracking-[-0.07em]">
+                Simple enough to move fast.
+              </h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {[
+                ["Choose your build", "Pick the package that matches what you need right now."],
+                ["Send your business details", "Share your offer, branding, photos, services, service area, and goals."],
+                ["We build + launch", "Techuvo turns the information into a responsive customer-facing system."],
+              ].map(([title, description]) => (
+                <div key={title} className="min-h-[240px] border-[3px] border-slate-950 bg-white p-5 shadow-[6px_7px_0_#0f172a] sm:p-6">
+                  <div className="mb-8 h-10 w-10 rounded-full border-[3px] border-slate-950 bg-[#6ee7b7]" />
+                  <h3 className="text-2xl font-black tracking-[-0.045em]">{title}</h3>
+                  <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">{description}</p>
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* =====================================================
-          $49 MANAGED PLAN
-      ====================================================== */}
-      <section className="relative overflow-hidden border-t-[3px] border-slate-950 bg-blue-600 px-5 py-24 text-white sm:px-8 sm:py-28 lg:px-12">
-        <div className="absolute -left-16 -top-16 h-48 w-48 rounded-full border-[3px] border-slate-950 bg-yellow-300" />
-
-        <div className="absolute -bottom-20 -right-16 h-56 w-56 rounded-[35%] border-[3px] border-slate-950 bg-[#6ee7b7]" />
-
-        <div className="relative mx-auto grid max-w-[94rem] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-100">
-              Your managed website
-            </p>
-
-            <h2 className="mt-5 text-[clamp(3.5rem,7vw,7rem)] font-black leading-[0.84] tracking-[-0.07em]">
-              What does
-              <span className="block text-yellow-300">
-                $49/month
-              </span>
-              cover?
-            </h2>
-
-            <p className="mt-7 max-w-xl text-base font-semibold leading-7 text-blue-100 sm:text-lg">
-              Your website doesn't get handed over and forgotten.
-              Techuvo continues managing the technical side.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {[
-              ["Hosting", "Your website stays online and hosted."],
-              [
-                "Maintenance",
-                "Routine technical maintenance remains handled.",
-              ],
-              [
-                "Security",
-                "The site receives ongoing technical security management.",
-              ],
-              [
-                "Support",
-                "You have a real person to contact when you need help.",
-              ],
-              [
-                "Website leasing",
-                "The website remains leased through the Techuvo managed website agreement.",
-              ],
-              [
-                "Mobile ready",
-                "Your build is designed for desktop, tablet and mobile.",
-              ],
-            ].map(([title, description], index) => (
-              <motion.div
-                key={title}
-                initial={{
-                  opacity: 0,
-                  scale: 0.94,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  scale: 1,
-                }}
-                viewport={{ once: true }}
-                transition={{
-                  delay: index * 0.06,
-                }}
-                className="rounded-[1.5rem] border-[3px] border-slate-950 bg-white p-5 text-slate-950 shadow-[6px_7px_0_#0f172a]"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full border-2 border-slate-950 bg-[#6ee7b7]">
-                    <Check className="h-4 w-4" strokeWidth={4} />
-                  </div>
-
-                  <div>
-                    <h3 className="text-lg font-black">
-                      {title}
-                    </h3>
-
-                    <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">
-                      {description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+      {/* ADD ONS */}
+      <section className="bg-[#ffd86b] px-4 py-14 sm:px-7 sm:py-16 lg:px-10 lg:py-20">
+        <div className="mx-auto max-w-[94rem]">
+          <div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em]">Optional upgrades</p>
+              <h2 className="mt-4 text-[clamp(3rem,6vw,6rem)] font-black leading-[0.86] tracking-[-0.07em]">Add more when it makes sense.</h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="border-[3px] border-slate-950 bg-white p-6 shadow-[7px_8px_0_#0f172a]">
+                <p className="text-4xl font-black tracking-[-0.06em]">+$250</p>
+                <h3 className="mt-3 text-2xl font-black">Multi-Page Expansion</h3>
+                <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">Turn a 1-page funnel into a fuller business website later.</p>
+              </div>
+              <div className="border-[3px] border-slate-950 bg-[#d8ccff] p-6 shadow-[7px_8px_0_#0f172a]">
+                <p className="text-4xl font-black tracking-[-0.06em]">+$99/mo</p>
+                <h3 className="mt-3 text-2xl font-black">Instant Contact System</h3>
+                <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">Automatically follow up with new leads quickly so they are not left waiting.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* =====================================================
-          FAQ
-      ====================================================== */}
-      <section
-        id="faq"
-        className="relative overflow-hidden border-t-[3px] border-slate-950 bg-[#fff9ee] px-5 py-24 sm:px-8 sm:py-32 lg:px-12"
-      >
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 opacity-[0.2]"
-          style={{
-            backgroundImage:
-              "radial-gradient(#2563eb 1px, transparent 1px)",
-            backgroundSize: "25px 25px",
-          }}
-        />
-
-        <div className="relative mx-auto max-w-[94rem]">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+      {/* FAQ */}
+      <section id="faq" className="border-t-[3px] border-slate-950 bg-white px-4 py-16 sm:px-7 sm:py-20 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-[94rem]">
+          <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
             <div>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="inline-flex rounded-full border-[3px] border-slate-950 bg-[#ff8c75] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] shadow-[4px_4px_0_#0f172a]"
-              >
-                Questions?
-              </motion.div>
-
-              <h2 className="mt-6 text-[clamp(3.5rem,7vw,7rem)] font-black leading-[0.84] tracking-[-0.07em]">
-                Wait...
-                <span className="block text-blue-600">
-                  you probably have questions.
-                </span>
-              </h2>
-
-              <p className="mt-7 max-w-lg text-base font-semibold leading-7 text-slate-600 sm:text-lg">
-                Here are the things business owners usually want to
-                know before starting.
-              </p>
-
-              <div className="mt-8 rounded-[1.5rem] border-[3px] border-slate-950 bg-yellow-300 p-5 shadow-[6px_7px_0_#0f172a]">
-                <p className="text-xs font-black uppercase tracking-[0.15em]">
-                  Still unsure?
-                </p>
-
-                <p className="mt-2 text-xl font-black">
-                  Text a real person.
-                </p>
-
-                <p className="mt-2 text-sm font-semibold leading-6 text-slate-700">
-                  Your message goes directly to Techuvo — not a chatbot.
-                </p>
-              </div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">Questions</p>
+              <h2 className="mt-5 text-[clamp(3.2rem,6vw,6.5rem)] font-black leading-[0.84] tracking-[-0.07em]">Before you start.</h2>
             </div>
 
-            <div className="grid gap-4">
+            <div className="space-y-4">
               {[
-                {
-                  q: "Is the $50 a one-time payment?",
-                  a: "Yes. The $50 is the one-time setup fee used to begin your website project. The managed website plan is $49 per month after setup.",
-                },
-                {
-                  q: "What is the $49/month for?",
-                  a: "The managed website plan includes hosting, routine maintenance, technical security, ongoing support, and website leasing.",
-                },
-                {
-                  q: "Is the website actually custom?",
-                  a: "Yes. The website is designed and developed around your business rather than simply changing text inside the same prebuilt template.",
-                },
-                {
-                  q: "Will my website work on phones?",
-                  a: "Yes. Techuvo builds websites to work across mobile phones, tablets, laptops, and desktop screens.",
-                },
-                {
-                  q: "Do I own the website?",
-                  a: "The website is leased through Techuvo while it is under the managed website agreement. Any ownership or buyout terms are handled according to the agreement for your project.",
-                },
-                {
-                  q: "Can I request changes?",
-                  a: "Routine technical maintenance and support are included. Larger additions, redesigns, new pages, or major new functionality may require separate project scope.",
-                },
-                {
-                  q: "What happens after I pay the $50?",
-                  a: "You'll continue into the Techuvo project onboarding flow where you can provide your business details, goals, branding, photos, videos, documents, and other content needed for your website.",
-                },
+                { q: "Do I have to run marketing with Techuvo?", a: "No. The website packages can stand on their own. The Growth Sprint is an optional way to connect paid traffic to the funnel." },
+                { q: "Are the example layouts templates?", a: "No. The examples show possible structure and direction. Your actual build is adapted to your business, offer, content, brand, and customer journey." },
+                { q: "Will the website work on mobile?", a: "Yes. The builds are designed responsively for phones, tablets, laptops, and larger desktop displays." },
+                { q: "What do I need to send Techuvo?", a: "Your core business details, services, offer, service area, branding, photos or videos, and any proof or content you want included." },
+                { q: "What happens after the 14-Day Growth Sprint?", a: "You can stop there or choose to continue with the $399/month optimization retainer. Ongoing management does not begin unless you elect to continue." },
+                { q: "Can I expand later?", a: "Yes. A focused funnel can be expanded into a larger website later, and additional functionality can be scoped as the business grows." },
               ].map((item, index) => {
                 const opened = openFaq === index;
-
                 return (
-                  <motion.div
-                    key={item.q}
-                    initial={{
-                      opacity: 0,
-                      y: 20,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    viewport={{ once: true }}
-                    transition={{
-                      delay: index * 0.04,
-                    }}
-                    className={`overflow-hidden rounded-[1.4rem] border-[3px] border-slate-950 shadow-[5px_6px_0_#0f172a] transition-colors ${
-                      opened
-                        ? "bg-[#bfe2ff]"
-                        : "bg-white"
-                    }`}
-                  >
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setOpenFaq((current) =>
-                          current === index ? -1 : index,
-                        )
-                      }
-                      className="flex w-full items-center justify-between gap-5 p-5 text-left sm:p-6"
-                    >
-                      <span className="text-base font-black leading-6 sm:text-lg">
-                        {item.q}
-                      </span>
-
-                      <motion.span
-                        animate={{
-                          rotate: opened ? 45 : 0,
-                        }}
-                        className="grid h-10 w-10 shrink-0 place-items-center rounded-full border-[3px] border-slate-950 bg-yellow-300 text-xl font-black shadow-[2px_3px_0_#0f172a]"
-                      >
-                        +
-                      </motion.span>
+                  <div key={item.q} className={`overflow-hidden border-[3px] border-slate-950 shadow-[5px_6px_0_#0f172a] ${opened ? "bg-[#aeecef]" : "bg-[#fff8e8]"}`}>
+                    <button type="button" onClick={() => setOpenFaq((current) => (current === index ? -1 : index))} className="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6">
+                      <span className="text-base font-black leading-6 sm:text-lg">{item.q}</span>
+                      <motion.span animate={{ rotate: opened ? 45 : 0 }} className="grid h-10 w-10 shrink-0 place-items-center rounded-full border-[3px] border-slate-950 bg-yellow-300 text-xl font-black">+</motion.span>
                     </button>
-
                     <AnimatePresence initial={false}>
                       {opened && (
-                        <motion.div
-                          initial={{
-                            height: 0,
-                            opacity: 0,
-                          }}
-                          animate={{
-                            height: "auto",
-                            opacity: 1,
-                          }}
-                          exit={{
-                            height: 0,
-                            opacity: 0,
-                          }}
-                          transition={{
-                            duration: 0.28,
-                          }}
-                        >
-                          <div className="border-t-[3px] border-slate-950 px-5 py-5 text-sm font-semibold leading-7 text-slate-700 sm:px-6 sm:text-base">
-                            {item.a}
-                          </div>
+                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}>
+                          <div className="border-t-[3px] border-slate-950 px-5 py-5 text-sm font-semibold leading-7 text-slate-700 sm:px-6 sm:text-base">{item.a}</div>
                         </motion.div>
                       )}
                     </AnimatePresence>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
@@ -1753,149 +1690,39 @@ function WebsiteOffer() {
         </div>
       </section>
 
-      {/* =====================================================
-          FINAL CONVERSION
-      ====================================================== */}
-      <section
-        id="start"
-        className="relative overflow-hidden border-t-[3px] border-slate-950 bg-yellow-300 px-5 py-24 sm:px-8 sm:py-32 lg:px-12"
-      >
-        <motion.div
-          animate={{
-            y: [0, -10, 0],
-            rotate: [-3, 3, -3],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-          }}
-          className="absolute -left-12 top-12 h-28 w-28 rounded-[35%] border-[3px] border-slate-950 bg-[#6ee7b7] sm:left-[5%]"
-        />
-
-        <motion.div
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-          }}
-          className="absolute -right-14 bottom-12 h-36 w-36 rounded-full border-[3px] border-slate-950 bg-[#ff8c75] sm:right-[5%]"
-        />
-
-        <div className="relative mx-auto max-w-[94rem]">
-          <div className="mx-auto max-w-5xl text-center">
-            <p className="text-xs font-black uppercase tracking-[0.2em]">
-              Ready when you are
-            </p>
-
-            <h2 className="mt-5 text-[clamp(3.7rem,8vw,8rem)] font-black leading-[0.82] tracking-[-0.075em]">
-              Your website
-              <span className="block text-blue-600">
-                could be next.
-              </span>
-            </h2>
-
-            <p className="mx-auto mt-7 max-w-2xl text-base font-semibold leading-7 text-slate-700 sm:text-lg">
-              Start with the $50 setup fee, or talk to Techuvo first
-              if you have a question.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
-            {/* Payment CTA */}
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="flex min-h-[310px] flex-col rounded-[2rem] border-[3px] border-slate-950 bg-blue-600 p-6 text-white shadow-[9px_10px_0_#0f172a] sm:p-8"
-            >
-              <p className="text-xs font-black uppercase tracking-[0.17em] text-blue-100">
-                I'm ready
+      {/* FINAL CTA */}
+      <section id="start" className="relative overflow-hidden border-t-[3px] border-slate-950 bg-[#d8ccff] px-4 py-16 sm:px-7 sm:py-20 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-[94rem]">
+          <div className="grid gap-8 lg:grid-cols-[1fr_.7fr] lg:items-end">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em]">You don't need another random website.</p>
+              <h2 className="mt-5 max-w-[10ch] text-[clamp(3.5rem,8vw,8rem)] font-black leading-[0.82] tracking-[-0.075em]">
+                You need somewhere customers can land.
+              </h2>
+              <p className="mt-7 max-w-2xl text-base font-semibold leading-7 text-slate-700 sm:text-lg">
+                Choose a package or text Techuvo first if you want help deciding which build matches your business.
               </p>
-
-              <div className="mt-5 flex items-end justify-center gap-2">
-                <span className="text-7xl font-black tracking-[-0.08em]">
-                  $50
-                </span>
-              </div>
-
-              <p className="mt-3 text-center text-sm font-bold text-blue-100">
-                One-time setup fee
-              </p>
-
-              <button
-                type="button"
-                onClick={startCheckout}
-                disabled={checkoutLoading}
-                className="group mt-auto flex min-h-16 items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-white px-6 text-base font-black text-slate-950 shadow-[5px_6px_0_#0f172a] transition hover:-translate-y-1 disabled:cursor-wait disabled:opacity-70 disabled:hover:translate-y-0"
-              >
-                {checkoutLoading ? "Opening Secure Checkout..." : "Pay $50 & Start"}
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </button>
-
-              <p className="mt-4 text-center text-[10px] font-bold uppercase tracking-[0.12em] text-blue-100">
-                Secure Stripe checkout · $49/month managed plan after setup
-              </p>
-            </motion.div>
-
-            {/* Live text CTA */}
-            <motion.div
-              whileHover={{ y: -6 }}
-              className="flex min-h-[310px] flex-col rounded-[2rem] border-[3px] border-slate-950 bg-white p-6 shadow-[9px_10px_0_#0f172a] sm:p-8"
-            >
-              <div className="mx-auto grid h-16 w-16 place-items-center rounded-full border-[3px] border-slate-950 bg-[#6ee7b7] text-3xl shadow-[4px_5px_0_#0f172a]">
-                💬
-              </div>
-
-              <h3 className="mt-5 text-center text-3xl font-black tracking-[-0.05em]">
-                Talk to a live agent.
-              </h3>
-
-              <p className="mx-auto mt-3 max-w-sm text-center text-sm font-semibold leading-6 text-slate-500">
-                Have a question before paying? Text Techuvo directly.
-              </p>
-
-              <motion.a
-                href="sms:+13134507265?body=Hi%20Techuvo%2C%20I'm%20interested%20in%20the%20%2450%20website%20offer."
-                animate={{
-                  boxShadow: [
-                    "0 0 0 rgba(37,99,235,0)",
-                    "0 0 24px rgba(37,99,235,.35)",
-                    "0 0 0 rgba(37,99,235,0)",
-                  ],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatDelay: 0.4,
-                }}
-                className="mt-auto flex min-h-16 items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-6 text-base font-black text-slate-950 shadow-[5px_6px_0_#0f172a]"
-              >
-                Text a Live Agent
+            </div>
+            <div className="grid gap-3">
+              <a href="#services" className="inline-flex min-h-16 items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-slate-950 px-7 text-base font-black text-white shadow-[6px_7px_0_#f7c948] transition hover:-translate-y-1">
+                View website packages
                 <ArrowRight className="h-5 w-5" />
-              </motion.a>
-
-              <p className="mt-4 text-center text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400">
-                Message goes directly to Techuvo
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="mx-auto mt-10 max-w-3xl rounded-[1.5rem] border-[3px] border-slate-950 bg-[#fff9ee] p-5 text-center shadow-[5px_6px_0_#0f172a]">
-            <p className="text-sm font-bold leading-6 text-slate-700">
-              $49/month includes hosting, routine maintenance,
-              technical security, ongoing support and website leasing.
-            </p>
+              </a>
+              <a href={contactHref("Techuvo's website and growth services")} className="inline-flex min-h-16 items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-white px-7 text-base font-black shadow-[6px_7px_0_#0f172a] transition hover:-translate-y-1">
+                Text Techuvo
+                <ArrowRight className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       <AnimatePresence>
-        {activeProject && (
-          <ProjectModal
-            project={activeProject}
-            onClose={() => setActiveProject(null)}
-          />
-        )}
+        {activeProject && <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {activePackage && <PackageExamples packageItem={activePackage} onClose={() => setActivePackage(null)} />}
       </AnimatePresence>
     </main>
   );
