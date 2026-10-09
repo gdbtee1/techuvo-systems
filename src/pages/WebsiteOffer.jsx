@@ -11,10 +11,11 @@ import {
   Smile,
   Sparkles,
   Star,
+  CalendarDays,
   X,
 } from "lucide-react";
 
-import founderImage from "../assets/images/founder.jpg";
+import founderImage from "../assets/images/crop.jpg";
 
 const projects = [
   {
@@ -1220,6 +1221,64 @@ function WebsiteOffer() {
   const [inquiry, setInquiry] = useState({ name: "", business: "", niche: "", email: "", phone: "", message: "", website: "" });
   const [leadStatus, setLeadStatus] = useState("idle");
   const [leadMessage, setLeadMessage] = useState("");
+  const [bookingStep, setBookingStep] = useState("inquiry");
+  const [bookingDate, setBookingDate] = useState("");
+  const [bookingTime, setBookingTime] = useState("");
+  const [bookingStatus, setBookingStatus] = useState("idle");
+  const [bookingError, setBookingError] = useState("");
+  const timeSlots = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
+  const formatTime = (time) => new Date(`2000-01-01T${time}:00`).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  const formatDate = (date) => new Date(`${date}T12:00:00`).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+  const todayET = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  const calendarUrl = bookingDate && bookingTime ? (() => {
+    const compactDate = bookingDate.replaceAll("-", "");
+    const compactTime = bookingTime.replace(":", "") + "00";
+    const endHour = String(Number(bookingTime.slice(0, 2)) + 0).padStart(2, "0");
+    const endMinute = String(Number(bookingTime.slice(3)) + 15).padStart(2, "0");
+    const endTime = Number(endMinute) >= 60 ? `${String(Number(endHour) + 1).padStart(2, "0")}${String(Number(endMinute) - 60).padStart(2, "0")}00` : `${endHour}${endMinute}00`;
+    const params = new URLSearchParams({ action: "TEMPLATE", text: "Techuvo Website Strategy Call", dates: `${compactDate}T${compactTime}/${compactDate}T${endTime}`, ctz: "America/New_York", details: `Website consultation for ${inquiry.business}\nPackage: ${selectedTier}\nPhone: ${inquiry.phone}` });
+    return `https://calendar.google.com/calendar/render?${params.toString()}`;
+  })() : "";
+
+  const submitBooking = async (event) => {
+    event.preventDefault();
+    if (bookingStatus === "submitting" || !bookingDate || !bookingTime) return;
+    if (bookingDate < todayET) { setBookingError("Choose a future date."); return; }
+    // Date/time entered as Eastern local clock; compare via Intl to prevent past-day bookings.
+    const currentETDate = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+    const currentETHourMinute = new Intl.DateTimeFormat("en-GB", { timeZone: "America/New_York", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(new Date());
+    if (bookingDate === currentETDate && bookingTime <= currentETHourMinute) { setBookingError("Please choose a later time."); return; }
+    setBookingStatus("submitting"); setBookingError("");
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/techuvodesign@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `TECHUVO STRATEGY CALL — ${inquiry.name} — ${bookingDate} ${formatTime(bookingTime)} ET`,
+          _replyto: inquiry.email.trim(),
+          form_type: "Strategy call booking",
+          name: inquiry.name.trim(),
+          business_name: inquiry.business.trim(),
+          niche: inquiry.niche.trim(),
+          email: inquiry.email.trim(),
+          phone: inquiry.phone.trim(),
+          selected_tier: selectedTier,
+          date: bookingDate,
+          time: formatTime(bookingTime),
+          time_zone: "America/New_York (Eastern Time)",
+          duration: "15 minutes",
+          project_details: inquiry.message.trim(),
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.success === false || result.success === "false") throw new Error(result.message || "Unable to send your booking.");
+      setBookingStatus("success");
+      setBookingStep("booked");
+    } catch (error) {
+      setBookingStatus("error");
+      setBookingError(error?.message || "Booking didn't send. Please try again.");
+    }
+  };
 
   const selectPackage = (item) => {
     const index = servicePackages.findIndex((entry) => entry.id === item.id);
@@ -1262,8 +1321,9 @@ function WebsiteOffer() {
         throw new Error(result.message || "Submission failed. Please try again.");
       }
       setLeadStatus("success");
-      setLeadMessage("Your inquiry has been sent. Techuvo will follow up about your selected package.");
-      setInquiry({ name: "", business: "", niche: "", email: "", phone: "", message: "", website: "" });
+      setLeadMessage("Your inquiry is received. Choose your call time to finish.");
+      setBookingStep("calendar");
+      setTimeout(() => document.getElementById("inquiry")?.scrollIntoView({ behavior: "smooth" }), 60);
       if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { selected_tier: selectedTier });
     } catch (error) {
       setLeadStatus("error");
@@ -1421,7 +1481,7 @@ function WebsiteOffer() {
                 </div>
 
                 <div className="grid h-[220px] sm:h-[280px] lg:h-[320px] xl:h-[340px]">
-                  <img src={founderImage} alt="Techuvo founder" className="h-full w-full object-cover object-center" />
+                  <img src={founderImage} alt="Techuvo founder" className="h-full w-full object-contain object-center bg-[#aeecef]" />
                 </div>
               </div>
             </div>
@@ -1455,6 +1515,7 @@ function WebsiteOffer() {
             <p className="mt-5 max-w-md text-base font-semibold leading-7 text-slate-700">Choose an investment tier and send a few details. We'll review your goals and discuss the best path forward.</p>
             <p className="mt-5 text-sm font-black">Projects start at $1,499 one-time.</p>
           </div>
+          {bookingStep === "inquiry" ? (
           <form onSubmit={submitLead} className="grid gap-4 border-[3px] border-slate-950 bg-white p-5 shadow-[8px_9px_0_#0f172a] sm:grid-cols-2 sm:p-8">
             <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Your name *
               <input required autoComplete="name" value={inquiry.name} onChange={(e) => setInquiry((s) => ({ ...s, name: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="Full name" />
@@ -1487,6 +1548,38 @@ function WebsiteOffer() {
             {leadMessage && <p role="status" className={`text-sm font-bold sm:col-span-2 ${leadStatus === "error" ? "text-red-700" : "text-green-800"}`}>{leadMessage}</p>}
             <p className="text-xs font-semibold text-slate-500 sm:col-span-2">No payment required to inquire. Your contact details are used to respond to your request.</p>
           </form>
+          ) : bookingStep === "calendar" ? (
+            <form onSubmit={submitBooking} className="border-[3px] border-slate-950 bg-white p-5 shadow-[8px_9px_0_#0f172a] sm:p-8">
+              <div className="flex items-center gap-3">
+                <span className="grid h-12 w-12 place-items-center border-[3px] border-slate-950 bg-yellow-300 shadow-[3px_4px_0_#0f172a]"><CalendarDays className="h-6 w-6" /></span>
+                <div><p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Step 2 of 2</p><h3 className="text-2xl font-black tracking-tight sm:text-3xl">Choose your call time.</h3></div>
+              </div>
+              <p className="mt-5 text-sm font-semibold leading-6 text-slate-600">Thanks, {inquiry.name.split(" ")[0]}! Your inquiry for {inquiry.business} has been received. Pick a 15-minute strategy call time below.</p>
+              <p className="mt-5 text-xs font-black uppercase tracking-wider">Select a day</p>
+              <input type="date" required min={todayET} value={bookingDate} onChange={(event) => { setBookingDate(event.target.value); setBookingTime(""); }} className="mt-2 min-h-14 w-full border-[3px] border-slate-950 bg-[#fff8e8] px-4 text-base font-black" />
+              <p className="mt-6 text-xs font-black uppercase tracking-wider">Select a time · Eastern Time</p>
+              <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {timeSlots.map((time) => (
+                  <button key={time} type="button" onClick={() => setBookingTime(time)} aria-pressed={bookingTime === time} className={`min-h-12 border-[3px] border-slate-950 px-2 text-sm font-black transition hover:-translate-y-0.5 ${bookingTime === time ? "bg-yellow-300 shadow-[3px_4px_0_#0f172a]" : "bg-[#fff8e8]"}`}>{formatTime(time)}</button>
+                ))}
+              </div>
+              {bookingDate && bookingTime && <p className="mt-6 border-l-[5px] border-blue-600 bg-[#bfe2ff] p-4 text-sm font-black">{formatDate(bookingDate)} at {formatTime(bookingTime)} ET</p>}
+              <p className="mt-4 text-xs font-semibold leading-5 text-slate-500">Booking requests are emailed to Techuvo. These time slots aren't synchronized to a live availability calendar, so we'll contact you if an adjustment is necessary.</p>
+              {bookingError && <p role="alert" className="mt-4 text-sm font-bold text-red-700">{bookingError}</p>}
+              <button type="submit" disabled={!bookingDate || !bookingTime || bookingStatus === "submitting"} className="mt-6 flex min-h-14 w-full items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-blue-600 px-6 text-base font-black text-white shadow-[5px_6px_0_#0f172a] disabled:opacity-50">{bookingStatus === "submitting" ? "Booking..." : "Book my strategy call"}<ArrowRight className="h-5 w-5" /></button>
+            </form>
+          ) : (
+            <div role="status" className="border-[3px] border-slate-950 bg-white p-6 shadow-[8px_9px_0_#0f172a] sm:p-9">
+              <span className="grid h-14 w-14 place-items-center rounded-full border-[3px] border-slate-950 bg-[#6ee7b7] shadow-[4px_5px_0_#0f172a]"><Check className="h-7 w-7" strokeWidth={4}/></span>
+              <p className="mt-6 text-xs font-black uppercase tracking-[0.2em] text-blue-700">Strategy call</p>
+              <h3 className="mt-2 text-[clamp(2.5rem,6vw,4rem)] font-black leading-[0.9] tracking-[-0.06em]">You're booked!</h3>
+              <p className="mt-4 text-lg font-black">Please add your strategy call to your calendar.</p>
+              <p className="mt-3 text-base font-semibold">{formatDate(bookingDate)} · {formatTime(bookingTime)} Eastern</p>
+              <p className="mt-2 text-sm font-semibold text-slate-600">{inquiry.name} · {inquiry.business} · {selectedTier}</p>
+              <a href={calendarUrl} target="_blank" rel="noreferrer" className="mt-7 inline-flex min-h-14 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-6 text-sm font-black shadow-[5px_6px_0_#0f172a]">Add to Google Calendar <CalendarDays className="h-5 w-5" /></a>
+              <p className="mt-5 text-xs font-semibold leading-5 text-slate-600">Your requested time was emailed to Techuvo. You'll be contacted directly if the time needs adjusting.</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -1588,17 +1681,22 @@ function WebsiteOffer() {
                     </div>
 
                     <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:mt-auto lg:pt-8">
-                      <button
-                        type="button"
-                        onClick={() => setActivePackage(item)}
+                      <a
+                        href={[
+                          "https://rynewrites.com/",
+                          "https://gdbtee1.github.io/davis-asphalt/",
+                          "https://gdbtee1.github.io/mojoy-records/#/",
+                        ][index]}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="group inline-flex min-h-14 items-center justify-between gap-3 border-[3px] border-slate-950 bg-[#fff8e8] px-5 text-left text-sm font-black shadow-[5px_6px_0_#0f172a] transition hover:-translate-y-1"
                       >
                         <span>
-                          <span className="block text-[9px] uppercase tracking-[0.15em] text-slate-500">Example files</span>
-                          See example layouts
+                          <span className="block text-[9px] uppercase tracking-[0.15em] text-slate-500">Live website</span>
+                          View example site
                         </span>
                         <ArrowRight className="h-5 w-5 -rotate-45 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                      </button>
+                      </a>
 
                       <button
                         type="button"
