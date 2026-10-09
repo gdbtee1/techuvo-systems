@@ -884,19 +884,19 @@ function ProjectModal({ project, onClose }) {
 
 const servicePackages = [
   {
-    id: "lead-funnel",
-    eyebrow: "Lead generation",
-    name: "1-Page Lead Funnel",
-    price: "$199",
+    id: "local-professional",
+    eyebrow: "Tier 1 · Local presence",
+    name: "The Local Professional",
+    price: "$1,499",
     accent: "#aeecef",
-    summary:
-      "A focused conversion page built to turn paid traffic into calls, forms, and real customer opportunities.",
-    bestFor: "Businesses ready to advertise one core service.",
+    summary: "A complete, modern multi-page website built to establish instant market credibility and capture local search traffic.",
+    bestFor: "Local contractors, boutique service providers, and regional businesses needing a pristine digital presence.",
     features: [
-      "Custom conversion-focused layout",
-      "Instant lead alerts by text or email",
-      "Meta Pixel + conversion tracking setup",
-      "Mobile-first responsive build",
+      "Custom multi-page layout (Home, Services, About, Contact)",
+      "Mobile-responsive design optimized for speed and conversion",
+      "Direct contact form and secure lead routing",
+      "Google Business Profile conversion mapping",
+      "Built-in SEO foundations for local search",
     ],
     examples: [
       {
@@ -926,19 +926,19 @@ const servicePackages = [
     ],
   },
   {
-    id: "growth-bundle",
-    eyebrow: "Business presence",
-    name: "Business Growth Bundle",
-    price: "$499",
+    id: "business-growth",
+    eyebrow: "Tier 2 · Website + launch ads",
+    name: "The Business Growth Website + Launch Ads",
+    price: "$3,499",
     accent: "#ffd86b",
-    summary:
-      "Your lead funnel plus the core pages a growing business needs to look established, credible, and easy to understand.",
-    bestFor: "Businesses that need both credibility and lead generation.",
+    summary: "An elite, full-scale digital presence complete with an initial managed ad campaign to jumpstart your lead pipeline.",
+    bestFor: "Established growing businesses that need deep credibility, a high-converting multi-page site, and immediate launch traffic.",
     features: [
-      "Core 1-page lead funnel",
-      "About, Services + Gallery pages",
-      "Google Business Profile conversion mapping",
-      "Tracking infrastructure included",
+      "Complete custom multi-page architecture (7+ pages, scoped to project)",
+      "Dedicated service breakdown pages and interactive project galleries",
+      "Advanced custom UI styling and visual hierarchy",
+      "$500 initial managed ad-spend allocation included in the one-time price",
+      "Automated lead tracking, conversion analytics setup, and transition options for a separate growth retainer",
     ],
     examples: [
       {
@@ -968,19 +968,19 @@ const servicePackages = [
     ],
   },
   {
-    id: "authority",
-    eyebrow: "Local authority",
-    name: "Authority Ecosystem",
-    price: "$799",
+    id: "web-app-growth",
+    eyebrow: "Tier 3 · Custom systems",
+    name: "The Custom Web Application & Growth Suite",
+    price: "$6,999",
     accent: "#d6c7ff",
-    summary:
-      "A larger website architecture built for businesses that need dedicated service pages, stronger local search structure, and deeper trust.",
-    bestFor: "Established businesses expanding their local authority.",
+    summary: "Heavy-duty digital architecture, custom database integration, and an aggressive, fully-funded launch ad campaign.",
+    bestFor: "Businesses requiring complex functionality, custom client portals, and a larger initial traffic push.",
     features: [
-      "Up to 7 custom pages",
-      "Dedicated individual service pages",
-      "Local SEO-focused site architecture",
-      "Review-generation campaign setup",
+      "Fully custom-coded application architecture",
+      "Backend database or CRM integration (e.g. Supabase / automated pipelines)",
+      "Advanced custom interactive components (e.g. Three.js / custom UI animations)",
+      "$1,000 initial managed ad-spend allocation included in the one-time price",
+      "Security hardening, automated workflows, and priority onboarding for separately scoped monthly management",
     ],
     examples: [
       {
@@ -1216,6 +1216,60 @@ function WebsiteOffer() {
   const [activePackage, setActivePackage] = useState(null);
   const [openFaq, setOpenFaq] = useState(0);
   const [brandMode, setBrandMode] = useState(0);
+  const [selectedTier, setSelectedTier] = useState("Tier 1 — $1,499");
+  const [inquiry, setInquiry] = useState({ name: "", business: "", niche: "", email: "", phone: "", message: "", website: "" });
+  const [leadStatus, setLeadStatus] = useState("idle");
+  const [leadMessage, setLeadMessage] = useState("");
+
+  const selectPackage = (item) => {
+    const index = servicePackages.findIndex((entry) => entry.id === item.id);
+    setSelectedTier(`Tier ${index + 1} — ${item.price}`);
+    document.getElementById("inquiry")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const submitLead = async (event) => {
+    event.preventDefault();
+    if (leadStatus === "submitting") return;
+    if (inquiry.website) return; // honeypot for automated submissions
+    setLeadStatus("submitting");
+    setLeadMessage("");
+    try {
+      const params = new URLSearchParams(window.location.search);
+      // FormSubmit requires the recipient to activate this destination from its confirmation email.
+      const response = await fetch("https://formsubmit.co/ajax/techuvodesign@gmail.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `Techuvo website inquiry — ${selectedTier}`,
+          _captcha: "true",
+          _replyto: inquiry.email.trim(),
+          name: inquiry.name.trim(),
+          business_name: inquiry.business.trim(),
+          business_niche: inquiry.niche.trim(),
+          email: inquiry.email.trim(),
+          phone: inquiry.phone.trim(),
+          selected_tier: selectedTier,
+          project_details: inquiry.message.trim(),
+          lead_source: "Bloomfield Hills Google Ads landing page",
+          page_url: window.location.href,
+          utm_source: params.get("utm_source") || "",
+          utm_campaign: params.get("utm_campaign") || "",
+          gclid: params.get("gclid") || "",
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.success === "false" || result.success === false) {
+        throw new Error(result.message || "Submission failed. Please try again.");
+      }
+      setLeadStatus("success");
+      setLeadMessage("Your inquiry has been sent. Techuvo will follow up about your selected package.");
+      setInquiry({ name: "", business: "", niche: "", email: "", phone: "", message: "", website: "" });
+      if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { selected_tier: selectedTier });
+    } catch (error) {
+      setLeadStatus("error");
+      setLeadMessage(error.message || "Unable to send right now. Please try again.");
+    }
+  };
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -1323,10 +1377,10 @@ function WebsiteOffer() {
 
             <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
               <a
-                href="#services"
+                href="#inquiry"
                 className="group inline-flex min-h-[60px] items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-7 py-4 text-sm font-black shadow-[6px_7px_0_#0f172a] transition hover:-translate-y-1 sm:text-base"
               >
-                Explore the packages
+                Request a website consultation
                 <ArrowRight className="h-5 w-5 rotate-90 transition-transform group-hover:translate-y-1" />
               </a>
               <a
@@ -1366,8 +1420,8 @@ function WebsiteOffer() {
                   <span className="text-[9px] font-black uppercase tracking-[0.12em] text-slate-500">techuvo.dev</span>
                 </div>
 
-                <div className="grid min-h-[300px] sm:min-h-[390px] lg:min-h-[430px] xl:min-h-[470px]">
-                  <img src={founderImage} alt="Techuvo founder" className="h-full min-h-[300px] w-full object-cover object-center sm:min-h-[390px] lg:min-h-[430px] xl:min-h-[470px]" />
+                <div className="grid h-[220px] sm:h-[280px] lg:h-[320px] xl:h-[340px]">
+                  <img src={founderImage} alt="Techuvo founder" className="h-full w-full object-cover object-center" />
                 </div>
               </div>
             </div>
@@ -1389,6 +1443,50 @@ function WebsiteOffer() {
               Built around your business
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* INQUIRY — directly after hero for Google Ads visitors */}
+      <section id="inquiry" className="scroll-mt-4 border-b-[3px] border-slate-950 bg-[#bfe2ff] px-4 py-12 sm:px-7 sm:py-16 lg:px-10">
+        <div className="mx-auto grid max-w-[94rem] gap-8 lg:grid-cols-[.75fr_1.25fr] lg:gap-12">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-700">Bloomfield Hills & surrounding communities</p>
+            <h2 className="mt-4 max-w-[11ch] text-[clamp(2.9rem,6vw,5.8rem)] font-black leading-[0.9] tracking-[-0.07em]">Tell us about your next website.</h2>
+            <p className="mt-5 max-w-md text-base font-semibold leading-7 text-slate-700">Choose an investment tier and send a few details. We'll review your goals and discuss the best path forward.</p>
+            <p className="mt-5 text-sm font-black">Projects start at $1,499 one-time.</p>
+          </div>
+          <form onSubmit={submitLead} className="grid gap-4 border-[3px] border-slate-950 bg-white p-5 shadow-[8px_9px_0_#0f172a] sm:grid-cols-2 sm:p-8">
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Your name *
+              <input required autoComplete="name" value={inquiry.name} onChange={(e) => setInquiry((s) => ({ ...s, name: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="Full name" />
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Business name *
+              <input required value={inquiry.business} onChange={(e) => setInquiry((s) => ({ ...s, business: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="Your company" />
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">Industry / business niche *
+              <input required value={inquiry.niche} onChange={(e) => setInquiry((s) => ({ ...s, niche: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="E.g. roofing, HVAC, dental, legal, boutique retail" />
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Business email *
+              <input required type="email" autoComplete="email" value={inquiry.email} onChange={(e) => setInquiry((s) => ({ ...s, email: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="you@business.com" />
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Phone *
+              <input required type="tel" autoComplete="tel" value={inquiry.phone} onChange={(e) => setInquiry((s) => ({ ...s, phone: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="(248) 555-0123" />
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">Website package you're inquiring about *
+              <select required value={selectedTier} onChange={(e) => setSelectedTier(e.target.value)} className="min-h-12 w-full min-w-0 border-2 border-slate-950 bg-white px-3 text-base font-semibold normal-case">
+                {servicePackages.map((item, index) => <option key={item.id} value={`Tier ${index + 1} — ${item.price}`}>Tier {index + 1} — {item.price} · {item.name}</option>)}
+                <option value="Not sure — help me choose">Not sure — help me choose</option>
+              </select>
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">What are you looking to build?
+              <textarea rows={3} value={inquiry.message} onChange={(e) => setInquiry((s) => ({ ...s, message: e.target.value }))} className="w-full min-w-0 resize-y border-2 border-slate-950 px-3 py-3 text-base font-semibold normal-case" placeholder="Tell us about your business, goals, and timeline..." />
+            </label>
+            <div className="hidden" aria-hidden="true"><label>Website <input tabIndex={-1} autoComplete="off" value={inquiry.website} onChange={(e) => setInquiry((s) => ({ ...s, website: e.target.value }))} /></label></div>
+            <button type="submit" disabled={leadStatus === "submitting"} className="flex min-h-14 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-blue-600 px-6 text-sm font-black text-white shadow-[5px_6px_0_#0f172a] disabled:opacity-60 sm:col-span-2">
+              {leadStatus === "submitting" ? "Sending inquiry..." : "Request my website consultation"} <ArrowRight className="h-5 w-5" />
+            </button>
+            {leadMessage && <p role="status" className={`text-sm font-bold sm:col-span-2 ${leadStatus === "error" ? "text-red-700" : "text-green-800"}`}>{leadMessage}</p>}
+            <p className="text-xs font-semibold text-slate-500 sm:col-span-2">No payment required to inquire. Your contact details are used to respond to your request.</p>
+          </form>
         </div>
       </section>
 
@@ -1469,7 +1567,7 @@ function WebsiteOffer() {
                     <p className="text-xs font-black uppercase tracking-[0.17em]">{item.eyebrow}</p>
                     <h3 className="mt-4 max-w-[9ch] text-[clamp(2.8rem,6vw,5.5rem)] font-black leading-[0.86] tracking-[-0.065em]">{item.name}</h3>
                     <div className="mt-7 flex items-end gap-2">
-                      <span className="text-6xl font-black tracking-[-0.07em] sm:text-7xl">{item.price}</span>
+                      <span className="text-[clamp(2.9rem,10vw,4.5rem)] font-black tracking-[-0.07em]">{item.price}</span>
                       <span className="pb-2 text-xs font-black uppercase tracking-[0.12em]">one-time</span>
                     </div>
                     <p className="mt-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">{item.summary}</p>
@@ -1502,13 +1600,14 @@ function WebsiteOffer() {
                         <ArrowRight className="h-5 w-5 -rotate-45 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </button>
 
-                      <a
-                        href={contactHref(item.name)}
+                      <button
+                        type="button"
+                        onClick={() => selectPackage(item)}
                         className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-slate-950 px-5 text-sm font-black text-white shadow-[5px_6px_0_#f7c948] transition hover:-translate-y-1"
                       >
-                        Start this package
+                        Inquire about Tier {index + 1}
                         <ArrowRight className="h-4 w-4" />
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
