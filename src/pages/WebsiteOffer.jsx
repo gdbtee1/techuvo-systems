@@ -943,7 +943,7 @@ const servicePackages = [
       "Complete custom multi-page architecture (7+ pages, scoped to project)",
       "Dedicated service breakdown pages and interactive project galleries",
       "Advanced custom UI styling and visual hierarchy",
-      "$500 initial managed ad-spend allocation included in the one-time price",
+      "$1,500 initial managed ad-spend allocation included in the one-time price",
       "Automated lead tracking, conversion analytics setup, and transition options for a separate growth retainer",
     ],
     examples: [
@@ -985,7 +985,7 @@ const servicePackages = [
       "Fully custom-coded application architecture",
       "Backend database or CRM integration (e.g. Supabase / automated pipelines)",
       "Advanced custom interactive components (e.g. Three.js / custom UI animations)",
-      "$1,000 initial managed ad-spend allocation included in the one-time price",
+      "$3,000 initial managed ad-spend allocation included in the one-time price",
       "Security hardening, automated workflows, and priority onboarding for separately scoped monthly management",
     ],
     examples: [
