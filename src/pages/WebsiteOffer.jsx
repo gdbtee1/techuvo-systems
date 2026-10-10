@@ -12,31 +12,32 @@ import {
   Sparkles,
   Star,
   CalendarDays,
+  ChevronLeft,
+  ChevronRight,
   X,
 } from "lucide-react";
 
-import founderImage from "../assets/images/crop.jpg";
 
 const projects = [
   {
-    id: "ryne",
+    id: "davis",
     number: "01",
-    name: "Ryne Writes",
-    category: "Interactive Portfolio",
-    tagline: "A portfolio that feels like entering a game.",
+    name: "Davis Asphalt",
+    category: "Contractor Website",
+    tagline: "A confident digital presence for an asphalt business.",
     description:
-      "An immersive creative portfolio built around retro game-inspired navigation, animated transitions, responsive layouts, and an unconventional interface.",
+      "A bold, industry-specific website showcase for Davis Asphalt, built around clear messaging, strong visual hierarchy, service presentation, and a responsive layout.",
     build:
-      "Instead of presenting work inside a traditional portfolio grid, the entire experience was designed like an interactive world visitors could explore.",
-    url: "https://rynewrites.com",
-    accent: "#ff8b7b",
-    secondary: "#ffd56a",
-    icon: Gamepad2,
+      "The design brings an industrial, practical visual language to a contractor website, with a clear path to learn about the business and its services.",
+    url: "https://gdbtee1.github.io/davis-asphalt/",
+    accent: "#f3bf62",
+    secondary: "#151b24",
+    icon: ShieldCheck,
     bullets: [
-      "Interactive navigation",
-      "Custom animation",
+      "Trade-focused visual design",
       "Responsive development",
-      "Retro visual system",
+      "Service-led layout",
+      "Clear conversion paths",
     ],
   },
   {
@@ -61,24 +62,24 @@ const projects = [
     ],
   },
   {
-    id: "pure-glow",
+    id: "ryne",
     number: "03",
-    name: "Pure Glow Floral",
-    category: "Luxury Service Website",
-    tagline: "Elegant, restrained, and built to feel premium.",
+    name: "Ryne Writes",
+    category: "Interactive Portfolio",
+    tagline: "A portfolio that feels like entering a game.",
     description:
-      "A refined floral website centered around strong photography, editorial typography, premium service positioning, and a polished luxury experience.",
+      "An immersive creative portfolio built around retro game-inspired navigation, animated transitions, responsive layouts, and an unconventional interface.",
     build:
-      "The project demonstrates that Techuvo can move from playful experiences to sophisticated service-business design without relying on a single visual template.",
-    url: "https://pureglowfloral.com/",
-    accent: "#e8d3ce",
-    secondary: "#41513b",
-    icon: Flower2,
+      "Instead of presenting work inside a traditional portfolio grid, the entire experience was designed like an interactive world visitors could explore.",
+    url: "https://rynewrites.com",
+    accent: "#ff8b7b",
+    secondary: "#ffd56a",
+    icon: Gamepad2,
     bullets: [
-      "Luxury art direction",
-      "Responsive layouts",
-      "Editorial typography",
-      "Service positioning",
+      "Interactive navigation",
+      "Custom animation",
+      "Responsive development",
+      "Retro visual system",
     ],
   },
 ];
@@ -507,36 +508,40 @@ function ProjectPreview({ project }) {
     );
   }
 
+  // Davis Asphalt: an industrial, asphalt-themed graphic in the same card system.
   return (
-    <div className="relative h-full overflow-hidden bg-[#eee8df] p-5">
-      <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-[#344632] to-transparent opacity-90" />
-
-      <div className="relative flex h-full flex-col">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="font-serif text-xl font-semibold">
-              Pure Glow Floral
-            </p>
-            <p className="text-[8px] font-bold uppercase tracking-[0.2em] text-slate-500">
-              Luxury Floral Studio
-            </p>
-          </div>
-
-          <div className="grid h-10 w-10 place-items-center rounded-full border border-[#c8b8aa] bg-white/70 font-serif">
-            PG
-          </div>
+    <div className="relative flex h-full flex-col overflow-hidden bg-[#171d24] p-5 text-[#fff5e2]">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-20"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+      <div className="relative z-10 flex items-start justify-between gap-3">
+        <div>
+          <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#f3bf62]">Davis Asphalt</p>
+          <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white/60">Contractor website</p>
         </div>
-
-        <div className="mt-auto">
-          <p className="max-w-[9ch] font-serif text-4xl leading-[0.9] text-white">
-            Floral artistry made to leave
-          </p>
-
-          <p className="mt-1 font-serif text-4xl italic leading-[0.9] text-[#f2c8c0]">
-            a lasting glow.
-          </p>
-        </div>
+        <span className="border-2 border-[#f3bf62] px-2 py-1 text-[9px] font-black uppercase tracking-wider">Built by Techuvo</span>
       </div>
+      <div className="relative z-10 mt-auto pb-4">
+        <motion.div
+          animate={{ y: [0, -4, 0] }}
+          transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <p className="max-w-[11ch] text-[clamp(2.7rem,4vw,4rem)] font-black uppercase leading-[0.85] tracking-[-0.065em]">
+            BUILT<br />TO LAST<span className="text-[#f3bf62]">.</span>
+          </p>
+          <div className="mt-5 flex items-center gap-3">
+            <span className="h-[3px] w-12 bg-[#f3bf62]" />
+            <span className="text-[9px] font-black uppercase tracking-[0.18em] text-[#f3bf62]">Explore the build ↗</span>
+          </div>
+        </motion.div>
+      </div>
+      <div className="pointer-events-none absolute bottom-0 right-0 h-24 w-28 bg-[#f3bf62] [clip-path:polygon(100%_0,100%_100%,0_100%)] sm:h-32 sm:w-40" />
+      <div className="pointer-events-none absolute bottom-0 right-6 h-14 w-5 -skew-x-[20deg] bg-[#171d24] sm:right-9 sm:h-20 sm:w-7" />
     </div>
   );
 }
@@ -1212,6 +1217,329 @@ function PackageExamples({ packageItem, onClose }) {
   );
 }
 
+
+function RyneHeroPreview() {
+  return (
+    <a
+      href="https://rynewrites.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Explore Ryne Writes, a live website built by Techuvo (opens in a new tab)"
+      className="techuvo-ryne group relative block h-[245px] w-full overflow-hidden bg-[#24132b] text-[#fff5df] sm:h-[295px] lg:h-[320px] xl:h-[340px]"
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-40" style={{backgroundImage: "linear-gradient(rgba(255,192,158,.14) 1px, transparent 1px),linear-gradient(90deg,rgba(255,192,158,.14) 1px,transparent 1px)", backgroundSize: "18px 18px"}} />
+      <div className="absolute inset-x-0 top-0 z-20 flex items-start justify-between gap-3 p-4 sm:p-5">
+        <div className="min-w-0">
+          <p className="text-[9px] font-black uppercase tracking-[.16em] text-[#ffd166] sm:text-[10px]">Featured client project</p>
+          <h3 className="mt-1 text-2xl font-black tracking-[-.05em] sm:text-3xl">Ryne Writes<span className="text-[#ff907f]">.</span></h3>
+          <p className="mt-1 hidden text-xs font-semibold text-[#d8bfae] sm:block">Interactive portfolio experience</p>
+        </div>
+        <div className="shrink-0 border-2 border-[#ffc09e] bg-[#8f2436] px-2 py-2 text-[9px] font-black uppercase tracking-wider shadow-[3px_3px_0_#100a12]">LIVE SITE ↗</div>
+      </div>
+      <motion.div
+        className="ryne-sprite-position pointer-events-none absolute inset-x-0 top-[30px] z-10 flex justify-center sm:top-[42px] lg:top-[47px]"
+        animate={{ y: [0, -7, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="ryne-sprite-scale">
+          <div className="pixel-avatar-wrapper">
+            <div className="pixel-avatar character-mario outfit-plumber">
+              <div className="avatar-shadow" />
+              <div className="avatar-character">
+                <div className="avatar-head">
+                  <div className="avatar-cap"><span className="avatar-cap-badge">M</span></div>
+                  <div className="avatar-ear avatar-ear-left" /><div className="avatar-ear avatar-ear-right" />
+                  <div className="avatar-face">
+                    <span className="avatar-eye avatar-eye-left" /><span className="avatar-eye avatar-eye-right" />
+                    <span className="avatar-nose" /><span className="avatar-mustache avatar-mustache-left" /><span className="avatar-mustache avatar-mustache-right" />
+                  </div>
+                </div>
+                <div className="avatar-neck" />
+                <div className="avatar-body">
+                  <div className="avatar-shirt" />
+                  <div className="avatar-overalls"><span className="overall-strap overall-strap-left" /><span className="overall-strap overall-strap-right" /><span className="overall-button overall-button-left" /><span className="overall-button overall-button-right" /><span className="overall-pocket" /></div>
+                  <div className="avatar-arm avatar-arm-left" /><div className="avatar-arm avatar-arm-right" />
+                </div>
+                <div className="avatar-hands"><span className="avatar-hand avatar-hand-left" /><span className="avatar-hand avatar-hand-right" /></div>
+                <div className="avatar-legs"><div className="avatar-leg avatar-leg-left" /><div className="avatar-leg avatar-leg-right" /></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+      <div className="absolute bottom-3 left-1/2 z-20 flex w-[calc(100%-28px)] -translate-x-1/2 items-center justify-center gap-2 border-[3px] border-[#100a12] bg-[#ffd166] px-3 py-3 text-center text-[11px] font-black uppercase tracking-[.08em] text-[#100a12] shadow-[4px_4px_0_#8f2436] transition-transform duration-200 group-hover:-translate-y-1 sm:bottom-5 sm:w-auto sm:px-6 sm:text-xs">
+        Click to explore a website we built <ExternalLink className="h-4 w-4 shrink-0" />
+      </div>
+      <style>{`.techuvo-ryne .pixel-avatar-wrapper{
+  display: grid;
+  justify-items: center;
+}
+.techuvo-ryne .pixel-avatar{
+  position: relative;
+  width: 220px;
+  height: 330px;
+  image-rendering: pixelated;
+}
+.techuvo-ryne .avatar-character{
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  width: 140px;
+  height: 260px;
+  transform: translateX(-50%);
+}
+.techuvo-ryne .avatar-shadow{
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  width: 150px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.42);
+  transform: translateX(-50%);
+  clip-path: polygon(
+    10% 25%,
+    90% 25%,
+    100% 75%,
+    85% 100%,
+    15% 100%,
+    0 75%
+  );
+}
+.techuvo-ryne .avatar-head{
+  position: absolute;
+  top: 22px;
+  left: 29px;
+  z-index: 4;
+  width: 82px;
+  height: 78px;
+  border: 7px solid #130a10;
+  background: #b96d47;
+  box-shadow:
+    inset 0 -12px 0 rgba(74, 28, 23, 0.15),
+    7px 7px 0 rgba(0, 0, 0, 0.19);
+}
+.techuvo-ryne .avatar-face{
+  position: absolute;
+  inset: 0;
+}
+.techuvo-ryne .avatar-eye{
+  position: absolute;
+  top: 31px;
+  width: 8px;
+  height: 12px;
+  background: #160b10;
+}
+.techuvo-ryne .avatar-eye-left{
+  left: 18px;
+}
+.techuvo-ryne .avatar-eye-right{
+  right: 18px;
+}
+.techuvo-ryne .avatar-ear{
+  position: absolute;
+  top: 27px;
+  width: 10px;
+  height: 25px;
+  background: #b96d47;
+}
+.techuvo-ryne .avatar-ear-left{
+  left: -17px;
+}
+.techuvo-ryne .avatar-ear-right{
+  right: -17px;
+}
+.techuvo-ryne .avatar-neck{
+  position: absolute;
+  top: 93px;
+  left: 58px;
+  z-index: 3;
+  width: 25px;
+  height: 26px;
+  background: #a85d3b;
+}
+.techuvo-ryne .avatar-body{
+  position: absolute;
+  top: 110px;
+  left: 20px;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+}
+.techuvo-ryne .avatar-shirt{
+  position: absolute;
+  inset: 0 10px;
+  border: 7px solid #130a10;
+  background: #f5ecdb;
+}
+.techuvo-ryne .avatar-arm{
+  position: absolute;
+  top: 13px;
+  width: 22px;
+  height: 78px;
+  border: 6px solid #130a10;
+  background: #b96d47;
+}
+.techuvo-ryne .avatar-arm-left{
+  left: -8px;
+}
+.techuvo-ryne .avatar-arm-right{
+  right: -8px;
+}
+.techuvo-ryne .avatar-legs{
+  position: absolute;
+  top: 202px;
+  left: 37px;
+  z-index: 1;
+  display: flex;
+  gap: 4px;
+}
+.techuvo-ryne .avatar-leg{
+  width: 31px;
+  height: 55px;
+  border: 6px solid #130a10;
+  background: #6f3347;
+}
+.techuvo-ryne .avatar-leg::after{
+  position: absolute;
+  bottom: -17px;
+  width: 34px;
+  height: 15px;
+  content: "";
+  border: 5px solid #130a10;
+  background: #2c1b26;
+}
+.techuvo-ryne .avatar-leg-left::after{
+  left: -6px;
+}
+.techuvo-ryne .avatar-leg-right::after{
+  right: -6px;
+}
+.techuvo-ryne .avatar-head{
+  overflow: visible;
+  background: #d58a5d;
+}
+.techuvo-ryne .avatar-cap{
+  position: absolute;
+  top: -28px;
+  left: -8px;
+  z-index: 12;
+  width: 98px;
+  height: 43px;
+  border: 6px solid #130a10;
+  border-bottom-width: 4px;
+  background: #d83d3d;
+  box-shadow: inset 0 -10px 0 rgba(0, 0, 0, 0.16);
+  clip-path: polygon(12% 0, 78% 0, 100% 45%, 96% 76%, 73% 76%, 68% 100%, 18% 100%, 15% 73%, 0 73%, 0 38%);
+}
+.techuvo-ryne .avatar-cap-badge{
+  position: absolute;
+  top: 7px;
+  left: 42px;
+  display: grid;
+  width: 28px;
+  height: 25px;
+  border: 4px solid #130a10;
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  color: #130a10;
+  background: #fff5df;
+  place-items: center;
+}
+.techuvo-ryne .avatar-face{
+  z-index: 6;
+}
+.techuvo-ryne .avatar-nose{
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  z-index: 8;
+  width: 22px;
+  height: 17px;
+  border: 4px solid #130a10;
+  background: #e39a6b;
+  transform: translateX(-50%);
+}
+.techuvo-ryne .avatar-mustache{
+  position: absolute;
+  bottom: 8px;
+  z-index: 7;
+  width: 27px;
+  height: 13px;
+  background: #27130f;
+}
+.techuvo-ryne .avatar-mustache-left{
+  left: 15px;
+  clip-path: polygon(0 35%, 40% 0, 100% 30%, 88% 100%, 20% 85%);
+}
+.techuvo-ryne .avatar-mustache-right{
+  right: 15px;
+  clip-path: polygon(100% 35%, 60% 0, 0 30%, 12% 100%, 80% 85%);
+}
+.techuvo-ryne .avatar-shirt{
+  inset: 0;
+  border: 7px solid #130a10;
+  background: #d83d3d;
+}
+.techuvo-ryne .avatar-overalls{
+  position: absolute;
+  inset: 24px 14px 0;
+  z-index: 3;
+  border: 5px solid #130a10;
+  background: #326fc2;
+}
+.techuvo-ryne .overall-strap{
+  position: absolute;
+  top: -28px;
+  width: 14px;
+  height: 43px;
+  border: 4px solid #130a10;
+  background: #326fc2;
+}
+.techuvo-ryne .overall-strap-left{ left: 8px; }
+.techuvo-ryne .overall-strap-right{ right: 8px; }
+.techuvo-ryne .overall-button{
+  position: absolute;
+  top: 8px;
+  width: 9px;
+  height: 9px;
+  background: var(--gold);
+}
+.techuvo-ryne .overall-button-left{ left: 12px; }
+.techuvo-ryne .overall-button-right{ right: 12px; }
+.techuvo-ryne .overall-pocket{
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  width: 30px;
+  height: 22px;
+  border: 4px solid #130a10;
+  transform: translateX(-50%);
+}
+.techuvo-ryne .avatar-hands{
+  position: absolute;
+  top: 180px;
+  left: 1px;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  width: 138px;
+}
+.techuvo-ryne .avatar-hand{
+  width: 25px;
+  height: 24px;
+  border: 5px solid #130a10;
+  background: #fff5df;
+}
+.techuvo-ryne .ryne-sprite-scale {width:220px;height:330px;transform:scale(.57);transform-origin:top center}
+@media(min-width:640px){.techuvo-ryne .ryne-sprite-scale {transform:scale(.72)}}
+@media(min-width:1024px){.techuvo-ryne .ryne-sprite-scale {transform:scale(.79)}}
+.techuvo-ryne .avatar-cap-badge {font-family: monospace}
+@media(prefers-reduced-motion:reduce){.techuvo-ryne .ryne-sprite-scale{animation:none}}
+`}</style>
+    </a>
+  );
+}
+
 function WebsiteOffer() {
   const [activeProject, setActiveProject] = useState(null);
   const [activePackage, setActivePackage] = useState(null);
@@ -1226,10 +1554,38 @@ function WebsiteOffer() {
   const [bookingTime, setBookingTime] = useState("");
   const [bookingStatus, setBookingStatus] = useState("idle");
   const [bookingError, setBookingError] = useState("");
+  const [calendarMonth, setCalendarMonth] = useState(() => {
+    const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit" }).formatToParts(new Date());
+    return `${parts.find((p) => p.type === "year").value}-${parts.find((p) => p.type === "month").value}`;
+  });
   const timeSlots = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
   const formatTime = (time) => new Date(`2000-01-01T${time}:00`).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
   const formatDate = (date) => new Date(`${date}T12:00:00`).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
-  const todayET = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  // Use Eastern time for every booking calculation, regardless of visitor location.
+  const easternNow = () => {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+    }).formatToParts(new Date());
+    const read = (type) => parts.find((part) => part.type === type).value;
+    return { date: `${read("year")}-${read("month")}-${read("day")}`, time: `${read("hour")}:${read("minute")}` };
+  };
+  const todayET = easternNow().date;
+  const isPastSlot = (date, time) => {
+    const now = easternNow();
+    return !date || date < now.date || (date === now.date && time <= now.time);
+  };
+  const calendarDays = (() => {
+    const [year, month] = calendarMonth.split("-").map(Number);
+    const first = new Date(Date.UTC(year, month - 1, 1));
+    const days = new Date(Date.UTC(year, month, 0)).getUTCDate();
+    return [ ...Array(first.getUTCDay()).fill(null), ...Array.from({ length: days }, (_, i) => `${calendarMonth}-${String(i + 1).padStart(2, "0")}`) ];
+  })();
+  const changeMonth = (delta) => {
+    const [year, month] = calendarMonth.split("-").map(Number);
+    const next = new Date(Date.UTC(year, month - 1 + delta, 1));
+    setCalendarMonth(`${next.getUTCFullYear()}-${String(next.getUTCMonth() + 1).padStart(2, "0")}`);
+  };
   const calendarUrl = bookingDate && bookingTime ? (() => {
     const compactDate = bookingDate.replaceAll("-", "");
     const compactTime = bookingTime.replace(":", "") + "00";
@@ -1243,11 +1599,7 @@ function WebsiteOffer() {
   const submitBooking = async (event) => {
     event.preventDefault();
     if (bookingStatus === "submitting" || !bookingDate || !bookingTime) return;
-    if (bookingDate < todayET) { setBookingError("Choose a future date."); return; }
-    // Date/time entered as Eastern local clock; compare via Intl to prevent past-day bookings.
-    const currentETDate = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
-    const currentETHourMinute = new Intl.DateTimeFormat("en-GB", { timeZone: "America/New_York", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(new Date());
-    if (bookingDate === currentETDate && bookingTime <= currentETHourMinute) { setBookingError("Please choose a later time."); return; }
+    if (isPastSlot(bookingDate, bookingTime)) { setBookingError("Please select an upcoming date and time."); return; }
     setBookingStatus("submitting"); setBookingError("");
     try {
       const response = await fetch("https://formsubmit.co/ajax/techuvodesign@gmail.com", {
@@ -1480,9 +1832,7 @@ function WebsiteOffer() {
                   <span className="text-[9px] font-black uppercase tracking-[0.12em] text-slate-500">techuvo.dev</span>
                 </div>
 
-                <div className="grid h-[220px] sm:h-[280px] lg:h-[320px] xl:h-[340px]">
-                  <img src={founderImage} alt="Techuvo founder" className="h-full w-full object-contain object-center bg-[#aeecef]" />
-                </div>
+                <RyneHeroPreview />
               </div>
             </div>
 
@@ -1491,8 +1841,8 @@ function WebsiteOffer() {
               transition={{ duration: 3.2, repeat: Infinity }}
               className="absolute -bottom-5 left-2 rounded-[1rem] border-[3px] border-slate-950 bg-white px-4 py-3 shadow-[5px_6px_0_#0f172a] sm:-left-5"
             >
-              <p className="text-[9px] font-black uppercase tracking-[0.15em] text-slate-500">One partner</p>
-              <p className="mt-1 text-sm font-black">Website + growth</p>
+              <p className="text-[9px] font-black uppercase tracking-[0.15em] text-slate-500">Featured build</p>
+              <p className="mt-1 text-sm font-black">Ryne Writes</p>
             </motion.div>
 
             <motion.div
@@ -1503,83 +1853,6 @@ function WebsiteOffer() {
               Built around your business
             </motion.div>
           </motion.div>
-        </div>
-      </section>
-
-      {/* INQUIRY — directly after hero for Google Ads visitors */}
-      <section id="inquiry" className="scroll-mt-4 border-b-[3px] border-slate-950 bg-[#bfe2ff] px-4 py-12 sm:px-7 sm:py-16 lg:px-10">
-        <div className="mx-auto grid max-w-[94rem] gap-8 lg:grid-cols-[.75fr_1.25fr] lg:gap-12">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-700">Bloomfield Hills & surrounding communities</p>
-            <h2 className="mt-4 max-w-[11ch] text-[clamp(2.9rem,6vw,5.8rem)] font-black leading-[0.9] tracking-[-0.07em]">Tell us about your next website.</h2>
-            <p className="mt-5 max-w-md text-base font-semibold leading-7 text-slate-700">Choose an investment tier and send a few details. We'll review your goals and discuss the best path forward.</p>
-            <p className="mt-5 text-sm font-black">Projects start at $1,499 one-time.</p>
-          </div>
-          {bookingStep === "inquiry" ? (
-          <form onSubmit={submitLead} className="grid gap-4 border-[3px] border-slate-950 bg-white p-5 shadow-[8px_9px_0_#0f172a] sm:grid-cols-2 sm:p-8">
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Your name *
-              <input required autoComplete="name" value={inquiry.name} onChange={(e) => setInquiry((s) => ({ ...s, name: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="Full name" />
-            </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Business name *
-              <input required value={inquiry.business} onChange={(e) => setInquiry((s) => ({ ...s, business: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="Your company" />
-            </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">Industry / business niche *
-              <input required value={inquiry.niche} onChange={(e) => setInquiry((s) => ({ ...s, niche: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="E.g. roofing, HVAC, dental, legal, boutique retail" />
-            </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Business email *
-              <input required type="email" autoComplete="email" value={inquiry.email} onChange={(e) => setInquiry((s) => ({ ...s, email: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="you@business.com" />
-            </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Phone *
-              <input required type="tel" autoComplete="tel" value={inquiry.phone} onChange={(e) => setInquiry((s) => ({ ...s, phone: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="(248) 555-0123" />
-            </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">Website package you're inquiring about *
-              <select required value={selectedTier} onChange={(e) => setSelectedTier(e.target.value)} className="min-h-12 w-full min-w-0 border-2 border-slate-950 bg-white px-3 text-base font-semibold normal-case">
-                {servicePackages.map((item, index) => <option key={item.id} value={`Tier ${index + 1} — ${item.price}`}>Tier {index + 1} — {item.price} · {item.name}</option>)}
-                <option value="Not sure — help me choose">Not sure — help me choose</option>
-              </select>
-            </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">What are you looking to build?
-              <textarea rows={3} value={inquiry.message} onChange={(e) => setInquiry((s) => ({ ...s, message: e.target.value }))} className="w-full min-w-0 resize-y border-2 border-slate-950 px-3 py-3 text-base font-semibold normal-case" placeholder="Tell us about your business, goals, and timeline..." />
-            </label>
-            <div className="hidden" aria-hidden="true"><label>Website <input tabIndex={-1} autoComplete="off" value={inquiry.website} onChange={(e) => setInquiry((s) => ({ ...s, website: e.target.value }))} /></label></div>
-            <button type="submit" disabled={leadStatus === "submitting"} className="flex min-h-14 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-blue-600 px-6 text-sm font-black text-white shadow-[5px_6px_0_#0f172a] disabled:opacity-60 sm:col-span-2">
-              {leadStatus === "submitting" ? "Sending inquiry..." : "Request my website consultation"} <ArrowRight className="h-5 w-5" />
-            </button>
-            {leadMessage && <p role="status" className={`text-sm font-bold sm:col-span-2 ${leadStatus === "error" ? "text-red-700" : "text-green-800"}`}>{leadMessage}</p>}
-            <p className="text-xs font-semibold text-slate-500 sm:col-span-2">No payment required to inquire. Your contact details are used to respond to your request.</p>
-          </form>
-          ) : bookingStep === "calendar" ? (
-            <form onSubmit={submitBooking} className="border-[3px] border-slate-950 bg-white p-5 shadow-[8px_9px_0_#0f172a] sm:p-8">
-              <div className="flex items-center gap-3">
-                <span className="grid h-12 w-12 place-items-center border-[3px] border-slate-950 bg-yellow-300 shadow-[3px_4px_0_#0f172a]"><CalendarDays className="h-6 w-6" /></span>
-                <div><p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Step 2 of 2</p><h3 className="text-2xl font-black tracking-tight sm:text-3xl">Choose your call time.</h3></div>
-              </div>
-              <p className="mt-5 text-sm font-semibold leading-6 text-slate-600">Thanks, {inquiry.name.split(" ")[0]}! Your inquiry for {inquiry.business} has been received. Pick a 15-minute strategy call time below.</p>
-              <p className="mt-5 text-xs font-black uppercase tracking-wider">Select a day</p>
-              <input type="date" required min={todayET} value={bookingDate} onChange={(event) => { setBookingDate(event.target.value); setBookingTime(""); }} className="mt-2 min-h-14 w-full border-[3px] border-slate-950 bg-[#fff8e8] px-4 text-base font-black" />
-              <p className="mt-6 text-xs font-black uppercase tracking-wider">Select a time · Eastern Time</p>
-              <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                {timeSlots.map((time) => (
-                  <button key={time} type="button" onClick={() => setBookingTime(time)} aria-pressed={bookingTime === time} className={`min-h-12 border-[3px] border-slate-950 px-2 text-sm font-black transition hover:-translate-y-0.5 ${bookingTime === time ? "bg-yellow-300 shadow-[3px_4px_0_#0f172a]" : "bg-[#fff8e8]"}`}>{formatTime(time)}</button>
-                ))}
-              </div>
-              {bookingDate && bookingTime && <p className="mt-6 border-l-[5px] border-blue-600 bg-[#bfe2ff] p-4 text-sm font-black">{formatDate(bookingDate)} at {formatTime(bookingTime)} ET</p>}
-              <p className="mt-4 text-xs font-semibold leading-5 text-slate-500">Booking requests are emailed to Techuvo. These time slots aren't synchronized to a live availability calendar, so we'll contact you if an adjustment is necessary.</p>
-              {bookingError && <p role="alert" className="mt-4 text-sm font-bold text-red-700">{bookingError}</p>}
-              <button type="submit" disabled={!bookingDate || !bookingTime || bookingStatus === "submitting"} className="mt-6 flex min-h-14 w-full items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-blue-600 px-6 text-base font-black text-white shadow-[5px_6px_0_#0f172a] disabled:opacity-50">{bookingStatus === "submitting" ? "Booking..." : "Book my strategy call"}<ArrowRight className="h-5 w-5" /></button>
-            </form>
-          ) : (
-            <div role="status" className="border-[3px] border-slate-950 bg-white p-6 shadow-[8px_9px_0_#0f172a] sm:p-9">
-              <span className="grid h-14 w-14 place-items-center rounded-full border-[3px] border-slate-950 bg-[#6ee7b7] shadow-[4px_5px_0_#0f172a]"><Check className="h-7 w-7" strokeWidth={4}/></span>
-              <p className="mt-6 text-xs font-black uppercase tracking-[0.2em] text-blue-700">Strategy call</p>
-              <h3 className="mt-2 text-[clamp(2.5rem,6vw,4rem)] font-black leading-[0.9] tracking-[-0.06em]">You're booked!</h3>
-              <p className="mt-4 text-lg font-black">Please add your strategy call to your calendar.</p>
-              <p className="mt-3 text-base font-semibold">{formatDate(bookingDate)} · {formatTime(bookingTime)} Eastern</p>
-              <p className="mt-2 text-sm font-semibold text-slate-600">{inquiry.name} · {inquiry.business} · {selectedTier}</p>
-              <a href={calendarUrl} target="_blank" rel="noreferrer" className="mt-7 inline-flex min-h-14 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-6 text-sm font-black shadow-[5px_6px_0_#0f172a]">Add to Google Calendar <CalendarDays className="h-5 w-5" /></a>
-              <p className="mt-5 text-xs font-semibold leading-5 text-slate-600">Your requested time was emailed to Techuvo. You'll be contacted directly if the time needs adjusting.</p>
-            </div>
-          )}
         </div>
       </section>
 
@@ -1712,6 +1985,95 @@ function WebsiteOffer() {
               </motion.article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* INQUIRY — after pricing packages */}
+      <section id="inquiry" className="scroll-mt-4 border-b-[3px] border-slate-950 bg-[#bfe2ff] px-4 py-12 sm:px-7 sm:py-16 lg:px-10">
+        <div className="mx-auto grid max-w-[94rem] gap-8 lg:grid-cols-[.75fr_1.25fr] lg:gap-12">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-700">Bloomfield Hills & surrounding communities</p>
+            <h2 className="mt-4 max-w-[11ch] text-[clamp(2.9rem,6vw,5.8rem)] font-black leading-[0.9] tracking-[-0.07em]">Tell us about your next website.</h2>
+            <p className="mt-5 max-w-md text-base font-semibold leading-7 text-slate-700">Choose an investment tier and send a few details. We'll review your goals and discuss the best path forward.</p>
+            <p className="mt-5 text-sm font-black">Projects start at $1,499 one-time.</p>
+          </div>
+          {bookingStep === "inquiry" ? (
+          <form onSubmit={submitLead} className="grid gap-4 border-[3px] border-slate-950 bg-white p-5 shadow-[8px_9px_0_#0f172a] sm:grid-cols-2 sm:p-8">
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Your name *
+              <input required autoComplete="name" value={inquiry.name} onChange={(e) => setInquiry((s) => ({ ...s, name: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="Full name" />
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Business name *
+              <input required value={inquiry.business} onChange={(e) => setInquiry((s) => ({ ...s, business: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="Your company" />
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">Industry / business niche *
+              <input required value={inquiry.niche} onChange={(e) => setInquiry((s) => ({ ...s, niche: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="E.g. roofing, HVAC, dental, legal, boutique retail" />
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Business email *
+              <input required type="email" autoComplete="email" value={inquiry.email} onChange={(e) => setInquiry((s) => ({ ...s, email: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="you@business.com" />
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Phone *
+              <input required type="tel" autoComplete="tel" value={inquiry.phone} onChange={(e) => setInquiry((s) => ({ ...s, phone: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="(248) 555-0123" />
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">Website package you're inquiring about *
+              <select required value={selectedTier} onChange={(e) => setSelectedTier(e.target.value)} className="min-h-12 w-full min-w-0 border-2 border-slate-950 bg-white px-3 text-base font-semibold normal-case">
+                {servicePackages.map((item, index) => <option key={item.id} value={`Tier ${index + 1} — ${item.price}`}>Tier {index + 1} — {item.price} · {item.name}</option>)}
+                <option value="Not sure — help me choose">Not sure — help me choose</option>
+              </select>
+            </label>
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">What are you looking to build?
+              <textarea rows={3} value={inquiry.message} onChange={(e) => setInquiry((s) => ({ ...s, message: e.target.value }))} className="w-full min-w-0 resize-y border-2 border-slate-950 px-3 py-3 text-base font-semibold normal-case" placeholder="Tell us about your business, goals, and timeline..." />
+            </label>
+            <div className="hidden" aria-hidden="true"><label>Website <input tabIndex={-1} autoComplete="off" value={inquiry.website} onChange={(e) => setInquiry((s) => ({ ...s, website: e.target.value }))} /></label></div>
+            <button type="submit" disabled={leadStatus === "submitting"} className="flex min-h-14 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-blue-600 px-6 text-sm font-black text-white shadow-[5px_6px_0_#0f172a] disabled:opacity-60 sm:col-span-2">
+              {leadStatus === "submitting" ? "Sending inquiry..." : "Request my website consultation"} <ArrowRight className="h-5 w-5" />
+            </button>
+            {leadMessage && <p role="status" className={`text-sm font-bold sm:col-span-2 ${leadStatus === "error" ? "text-red-700" : "text-green-800"}`}>{leadMessage}</p>}
+            <p className="text-xs font-semibold text-slate-500 sm:col-span-2">No payment required to inquire. Your contact details are used to respond to your request.</p>
+          </form>
+          ) : bookingStep === "calendar" ? (
+            <form onSubmit={submitBooking} className="border-[3px] border-slate-950 bg-white p-5 shadow-[8px_9px_0_#0f172a] sm:p-8">
+              <div className="flex items-center gap-3">
+                <span className="grid h-12 w-12 place-items-center border-[3px] border-slate-950 bg-yellow-300 shadow-[3px_4px_0_#0f172a]"><CalendarDays className="h-6 w-6" /></span>
+                <div><p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Step 2 of 2</p><h3 className="text-2xl font-black tracking-tight sm:text-3xl">Choose your call time.</h3></div>
+              </div>
+              <p className="mt-5 text-sm font-semibold leading-6 text-slate-600">Thanks, {inquiry.name.split(" ")[0]}! Your inquiry for {inquiry.business} has been received. Pick a 15-minute strategy call time below.</p>
+              <p className="mt-6 text-xs font-black uppercase tracking-wider">Select a day · Eastern Time</p>
+              <div className="mt-3 w-full min-w-0 overflow-hidden border-[3px] border-slate-950 bg-[#fff8e8] p-3 sm:p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <button type="button" aria-label="Previous month" disabled={calendarMonth <= todayET.slice(0, 7)} onClick={() => changeMonth(-1)} className="grid h-10 w-10 shrink-0 place-items-center border-2 border-slate-950 bg-white disabled:opacity-30"><ChevronLeft className="h-5 w-5" /></button>
+                  <span className="min-w-0 text-center text-base font-black sm:text-lg">{new Date(`${calendarMonth}-01T12:00:00`).toLocaleDateString("en-US", { month: "long", year: "numeric" })}</span>
+                  <button type="button" aria-label="Next month" onClick={() => changeMonth(1)} className="grid h-10 w-10 shrink-0 place-items-center border-2 border-slate-950 bg-white"><ChevronRight className="h-5 w-5" /></button>
+                </div>
+                <div className="mt-4 grid grid-cols-7 gap-1 text-center text-[10px] font-black uppercase text-slate-500 sm:gap-2 sm:text-xs">
+                  {["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"].map((day) => <span key={day}>{day}</span>)}
+                  {calendarDays.map((date, index) => date ? (
+                    <button key={date} type="button" disabled={date < todayET} aria-label={formatDate(date)} aria-pressed={bookingDate === date} onClick={() => { setBookingDate(date); setBookingTime(""); setBookingError(""); }} className={`aspect-square min-w-0 border-2 text-xs font-black transition sm:text-sm ${bookingDate === date ? "border-slate-950 bg-yellow-300 shadow-[2px_2px_0_#0f172a]" : "border-transparent bg-white hover:border-slate-950"} disabled:cursor-not-allowed disabled:bg-transparent disabled:text-slate-300`}>{Number(date.slice(-2))}</button>
+                  ) : <span key={`empty-${index}`} />)}
+                </div>
+              </div>
+              <p className="mt-6 text-xs font-black uppercase tracking-wider">Select a time · Eastern Time</p>
+              <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {timeSlots.map((time) => (
+                  <button key={time} type="button" disabled={isPastSlot(bookingDate, time)} onClick={() => { setBookingTime(time); setBookingError(""); }} aria-pressed={bookingTime === time} className={`min-h-12 min-w-0 border-[3px] border-slate-950 px-1 text-xs font-black transition hover:-translate-y-0.5 sm:px-2 sm:text-sm ${bookingTime === time ? "bg-yellow-300 shadow-[3px_4px_0_#0f172a]" : "bg-[#fff8e8]"} disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:translate-y-0`}>{formatTime(time)}</button>
+                ))}
+              </div>
+              {bookingDate && bookingTime && <p className="mt-6 border-l-[5px] border-blue-600 bg-[#bfe2ff] p-4 text-sm font-black">{formatDate(bookingDate)} at {formatTime(bookingTime)} ET</p>}
+              <p className="mt-4 text-xs font-semibold leading-5 text-slate-500">Booking requests are emailed to Techuvo. These time slots aren't synchronized to a live availability calendar, so we'll contact you if an adjustment is necessary.</p>
+              {bookingError && <p role="alert" className="mt-4 text-sm font-bold text-red-700">{bookingError}</p>}
+              <button type="submit" disabled={!bookingDate || !bookingTime || isPastSlot(bookingDate, bookingTime) || bookingStatus === "submitting"} className="mt-6 flex min-h-14 w-full items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-blue-600 px-6 text-base font-black text-white shadow-[5px_6px_0_#0f172a] disabled:opacity-50">{bookingStatus === "submitting" ? "Booking..." : "Book my strategy call"}<ArrowRight className="h-5 w-5" /></button>
+            </form>
+          ) : (
+            <div role="status" className="border-[3px] border-slate-950 bg-white p-6 shadow-[8px_9px_0_#0f172a] sm:p-9">
+              <span className="grid h-14 w-14 place-items-center rounded-full border-[3px] border-slate-950 bg-[#6ee7b7] shadow-[4px_5px_0_#0f172a]"><Check className="h-7 w-7" strokeWidth={4}/></span>
+              <p className="mt-6 text-xs font-black uppercase tracking-[0.2em] text-blue-700">Strategy call</p>
+              <h3 className="mt-2 text-[clamp(2.5rem,6vw,4rem)] font-black leading-[0.9] tracking-[-0.06em]">You're booked!</h3>
+              <p className="mt-4 text-lg font-black">Please add your strategy call to your calendar.</p>
+              <p className="mt-3 text-base font-semibold">{formatDate(bookingDate)} · {formatTime(bookingTime)} Eastern</p>
+              <p className="mt-2 text-sm font-semibold text-slate-600">{inquiry.name} · {inquiry.business} · {selectedTier}</p>
+              <a href={calendarUrl} target="_blank" rel="noreferrer" className="mt-7 inline-flex min-h-14 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-6 text-sm font-black shadow-[5px_6px_0_#0f172a]">Add to Google Calendar <CalendarDays className="h-5 w-5" /></a>
+              <p className="mt-5 text-xs font-semibold leading-5 text-slate-600">Your requested time was emailed to Techuvo. You'll be contacted directly if the time needs adjusting.</p>
+            </div>
+          )}
         </div>
       </section>
 
