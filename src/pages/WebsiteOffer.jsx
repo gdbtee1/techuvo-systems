@@ -1541,6 +1541,21 @@ function RyneHeroPreview() {
 }
 
 function WebsiteOffer() {
+  // Scroll to linked sections after React renders this route (including direct visits).
+  useEffect(() => {
+    const jumpToHash = () => {
+      const sectionId = decodeURIComponent(window.location.hash.slice(1));
+      if (!sectionId || !["services", "inquiry"].includes(sectionId)) return;
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: "instant", block: "start" });
+    };
+
+    const timers = [100, 500].map((delay) => window.setTimeout(jumpToHash, delay));
+    window.addEventListener("hashchange", jumpToHash);
+    return () => {
+      timers.forEach(window.clearTimeout);
+      window.removeEventListener("hashchange", jumpToHash);
+    };
+  }, []);
   const [activeProject, setActiveProject] = useState(null);
   const [activePackage, setActivePackage] = useState(null);
   const [openFaq, setOpenFaq] = useState(0);
