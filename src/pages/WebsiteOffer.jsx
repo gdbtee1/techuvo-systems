@@ -1710,6 +1710,12 @@ function WebsiteOffer() {
       setBookingStep("calendar");
       setTimeout(() => document.getElementById("inquiry")?.scrollIntoView({ behavior: "smooth" }), 60);
       if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { selected_tier: selectedTier });
+      // Google Ads: count only successfully submitted website inquiry forms.
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "conversion", {
+          send_to: "AW-18498766162/Z9q1CL3QoJkdENKK8_RE",
+        });
+      }
     } catch (error) {
       setLeadStatus("error");
       setLeadMessage(error.message || "Unable to send right now. Please try again.");
