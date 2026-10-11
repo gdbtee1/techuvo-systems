@@ -1,1141 +1,2686 @@
 import { useEffect, useMemo, useState } from "react";
+
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
 import ryneWritesPreview from "../assets/images/ryne-writes-preview.jpg";
 
+
+
 const projects = [
+
   {
+
     id: "davis-asphalt",
+
     fileNumber: "001",
+
     title: "Davis Asphalt",
+
     category: "Paving",
+
     type: "Business Website",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "https://gdbtee1.github.io/davis-asphalt/",
+
     status: "Live",
+
     description:
+
       "A bold asphalt and paving website built to showcase services, establish local credibility, and turn visitors into qualified leads.",
+
     brief:
+
       "The business needed a strong digital presence that could clearly present its paving work while feeling established, dependable, and easy to contact.",
+
     build:
+
       "Techuvo created a responsive service-focused website with strong visual hierarchy, prominent calls to action, project-focused messaging, and mobile optimization.",
+
     capabilities: [
+
       "Responsive website",
+
       "Service presentation",
+
       "Lead-focused layout",
+
       "Mobile optimization",
+
       "Contact pathways",
+
       "Local business branding",
+
     ],
+
     color: "slate",
+
   },
+
   {
+
     id: "pretty-patty-paradise",
+
     fileNumber: "002",
+
     title: "Pretty Patty Paradise",
+
     category: "Food",
+
     type: "Restaurant Website",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "https://gdbtee1.github.io/pretty-patty-paradise",
+
     status: "Live",
+
     description:
+
       "A colorful food brand website designed to make the menu, personality, and customer experience feel immediately recognizable.",
+
     brief:
+
       "The concept needed a lively digital presence that could showcase the brand's food, personality, and visual identity without feeling like a generic restaurant template.",
+
     build:
+
       "Techuvo developed a responsive, personality-driven restaurant experience with bold presentation, clear content sections, and direct customer pathways.",
+
     capabilities: [
+
       "Restaurant website",
+
       "Brand presentation",
+
       "Responsive development",
+
       "Menu-focused structure",
+
       "Customer pathways",
+
       "Custom visual direction",
+
     ],
+
     color: "violet",
+
   },
+
   {
+
     id: "fashion-brand",
+
     fileNumber: "003",
+
     title: "Fashion Brand",
+
     category: "Fashion",
+
     type: "Fashion Website",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "https://gdbtee1.github.io/fashion-brand/",
+
     status: "Live",
+
     description:
+
       "A modern fashion website concept built around strong imagery, editorial presentation, and a premium digital storefront feel.",
+
     brief:
+
       "The project needed to communicate fashion through visual hierarchy and atmosphere while remaining clean, responsive, and easy to explore.",
+
     build:
+
       "Techuvo created an editorial-inspired responsive experience with image-led sections, refined typography, product-focused presentation, and polished interactions.",
+
     capabilities: [
+
       "Fashion presentation",
+
       "Editorial layout",
+
       "Responsive development",
+
       "Product storytelling",
+
       "Visual hierarchy",
+
       "Premium brand direction",
+
     ],
+
     color: "indigo",
+
   },
+
   {
+
     id: "ryne-writes",
+
     fileNumber: "004",
+
     title: "Ryne Writes",
+
     category: "Creative Portfolio",
+
     type: "Interactive Portfolio",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "https://rynewrites.com",
+
     status: "Live",
+
     description:
+
       "An interactive portfolio designed around a unique gaming-inspired experience that transforms a traditional portfolio into something memorable.",
+
     brief:
+
       "The client wanted an experience instead of a traditional website. Every interaction was designed to feel playful while still presenting professional work.",
+
     build:
+
       "Techuvo designed and developed a completely custom interactive portfolio featuring cinematic transitions, retro-inspired visuals, responsive layouts, and immersive navigation.",
+
     capabilities: [
+
       "Interactive experience",
+
       "Creative UI",
+
       "Responsive development",
+
       "Custom animations",
+
       "Portfolio design",
+
       "Performance optimization",
+
     ],
+
     color: "cyan",
+
   },
+
   {
+
     id: "mojoy-records",
+
     fileNumber: "005",
+
     title: "Mojoy Records",
+
     category: "Music",
+
     type: "Record Label Website",
+
     year: "2026",
+
     location: "Detroit, Michigan",
+
     websiteUrl: "https://gdbtee1.github.io/mojoy-records/",
+
     status: "Live",
+
     description:
+
       "A digital home for an independent Detroit record label built to present artists, releases, and the identity behind the brand.",
+
     brief:
+
       "The label needed an online presence that could feel connected to Detroit's independent music culture while organizing artists, releases, and brand information.",
+
     build:
+
       "Techuvo created a responsive music-focused website with strong visual identity, artist presentation, release-focused sections, and scalable content structure.",
+
     capabilities: [
+
       "Record label website",
+
       "Artist presentation",
+
       "Release-focused content",
+
       "Responsive development",
+
       "Brand storytelling",
+
       "Expandable architecture",
+
     ],
+
     color: "blue",
+
   },
+
   {
+
     id: "xoxo-resells",
+
     fileNumber: "006",
+
     title: "XOXO Resells",
+
     category: "E-Commerce",
+
     type: "Resale Website",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "https://xoxoresells.com",
+
     status: "Live",
+
     description:
+
       "A resale-focused website built to showcase available items, strengthen the brand, and make shopping the collection easier.",
+
     brief:
+
       "The reseller needed a polished online presence that could organize inventory and make the business feel trustworthy, recognizable, and easy to shop.",
+
     build:
+
       "Techuvo developed a responsive resale experience with product-focused presentation, clear navigation, brand-forward styling, and direct shopping pathways.",
+
     capabilities: [
+
       "Resale website",
+
       "Product presentation",
+
       "Responsive development",
+
       "E-commerce structure",
+
       "Brand presentation",
+
       "Customer navigation",
+
     ],
+
     color: "sky",
+
   },
+
   {
+
     id: "retro-dental",
+
     fileNumber: "007",
+
     title: "Retro Dental",
+
     category: "Healthcare",
+
     type: "Dental Website",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "https://gdbtee1.github.io/retro-dental/",
+
     status: "Live",
+
     description:
+
       "A distinctive dental website concept that combines professional service information with a memorable retro-inspired visual identity.",
+
     brief:
+
       "The concept explored how a dental practice could stand apart from typical clinical websites while still communicating trust, services, and clear patient pathways.",
+
     build:
+
       "Techuvo created a responsive dental experience with custom visual direction, organized service content, prominent calls to action, and mobile-friendly layouts.",
+
     capabilities: [
+
       "Dental website",
+
       "Custom visual identity",
+
       "Service presentation",
+
       "Responsive development",
+
       "Patient pathways",
+
       "Mobile optimization",
+
     ],
+
     color: "cyan",
+
   },
+
   {
+
     id: "cleaning-business",
+
     fileNumber: "008",
+
     title: "Cleaning Business",
+
     category: "Cleaning Services",
+
     type: "Service Website",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "https://gdbtee1.github.io/cleaning-business",
+
     status: "Live",
+
     description:
+
       "A clean service-business website designed to explain offerings quickly, build trust, and make requesting service simple.",
+
     brief:
+
       "The cleaning concept needed a polished local-business presence that could communicate services clearly and guide visitors toward booking or contacting the company.",
+
     build:
+
       "Techuvo created a responsive service layout with clear offers, trust-focused content, straightforward navigation, and conversion-focused contact pathways.",
+
     capabilities: [
+
       "Cleaning service website",
+
       "Service presentation",
+
       "Responsive development",
+
       "Lead-focused structure",
+
       "Contact pathways",
+
       "Local business branding",
+
     ],
+
     color: "blue",
+
   },
+
   {
+
     id: "golden-cares",
+
     fileNumber: "009",
+
     title: "Golden Cares",
+
     category: "Care Services",
+
     type: "Service Website",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "https://mygoldencares.com",
+
     status: "Live",
+
     description:
+
       "A warm care-services website that helps families understand available support and contact the organization confidently.",
+
     brief:
+
       "The organization needed a reassuring website that could explain its services clearly and create trust with families.",
+
     build:
+
       "Techuvo developed accessible service information, calm visual direction, responsive layouts, and clear contact options.",
+
     capabilities: [
+
       "Care-service presentation",
+
       "Responsive development",
+
       "Accessible structure",
+
       "Family-focused messaging",
+
       "Contact pathways",
+
       "Trust-building design",
+
     ],
+
     color: "sky",
+
   },
+
   {
+
     id: "kids-first",
+
     fileNumber: "010",
+
     title: "Kids First",
+
     category: "Education",
+
     type: "Education Website",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "https://kidsfirstllc.com",
+
     status: "Live",
+
     description:
+
       "An education website built to organize program information, communicate values, and create a clearer enrollment path.",
+
     brief:
+
       "Families needed an easier way to understand the organization, its programs, educational approach, and enrollment process.",
+
     build:
+
       "Techuvo created structured program sections, responsive layouts, family-focused copy, and organized calls to action.",
+
     capabilities: [
+
       "Education website",
+
       "Program information",
+
       "Enrollment pathways",
+
       "Responsive layouts",
+
       "Family navigation",
+
       "Accessible content",
+
     ],
+
     color: "slate",
+
   },
+
   {
+
     id: "monroe-media-tv",
+
     fileNumber: "011",
+
     title: "Monroe Media TV",
+
     category: "Media",
+
     type: "Media Platform",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "#",
+
     status: "Archived",
+
     description:
+
       "A multi-page media experience designed to organize programming, company information, and digital content.",
+
     brief:
+
       "The media company needed a scalable digital home capable of supporting multiple content categories.",
+
     build:
+
       "Techuvo created reusable page sections, responsive media layouts, organized navigation, and expandable architecture.",
+
     capabilities: [
+
       "Multi-page architecture",
+
       "Media content structure",
+
       "Responsive development",
+
       "Reusable components",
+
       "Brand presentation",
+
       "Expandable pages",
+
     ],
+
     color: "indigo",
+
   },
+
   {
+
     id: "hubby-hub",
+
     fileNumber: "012",
+
     title: "Hubby Hub",
+
     category: "Publishing",
+
     type: "Author Website",
+
     year: "2026",
+
     location: "United States",
+
     websiteUrl: "#",
+
     status: "Archived",
+
     description:
+
       "A personality-driven author website built to introduce the brand and organize written content.",
+
     brief:
+
       "The author needed a recognizable digital presence that could present the project professionally without losing its personality.",
+
     build:
+
       "Techuvo created expressive styling, responsive layouts, clear content sections, and direct reader pathways.",
+
     capabilities: [
+
       "Author website",
+
       "Creative presentation",
+
       "Content organization",
+
       "Responsive development",
+
       "Reader engagement",
+
       "Custom styling",
+
     ],
+
     color: "cyan",
+
   },
+
 ];
+
+
 
 const categories = [
+
   "All",
+
   "Paving",
+
   "Food",
+
   "Fashion",
+
   "Creative Portfolio",
+
   "Music",
+
   "E-Commerce",
+
   "Healthcare",
+
   "Cleaning Services",
+
   "Care Services",
+
   "Education",
+
   "Media",
+
   "Publishing",
+
 ];
 
+
+
 const colorStyles = {
+
   blue: {
+
     folder: "from-blue-700 via-blue-600 to-blue-500",
+
     border: "border-blue-200",
+
     soft: "bg-blue-50",
+
     text: "text-blue-700",
+
   },
+
   sky: {
+
     folder: "from-sky-700 via-sky-600 to-cyan-500",
+
     border: "border-sky-200",
+
     soft: "bg-sky-50",
+
     text: "text-sky-700",
+
   },
+
   slate: {
+
     folder: "from-slate-900 via-slate-800 to-slate-700",
+
     border: "border-slate-300",
+
     soft: "bg-slate-100",
+
     text: "text-slate-700",
+
   },
+
   indigo: {
+
     folder: "from-indigo-800 via-indigo-700 to-blue-600",
+
     border: "border-indigo-200",
+
     soft: "bg-indigo-50",
+
     text: "text-indigo-700",
+
   },
+
   violet: {
+
     folder: "from-violet-800 via-violet-700 to-indigo-600",
+
     border: "border-violet-200",
+
     soft: "bg-violet-50",
+
     text: "text-violet-700",
+
   },
+
   cyan: {
+
     folder: "from-cyan-800 via-cyan-700 to-blue-600",
+
     border: "border-cyan-200",
+
     soft: "bg-cyan-50",
+
     text: "text-cyan-700",
+
   },
+
 };
 
+
+
 function getScreenshotUrl(project) {
+
   if (!project.websiteUrl || project.websiteUrl === "#") return null;
 
+
+
   return `https://image.thum.io/get/width/1400/crop/900/noanimate/${project.websiteUrl}`;
+
 }
+
+
 
 function ArrowIcon() {
+
   return (
+
     <svg
+
       aria-hidden="true"
+
       className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+
       fill="none"
+
       viewBox="0 0 20 20"
+
     >
+
       <path
+
         d="M4.5 10h11m-4.25-4.25L15.5 10l-4.25 4.25"
+
         stroke="currentColor"
+
         strokeLinecap="round"
+
         strokeLinejoin="round"
+
         strokeWidth="1.7"
+
       />
+
     </svg>
+
   );
+
 }
+
+
 
 function ExternalIcon() {
+
   return (
+
     <svg
+
       aria-hidden="true"
+
       className="h-4 w-4"
+
       fill="none"
+
       viewBox="0 0 20 20"
+
     >
+
       <path
+
         d="M11 4h5v5M9 11l7-7"
+
         stroke="currentColor"
+
         strokeLinecap="round"
+
         strokeLinejoin="round"
+
         strokeWidth="1.7"
+
       />
+
       <path
+
         d="M16 11v3.5A1.5 1.5 0 0 1 14.5 16h-9A1.5 1.5 0 0 1 4 14.5v-9A1.5 1.5 0 0 1 5.5 4H9"
+
         stroke="currentColor"
+
         strokeLinecap="round"
+
         strokeLinejoin="round"
+
         strokeWidth="1.7"
+
       />
+
     </svg>
+
   );
+
 }
+
+
 
 function CloseIcon() {
+
   return (
+
     <svg
+
       aria-hidden="true"
+
       className="h-5 w-5"
+
       fill="none"
+
       viewBox="0 0 20 20"
+
     >
+
       <path
+
         d="m5 5 10 10M15 5 5 15"
+
         stroke="currentColor"
+
         strokeLinecap="round"
+
         strokeWidth="1.7"
+
       />
+
     </svg>
+
   );
+
 }
+
+
 
 function BlueprintFallback({ project, compact = false }) {
+
   return (
+
     <div className="relative h-full min-h-full overflow-hidden bg-gradient-to-br from-blue-100 via-blue-50 to-white">
+
       <div
+
         aria-hidden="true"
+
         className="absolute inset-0 opacity-60"
+
         style={{
+
           backgroundImage:
+
             "linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px)",
+
           backgroundSize: compact ? "22px 22px" : "28px 28px",
+
         }}
+
       />
 
+
+
       <div className="absolute inset-4 border border-blue-200 bg-white/80 p-4 backdrop-blur-sm">
+
         <p className="text-[0.55rem] font-extrabold uppercase tracking-[0.16em] text-blue-700">
+
           {project.category}
+
         </p>
+
+
 
         <div className="mt-4 h-3 w-4/5 rounded-full bg-slate-950" />
+
         <div className="mt-2 h-3 w-1/2 rounded-full bg-slate-950" />
 
+
+
         <div className="mt-5 h-1.5 w-full rounded-full bg-slate-200" />
+
         <div className="mt-2 h-1.5 w-5/6 rounded-full bg-slate-200" />
 
+
+
         <div className="mt-5 grid grid-cols-2 gap-2">
+
           <span className="h-10 bg-blue-100" />
+
           <span className="h-10 bg-slate-100" />
+
           <span className="h-10 bg-slate-100" />
+
           <span className="h-10 bg-blue-100" />
+
         </div>
+
       </div>
+
     </div>
+
   );
+
 }
+
+
 
 function ProjectScreenshot({ project, compact = false }) {
+
   const [failed, setFailed] = useState(false);
 
+
+
   const isRyneWrites = project.id === "ryne-writes";
+
   const screenshotUrl = isRyneWrites
+
     ? ryneWritesPreview
+
     : getScreenshotUrl(project);
 
+
+
   if (!screenshotUrl || failed) {
+
     return <BlueprintFallback project={project} compact={compact} />;
+
   }
 
+
+
   return (
+
     <img
+
       src={screenshotUrl}
+
       alt={`${project.title} website preview`}
+
       loading="lazy"
+
       onError={() => setFailed(true)}
+
       className={`h-full w-full object-cover ${
+
         isRyneWrites ? "object-center" : "object-top"
+
       }`}
+
     />
+
   );
+
 }
+
+
 
 function ProjectFolder({ project, active, dimmed, onOpen }) {
+
   const styles = colorStyles[project.color];
 
+
+
   return (
+
     <button
+
       type="button"
+
       onClick={onOpen}
-      aria-expanded={active}
+
+      aria-expanded={project.websiteUrl && project.websiteUrl !== "#" ? undefined : active}
+
       className={`group relative block w-full pt-8 text-left outline-none transition duration-500 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4 ${
+
         dimmed ? "scale-[0.985] opacity-45" : "opacity-100"
+
       }`}
+
     >
+
       <div
+
         className={`relative mx-auto min-h-[19rem] w-full max-w-[36rem] transition duration-500 sm:min-h-[20rem] ${
+
           active ? "-translate-y-2" : "group-hover:-translate-y-2"
+
         }`}
+
       >
+
         <div
+
           className={`absolute left-[6%] right-[6%] top-0 h-[13.5rem] overflow-hidden border bg-white shadow-[0_14px_35px_rgba(15,23,42,0.12)] transition duration-500 sm:h-[14.25rem] ${styles.border} ${
+
             active
+
               ? "-translate-y-7 -rotate-1"
+
               : "translate-y-3 -rotate-1 group-hover:-translate-y-4"
+
           }`}
+
         >
+
           <div className="flex h-9 items-center justify-between border-b border-slate-200 bg-white/95 px-4">
+
             <span
+
               className={`text-[0.56rem] font-extrabold uppercase tracking-[0.17em] ${styles.text}`}
+
             >
+
               File {project.fileNumber}
+
             </span>
 
+
+
             <span className="h-1.5 w-14 rounded-full bg-slate-200" />
+
           </div>
+
+
 
           <div className="h-[calc(100%-2.25rem)]">
+
             <ProjectScreenshot project={project} compact />
+
           </div>
+
         </div>
+
+
 
         <div
+
           className={`absolute inset-x-0 bottom-0 min-h-[13.5rem] bg-gradient-to-br p-5 text-white shadow-[0_22px_65px_rgba(15,23,42,0.22)] transition duration-500 sm:min-h-[14rem] sm:p-6 ${styles.folder}`}
+
         >
+
           <div
+
             className={`absolute -top-7 left-0 h-8 w-[47%] bg-gradient-to-br ${styles.folder}`}
+
           />
 
+
+
           <div className="file-light absolute inset-x-0 top-0 h-px overflow-hidden bg-white/20">
+
             <span className="block h-full w-1/3 bg-white" />
+
           </div>
+
+
 
           <div className="flex min-h-[10.5rem] flex-col sm:min-h-[11rem]">
+
             <div className="flex items-start justify-between gap-3">
+
               <div className="min-w-0">
+
                 <p className="truncate text-[0.58rem] font-extrabold uppercase tracking-[0.17em] text-white/65">
+
                   {project.category}
+
                 </p>
+
+
 
                 <p className="mt-1 truncate text-xs font-bold text-white/70">
+
                   {project.type}
+
                 </p>
+
               </div>
 
+
+
               <span className="inline-flex shrink-0 items-center gap-2 border border-white/15 bg-white/10 px-2.5 py-1.5 text-[0.55rem] font-extrabold uppercase tracking-[0.11em]">
+
                 <span
+
                   className={`h-1.5 w-1.5 rounded-full ${
+
                     project.status === "Live"
+
                       ? "bg-emerald-300"
+
                       : "bg-blue-200"
+
                   }`}
+
                 />
+
                 {project.status}
+
               </span>
+
             </div>
+
+
 
             <div className="mt-auto pt-6">
+
               <h2 className="max-w-full text-[1.35rem] font-black leading-[1.05] tracking-[-0.045em] sm:text-2xl">
+
                 {project.title}
+
               </h2>
 
+
+
               <span className="mt-4 inline-flex items-center gap-2 text-xs font-extrabold">
-                {active ? "File selected" : "Open project"}
+
+                {project.websiteUrl && project.websiteUrl !== "#" ? "Visit live website ↗" : active ? "File selected" : "Open project"}
+
                 <ArrowIcon />
+
               </span>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </button>
+
   );
+
 }
 
+
+
 function BrowserPreview({ project }) {
+
   const live = project.websiteUrl && project.websiteUrl !== "#";
 
+
+
   return (
+
     <div className="overflow-hidden border border-blue-200 bg-white shadow-[0_24px_70px_rgba(15,23,42,0.12)]">
+
       <div className="flex h-10 items-center gap-3 border-b border-slate-200 bg-slate-50 px-3">
+
         <div className="flex gap-1.5">
+
           <span className="h-2 w-2 rounded-full bg-slate-300" />
+
           <span className="h-2 w-2 rounded-full bg-slate-300" />
+
           <span className="h-2 w-2 rounded-full bg-slate-300" />
+
         </div>
 
+
+
         <p className="min-w-0 flex-1 truncate text-center text-[0.58rem] font-bold text-slate-500">
+
           {live
+
             ? project.websiteUrl.replace("https://", "")
+
             : `${project.id}.techuvo.file`}
+
         </p>
+
       </div>
 
+
+
       <div className="relative h-[18rem] overflow-hidden sm:h-[22rem] lg:h-[26rem]">
+
         <ProjectScreenshot project={project} />
+
+
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/20 to-transparent" />
 
+
+
         <div className="blueprint-scan pointer-events-none absolute inset-x-0 top-0 h-px bg-blue-500 shadow-[0_0_16px_4px_rgba(37,99,235,0.3)]" />
+
       </div>
+
     </div>
+
   );
+
 }
 
+
+
 function OpenFile({ project, onClose }) {
+
   const styles = colorStyles[project.color];
+
   const live = project.websiteUrl && project.websiteUrl !== "#";
 
+
+
   return (
+
     <section className="open-file relative scroll-mt-28 overflow-hidden border-y border-blue-200 bg-blue-50/60">
+
       <div
+
         aria-hidden="true"
+
         className="absolute inset-0 opacity-55"
+
         style={{
+
           backgroundImage:
+
             "linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px)",
+
           backgroundSize: "32px 32px",
+
         }}
+
       />
 
+
+
       <div className="relative mx-auto max-w-[100rem] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14">
+
         <div className="flex items-start justify-between gap-5 border-b border-blue-200 pb-5">
+
           <div>
+
             <p className="text-[0.6rem] font-extrabold uppercase tracking-[0.18em] text-blue-700">
+
               Open file {project.fileNumber}
+
             </p>
+
+
 
             <h2 className="mt-2 max-w-4xl text-3xl font-black tracking-[-0.055em] text-slate-950 sm:text-4xl">
+
               {project.title}
+
             </h2>
+
           </div>
+
+
 
           <button
+
             type="button"
+
             onClick={onClose}
+
             aria-label="Close project file"
+
             className="grid h-10 w-10 shrink-0 place-items-center border border-slate-300 bg-white text-slate-950 transition hover:bg-slate-950 hover:text-white"
+
           >
+
             <CloseIcon />
+
           </button>
+
         </div>
 
+
+
         <div className="mt-7 grid gap-8 xl:grid-cols-[0.72fr_1.45fr_0.72fr] xl:items-start">
+
           <div>
+
             <p className="text-[0.6rem] font-extrabold uppercase tracking-[0.17em] text-slate-500">
+
               Project brief
+
             </p>
+
+
 
             <p className="mt-3 text-sm leading-7 text-slate-700">
+
               {project.brief}
+
             </p>
 
+
+
             <dl className="mt-6 border-t border-slate-300 pt-4">
+
               {[
+
                 ["Industry", project.category],
+
                 ["Location", project.location],
+
                 ["Type", project.type],
+
                 ["Status", project.status],
+
               ].map(([label, value]) => (
+
                 <div
+
                   key={label}
+
                   className="grid grid-cols-[5rem_1fr] gap-3 border-b border-slate-200 py-3"
+
                 >
+
                   <dt className="text-xs font-bold text-slate-400">
+
                     {label}
+
                   </dt>
+
                   <dd className="text-xs font-extrabold text-slate-800">
+
                     {value}
+
                   </dd>
+
                 </div>
+
               ))}
+
             </dl>
+
           </div>
+
+
 
           <BrowserPreview project={project} />
 
+
+
           <div>
+
             <p
+
               className={`text-[0.6rem] font-extrabold uppercase tracking-[0.17em] ${styles.text}`}
+
             >
+
               Techuvo build
+
             </p>
+
+
 
             <p className="mt-3 text-sm leading-7 text-slate-700">
+
               {project.build}
+
             </p>
 
+
+
             <div className="mt-6 border-t border-slate-300 pt-4">
+
               <p className="text-[0.6rem] font-extrabold uppercase tracking-[0.17em] text-slate-500">
+
                 Included
+
               </p>
 
+
+
               <div className="mt-4 space-y-2.5">
+
                 {project.capabilities.map((capability, index) => (
+
                   <div
+
                     key={capability}
+
                     className="grid grid-cols-[1.75rem_1fr] gap-2 border-b border-slate-200 pb-2.5"
+
                   >
+
                     <span
+
                       className={`text-[0.62rem] font-black ${styles.text}`}
+
                     >
+
                       {String(index + 1).padStart(2, "0")}
+
                     </span>
+
+
 
                     <span className="text-xs font-bold leading-5 text-slate-700">
+
                       {capability}
+
                     </span>
+
                   </div>
+
                 ))}
+
               </div>
+
             </div>
 
+
+
             <div className="mt-6 grid gap-2.5">
+
               {live ? (
+
                 <a
+
                   href={project.websiteUrl}
+
                   target="_blank"
+
                   rel="noopener noreferrer"
+
                   className="group inline-flex min-h-11 items-center justify-center gap-2 bg-blue-600 px-4 text-xs font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-blue-700"
+
                 >
+
                   Visit live website
+
                   <ExternalIcon />
+
                 </a>
+
               ) : (
+
                 <span className="inline-flex min-h-11 items-center justify-center border border-slate-300 bg-white px-4 text-center text-xs font-extrabold text-slate-500">
+
                   Public link unavailable
+
                 </span>
+
               )}
 
+
+
               <Link
+
                 to="/contact"
+
                 className="group inline-flex min-h-11 items-center justify-center gap-2 border border-slate-300 bg-white px-4 text-xs font-extrabold text-slate-950 transition hover:border-blue-300 hover:bg-blue-50"
+
               >
+
                 Build something similar
+
                 <ArrowIcon />
+
               </Link>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  );
+
+}
+
+
+
+function ReservedFile() {
+
+  return (
+
+    <Link
+
+      to="/contact"
+
+      className="group relative mt-8 flex min-h-[19rem] flex-col overflow-hidden border border-dashed border-blue-300 bg-blue-50/70 p-6 transition duration-500 hover:-translate-y-2 hover:border-blue-600 hover:shadow-[0_24px_65px_rgba(37,99,235,0.14)]"
+
+    >
+
+      <div
+
+        aria-hidden="true"
+
+        className="absolute inset-0 opacity-60"
+
+        style={{
+
+          backgroundImage:
+
+            "linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px)",
+
+          backgroundSize: "28px 28px",
+
+        }}
+
+      />
+
+
+
+      <div className="relative flex h-full flex-1 flex-col">
+
+        <div className="flex items-center justify-between">
+
+          <p className="text-[0.58rem] font-extrabold uppercase tracking-[0.18em] text-blue-700">
+
+            File 013
+
+          </p>
+
+
+
+          <span className="relative flex h-2.5 w-2.5">
+
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-40" />
+
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-600" />
+
+          </span>
+
+        </div>
+
+
+
+        <div className="my-auto py-6">
+
+          <p className="text-[0.58rem] font-extrabold uppercase tracking-[0.18em] text-slate-500">
+
+            Reserved
+
+          </p>
+
+
+
+          <h2 className="mt-3 text-3xl font-black tracking-[-0.055em] text-slate-950">
+
+            Your business belongs here.
+
+          </h2>
+
+
+
+          <p className="mt-4 text-sm leading-7 text-slate-600">
+
+            Start the next Techuvo project file.
+
+          </p>
+
+        </div>
+
+
+
+        <span className="inline-flex items-center gap-2 text-xs font-extrabold text-blue-700">
+
+          Create your file
+
+          <ArrowIcon />
+
+        </span>
+
+      </div>
+
+    </Link>
+
+  );
+
+}
+
+
+
+function RyneHeroPreview() {
+  return (
+    <a
+      href="https://rynewrites.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Explore Ryne Writes, a live website built by Techuvo (opens in a new tab)"
+      className="techuvo-ryne group relative block h-[245px] w-full overflow-hidden bg-[#24132b] text-[#fff5df] sm:h-[295px] lg:h-[320px] xl:h-[340px]"
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-40" style={{backgroundImage: "linear-gradient(rgba(255,192,158,.14) 1px, transparent 1px),linear-gradient(90deg,rgba(255,192,158,.14) 1px,transparent 1px)", backgroundSize: "18px 18px"}} />
+      <div className="absolute inset-x-0 top-0 z-20 flex items-start justify-between gap-3 p-4 sm:p-5">
+        <div className="min-w-0">
+          <p className="text-[9px] font-black uppercase tracking-[.16em] text-[#ffd166] sm:text-[10px]">Featured client project</p>
+          <h3 className="mt-1 text-2xl font-black tracking-[-.05em] sm:text-3xl">Ryne Writes<span className="text-[#ff907f]">.</span></h3>
+          <p className="mt-1 hidden text-xs font-semibold text-[#d8bfae] sm:block">Interactive portfolio experience</p>
+        </div>
+        <div className="shrink-0 border-2 border-[#ffc09e] bg-[#8f2436] px-2 py-2 text-[9px] font-black uppercase tracking-wider shadow-[3px_3px_0_#100a12]">LIVE SITE ↗</div>
+      </div>
+      <motion.div
+        className="ryne-sprite-position pointer-events-none absolute inset-x-0 top-[30px] z-10 flex justify-center sm:top-[42px] lg:top-[47px]"
+        animate={{ y: [0, -7, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="ryne-sprite-scale">
+          <div className="pixel-avatar-wrapper">
+            <div className="pixel-avatar character-mario outfit-plumber">
+              <div className="avatar-shadow" />
+              <div className="avatar-character">
+                <div className="avatar-head">
+                  <div className="avatar-cap"><span className="avatar-cap-badge">M</span></div>
+                  <div className="avatar-ear avatar-ear-left" /><div className="avatar-ear avatar-ear-right" />
+                  <div className="avatar-face">
+                    <span className="avatar-eye avatar-eye-left" /><span className="avatar-eye avatar-eye-right" />
+                    <span className="avatar-nose" /><span className="avatar-mustache avatar-mustache-left" /><span className="avatar-mustache avatar-mustache-right" />
+                  </div>
+                </div>
+                <div className="avatar-neck" />
+                <div className="avatar-body">
+                  <div className="avatar-shirt" />
+                  <div className="avatar-overalls"><span className="overall-strap overall-strap-left" /><span className="overall-strap overall-strap-right" /><span className="overall-button overall-button-left" /><span className="overall-button overall-button-right" /><span className="overall-pocket" /></div>
+                  <div className="avatar-arm avatar-arm-left" /><div className="avatar-arm avatar-arm-right" />
+                </div>
+                <div className="avatar-hands"><span className="avatar-hand avatar-hand-left" /><span className="avatar-hand avatar-hand-right" /></div>
+                <div className="avatar-legs"><div className="avatar-leg avatar-leg-left" /><div className="avatar-leg avatar-leg-right" /></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+      <div className="absolute bottom-3 left-1/2 z-20 flex w-[calc(100%-28px)] -translate-x-1/2 items-center justify-center gap-2 border-[3px] border-[#100a12] bg-[#ffd166] px-3 py-3 text-center text-[11px] font-black uppercase tracking-[.08em] text-[#100a12] shadow-[4px_4px_0_#8f2436] transition-transform duration-200 group-hover:-translate-y-1 sm:bottom-5 sm:w-auto sm:px-6 sm:text-xs">
+        Click to explore a website we built <span aria-hidden="true">↗</span>
+      </div>
+      <style>{`.techuvo-ryne .pixel-avatar-wrapper{
+  display: grid;
+  justify-items: center;
+}
+.techuvo-ryne .pixel-avatar{
+  position: relative;
+  width: 220px;
+  height: 330px;
+  image-rendering: pixelated;
+}
+.techuvo-ryne .avatar-character{
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  width: 140px;
+  height: 260px;
+  transform: translateX(-50%);
+}
+.techuvo-ryne .avatar-shadow{
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  width: 150px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.42);
+  transform: translateX(-50%);
+  clip-path: polygon(
+    10% 25%,
+    90% 25%,
+    100% 75%,
+    85% 100%,
+    15% 100%,
+    0 75%
+  );
+}
+.techuvo-ryne .avatar-head{
+  position: absolute;
+  top: 22px;
+  left: 29px;
+  z-index: 4;
+  width: 82px;
+  height: 78px;
+  border: 7px solid #130a10;
+  background: #b96d47;
+  box-shadow:
+    inset 0 -12px 0 rgba(74, 28, 23, 0.15),
+    7px 7px 0 rgba(0, 0, 0, 0.19);
+}
+.techuvo-ryne .avatar-face{
+  position: absolute;
+  inset: 0;
+}
+.techuvo-ryne .avatar-eye{
+  position: absolute;
+  top: 31px;
+  width: 8px;
+  height: 12px;
+  background: #160b10;
+}
+.techuvo-ryne .avatar-eye-left{
+  left: 18px;
+}
+.techuvo-ryne .avatar-eye-right{
+  right: 18px;
+}
+.techuvo-ryne .avatar-ear{
+  position: absolute;
+  top: 27px;
+  width: 10px;
+  height: 25px;
+  background: #b96d47;
+}
+.techuvo-ryne .avatar-ear-left{
+  left: -17px;
+}
+.techuvo-ryne .avatar-ear-right{
+  right: -17px;
+}
+.techuvo-ryne .avatar-neck{
+  position: absolute;
+  top: 93px;
+  left: 58px;
+  z-index: 3;
+  width: 25px;
+  height: 26px;
+  background: #a85d3b;
+}
+.techuvo-ryne .avatar-body{
+  position: absolute;
+  top: 110px;
+  left: 20px;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+}
+.techuvo-ryne .avatar-shirt{
+  position: absolute;
+  inset: 0 10px;
+  border: 7px solid #130a10;
+  background: #f5ecdb;
+}
+.techuvo-ryne .avatar-arm{
+  position: absolute;
+  top: 13px;
+  width: 22px;
+  height: 78px;
+  border: 6px solid #130a10;
+  background: #b96d47;
+}
+.techuvo-ryne .avatar-arm-left{
+  left: -8px;
+}
+.techuvo-ryne .avatar-arm-right{
+  right: -8px;
+}
+.techuvo-ryne .avatar-legs{
+  position: absolute;
+  top: 202px;
+  left: 37px;
+  z-index: 1;
+  display: flex;
+  gap: 4px;
+}
+.techuvo-ryne .avatar-leg{
+  width: 31px;
+  height: 55px;
+  border: 6px solid #130a10;
+  background: #6f3347;
+}
+.techuvo-ryne .avatar-leg::after{
+  position: absolute;
+  bottom: -17px;
+  width: 34px;
+  height: 15px;
+  content: "";
+  border: 5px solid #130a10;
+  background: #2c1b26;
+}
+.techuvo-ryne .avatar-leg-left::after{
+  left: -6px;
+}
+.techuvo-ryne .avatar-leg-right::after{
+  right: -6px;
+}
+.techuvo-ryne .avatar-head{
+  overflow: visible;
+  background: #d58a5d;
+}
+.techuvo-ryne .avatar-cap{
+  position: absolute;
+  top: -28px;
+  left: -8px;
+  z-index: 12;
+  width: 98px;
+  height: 43px;
+  border: 6px solid #130a10;
+  border-bottom-width: 4px;
+  background: #d83d3d;
+  box-shadow: inset 0 -10px 0 rgba(0, 0, 0, 0.16);
+  clip-path: polygon(12% 0, 78% 0, 100% 45%, 96% 76%, 73% 76%, 68% 100%, 18% 100%, 15% 73%, 0 73%, 0 38%);
+}
+.techuvo-ryne .avatar-cap-badge{
+  position: absolute;
+  top: 7px;
+  left: 42px;
+  display: grid;
+  width: 28px;
+  height: 25px;
+  border: 4px solid #130a10;
+  font-family: "Press Start 2P", monospace;
+  font-size: 10px;
+  color: #130a10;
+  background: #fff5df;
+  place-items: center;
+}
+.techuvo-ryne .avatar-face{
+  z-index: 6;
+}
+.techuvo-ryne .avatar-nose{
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  z-index: 8;
+  width: 22px;
+  height: 17px;
+  border: 4px solid #130a10;
+  background: #e39a6b;
+  transform: translateX(-50%);
+}
+.techuvo-ryne .avatar-mustache{
+  position: absolute;
+  bottom: 8px;
+  z-index: 7;
+  width: 27px;
+  height: 13px;
+  background: #27130f;
+}
+.techuvo-ryne .avatar-mustache-left{
+  left: 15px;
+  clip-path: polygon(0 35%, 40% 0, 100% 30%, 88% 100%, 20% 85%);
+}
+.techuvo-ryne .avatar-mustache-right{
+  right: 15px;
+  clip-path: polygon(100% 35%, 60% 0, 0 30%, 12% 100%, 80% 85%);
+}
+.techuvo-ryne .avatar-shirt{
+  inset: 0;
+  border: 7px solid #130a10;
+  background: #d83d3d;
+}
+.techuvo-ryne .avatar-overalls{
+  position: absolute;
+  inset: 24px 14px 0;
+  z-index: 3;
+  border: 5px solid #130a10;
+  background: #326fc2;
+}
+.techuvo-ryne .overall-strap{
+  position: absolute;
+  top: -28px;
+  width: 14px;
+  height: 43px;
+  border: 4px solid #130a10;
+  background: #326fc2;
+}
+.techuvo-ryne .overall-strap-left{ left: 8px; }
+.techuvo-ryne .overall-strap-right{ right: 8px; }
+.techuvo-ryne .overall-button{
+  position: absolute;
+  top: 8px;
+  width: 9px;
+  height: 9px;
+  background: var(--gold);
+}
+.techuvo-ryne .overall-button-left{ left: 12px; }
+.techuvo-ryne .overall-button-right{ right: 12px; }
+.techuvo-ryne .overall-pocket{
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  width: 30px;
+  height: 22px;
+  border: 4px solid #130a10;
+  transform: translateX(-50%);
+}
+.techuvo-ryne .avatar-hands{
+  position: absolute;
+  top: 180px;
+  left: 1px;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  width: 138px;
+}
+.techuvo-ryne .avatar-hand{
+  width: 25px;
+  height: 24px;
+  border: 5px solid #130a10;
+  background: #fff5df;
+}
+.techuvo-ryne .ryne-sprite-scale {width:220px;height:330px;transform:scale(.57);transform-origin:top center}
+@media(min-width:640px){.techuvo-ryne .ryne-sprite-scale {transform:scale(.72)}}
+@media(min-width:1024px){.techuvo-ryne .ryne-sprite-scale {transform:scale(.79)}}
+.techuvo-ryne .avatar-cap-badge {font-family: monospace}
+@media(prefers-reduced-motion:reduce){.techuvo-ryne .ryne-sprite-scale{animation:none}}
+`}</style>
+    </a>
+  );
+}
+
+
+function XoxoHeroPreview() {
+  return (
+    <a
+      href="https://xoxoresells.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Explore XOXO Resells website in a new tab"
+      className="group relative block h-[245px] w-full overflow-hidden bg-[#ffdfeb] text-[#51283e] sm:h-[295px] lg:h-[320px] xl:h-[340px]"
+    >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-50" style={{ backgroundImage: "linear-gradient(#e9a5bf 1px,transparent 1px),linear-gradient(90deg,#e9a5bf 1px,transparent 1px)", backgroundSize: "22px 22px" }} />
+      <div className="absolute inset-x-0 top-0 z-20 flex items-start justify-between gap-2 p-4 sm:p-5">
+        <div className="min-w-0">
+          <p className="text-[9px] font-black uppercase tracking-[.16em] text-[#ac4a78] sm:text-[10px]">Featured client project</p>
+          <h3 className="mt-1 text-2xl font-black tracking-[-.05em] sm:text-3xl">XOXO Resells<span className="text-[#e5619b]">.</span></h3>
+          <p className="mt-1 hidden text-xs font-semibold text-[#85546b] sm:block">Curated resale shopping experience</p>
+        </div>
+        <span className="shrink-0 border-2 border-[#51283e] bg-[#f8a8c6] px-2 py-2 text-[9px] font-black uppercase tracking-wider shadow-[3px_3px_0_#51283e]">LIVE SITE ↗</span>
+      </div>
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-[53px] z-10 flex justify-center sm:top-[65px]"
+        animate={{ y: [0, -7, 0], rotate: [-1, 1, -1] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <svg viewBox="0 0 220 235" className="h-[175px] w-[170px] drop-shadow-[7px_8px_0_#a75580] sm:h-[215px] sm:w-[210px]" shapeRendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
+          {/* Ears, face and body are deliberately built as crisp-edged pixel-art shapes. */}
+          <path d="M35 94 V24 H57 L82 47 H139 L164 24 H186 V94" fill="#fffafc" stroke="#372433" strokeWidth="8" strokeLinejoin="miter" />
+          <path d="M38 65 H182 V151 H165 V166 H55 V151 H38 Z" fill="#fffafc" stroke="#372433" strokeWidth="8" strokeLinejoin="miter" />
+          <path d="M151 38 H166 V23 H183 V37 H198 V57 H184 V71 H166 V57 H151 Z" fill="#f16b9a" stroke="#372433" strokeWidth="5" />
+          <rect x="168" y="40" width="13" height="13" fill="#ffe79c" stroke="#372433" strokeWidth="3" />
+          <rect x="69" y="99" width="10" height="17" fill="#372433" />
+          <rect x="143" y="99" width="10" height="17" fill="#372433" />
+          <rect x="105" y="118" width="16" height="10" fill="#f1bd55" stroke="#372433" strokeWidth="2" />
+          <path d="M46 113 H15 M46 125 H12 M46 137 H18 M174 113 H205 M174 125 H208 M174 137 H202" fill="none" stroke="#372433" strokeWidth="5" />
+          <path d="M72 167 H148 V214 H72 Z" fill="#ed93b3" stroke="#372433" strokeWidth="8" />
+          <path d="M70 179 H47 V205 H70 M150 179 H173 V205 H150" fill="#fffafc" stroke="#372433" strokeWidth="7" />
+          <path d="M91 208 V229 H70 V216 M129 208 V229 H150 V216" fill="#fffafc" stroke="#372433" strokeWidth="7" />
+          <rect x="102" y="178" width="16" height="17" fill="#fffafc" stroke="#372433" strokeWidth="4" />
+        </svg>
+      </motion.div>
+      <div className="absolute bottom-3 left-1/2 z-20 flex w-[calc(100%-28px)] -translate-x-1/2 items-center justify-center gap-2 border-[3px] border-[#51283e] bg-[#fff3b9] px-3 py-3 text-center text-[11px] font-black uppercase tracking-[.08em] text-[#51283e] shadow-[4px_4px_0_#d46b98] transition-transform duration-200 group-hover:-translate-y-1 sm:bottom-5 sm:w-auto sm:px-6 sm:text-xs">
+        Explore the XOXO website <span aria-hidden="true">↗</span>
+      </div>
+    </a>
+  );
+}
+
+function Portfolio() {
+
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const [activeProjectId, setActiveProjectId] = useState(null);
+
+
+
+  const filteredProjects = useMemo(() => {
+
+    if (activeCategory === "All") return projects;
+
+
+
+    return projects.filter(
+
+      (project) => project.category === activeCategory,
+
+    );
+
+  }, [activeCategory]);
+
+
+
+  const activeProject = projects.find(
+
+    (project) => project.id === activeProjectId,
+
+  );
+
+
+
+  useEffect(() => {
+
+    const previousTitle = document.title;
+
+    document.title = "Techuvo File Room | Website Design Portfolio";
+
+
+
+    const description =
+
+      "Explore the Techuvo File Room, featuring responsive websites and digital projects created for paving, food, fashion, music, retail, healthcare, education, media, and service businesses.";
+
+
+
+    let metaDescription = document.querySelector(
+
+      'meta[name="description"]',
+
+    );
+
+
+
+    const createdDescription = !metaDescription;
+
+
+
+    if (!metaDescription) {
+
+      metaDescription = document.createElement("meta");
+
+      metaDescription.setAttribute("name", "description");
+
+      document.head.appendChild(metaDescription);
+
+    }
+
+
+
+    const previousDescription = metaDescription.getAttribute("content");
+
+    metaDescription.setAttribute("content", description);
+
+
+
+    let canonical = document.querySelector('link[rel="canonical"]');
+
+    const createdCanonical = !canonical;
+
+
+
+    if (!canonical) {
+
+      canonical = document.createElement("link");
+
+      canonical.setAttribute("rel", "canonical");
+
+      document.head.appendChild(canonical);
+
+    }
+
+
+
+    const previousCanonical = canonical.getAttribute("href");
+
+    canonical.setAttribute("href", "https://techuvo.dev/portfolio");
+
+
+
+    return () => {
+
+      document.title = previousTitle;
+
+
+
+      if (createdDescription) {
+
+        metaDescription.remove();
+
+      } else if (previousDescription !== null) {
+
+        metaDescription.setAttribute("content", previousDescription);
+
+      } else {
+
+        metaDescription.removeAttribute("content");
+
+      }
+
+
+
+      if (createdCanonical) {
+
+        canonical.remove();
+
+      } else if (previousCanonical !== null) {
+
+        canonical.setAttribute("href", previousCanonical);
+
+      } else {
+
+        canonical.removeAttribute("href");
+
+      }
+
+    };
+
+  }, []);
+
+
+
+  useEffect(() => {
+
+    if (!activeProjectId) return undefined;
+
+
+
+    const timeout = window.setTimeout(() => {
+
+      document.getElementById("open-file")?.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start",
+
+      });
+
+    }, 120);
+
+
+
+    return () => window.clearTimeout(timeout);
+
+  }, [activeProjectId]);
+
+
+
+  return (
+
+    <main className="overflow-hidden bg-white">
+
+      <section className="relative border-b border-blue-200 bg-blue-50/45">
+
+        <div
+
+          aria-hidden="true"
+
+          className="absolute inset-0 opacity-65"
+
+          style={{
+
+            backgroundImage:
+
+              "linear-gradient(rgba(37,99,235,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.055) 1px, transparent 1px)",
+
+            backgroundSize: "38px 38px",
+
+          }}
+
+        />
+
+
+
+        <div className="file-room-scan pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-blue-500 shadow-[0_0_28px_7px_rgba(37,99,235,0.26)]" />
+
+
+
+        <div className="relative mx-auto max-w-[100rem] px-5 pb-9 pt-12 sm:px-8 sm:pb-11 sm:pt-14 lg:px-12 lg:pb-12 lg:pt-16">
+
+          <div className="grid gap-7 lg:grid-cols-[1fr_0.72fr] lg:items-end">
+
+            <div>
+
+              <div className="flex items-center gap-3">
+
+                <span className="h-px w-9 bg-blue-600" />
+
+
+
+                <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-blue-700">
+
+                  Archive online
+
+                </p>
+
+              </div>
+
+
+
+              <h1 className="mt-5 max-w-[11ch] text-5xl font-black leading-[0.91] tracking-[-0.07em] text-slate-950 sm:text-6xl lg:text-7xl">
+
+                The Techuvo File Room.
+
+              </h1>
+
+            </div>
+
+
+
+            <div>
+
+              <p className="max-w-xl text-lg font-bold leading-8 tracking-[-0.02em] text-slate-900">
+
+                Open the project files behind businesses we helped strengthen
+
+                online.
+
+              </p>
+
+
+
+              <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600">
+
+                Select a folder to see the problem, the build, and the finished
+
+                digital blueprint.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <div className="mt-8 grid grid-cols-2 gap-px border border-blue-200 bg-blue-200 sm:grid-cols-4">
+
+            {[
+
+              ["12", "Projects"],
+
+              ["12", "Industries"],
+
+              ["10", "Live"],
+
+              ["01", "Reserved"],
+
+            ].map(([value, label]) => (
+
+              <div key={label} className="bg-white/85 px-4 py-3.5">
+
+                <p className="text-2xl font-black tracking-[-0.05em] text-slate-950">
+
+                  {value}
+
+                </p>
+
+
+
+                <p className="mt-1 text-[0.55rem] font-extrabold uppercase tracking-[0.15em] text-slate-500">
+
+                  {label}
+
+                </p>
+
+              </div>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      {/* Two interactive featured websites; original file index remains below. */}
+    <section aria-labelledby="featured-projects-title" className="relative border-b border-blue-200 bg-[#f4f8ff] py-10 sm:py-14">
+      <div className="mx-auto max-w-[100rem] px-5 sm:px-8 lg:px-12">
+        <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-blue-700">Selected work</p>
+        <h2 id="featured-projects-title" className="mt-2 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl">Featured projects.</h2>
+        <div className="mt-7 grid gap-6 md:grid-cols-2">
+          <div className="min-w-0 overflow-hidden border-[3px] border-slate-950 bg-[#aeecef] p-2.5 shadow-[7px_8px_0_#0f172a] sm:p-3">
+            <div className="overflow-hidden border-[3px] border-slate-950 bg-white">
+              <div className="flex items-center justify-between border-b-[3px] border-slate-950 px-3 py-2.5">
+                <div className="flex gap-1.5"><span className="h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#ff8c75]"/><span className="h-2.5 w-2.5 rounded-full border border-slate-950 bg-yellow-300"/><span className="h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#6ee7b7]"/></div>
+                <span className="text-[9px] font-black uppercase tracking-[0.12em] text-slate-500">techuvo.dev / 004</span>
+              </div>
+              <RyneHeroPreview />
+            </div>
+          </div>
+          <div className="min-w-0 overflow-hidden border-[3px] border-slate-950 bg-[#ffc8de] p-2.5 shadow-[7px_8px_0_#0f172a] sm:p-3">
+            <div className="overflow-hidden border-[3px] border-slate-950 bg-white">
+              <div className="flex items-center justify-between border-b-[3px] border-slate-950 px-3 py-2.5">
+                <div className="flex gap-1.5"><span className="h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#ff8c75]"/><span className="h-2.5 w-2.5 rounded-full border border-slate-950 bg-yellow-300"/><span className="h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#6ee7b7]"/></div>
+                <span className="text-[9px] font-black uppercase tracking-[0.12em] text-slate-500">techuvo.dev / 006</span>
+              </div>
+              <XoxoHeroPreview />
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
-}
 
-function ReservedFile() {
-  return (
-    <Link
-      to="/contact"
-      className="group relative mt-8 flex min-h-[19rem] flex-col overflow-hidden border border-dashed border-blue-300 bg-blue-50/70 p-6 transition duration-500 hover:-translate-y-2 hover:border-blue-600 hover:shadow-[0_24px_65px_rgba(37,99,235,0.14)]"
-    >
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 opacity-60"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
+    <section className="relative py-10 sm:py-12 lg:py-14">
 
-      <div className="relative flex h-full flex-1 flex-col">
-        <div className="flex items-center justify-between">
-          <p className="text-[0.58rem] font-extrabold uppercase tracking-[0.18em] text-blue-700">
-            File 013
-          </p>
-
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-40" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-600" />
-          </span>
-        </div>
-
-        <div className="my-auto py-6">
-          <p className="text-[0.58rem] font-extrabold uppercase tracking-[0.18em] text-slate-500">
-            Reserved
-          </p>
-
-          <h2 className="mt-3 text-3xl font-black tracking-[-0.055em] text-slate-950">
-            Your business belongs here.
-          </h2>
-
-          <p className="mt-4 text-sm leading-7 text-slate-600">
-            Start the next Techuvo project file.
-          </p>
-        </div>
-
-        <span className="inline-flex items-center gap-2 text-xs font-extrabold text-blue-700">
-          Create your file
-          <ArrowIcon />
-        </span>
-      </div>
-    </Link>
-  );
-}
-
-function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [activeProjectId, setActiveProjectId] = useState(null);
-
-  const filteredProjects = useMemo(() => {
-    if (activeCategory === "All") return projects;
-
-    return projects.filter(
-      (project) => project.category === activeCategory,
-    );
-  }, [activeCategory]);
-
-  const activeProject = projects.find(
-    (project) => project.id === activeProjectId,
-  );
-
-  useEffect(() => {
-    const previousTitle = document.title;
-    document.title = "Techuvo File Room | Website Design Portfolio";
-
-    const description =
-      "Explore the Techuvo File Room, featuring responsive websites and digital projects created for paving, food, fashion, music, retail, healthcare, education, media, and service businesses.";
-
-    let metaDescription = document.querySelector(
-      'meta[name="description"]',
-    );
-
-    const createdDescription = !metaDescription;
-
-    if (!metaDescription) {
-      metaDescription = document.createElement("meta");
-      metaDescription.setAttribute("name", "description");
-      document.head.appendChild(metaDescription);
-    }
-
-    const previousDescription = metaDescription.getAttribute("content");
-    metaDescription.setAttribute("content", description);
-
-    let canonical = document.querySelector('link[rel="canonical"]');
-    const createdCanonical = !canonical;
-
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.setAttribute("rel", "canonical");
-      document.head.appendChild(canonical);
-    }
-
-    const previousCanonical = canonical.getAttribute("href");
-    canonical.setAttribute("href", "https://techuvo.dev/portfolio");
-
-    return () => {
-      document.title = previousTitle;
-
-      if (createdDescription) {
-        metaDescription.remove();
-      } else if (previousDescription !== null) {
-        metaDescription.setAttribute("content", previousDescription);
-      } else {
-        metaDescription.removeAttribute("content");
-      }
-
-      if (createdCanonical) {
-        canonical.remove();
-      } else if (previousCanonical !== null) {
-        canonical.setAttribute("href", previousCanonical);
-      } else {
-        canonical.removeAttribute("href");
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!activeProjectId) return undefined;
-
-    const timeout = window.setTimeout(() => {
-      document.getElementById("open-file")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 120);
-
-    return () => window.clearTimeout(timeout);
-  }, [activeProjectId]);
-
-  return (
-    <main className="overflow-hidden bg-white">
-      <section className="relative border-b border-blue-200 bg-blue-50/45">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 opacity-65"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(37,99,235,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.055) 1px, transparent 1px)",
-            backgroundSize: "38px 38px",
-          }}
-        />
-
-        <div className="file-room-scan pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-blue-500 shadow-[0_0_28px_7px_rgba(37,99,235,0.26)]" />
-
-        <div className="relative mx-auto max-w-[100rem] px-5 pb-9 pt-12 sm:px-8 sm:pb-11 sm:pt-14 lg:px-12 lg:pb-12 lg:pt-16">
-          <div className="grid gap-7 lg:grid-cols-[1fr_0.72fr] lg:items-end">
-            <div>
-              <div className="flex items-center gap-3">
-                <span className="h-px w-9 bg-blue-600" />
-
-                <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-blue-700">
-                  Archive online
-                </p>
-              </div>
-
-              <h1 className="mt-5 max-w-[11ch] text-5xl font-black leading-[0.91] tracking-[-0.07em] text-slate-950 sm:text-6xl lg:text-7xl">
-                The Techuvo File Room.
-              </h1>
-            </div>
-
-            <div>
-              <p className="max-w-xl text-lg font-bold leading-8 tracking-[-0.02em] text-slate-900">
-                Open the project files behind businesses we helped strengthen
-                online.
-              </p>
-
-              <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600">
-                Select a folder to see the problem, the build, and the finished
-                digital blueprint.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-8 grid grid-cols-2 gap-px border border-blue-200 bg-blue-200 sm:grid-cols-4">
-            {[
-              ["12", "Projects"],
-              ["12", "Industries"],
-              ["10", "Live"],
-              ["01", "Reserved"],
-            ].map(([value, label]) => (
-              <div key={label} className="bg-white/85 px-4 py-3.5">
-                <p className="text-2xl font-black tracking-[-0.05em] text-slate-950">
-                  {value}
-                </p>
-
-                <p className="mt-1 text-[0.55rem] font-extrabold uppercase tracking-[0.15em] text-slate-500">
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="relative py-10 sm:py-12 lg:py-14">
         <div className="mx-auto max-w-[100rem] px-5 sm:px-8 lg:px-12">
+
           <div className="grid gap-5 border-b border-slate-200 pb-5 lg:grid-cols-[1fr_auto] lg:items-end">
+
             <div>
+
               <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-blue-700">
+
                 Project index
+
               </p>
+
+
 
               <h2 className="mt-2 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl">
+
                 Select a file.
+
               </h2>
+
             </div>
+
+
 
             <div
+
               role="tablist"
+
               aria-label="Portfolio categories"
+
               className="flex gap-2 overflow-x-auto pb-1"
+
             >
+
               {categories.map((category) => {
+
                 const active = activeCategory === category;
 
+
+
                 return (
+
                   <button
+
                     key={category}
+
                     type="button"
+
                     role="tab"
+
                     aria-selected={active}
+
                     onClick={() => {
+
                       setActiveCategory(category);
+
                       setActiveProjectId(null);
+
                     }}
+
                     className={`shrink-0 border px-3.5 py-2 text-[0.6rem] font-extrabold uppercase tracking-[0.11em] transition ${
+
                       active
+
                         ? "border-blue-600 bg-blue-600 text-white"
+
                         : "border-slate-200 bg-white text-slate-500 hover:border-blue-300 hover:text-blue-700"
+
                     }`}
+
                   >
+
                     {category}
+
                   </button>
+
                 );
+
               })}
+
             </div>
+
           </div>
+
+
 
           <div className="mt-5 grid items-stretch gap-x-6 gap-y-8 md:grid-cols-2 xl:grid-cols-3">
+
             {filteredProjects.map((project) => (
+
               <ProjectFolder
+
                 key={project.id}
+
                 project={project}
+
                 active={activeProjectId === project.id}
+
                 dimmed={
+
                   Boolean(activeProjectId) && activeProjectId !== project.id
+
                 }
-                onOpen={() => setActiveProjectId(project.id)}
+
+                onOpen={() => {
+                if (project.websiteUrl && project.websiteUrl !== "#") {
+                  window.open(project.websiteUrl, "_blank", "noopener,noreferrer");
+                } else {
+                  setActiveProjectId(project.id);
+                }
+              }}
+
               />
+
             ))}
 
+
+
             {activeCategory === "All" && <ReservedFile />}
+
           </div>
+
         </div>
+
       </section>
+
+
 
       {activeProject && (
+
         <div id="open-file">
+
           <OpenFile
+
             project={activeProject}
+
             onClose={() => setActiveProjectId(null)}
+
           />
+
         </div>
+
       )}
 
+
+
       <section className="relative overflow-hidden bg-slate-950 text-white">
+
         <div
+
           aria-hidden="true"
+
           className="absolute inset-0 opacity-20"
+
           style={{
+
             backgroundImage:
+
               "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+
             backgroundSize: "42px 42px",
+
           }}
+
         />
 
+
+
         <div className="relative mx-auto grid max-w-[100rem] gap-7 px-5 py-12 sm:px-8 sm:py-14 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12">
+
           <div>
+
             <p className="text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-blue-300">
+
               File 013
+
             </p>
 
+
+
             <h2 className="mt-3 max-w-3xl text-4xl font-black tracking-[-0.06em] sm:text-5xl">
+
               Reserve the next file for your business.
+
             </h2>
+
           </div>
+
+
 
           <div className="grid gap-2.5">
-            <Link
-              to="/contact"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 bg-white px-6 text-xs font-extrabold text-blue-700 transition hover:-translate-y-0.5 hover:bg-blue-50"
-            >
-              Start your project
-              <ArrowIcon />
-            </Link>
 
             <Link
-              to="/pricing"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 border border-white/20 bg-white/5 px-6 text-xs font-extrabold text-white transition hover:bg-white/10"
+
+              to="/contact"
+
+              className="group inline-flex min-h-12 items-center justify-center gap-2 bg-white px-6 text-xs font-extrabold text-blue-700 transition hover:-translate-y-0.5 hover:bg-blue-50"
+
             >
-              Review pricing
+
+              Start your project
+
               <ArrowIcon />
+
             </Link>
+
+
+
+            <Link
+
+              to="/pricing"
+
+              className="group inline-flex min-h-12 items-center justify-center gap-2 border border-white/20 bg-white/5 px-6 text-xs font-extrabold text-white transition hover:bg-white/10"
+
+            >
+
+              Review pricing
+
+              <ArrowIcon />
+
+            </Link>
+
           </div>
+
         </div>
+
       </section>
 
+
+
       <style>
+
         {`
+
           @keyframes scanRoom {
+
             0% { top: 0%; opacity: 0; }
+
             10% { opacity: 1; }
+
             90% { opacity: 1; }
+
             100% { top: 100%; opacity: 0; }
+
           }
+
+
 
           @keyframes scanBlueprint {
+
             0% { top: 0%; opacity: 0; }
+
             12% { opacity: 1; }
+
             88% { opacity: 1; }
+
             100% { top: 100%; opacity: 0; }
+
           }
+
+
 
           @keyframes openFile {
+
             from { opacity: 0; transform: translateY(24px); }
+
             to { opacity: 1; transform: translateY(0); }
+
           }
+
+
 
           @keyframes moveFileLight {
+
             from { transform: translateX(-140%); }
+
             to { transform: translateX(430%); }
+
           }
+
+
 
           .file-room-scan {
+
             animation: scanRoom 1.4s ease-in-out forwards;
+
           }
+
+
 
           .blueprint-scan {
+
             animation: scanBlueprint 4.6s ease-in-out infinite;
+
           }
+
+
 
           .open-file {
+
             animation: openFile 0.55s ease-out both;
+
           }
+
+
 
           .file-light span {
+
             animation: moveFileLight 3.2s ease-in-out infinite;
+
           }
+
+
 
           @media (max-width: 639px) {
+
             .file-room-scan,
+
             .blueprint-scan {
+
               opacity: 0.65;
+
             }
+
           }
 
+
+
           @media (prefers-reduced-motion: reduce) {
+
             .file-room-scan,
+
             .blueprint-scan,
+
             .open-file,
+
             .file-light span {
+
               animation: none;
+
             }
+
           }
+
         `}
+
       </style>
+
     </main>
+
   );
+
 }
+
+
 
 export default Portfolio;
