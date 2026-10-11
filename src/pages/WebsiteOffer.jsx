@@ -1541,6 +1541,24 @@ function RyneHeroPreview() {
 }
 
 function WebsiteOffer() {
+  // Google Ads base tag for this landing page (conversion label configured separately).
+  useEffect(() => {
+    const tagId = "AW-18498766162";
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== "function") {
+      window.gtag = function gtag() { window.dataLayer.push(arguments); };
+    }
+    if (!document.querySelector(`script[data-techuvo-google-tag="${tagId}"]`) &&
+        !document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${tagId}"]`)) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${tagId}`;
+      script.dataset.techuvoGoogleTag = tagId;
+      document.head.appendChild(script);
+    }
+    window.gtag("js", new Date());
+    window.gtag("config", tagId);
+  }, []);
   // Scroll to linked sections after React renders this route (including direct visits).
   useEffect(() => {
     const jumpToHash = () => {
