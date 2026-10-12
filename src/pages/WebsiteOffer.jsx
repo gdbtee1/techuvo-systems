@@ -12,6 +12,7 @@ import {
   Sparkles,
   Star,
   CalendarDays,
+  Phone,
   ChevronLeft,
   ChevronRight,
   X,
@@ -1625,7 +1626,7 @@ function WebsiteOffer() {
     const endHour = String(Number(bookingTime.slice(0, 2)) + 0).padStart(2, "0");
     const endMinute = String(Number(bookingTime.slice(3)) + 15).padStart(2, "0");
     const endTime = Number(endMinute) >= 60 ? `${String(Number(endHour) + 1).padStart(2, "0")}${String(Number(endMinute) - 60).padStart(2, "0")}00` : `${endHour}${endMinute}00`;
-    const params = new URLSearchParams({ action: "TEMPLATE", text: "Techuvo Website Strategy Call", dates: `${compactDate}T${compactTime}/${compactDate}T${endTime}`, ctz: "America/New_York", details: `Website consultation for ${inquiry.business}\nPackage: ${selectedTier}\nPhone: ${inquiry.phone}` });
+    const params = new URLSearchParams({ action: "TEMPLATE", text: "Techuvo Website Strategy Call", dates: `${compactDate}T${compactTime}/${compactDate}T${endTime}`, ctz: "America/New_York", details: `Website consultation for ${inquiry.business || inquiry.name}\nPackage: ${selectedTier}\nPhone: ${inquiry.phone}` });
     return `https://calendar.google.com/calendar/render?${params.toString()}`;
   })() : "";
 
@@ -1643,7 +1644,7 @@ function WebsiteOffer() {
           _replyto: inquiry.email.trim(),
           form_type: "Strategy call booking",
           name: inquiry.name.trim(),
-          business_name: inquiry.business.trim(),
+          business_name: inquiry.business.trim() || "Not provided",
           niche: inquiry.niche.trim(),
           email: inquiry.email.trim(),
           phone: inquiry.phone.trim(),
@@ -1688,8 +1689,8 @@ function WebsiteOffer() {
           _captcha: "true",
           _replyto: inquiry.email.trim(),
           name: inquiry.name.trim(),
-          business_name: inquiry.business.trim(),
-          business_niche: inquiry.niche.trim(),
+          business_name: inquiry.business.trim() || "Not provided",
+          business_niche: inquiry.niche.trim() || "Not provided",
           email: inquiry.email.trim(),
           phone: inquiry.phone.trim(),
           selected_tier: selectedTier,
@@ -1706,7 +1707,7 @@ function WebsiteOffer() {
         throw new Error(result.message || "Submission failed. Please try again.");
       }
       setLeadStatus("success");
-      setLeadMessage("Your inquiry is received. Choose your call time to finish.");
+      setLeadMessage("Your inquiry has been sent. Scheduling a call is optional.");
       setBookingStep("calendar");
       setTimeout(() => document.getElementById("inquiry")?.scrollIntoView({ behavior: "smooth" }), 60);
       if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { selected_tier: selectedTier });
@@ -1826,20 +1827,34 @@ function WebsiteOffer() {
               Techuvo builds conversion-focused websites and marketing systems for service businesses — so your online presence has somewhere to send customers and a reason for them to act.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
-              <a
+            <div className="mt-6 w-full sm:mt-7 sm:w-fit">
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a
                 href="#inquiry"
                 className="group inline-flex min-h-[60px] items-center justify-center gap-3 rounded-full border-[3px] border-slate-950 bg-yellow-300 px-7 py-4 text-sm font-black shadow-[6px_7px_0_#0f172a] transition hover:-translate-y-1 sm:text-base"
               >
                 Request a website consultation
                 <ArrowRight className="h-5 w-5 rotate-90 transition-transform group-hover:translate-y-1" />
-              </a>
-              <a
+                </a>
+                <a
                 href="#work"
                 className="inline-flex min-h-[60px] items-center justify-center rounded-full border-[3px] border-slate-950 bg-white px-7 py-4 text-sm font-black shadow-[6px_7px_0_#0f172a] transition hover:-translate-y-1 sm:text-base"
               >
                 See real work
-              </a>
+                </a>
+              </div>
+
+              <div className="mt-5 flex justify-center">
+                <a
+                  href="tel:+13134507265"
+                  className="inline-flex min-h-11 flex-wrap items-center justify-center gap-2.5 text-center text-sm font-black text-slate-700 underline decoration-slate-400 underline-offset-4 transition hover:text-blue-700 sm:text-base"
+                  aria-label="Call Techuvo at 313-450-7265"
+            >
+                  <Phone className="h-4 w-4 shrink-0" />
+                  Prefer to talk? Call (313) 450-7265
+                  <ArrowRight className="h-4 w-4 -rotate-45" />
+                </a>
+              </div>
             </div>
 
             <div className="mt-6 flex flex-wrap gap-x-4 gap-y-2.5 text-[11px] font-black text-slate-600 sm:mt-7 sm:gap-x-5 sm:text-sm">
@@ -2033,49 +2048,45 @@ function WebsiteOffer() {
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-700">Bloomfield Hills & surrounding communities</p>
             <h2 className="mt-4 max-w-[11ch] text-[clamp(2.9rem,6vw,5.8rem)] font-black leading-[0.9] tracking-[-0.07em]">Tell us about your next website.</h2>
-            <p className="mt-5 max-w-md text-base font-semibold leading-7 text-slate-700">Choose an investment tier and send a few details. We'll review your goals and discuss the best path forward.</p>
+            <p className="mt-5 max-w-md text-base font-semibold leading-7 text-slate-700">Share a few details about your project. We'll review your goals and discuss the best path forward.</p>
             <p className="mt-5 text-sm font-black">Projects start at $1,499 one-time.</p>
           </div>
           {bookingStep === "inquiry" ? (
           <form onSubmit={submitLead} className="grid gap-4 border-[3px] border-slate-950 bg-white p-5 shadow-[8px_9px_0_#0f172a] sm:grid-cols-2 sm:p-8">
+            <div className="sm:col-span-2">
+              <p className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-700">Quick website inquiry</p>
+              <h3 className="mt-2 text-2xl font-black tracking-[-0.05em]">Tell us what you need.</h3>
+              <p className="mt-2 text-sm font-semibold text-slate-600">Four quick fields. No obligation.</p>
+            </div>
             <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Your name *
               <input required autoComplete="name" value={inquiry.name} onChange={(e) => setInquiry((s) => ({ ...s, name: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="Full name" />
             </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Business name *
-              <input required value={inquiry.business} onChange={(e) => setInquiry((s) => ({ ...s, business: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="Your company" />
-            </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">Industry / business niche *
-              <input required value={inquiry.niche} onChange={(e) => setInquiry((s) => ({ ...s, niche: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="E.g. roofing, HVAC, dental, legal, boutique retail" />
-            </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Business email *
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Email *
               <input required type="email" autoComplete="email" value={inquiry.email} onChange={(e) => setInquiry((s) => ({ ...s, email: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="you@business.com" />
             </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide">Phone *
-              <input required type="tel" autoComplete="tel" value={inquiry.phone} onChange={(e) => setInquiry((s) => ({ ...s, phone: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="(248) 555-0123" />
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">Phone *
+              <input required type="tel" autoComplete="tel" value={inquiry.phone} onChange={(e) => setInquiry((s) => ({ ...s, phone: e.target.value }))} className="min-h-12 w-full min-w-0 border-2 border-slate-950 px-3 text-base font-semibold normal-case" placeholder="(313) 555-0123" />
             </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">Website package you're inquiring about *
-              <select required value={selectedTier} onChange={(e) => setSelectedTier(e.target.value)} className="min-h-12 w-full min-w-0 border-2 border-slate-950 bg-white px-3 text-base font-semibold normal-case">
-                {servicePackages.map((item, index) => <option key={item.id} value={`Tier ${index + 1} — ${item.price}`}>Tier {index + 1} — {item.price} · {item.name}</option>)}
-                <option value="Not sure — help me choose">Not sure — help me choose</option>
-              </select>
-            </label>
-            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">What are you looking to build?
-              <textarea rows={3} value={inquiry.message} onChange={(e) => setInquiry((s) => ({ ...s, message: e.target.value }))} className="w-full min-w-0 resize-y border-2 border-slate-950 px-3 py-3 text-base font-semibold normal-case" placeholder="Tell us about your business, goals, and timeline..." />
+            <label className="grid gap-2 text-xs font-black uppercase tracking-wide sm:col-span-2">Project description *
+              <textarea required rows={4} value={inquiry.message} onChange={(e) => setInquiry((s) => ({ ...s, message: e.target.value }))} className="w-full min-w-0 resize-y border-2 border-slate-950 px-3 py-3 text-base font-semibold normal-case" placeholder="What does your business do, and what would you like your website to accomplish?" />
             </label>
             <div className="hidden" aria-hidden="true"><label>Website <input tabIndex={-1} autoComplete="off" value={inquiry.website} onChange={(e) => setInquiry((s) => ({ ...s, website: e.target.value }))} /></label></div>
             <button type="submit" disabled={leadStatus === "submitting"} className="flex min-h-14 items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-blue-600 px-6 text-sm font-black text-white shadow-[5px_6px_0_#0f172a] disabled:opacity-60 sm:col-span-2">
               {leadStatus === "submitting" ? "Sending inquiry..." : "Request my website consultation"} <ArrowRight className="h-5 w-5" />
             </button>
             {leadMessage && <p role="status" className={`text-sm font-bold sm:col-span-2 ${leadStatus === "error" ? "text-red-700" : "text-green-800"}`}>{leadMessage}</p>}
-            <p className="text-xs font-semibold text-slate-500 sm:col-span-2">No payment required to inquire. Your contact details are used to respond to your request.</p>
+            <div className="flex flex-wrap items-center justify-between gap-3 sm:col-span-2">
+              <p className="text-xs font-semibold text-slate-500">No payment required. We'll follow up about your project.</p>
+              <a href="tel:+13134507265" className="inline-flex min-h-11 items-center gap-2 text-xs font-black text-blue-700 underline underline-offset-4"><Phone className="h-4 w-4" /> Call instead: (313) 450-7265</a>
+            </div>
           </form>
           ) : bookingStep === "calendar" ? (
             <form onSubmit={submitBooking} className="border-[3px] border-slate-950 bg-white p-5 shadow-[8px_9px_0_#0f172a] sm:p-8">
               <div className="flex items-center gap-3">
                 <span className="grid h-12 w-12 place-items-center border-[3px] border-slate-950 bg-yellow-300 shadow-[3px_4px_0_#0f172a]"><CalendarDays className="h-6 w-6" /></span>
-                <div><p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Step 2 of 2</p><h3 className="text-2xl font-black tracking-tight sm:text-3xl">Choose your call time.</h3></div>
+                <div><p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">Optional next step</p><h3 className="text-2xl font-black tracking-tight sm:text-3xl">Choose your call time.</h3></div>
               </div>
-              <p className="mt-5 text-sm font-semibold leading-6 text-slate-600">Thanks, {inquiry.name.split(" ")[0]}! Your inquiry for {inquiry.business} has been received. Pick a 15-minute strategy call time below.</p>
+              <p className="mt-5 text-sm font-semibold leading-6 text-slate-600">Thanks, {inquiry.name.split(" ")[0]}! Your inquiry has been sent. If you would like, request a 15-minute strategy call below; otherwise we will follow up with you.</p>
               <p className="mt-6 text-xs font-black uppercase tracking-wider">Select a day · Eastern Time</p>
               <div className="mt-3 w-full min-w-0 overflow-hidden border-[3px] border-slate-950 bg-[#fff8e8] p-3 sm:p-5">
                 <div className="flex items-center justify-between gap-3">
@@ -2100,6 +2111,7 @@ function WebsiteOffer() {
               <p className="mt-4 text-xs font-semibold leading-5 text-slate-500">Booking requests are emailed to Techuvo. These time slots aren't synchronized to a live availability calendar, so we'll contact you if an adjustment is necessary.</p>
               {bookingError && <p role="alert" className="mt-4 text-sm font-bold text-red-700">{bookingError}</p>}
               <button type="submit" disabled={!bookingDate || !bookingTime || isPastSlot(bookingDate, bookingTime) || bookingStatus === "submitting"} className="mt-6 flex min-h-14 w-full items-center justify-center gap-2 rounded-full border-[3px] border-slate-950 bg-blue-600 px-6 text-base font-black text-white shadow-[5px_6px_0_#0f172a] disabled:opacity-50">{bookingStatus === "submitting" ? "Booking..." : "Book my strategy call"}<ArrowRight className="h-5 w-5" /></button>
+              <p className="mt-4 text-center text-xs font-semibold text-slate-500">Your inquiry was already sent. You can close this page without booking.</p>
             </form>
           ) : (
             <div role="status" className="border-[3px] border-slate-950 bg-white p-6 shadow-[8px_9px_0_#0f172a] sm:p-9">
