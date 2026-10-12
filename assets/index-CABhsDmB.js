@@ -214,381 +214,758 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
             ${v}px !important;
           }
         `),()=>{s.current?.removeAttribute(`data-motion-pop-id`),b.contains(y)&&b.removeChild(y)}},[t]),(0,j.jsx)(Vp,{isPresent:t,childRef:s,sizeRef:c,pop:a,children:a===!1?e:w.cloneElement(e,{ref:u})})}var Up=({children:e,initial:t,isPresent:n,onExitComplete:r,custom:i,presenceAffectsLayout:a,mode:o,anchorX:s,anchorY:c,root:l})=>{let u=ga(Wp),d=(0,w.useId)(),f=!0,p=(0,w.useMemo)(()=>(f=!1,{id:d,initial:t,isPresent:n,custom:i,onExitComplete:e=>{u.set(e,!0);for(let e of u.values())if(!e)return;r&&r()},register:e=>(u.set(e,!1),()=>u.delete(e))}),[n,u,r]);return a&&f&&(p={...p}),(0,w.useMemo)(()=>{u.forEach((e,t)=>u.set(t,!1))},[n]),w.useEffect(()=>{!n&&!u.size&&r&&r()},[n]),e=(0,j.jsx)(Hp,{pop:o===`popLayout`,isPresent:n,anchorX:s,anchorY:c,root:l,children:e}),(0,j.jsx)(va.Provider,{value:p,children:e})};function Wp(){return new Map}function Gp(e=!0){let t=(0,w.useContext)(va);if(t===null)return[!0,null];let{isPresent:n,onExitComplete:r,register:i}=t,a=(0,w.useId)();(0,w.useEffect)(()=>{if(e)return i(a)},[e]);let o=(0,w.useCallback)(()=>e&&r&&r(a),[a,r,e]);return!n&&r?[!1,o]:[!0]}var Kp=e=>e.key||``;function qp(e){let t=[];return w.Children.forEach(e,e=>{(0,w.isValidElement)(e)&&t.push(e)}),t}var Jp=({children:e,custom:t,initial:n=!0,onExitComplete:r,presenceAffectsLayout:i=!0,mode:a=`sync`,propagate:o=!1,anchorX:s=`left`,anchorY:c=`top`,root:l})=>{let[u,d]=Gp(o),f=(0,w.useMemo)(()=>qp(e),[e]),p=o&&!u?[]:f.map(Kp),m=(0,w.useRef)(!0),h=(0,w.useRef)(f),g=ga(()=>new Map),_=(0,w.useRef)(new Set),[v,y]=(0,w.useState)(f),[b,x]=(0,w.useState)(f);_a(()=>{m.current=!1,h.current=f;for(let e=0;e<b.length;e++){let t=Kp(b[e]);p.includes(t)?(g.delete(t),_.current.delete(t)):g.get(t)!==!0&&g.set(t,!1)}},[b,p.length,p.join(`-`)]);let S=[];if(f!==v){let e=[...f];for(let t=0;t<b.length;t++){let n=b[t],r=Kp(n);p.includes(r)||(e.splice(t,0,n),S.push(n))}return a===`wait`&&S.length&&(e=S),x(qp(e)),y(f),null}let{forceRender:C}=(0,w.useContext)(ha);return(0,j.jsx)(j.Fragment,{children:b.map(e=>{let v=Kp(e),y=o&&!u?!1:f===b||p.includes(v);return(0,j.jsx)(Up,{isPresent:y,initial:!m.current||n?void 0:!1,custom:t,presenceAffectsLayout:i,mode:a,root:l,onExitComplete:y?void 0:()=>{if(_.current.has(v))return;if(g.has(v))_.current.add(v),g.set(v,!0);else return;let e=!0;g.forEach(t=>{t||(e=!1)}),e&&(C?.(),x(h.current),o&&d?.(),r&&r())},anchorX:s,anchorY:c,children:e},v)})})},Yp=(0,w.createContext)({strict:!1}),Xp={animation:[`animate`,`variants`,`whileHover`,`whileTap`,`exit`,`whileInView`,`whileFocus`,`whileDrag`],exit:[`exit`],drag:[`drag`,`dragControls`],focus:[`whileFocus`],hover:[`whileHover`,`onHoverStart`,`onHoverEnd`],tap:[`whileTap`,`onTap`,`onTapStart`,`onTapCancel`],pan:[`onPan`,`onPanStart`,`onPanSessionStart`,`onPanEnd`],inView:[`whileInView`,`onViewportEnter`,`onViewportLeave`],layout:[`layout`,`layoutId`]},Zp=!1;function Qp(){if(Zp)return;let e={};for(let t in Xp)e[t]={isEnabled:e=>Xp[t].some(t=>!!e[t])};td(e),Zp=!0}function $p(){return Qp(),nd()}function em(e){let t=$p();for(let n in e)t[n]={...t[n],...e[n]};td(t)}var tm=new Set(`animate.exit.variants.initial.style.values.variants.transition.transformTemplate.custom.inherit.onBeforeLayoutMeasure.onAnimationStart.onAnimationComplete.onUpdate.onDragStart.onDrag.onDragEnd.onMeasureDragConstraints.onDirectionLock.onDragTransitionEnd._dragX._dragY.onHoverStart.onHoverEnd.onViewportEnter.onViewportLeave.globalTapTarget.propagate.ignoreStrict.viewport`.split(`.`));function nm(e){return e.startsWith(`while`)||e.startsWith(`drag`)&&e!==`draggable`||e.startsWith(`layout`)||e.startsWith(`onTap`)||e.startsWith(`onPan`)||e.startsWith(`onLayout`)||tm.has(e)}var rm=c({default:()=>im}),im,am=o((()=>{throw im={},Error(`Could not resolve "@emotion/is-prop-valid" imported by "framer-motion". Is it installed?`)})),om=e=>!nm(e);function sm(e){typeof e==`function`&&(om=t=>t.startsWith(`on`)?!nm(t):e(t))}try{sm((am(),d(rm)).default)}catch{}function cm(e,t,n){let r={};for(let i in e)i===`values`&&typeof e.values==`object`||Tl(e[i])||(om(i)||n===!0&&nm(i)||!t&&!nm(i)||e.draggable&&i.startsWith(`onDrag`))&&(r[i]=e[i]);return r}var lm=(0,w.createContext)({});function um(e,t){if(Ku(e)){let{initial:t,animate:n}=e;return{initial:t===!1||Wu(t)?t:void 0,animate:Wu(n)?n:void 0}}return e.inherit===!1?{}:t}function dm(e){let{initial:t,animate:n}=um(e,(0,w.useContext)(lm));return(0,w.useMemo)(()=>({initial:t,animate:n}),[fm(t),fm(n)])}function fm(e){return Array.isArray(e)?e.join(` `):e}var pm=()=>({style:{},transform:{},transformOrigin:{},vars:{}});function mm(e,t,n){for(let r in t)!Tl(t[r])&&!Pd(r,n)&&(e[r]=t[r])}function hm({transformTemplate:e},t){return(0,w.useMemo)(()=>{let n=pm();return kd(n,t,e),Object.assign({},n.vars,n.style)},[t])}function gm(e,t){let n=e.style||{},r={};return mm(r,n,e),Object.assign(r,hm(e,t)),r}function _m(e,t){let n={},r=gm(e,t);return e.drag&&e.dragListener!==!1&&(n.draggable=!1,r.userSelect=r.WebkitUserSelect=r.WebkitTouchCallout=`none`,r.touchAction=e.drag===!0?`none`:`pan-${e.drag===`x`?`y`:`x`}`),e.tabIndex===void 0&&(e.onTap||e.onTapStart||e.whileTap)&&(n.tabIndex=0),n.style=r,n}var vm=()=>({...pm(),attrs:{}});function ym(e,t,n,r){let i=(0,w.useMemo)(()=>{let n=vm();return Hd(n,t,Wd(r),e.transformTemplate,e.style),{...n.attrs,style:{...n.style}}},[t]);if(e.style){let t={};mm(t,e.style,e),i.style={...t,...i.style}}return i}var bm=[`animate`,`circle`,`defs`,`desc`,`ellipse`,`g`,`image`,`line`,`filter`,`marker`,`mask`,`metadata`,`path`,`pattern`,`polygon`,`polyline`,`rect`,`stop`,`switch`,`symbol`,`svg`,`text`,`tspan`,`use`,`view`];function xm(e){return typeof e!=`string`||e.includes(`-`)?!1:!!(bm.indexOf(e)>-1||/[A-Z]/u.test(e))}function Sm(e,t,n,{latestValues:r},i,a=!1,o){let s=(o??xm(e)?ym:_m)(t,r,i,e),c=cm(t,typeof e==`string`,a),l=e===w.Fragment?{}:{...c,...s,ref:n},{children:u}=t,d=(0,w.useMemo)(()=>Tl(u)?u.get():u,[u]);return(0,w.createElement)(e,{...l,children:d})}function Cm({scrapeMotionValuesFromProps:e,createRenderState:t},n,r,i){return{latestValues:wm(n,r,i,e),renderState:t()}}function wm(e,t,n,r){let i={},a=r(e,{});for(let e in a)i[e]=Qf(a[e]);let{initial:o,animate:s}=e,c=Ku(e),l=qu(e);t&&l&&!c&&e.inherit!==!1&&(o===void 0&&(o=t.initial),s===void 0&&(s=t.animate));let u=n?n.initial===!1:!1;u||=o===!1;let d=u?s:o;if(d&&typeof d!=`boolean`&&!Uu(d)){let t=Array.isArray(d)?d:[d];for(let n=0;n<t.length;n++){let r=vl(e,t[n]);if(r){let{transitionEnd:e,transition:t,...n}=r;for(let e in n){let t=n[e];if(Array.isArray(t)){let e=u?t.length-1:0;t=t[e]}t!==null&&(i[e]=t)}for(let t in e)i[t]=e[t]}}}return i}var Tm=e=>(t,n)=>{let r=(0,w.useContext)(lm),i=(0,w.useContext)(va),a=()=>Cm(e,t,r,i);return n?a():ga(a)},Em=Tm({scrapeMotionValuesFromProps:Fd,createRenderState:pm}),Dm=Tm({scrapeMotionValuesFromProps:Kd,createRenderState:vm}),Om=Symbol.for(`motionComponentSymbol`);function km(e,t,n){let r=(0,w.useRef)(n);(0,w.useInsertionEffect)(()=>{r.current=n});let i=(0,w.useRef)(null);return(0,w.useCallback)(n=>{n&&e.onMount?.(n),t&&(n?t.mount(n):t.unmount());let a=r.current;if(typeof a==`function`)if(n){let e=a(n);typeof e==`function`&&(i.current=e)}else i.current?(i.current(),i.current=null):a(n);else a&&(a.current=n)},[t])}var Am=(0,w.createContext)({});function jm(e){return e&&typeof e==`object`&&Object.prototype.hasOwnProperty.call(e,`current`)}function Mm(e,t,n,r,i,a){let{visualElement:o}=(0,w.useContext)(lm),s=(0,w.useContext)(Yp),c=(0,w.useContext)(va),l=(0,w.useContext)(Lp),u=l.reducedMotion,d=l.skipAnimations,f=(0,w.useRef)(null),p=(0,w.useRef)(!1);r||=s.renderer,!f.current&&r&&(f.current=r(e,{visualState:t,parent:o,props:n,presenceContext:c,blockInitialAnimation:c?c.initial===!1:!1,reducedMotionConfig:u,skipAnimations:d,isSVG:a}),p.current&&f.current&&(f.current.manuallyAnimateOnMount=!0));let m=f.current,h=(0,w.useContext)(Am);m&&!m.projection&&i&&(m.type===`html`||m.type===`svg`)&&Nm(f.current,n,i,h);let g=(0,w.useRef)(!1);(0,w.useInsertionEffect)(()=>{m&&g.current&&m.update(n,c)});let _=n[kl],v=(0,w.useRef)(!!_&&typeof window<`u`&&!window.MotionHandoffIsComplete?.(_)&&window.MotionHasOptimisedAnimation?.(_));return _a(()=>{p.current=!0,m&&(g.current=!0,window.MotionIsMounted=!0,m.updateFeatures(),m.scheduleRenderMicrotask(),v.current&&m.animationState&&m.animationState.animateChanges())}),(0,w.useEffect)(()=>{m&&(!v.current&&m.animationState&&m.animationState.animateChanges(),v.current&&=(queueMicrotask(()=>{window.MotionHandoffMarkAsComplete?.(_)}),!1),m.enteringChildren=void 0)}),m}function Nm(e,t,n,r){let{layoutId:i,layout:a,drag:o,dragConstraints:s,layoutScroll:c,layoutRoot:l,layoutAnchor:u,layoutCrossfade:d}=t;e.projection=new n(e.latestValues,t[`data-framer-portal-id`]?void 0:Pm(e.parent)),e.projection.setOptions({layoutId:i,layout:a,alwaysMeasureLayout:!!o||s&&jm(s),visualElement:e,animationType:typeof a==`string`?a:`both`,initialPromotionConfig:r,crossfade:d,layoutScroll:c,layoutRoot:l,layoutAnchor:u})}function Pm(e){if(e)return e.options.allowProjection===!1?Pm(e.parent):e.projection}function Fm(e,{forwardMotionProps:t=!1,type:n}={},r,i){r&&em(r);let a=n?n===`svg`:xm(e),o=a?Dm:Em;function s(n,s){let c,l={...(0,w.useContext)(Lp),...n,layoutId:Im(n)},{isStatic:u}=l,d=dm(n),f=o(n,u);if(!u&&typeof window<`u`){Lm(l,r);let t=Rm(l);c=t.MeasureLayout,d.visualElement=Mm(e,f,l,i,t.ProjectionNode,a)}return(0,j.jsxs)(lm.Provider,{value:d,children:[c&&d.visualElement?(0,j.jsx)(c,{visualElement:d.visualElement,...l}):null,Sm(e,n,km(f,d.visualElement,s),f,u,t,a)]})}s.displayName=`motion.${typeof e==`string`?e:`create(${e.displayName??e.name??``})`}`;let c=(0,w.forwardRef)(s);return c[Om]=e,c}function Im({layoutId:e}){let t=(0,w.useContext)(ha).id;return t&&e!==void 0?t+`-`+e:e}function Lm(e,t){(0,w.useContext)(Yp).strict}function Rm(e){let{drag:t,layout:n}=$p();if(!t&&!n)return{};let r={...t,...n};return{MeasureLayout:t?.isEnabled(e)||n?.isEnabled(e)?r.MeasureLayout:void 0,ProjectionNode:r.ProjectionNode}}function zm(e,t){if(typeof Proxy>`u`)return Fm;let n=new Map,r=(n,r)=>Fm(n,r,e,t);return new Proxy((e,t)=>r(e,t),{get:(i,a)=>a===`create`?r:(n.has(a)||n.set(a,Fm(a,void 0,e,t)),n.get(a))})}var Bm=(e,t)=>t.isSVG??xm(e)?new qd(t):new Ld(t,{allowProjection:e!==w.Fragment}),Vm=class extends ad{constructor(e){super(e),e.animationState||=ef(e)}updateAnimationControlsSubscription(){let{animate:e}=this.node.getProps();Uu(e)&&(this.unmountControls=e.subscribe(this.node))}mount(){this.updateAnimationControlsSubscription()}update(){let{animate:e}=this.node.getProps(),{animate:t}=this.node.prevProps||{};e!==t&&this.updateAnimationControlsSubscription()}unmount(){this.node.animationState.reset(),this.unmountControls?.()}},Hm=0,Um={animation:{Feature:Vm},exit:{Feature:class extends ad{constructor(){super(...arguments),this.id=Hm++,this.isExitComplete=!1}update(){if(!this.node.presenceContext)return;let{isPresent:e,onExitComplete:t}=this.node.presenceContext,{isPresent:n}=this.node.prevPresenceContext||{};if(!this.node.animationState||e===n)return;if(e&&n===!1){if(this.isExitComplete){let{initial:e,custom:t}=this.node.getProps();if(typeof e==`string`||typeof e==`object`&&e&&!Array.isArray(e)){let n=yl(this.node,e,t);if(n){let{transition:e,transitionEnd:t,...r}=n;for(let e in r)this.node.getValue(e)?.jump(r[e])}}this.node.animationState.reset(),this.node.animationState.animateChanges()}else this.node.animationState.setActive(`exit`,!1);this.isExitComplete=!1;return}let r=this.node.animationState.setActive(`exit`,!e);t&&!e&&r.then(()=>{this.isExitComplete=!0,t(this.id)})}mount(){let{register:e,onExitComplete:t}=this.node.presenceContext||{};t&&t(this.id),e&&(this.unmount=e(this.id))}unmount(){}}}};function Wm(e){return{point:{x:e.pageX,y:e.pageY}}}var Gm=e=>t=>cu(t)&&e(t,Wm(t));function Km(e,t,n,r){return Jf(e,t,Gm(n),r)}var qm=({current:e})=>e?e.ownerDocument.defaultView:null,Jm=(e,t)=>Math.abs(e-t);function Ym(e,t){let n=Jm(e.x,t.x),r=Jm(e.y,t.y);return Math.sqrt(n**2+r**2)}var Xm=new Set([`auto`,`scroll`]),Zm=class{constructor(e,t,{transformPagePoint:n,contextWindow:r=window,dragSnapToOrigin:i=!1,distanceThreshold:a=3,element:o}={}){if(this.startEvent=null,this.lastMoveEvent=null,this.lastMoveEventInfo=null,this.lastRawMoveEventInfo=null,this.handlers={},this.contextWindow=window,this.scrollPositions=new Map,this.removeScrollListeners=null,this.onElementScroll=e=>{this.handleScroll(e.target)},this.onWindowScroll=()=>{this.handleScroll(window)},this.updatePoint=()=>{if(!(this.lastMoveEvent&&this.lastMoveEventInfo))return;this.lastRawMoveEventInfo&&(this.lastMoveEventInfo=Qm(this.lastRawMoveEventInfo,this.transformPagePoint));let e=eh(this.lastMoveEventInfo,this.history),t=this.startEvent!==null,n=Ym(e.offset,{x:0,y:0})>=this.distanceThreshold;if(!t&&!n)return;let{point:r}=e,{timestamp:i}=I;this.history.push({...r,timestamp:i});let{onStart:a,onMove:o}=this.handlers;t||(a&&a(this.lastMoveEvent,e),this.startEvent=this.lastMoveEvent),o&&o(this.lastMoveEvent,e)},this.handlePointerMove=(e,t)=>{this.lastMoveEvent=e,this.lastRawMoveEventInfo=t,this.lastMoveEventInfo=Qm(t,this.transformPagePoint),F.update(this.updatePoint,!0)},this.handlePointerUp=(e,t)=>{this.end();let{onEnd:n,onSessionEnd:r,resumeAnimation:i}=this.handlers;if((this.dragSnapToOrigin||!this.startEvent)&&i&&i(),!(this.lastMoveEvent&&this.lastMoveEventInfo))return;let a=eh(e.type===`pointercancel`?this.lastMoveEventInfo:Qm(t,this.transformPagePoint),this.history);this.startEvent&&n&&n(e,a),r&&r(e,a)},!cu(e))return;this.dragSnapToOrigin=i,this.handlers=t,this.transformPagePoint=n,this.distanceThreshold=a,this.contextWindow=r||window;let s=Qm(Wm(e),this.transformPagePoint),{point:c}=s,{timestamp:l}=I;this.history=[{...c,timestamp:l}];let{onSessionStart:u}=t;u&&u(e,eh(s,this.history)),this.removeListeners=Oa(Km(this.contextWindow,`pointermove`,this.handlePointerMove),Km(this.contextWindow,`pointerup`,this.handlePointerUp),Km(this.contextWindow,`pointercancel`,this.handlePointerUp)),o&&this.startScrollTracking(o)}startScrollTracking(e){let t=e.parentElement;for(;t;){let e=getComputedStyle(t);(Xm.has(e.overflowX)||Xm.has(e.overflowY))&&this.scrollPositions.set(t,{x:t.scrollLeft,y:t.scrollTop}),t=t.parentElement}this.scrollPositions.set(window,{x:window.scrollX,y:window.scrollY}),window.addEventListener(`scroll`,this.onElementScroll,{capture:!0}),window.addEventListener(`scroll`,this.onWindowScroll),this.removeScrollListeners=()=>{window.removeEventListener(`scroll`,this.onElementScroll,{capture:!0}),window.removeEventListener(`scroll`,this.onWindowScroll)}}handleScroll(e){let t=this.scrollPositions.get(e);if(!t)return;let n=e===window,r=n?{x:window.scrollX,y:window.scrollY}:{x:e.scrollLeft,y:e.scrollTop},i={x:r.x-t.x,y:r.y-t.y};i.x===0&&i.y===0||(n?this.lastMoveEventInfo&&(this.lastMoveEventInfo.point.x+=i.x,this.lastMoveEventInfo.point.y+=i.y):this.history.length>0&&(this.history[0].x-=i.x,this.history[0].y-=i.y),this.scrollPositions.set(e,r),F.update(this.updatePoint,!0))}updateHandlers(e){this.handlers=e}end(){this.removeListeners&&this.removeListeners(),this.removeScrollListeners&&this.removeScrollListeners(),this.scrollPositions.clear(),so(this.updatePoint)}};function Qm(e,t){return t?{point:t(e.point)}:e}function $m(e,t){return{x:e.x-t.x,y:e.y-t.y}}function eh({point:e},t){return{point:e,delta:$m(e,nh(t)),offset:$m(e,th(t)),velocity:rh(t,.1)}}function th(e){return e[0]}function nh(e){return e[e.length-1]}function rh(e,t){if(e.length<2)return{x:0,y:0};let n=e.length-1,r=null,i=nh(e);for(;n>=0&&(r=e[n],!(i.timestamp-r.timestamp>ja(t)));)n--;if(!r)return{x:0,y:0};r===e[0]&&e.length>2&&i.timestamp-r.timestamp>ja(t)*2&&(r=e[1]);let a=Ma(i.timestamp-r.timestamp);if(a===0)return{x:0,y:0};let o={x:(i.x-r.x)/a,y:(i.y-r.y)/a};return o.x===1/0&&(o.x=0),o.y===1/0&&(o.y=0),o}function ih(e,{min:t,max:n},r){return t!==void 0&&e<t?e=r?U(t,e,r.min):Math.max(e,t):n!==void 0&&e>n&&(e=r?U(n,e,r.max):Math.min(e,n)),e}function ah(e,t,n){return{min:t===void 0?void 0:e.min+t,max:n===void 0?void 0:e.max+n-(e.max-e.min)}}function oh(e,{top:t,left:n,bottom:r,right:i}){return{x:ah(e.x,n,i),y:ah(e.y,t,r)}}function sh(e,t){let n=t.min-e.min,r=t.max-e.max;return t.max-t.min<e.max-e.min&&([n,r]=[r,n]),{min:n,max:r}}function ch(e,t){return{x:sh(e.x,t.x),y:sh(e.y,t.y)}}function lh(e,t){let n=.5,r=mf(e),i=mf(t);return i>r?n=ka(t.min,t.max-r,e.min):r>i&&(n=ka(e.min,e.max-i,t.min)),xa(0,1,n)}function uh(e,t){let n={};return t.min!==void 0&&(n.min=t.min-e.min),t.max!==void 0&&(n.max=t.max-e.min),n}var dh=.35;function fh(e=dh){return e===!1?e=0:e===!0&&(e=dh),{x:ph(e,`left`,`right`),y:ph(e,`top`,`bottom`)}}function ph(e,t,n){return{min:mh(e,t),max:mh(e,n)}}function mh(e,t){return typeof e==`number`?e:e[t]||0}var hh=new WeakMap,gh=class{constructor(e){this.openDragLock=null,this.isDragging=!1,this.currentDirection=null,this.originPoint={x:0,y:0},this.constraints=!1,this.hasMutatedConstraints=!1,this.elastic=Vu(),this.latestPointerEvent=null,this.latestPanInfo=null,this.visualElement=e}start(e,{snapToCursor:t=!1,distanceThreshold:n}={}){let{presenceContext:r}=this.visualElement;if(r&&r.isPresent===!1)return;let i=e=>{t&&this.snapToCursor(Wm(e).point),this.stopAnimation()},a=(e,t)=>{let{drag:n,dragPropagation:r,onDragStart:i}=this.getProps();if(n&&!r&&(this.openDragLock&&this.openDragLock(),this.openDragLock=ru(n),!this.openDragLock))return;this.latestPointerEvent=e,this.latestPanInfo=t,this.isDragging=!0,this.currentDirection=null,this.resolveConstraints(),this.visualElement.projection&&(this.visualElement.projection.isAnimationBlocked=!0,this.visualElement.projection.target=void 0),If(e=>{let t=this.getAxisMotionValue(e).get()||0;if(B.test(t)){let{projection:n}=this.visualElement;if(n&&n.layout){let r=n.layout.layoutBox[e];r&&(t=mf(r)*(parseFloat(t)/100))}}this.originPoint[e]=t}),i&&F.update(()=>i(e,t),!1,!0),Dl(this.visualElement,`transform`);let{animationState:a}=this.visualElement;a&&a.setActive(`whileDrag`,!0)},o=(e,t)=>{this.latestPointerEvent=e,this.latestPanInfo=t;let{dragPropagation:n,dragDirectionLock:r,onDirectionLock:i,onDrag:a}=this.getProps();if(!n&&!this.openDragLock)return;let{offset:o}=t;if(r&&this.currentDirection===null){this.currentDirection=bh(o),this.currentDirection!==null&&i&&i(this.currentDirection);return}this.updateAxis(`x`,t.point,o),this.updateAxis(`y`,t.point,o),this.visualElement.render(),a&&F.update(()=>a(e,t),!1,!0)},s=(e,t)=>{this.latestPointerEvent=e,this.latestPanInfo=t,this.stop(e,t),this.latestPointerEvent=null,this.latestPanInfo=null},c=()=>{let{dragSnapToOrigin:e}=this.getProps();(e||this.constraints)&&this.startAnimation({x:0,y:0})},{dragSnapToOrigin:l}=this.getProps();this.panSession=new Zm(e,{onSessionStart:i,onStart:a,onMove:o,onSessionEnd:s,resumeAnimation:c},{transformPagePoint:this.visualElement.getTransformPagePoint(),dragSnapToOrigin:l,distanceThreshold:n,contextWindow:qm(this.visualElement),element:this.visualElement.current})}stop(e,t){let n=e||this.latestPointerEvent,r=t||this.latestPanInfo,i=this.isDragging;if(this.cancel(),!i||!r||!n)return;let{velocity:a}=r;this.startAnimation(a);let{onDragEnd:o}=this.getProps();o&&F.postRender(()=>o(n,r))}cancel(){this.isDragging=!1;let{projection:e,animationState:t}=this.visualElement;e&&(e.isAnimationBlocked=!1),this.endPanSession();let{dragPropagation:n}=this.getProps();!n&&this.openDragLock&&(this.openDragLock(),this.openDragLock=null),t&&t.setActive(`whileDrag`,!1)}endPanSession(){this.panSession&&this.panSession.end(),this.panSession=void 0}updateAxis(e,t,n){let{drag:r}=this.getProps();if(!n||!yh(e,r,this.currentDirection))return;let i=this.getAxisMotionValue(e),a=this.originPoint[e]+n[e];this.constraints&&this.constraints[e]&&(a=ih(a,this.constraints[e],this.elastic[e])),i.set(a)}resolveConstraints(){let{dragConstraints:e,dragElastic:t}=this.getProps(),n=this.visualElement.projection&&!this.visualElement.projection.layout?this.visualElement.projection.measure(!1):this.visualElement.projection?.layout,r=this.constraints;e&&jm(e)?this.constraints||=this.resolveRefConstraints():e&&n?this.constraints=oh(n.layoutBox,e):this.constraints=!1,this.elastic=fh(t),r!==this.constraints&&!jm(e)&&n&&this.constraints&&!this.hasMutatedConstraints&&If(e=>{this.constraints!==!1&&this.getAxisMotionValue(e)&&(this.constraints[e]=uh(n.layoutBox[e],this.constraints[e]))})}resolveRefConstraints(){let{dragConstraints:e,onMeasureDragConstraints:t}=this.getProps();if(!e||!jm(e))return!1;let n=e.current,{projection:r}=this.visualElement;if(!r||!r.layout)return!1;r.root&&(r.root.scroll=void 0,r.root.updateScroll());let i=Td(n,r.root,this.visualElement.getTransformPagePoint()),a=ch(r.layout.layoutBox,i);if(t){let e=t(sd(a));this.hasMutatedConstraints=!!e,e&&(a=od(e))}return a}startAnimation(e){let{drag:t,dragMomentum:n,dragElastic:r,dragTransition:i,dragSnapToOrigin:a,onDragTransitionEnd:o}=this.getProps(),s=this.constraints||{},c=If(o=>{if(!yh(o,t,this.currentDirection))return;let c=s&&s[o]||{};(a===!0||a===o)&&(c={min:0,max:0});let l=r?200:1e6,u=r?40:1e7,d={type:`inertia`,velocity:n?e[o]:0,bounceStiffness:l,bounceDamping:u,timeConstant:750,restDelta:1,restSpeed:10,...i,...c};return this.startAxisValueAnimation(o,d)});return Promise.all(c).then(o)}startAxisValueAnimation(e,t){let n=this.getAxisMotionValue(e);return Dl(this.visualElement,e),n.start(pl(e,n,0,t,this.visualElement,!1))}stopAnimation(){If(e=>this.getAxisMotionValue(e).stop())}getAxisMotionValue(e){let t=`_drag${e.toUpperCase()}`;return this.visualElement.getProps()[t]||this.visualElement.getValue(e,this.visualElement.latestValues[e]??0)}snapToCursor(e){If(t=>{let{drag:n}=this.getProps();if(!yh(t,n,this.currentDirection))return;let{projection:r}=this.visualElement,i=this.getAxisMotionValue(t);if(r&&r.layout){let{min:n,max:a}=r.layout.layoutBox[t],o=i.get()||0;i.set(e[t]-U(n,a,.5)+o)}})}scalePositionWithinConstraints(){if(!this.visualElement.current)return;let{drag:e,dragConstraints:t}=this.getProps(),{projection:n}=this.visualElement;if(!jm(t)||!n||!this.constraints)return;this.stopAnimation();let r={x:0,y:0};If(e=>{let t=this.getAxisMotionValue(e);if(t&&this.constraints!==!1){let n=t.get();r[e]=lh({min:n,max:n},this.constraints[e])}});let{transformTemplate:i}=this.visualElement.getProps();this.visualElement.current.style.transform=i?i({},``):`none`,n.root&&n.root.updateScroll(),n.updateLayout(),this.constraints=!1,this.resolveConstraints(),If(t=>{if(!yh(t,e,null))return;let n=this.getAxisMotionValue(t),{min:i,max:a}=this.constraints[t];n.set(U(i,a,r[t]))}),this.visualElement.render()}addListeners(){if(!this.visualElement.current)return;hh.set(this.visualElement,this);let e=this.visualElement.current,t=Km(e,`pointerdown`,t=>{let{drag:n,dragListener:r=!0}=this.getProps(),i=t.target,a=i!==e&&fu(i);n&&r&&!a&&this.start(t)}),n,r=()=>{let{dragConstraints:t}=this.getProps();jm(t)&&t.current&&(this.constraints=this.resolveRefConstraints(),n||=vh(e,t.current,()=>this.scalePositionWithinConstraints()))},{projection:i}=this.visualElement,a=i.addEventListener(`measure`,r);i&&!i.layout&&(i.root&&i.root.updateScroll(),i.updateLayout()),F.read(r);let o=Jf(window,`resize`,()=>this.scalePositionWithinConstraints()),s=i.addEventListener(`didUpdate`,(({delta:e,hasLayoutChanged:t})=>{this.isDragging&&t&&(If(t=>{let n=this.getAxisMotionValue(t);n&&(this.originPoint[t]+=e[t].translate,n.set(n.get()+e[t].translate))}),this.visualElement.render())}));return()=>{o(),t(),a(),s&&s(),n&&n()}}getProps(){let e=this.visualElement.getProps(),{drag:t=!1,dragDirectionLock:n=!1,dragPropagation:r=!1,dragConstraints:i=!1,dragElastic:a=dh,dragMomentum:o=!0}=e;return{...e,drag:t,dragDirectionLock:n,dragPropagation:r,dragConstraints:i,dragElastic:a,dragMomentum:o}}};function _h(e){let t=!0;return()=>{if(t){t=!1;return}e()}}function vh(e,t,n){let r=Pu(e,_h(n)),i=Pu(t,_h(n));return()=>{r(),i()}}function yh(e,t,n){return(t===!0||t===e)&&(n===null||n===e)}function bh(e,t=10){let n=null;return Math.abs(e.y)>t?n=`y`:Math.abs(e.x)>t&&(n=`x`),n}var xh=class extends ad{constructor(e){super(e),this.removeGroupControls=Da,this.removeListeners=Da,this.controls=new gh(e)}mount(){let{dragControls:e}=this.node.getProps();e&&(this.removeGroupControls=e.subscribe(this.controls)),this.removeListeners=this.controls.addListeners()||Da}update(){let{dragControls:e}=this.node.getProps(),{dragControls:t}=this.node.prevProps||{};e!==t&&(this.removeGroupControls(),e&&(this.removeGroupControls=e.subscribe(this.controls)))}unmount(){this.removeGroupControls(),this.removeListeners(),this.controls.isDragging||this.controls.endPanSession()}},Sh=e=>(t,n)=>{e&&F.update(()=>e(t,n),!1,!0)},Ch=class extends ad{constructor(){super(...arguments),this.removePointerDownListener=Da}onPointerDown(e){this.session=new Zm(e,this.createPanHandlers(),{transformPagePoint:this.node.getTransformPagePoint(),contextWindow:qm(this.node)})}createPanHandlers(){let{onPanSessionStart:e,onPanStart:t,onPan:n,onPanEnd:r}=this.node.getProps();return{onSessionStart:Sh(e),onStart:Sh(t),onMove:Sh(n),onEnd:(e,t)=>{delete this.session,r&&F.postRender(()=>r(e,t))}}}mount(){this.removePointerDownListener=Km(this.node.current,`pointerdown`,e=>this.onPointerDown(e))}update(){this.session&&this.session.updateHandlers(this.createPanHandlers())}unmount(){this.removePointerDownListener(),this.session&&this.session.end()}},wh=!1,Th=class extends w.Component{componentDidMount(){let{visualElement:e,layoutGroup:t,switchLayoutGroup:n,layoutId:r}=this.props,{projection:i}=e;i&&(t.group&&t.group.add(i),n&&n.register&&r&&n.register(i),wh&&i.root.didUpdate(),i.addEventListener(`animationComplete`,()=>{this.safeToRemove()}),i.setOptions({...i.options,layoutDependency:this.props.layoutDependency,onExitComplete:()=>this.safeToRemove()})),ep.hasEverUpdated=!0}getSnapshotBeforeUpdate(e){let{layoutDependency:t,visualElement:n,drag:r,isPresent:i}=this.props,{projection:a}=n;return a?(a.isPresent=i,e.layoutDependency!==t&&a.setOptions({...a.options,layoutDependency:t}),wh=!0,r||e.layoutDependency!==t||t===void 0||e.isPresent!==i?a.willUpdate():this.safeToRemove(),e.isPresent!==i&&(i?a.promote():a.relegate()||F.postRender(()=>{let e=a.getStack();(!e||!e.members.length)&&this.safeToRemove()})),null):null}componentDidUpdate(){let{visualElement:e,layoutAnchor:t}=this.props,{projection:n}=e;n&&(n.options.layoutAnchor=t,n.root.didUpdate(),$l.postRender(()=>{!n.currentAnimation&&n.isLead()&&this.safeToRemove()}))}componentWillUnmount(){let{visualElement:e,layoutGroup:t,switchLayoutGroup:n}=this.props,{projection:r}=e;wh=!0,r&&(r.scheduleCheckAfterUnmount(),t&&t.group&&t.group.remove(r),n&&n.deregister&&n.deregister(r))}safeToRemove(){let{safeToRemove:e}=this.props;e&&e()}render(){return null}};function Eh(e){let[t,n]=Gp(),r=(0,w.useContext)(ha);return(0,j.jsx)(Th,{...e,layoutGroup:r,switchLayoutGroup:(0,w.useContext)(Am),isPresent:t,safeToRemove:n})}var Dh={pan:{Feature:Ch},drag:{Feature:xh,ProjectionNode:Ip,MeasureLayout:Eh}};function Oh(e,t,n){let{props:r}=e;e.animationState&&r.whileHover&&e.animationState.setActive(`whileHover`,n===`Start`);let i=r[`onHover`+n];i&&F.postRender(()=>i(t,Wm(t)))}var kh=class extends ad{mount(){let{current:e}=this.node;e&&(this.unmount=ou(e,(e,t)=>(Oh(this.node,t,`Start`),e=>Oh(this.node,e,`End`))))}unmount(){}},Ah=class extends ad{constructor(){super(...arguments),this.isActive=!1}onFocus(){let e=!1;try{e=this.node.current.matches(`:focus-visible`)}catch{e=!0}!e||!this.node.animationState||(this.node.animationState.setActive(`whileFocus`,!0),this.isActive=!0)}onBlur(){!this.isActive||!this.node.animationState||(this.node.animationState.setActive(`whileFocus`,!1),this.isActive=!1)}mount(){this.unmount=Oa(Jf(this.node.current,`focus`,()=>this.onFocus()),Jf(this.node.current,`blur`,()=>this.onBlur()))}unmount(){}};function jh(e,t,n){let{props:r}=e;if(e.current instanceof HTMLButtonElement&&e.current.disabled)return;e.animationState&&r.whileTap&&e.animationState.setActive(`whileTap`,n===`Start`);let i=r[`onTap`+(n===`End`?``:n)];i&&F.postRender(()=>i(t,Wm(t)))}var Mh=class extends ad{mount(){let{current:e}=this.node;if(!e)return;let{globalTapTarget:t,propagate:n}=this.node.props;this.unmount=yu(e,(e,t)=>(jh(this.node,t,`Start`),(e,{success:t})=>jh(this.node,e,t?`End`:`Cancel`)),{useGlobalTarget:t,stopPropagation:n?.tap===!1})}unmount(){}},Nh=new WeakMap,Ph=new WeakMap,Fh=e=>{let t=Nh.get(e.target);t&&t(e)},Ih=e=>{e.forEach(Fh)};function Lh({root:e,...t}){let n=e||document;Ph.has(n)||Ph.set(n,{});let r=Ph.get(n),i=JSON.stringify(t);return r[i]||(r[i]=new IntersectionObserver(Ih,{root:e,...t})),r[i]}function Rh(e,t,n){let r=Lh(t);return Nh.set(e,n),r.observe(e),()=>{Nh.delete(e),r.unobserve(e)}}var zh={some:0,all:1},Bh=class extends ad{constructor(){super(...arguments),this.hasEnteredView=!1,this.isInView=!1}startObserver(){this.stopObserver?.();let{viewport:e={}}=this.node.getProps(),{root:t,margin:n,amount:r=`some`,once:i}=e,a={root:t?t.current:void 0,rootMargin:n,threshold:typeof r==`number`?r:zh[r]},o=e=>{let{isIntersecting:t}=e;if(this.isInView===t||(this.isInView=t,i&&!t&&this.hasEnteredView))return;t&&(this.hasEnteredView=!0),this.node.animationState&&this.node.animationState.setActive(`whileInView`,t);let{onViewportEnter:n,onViewportLeave:r}=this.node.getProps(),a=t?n:r;a&&a(e)};this.stopObserver=Rh(this.node.current,a,o)}mount(){this.startObserver()}update(){if(typeof IntersectionObserver>`u`)return;let{props:e,prevProps:t}=this.node;[`amount`,`margin`,`root`].some(Vh(e,t))&&this.startObserver()}unmount(){this.stopObserver?.(),this.hasEnteredView=!1,this.isInView=!1}};function Vh({viewport:e={}},{viewport:t={}}={}){return n=>e[n]!==t[n]}var Hh={inView:{Feature:Bh},tap:{Feature:Mh},focus:{Feature:Ah},hover:{Feature:kh}},Uh={layout:{ProjectionNode:Ip,MeasureLayout:Eh}},$=zm({...Um,...Hh,...Dh,...Uh},Bm),Wh=`/assets/ryne-writes-preview-BdJIugag.jpg`,Gh=[{id:`davis-asphalt`,fileNumber:`001`,title:`Davis Asphalt`,category:`Paving`,type:`Business Website`,year:`2026`,location:`United States`,websiteUrl:`https://gdbtee1.github.io/davis-asphalt/`,status:`Live`,description:`A bold asphalt and paving website built to showcase services, establish local credibility, and turn visitors into qualified leads.`,brief:`The business needed a strong digital presence that could clearly present its paving work while feeling established, dependable, and easy to contact.`,build:`Techuvo created a responsive service-focused website with strong visual hierarchy, prominent calls to action, project-focused messaging, and mobile optimization.`,capabilities:[`Responsive website`,`Service presentation`,`Lead-focused layout`,`Mobile optimization`,`Contact pathways`,`Local business branding`],color:`slate`},{id:`pretty-patty-paradise`,fileNumber:`002`,title:`Pretty Patty Paradise`,category:`Food`,type:`Restaurant Website`,year:`2026`,location:`United States`,websiteUrl:`https://gdbtee1.github.io/pretty-patty-paradise`,status:`Live`,description:`A colorful food brand website designed to make the menu, personality, and customer experience feel immediately recognizable.`,brief:`The concept needed a lively digital presence that could showcase the brand's food, personality, and visual identity without feeling like a generic restaurant template.`,build:`Techuvo developed a responsive, personality-driven restaurant experience with bold presentation, clear content sections, and direct customer pathways.`,capabilities:[`Restaurant website`,`Brand presentation`,`Responsive development`,`Menu-focused structure`,`Customer pathways`,`Custom visual direction`],color:`violet`},{id:`fashion-brand`,fileNumber:`003`,title:`Fashion Brand`,category:`Fashion`,type:`Fashion Website`,year:`2026`,location:`United States`,websiteUrl:`https://gdbtee1.github.io/fashion-brand/`,status:`Live`,description:`A modern fashion website concept built around strong imagery, editorial presentation, and a premium digital storefront feel.`,brief:`The project needed to communicate fashion through visual hierarchy and atmosphere while remaining clean, responsive, and easy to explore.`,build:`Techuvo created an editorial-inspired responsive experience with image-led sections, refined typography, product-focused presentation, and polished interactions.`,capabilities:[`Fashion presentation`,`Editorial layout`,`Responsive development`,`Product storytelling`,`Visual hierarchy`,`Premium brand direction`],color:`indigo`},{id:`ryne-writes`,fileNumber:`004`,title:`Ryne Writes`,category:`Creative Portfolio`,type:`Interactive Portfolio`,year:`2026`,location:`United States`,websiteUrl:`https://rynewrites.com`,status:`Live`,description:`An interactive portfolio designed around a unique gaming-inspired experience that transforms a traditional portfolio into something memorable.`,brief:`The client wanted an experience instead of a traditional website. Every interaction was designed to feel playful while still presenting professional work.`,build:`Techuvo designed and developed a completely custom interactive portfolio featuring cinematic transitions, retro-inspired visuals, responsive layouts, and immersive navigation.`,capabilities:[`Interactive experience`,`Creative UI`,`Responsive development`,`Custom animations`,`Portfolio design`,`Performance optimization`],color:`cyan`},{id:`mojoy-records`,fileNumber:`005`,title:`Mojoy Records`,category:`Music`,type:`Record Label Website`,year:`2026`,location:`Detroit, Michigan`,websiteUrl:`https://gdbtee1.github.io/mojoy-records/`,status:`Live`,description:`A digital home for an independent Detroit record label built to present artists, releases, and the identity behind the brand.`,brief:`The label needed an online presence that could feel connected to Detroit's independent music culture while organizing artists, releases, and brand information.`,build:`Techuvo created a responsive music-focused website with strong visual identity, artist presentation, release-focused sections, and scalable content structure.`,capabilities:[`Record label website`,`Artist presentation`,`Release-focused content`,`Responsive development`,`Brand storytelling`,`Expandable architecture`],color:`blue`},{id:`xoxo-resells`,fileNumber:`006`,title:`XOXO Resells`,category:`E-Commerce`,type:`Resale Website`,year:`2026`,location:`United States`,websiteUrl:`https://xoxoresells.com`,status:`Live`,description:`A resale-focused website built to showcase available items, strengthen the brand, and make shopping the collection easier.`,brief:`The reseller needed a polished online presence that could organize inventory and make the business feel trustworthy, recognizable, and easy to shop.`,build:`Techuvo developed a responsive resale experience with product-focused presentation, clear navigation, brand-forward styling, and direct shopping pathways.`,capabilities:[`Resale website`,`Product presentation`,`Responsive development`,`E-commerce structure`,`Brand presentation`,`Customer navigation`],color:`sky`},{id:`retro-dental`,fileNumber:`007`,title:`Retro Dental`,category:`Healthcare`,type:`Dental Website`,year:`2026`,location:`United States`,websiteUrl:`https://gdbtee1.github.io/retro-dental/`,status:`Live`,description:`A distinctive dental website concept that combines professional service information with a memorable retro-inspired visual identity.`,brief:`The concept explored how a dental practice could stand apart from typical clinical websites while still communicating trust, services, and clear patient pathways.`,build:`Techuvo created a responsive dental experience with custom visual direction, organized service content, prominent calls to action, and mobile-friendly layouts.`,capabilities:[`Dental website`,`Custom visual identity`,`Service presentation`,`Responsive development`,`Patient pathways`,`Mobile optimization`],color:`cyan`},{id:`cleaning-business`,fileNumber:`008`,title:`Cleaning Business`,category:`Cleaning Services`,type:`Service Website`,year:`2026`,location:`United States`,websiteUrl:`https://gdbtee1.github.io/cleaning-business`,status:`Live`,description:`A clean service-business website designed to explain offerings quickly, build trust, and make requesting service simple.`,brief:`The cleaning concept needed a polished local-business presence that could communicate services clearly and guide visitors toward booking or contacting the company.`,build:`Techuvo created a responsive service layout with clear offers, trust-focused content, straightforward navigation, and conversion-focused contact pathways.`,capabilities:[`Cleaning service website`,`Service presentation`,`Responsive development`,`Lead-focused structure`,`Contact pathways`,`Local business branding`],color:`blue`},{id:`golden-cares`,fileNumber:`009`,title:`Golden Cares`,category:`Care Services`,type:`Service Website`,year:`2026`,location:`United States`,websiteUrl:`https://mygoldencares.com`,status:`Live`,description:`A warm care-services website that helps families understand available support and contact the organization confidently.`,brief:`The organization needed a reassuring website that could explain its services clearly and create trust with families.`,build:`Techuvo developed accessible service information, calm visual direction, responsive layouts, and clear contact options.`,capabilities:[`Care-service presentation`,`Responsive development`,`Accessible structure`,`Family-focused messaging`,`Contact pathways`,`Trust-building design`],color:`sky`},{id:`kids-first`,fileNumber:`010`,title:`Kids First`,category:`Education`,type:`Education Website`,year:`2026`,location:`United States`,websiteUrl:`https://kidsfirstllc.com`,status:`Live`,description:`An education website built to organize program information, communicate values, and create a clearer enrollment path.`,brief:`Families needed an easier way to understand the organization, its programs, educational approach, and enrollment process.`,build:`Techuvo created structured program sections, responsive layouts, family-focused copy, and organized calls to action.`,capabilities:[`Education website`,`Program information`,`Enrollment pathways`,`Responsive layouts`,`Family navigation`,`Accessible content`],color:`slate`},{id:`monroe-media-tv`,fileNumber:`011`,title:`Monroe Media TV`,category:`Media`,type:`Media Platform`,year:`2026`,location:`United States`,websiteUrl:`#`,status:`Archived`,description:`A multi-page media experience designed to organize programming, company information, and digital content.`,brief:`The media company needed a scalable digital home capable of supporting multiple content categories.`,build:`Techuvo created reusable page sections, responsive media layouts, organized navigation, and expandable architecture.`,capabilities:[`Multi-page architecture`,`Media content structure`,`Responsive development`,`Reusable components`,`Brand presentation`,`Expandable pages`],color:`indigo`},{id:`hubby-hub`,fileNumber:`012`,title:`Hubby Hub`,category:`Publishing`,type:`Author Website`,year:`2026`,location:`United States`,websiteUrl:`#`,status:`Archived`,description:`A personality-driven author website built to introduce the brand and organize written content.`,brief:`The author needed a recognizable digital presence that could present the project professionally without losing its personality.`,build:`Techuvo created expressive styling, responsive layouts, clear content sections, and direct reader pathways.`,capabilities:[`Author website`,`Creative presentation`,`Content organization`,`Responsive development`,`Reader engagement`,`Custom styling`],color:`cyan`}],Kh=[`All`,`Paving`,`Food`,`Fashion`,`Creative Portfolio`,`Music`,`E-Commerce`,`Healthcare`,`Cleaning Services`,`Care Services`,`Education`,`Media`,`Publishing`],qh={blue:{folder:`from-blue-700 via-blue-600 to-blue-500`,border:`border-blue-200`,soft:`bg-blue-50`,text:`text-blue-700`},sky:{folder:`from-sky-700 via-sky-600 to-cyan-500`,border:`border-sky-200`,soft:`bg-sky-50`,text:`text-sky-700`},slate:{folder:`from-slate-900 via-slate-800 to-slate-700`,border:`border-slate-300`,soft:`bg-slate-100`,text:`text-slate-700`},indigo:{folder:`from-indigo-800 via-indigo-700 to-blue-600`,border:`border-indigo-200`,soft:`bg-indigo-50`,text:`text-indigo-700`},violet:{folder:`from-violet-800 via-violet-700 to-indigo-600`,border:`border-violet-200`,soft:`bg-violet-50`,text:`text-violet-700`},cyan:{folder:`from-cyan-800 via-cyan-700 to-blue-600`,border:`border-cyan-200`,soft:`bg-cyan-50`,text:`text-cyan-700`}};function Jh(e){return!e.websiteUrl||e.websiteUrl===`#`?null:`https://image.thum.io/get/width/1400/crop/900/noanimate/${e.websiteUrl}`}function Yh(){return(0,j.jsx)(`svg`,{"aria-hidden":`true`,className:`h-4 w-4 transition-transform duration-300 group-hover:translate-x-1`,fill:`none`,viewBox:`0 0 20 20`,children:(0,j.jsx)(`path`,{d:`M4.5 10h11m-4.25-4.25L15.5 10l-4.25 4.25`,stroke:`currentColor`,strokeLinecap:`round`,strokeLinejoin:`round`,strokeWidth:`1.7`})})}function Xh(){return(0,j.jsxs)(`svg`,{"aria-hidden":`true`,className:`h-4 w-4`,fill:`none`,viewBox:`0 0 20 20`,children:[(0,j.jsx)(`path`,{d:`M11 4h5v5M9 11l7-7`,stroke:`currentColor`,strokeLinecap:`round`,strokeLinejoin:`round`,strokeWidth:`1.7`}),(0,j.jsx)(`path`,{d:`M16 11v3.5A1.5 1.5 0 0 1 14.5 16h-9A1.5 1.5 0 0 1 4 14.5v-9A1.5 1.5 0 0 1 5.5 4H9`,stroke:`currentColor`,strokeLinecap:`round`,strokeLinejoin:`round`,strokeWidth:`1.7`})]})}function Zh(){return(0,j.jsx)(`svg`,{"aria-hidden":`true`,className:`h-5 w-5`,fill:`none`,viewBox:`0 0 20 20`,children:(0,j.jsx)(`path`,{d:`m5 5 10 10M15 5 5 15`,stroke:`currentColor`,strokeLinecap:`round`,strokeWidth:`1.7`})})}function Qh({project:e,compact:t=!1}){return(0,j.jsxs)(`div`,{className:`relative h-full min-h-full overflow-hidden bg-gradient-to-br from-blue-100 via-blue-50 to-white`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-60`,style:{backgroundImage:`linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px)`,backgroundSize:t?`22px 22px`:`28px 28px`}}),(0,j.jsxs)(`div`,{className:`absolute inset-4 border border-blue-200 bg-white/80 p-4 backdrop-blur-sm`,children:[(0,j.jsx)(`p`,{className:`text-[0.55rem] font-extrabold uppercase tracking-[0.16em] text-blue-700`,children:e.category}),(0,j.jsx)(`div`,{className:`mt-4 h-3 w-4/5 rounded-full bg-slate-950`}),(0,j.jsx)(`div`,{className:`mt-2 h-3 w-1/2 rounded-full bg-slate-950`}),(0,j.jsx)(`div`,{className:`mt-5 h-1.5 w-full rounded-full bg-slate-200`}),(0,j.jsx)(`div`,{className:`mt-2 h-1.5 w-5/6 rounded-full bg-slate-200`}),(0,j.jsxs)(`div`,{className:`mt-5 grid grid-cols-2 gap-2`,children:[(0,j.jsx)(`span`,{className:`h-10 bg-blue-100`}),(0,j.jsx)(`span`,{className:`h-10 bg-slate-100`}),(0,j.jsx)(`span`,{className:`h-10 bg-slate-100`}),(0,j.jsx)(`span`,{className:`h-10 bg-blue-100`})]})]})]})}function $h({project:e,compact:t=!1}){let[n,r]=(0,w.useState)(!1),i=e.id===`ryne-writes`,a=i?Wh:Jh(e);return!a||n?(0,j.jsx)(Qh,{project:e,compact:t}):(0,j.jsx)(`img`,{src:a,alt:`${e.title} website preview`,loading:`lazy`,onError:()=>r(!0),className:`h-full w-full object-cover ${i?`object-center`:`object-top`}`})}function eg({project:e,active:t,dimmed:n,onOpen:r}){let i=qh[e.color];return(0,j.jsx)(`button`,{type:`button`,onClick:r,"aria-expanded":e.websiteUrl&&e.websiteUrl!==`#`?void 0:t,className:`group relative block w-full pt-8 text-left outline-none transition duration-500 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-4 ${n?`scale-[0.985] opacity-45`:`opacity-100`}`,children:(0,j.jsxs)(`div`,{className:`relative mx-auto min-h-[19rem] w-full max-w-[36rem] transition duration-500 sm:min-h-[20rem] ${t?`-translate-y-2`:`group-hover:-translate-y-2`}`,children:[(0,j.jsxs)(`div`,{className:`absolute left-[6%] right-[6%] top-0 h-[13.5rem] overflow-hidden border bg-white shadow-[0_14px_35px_rgba(15,23,42,0.12)] transition duration-500 sm:h-[14.25rem] ${i.border} ${t?`-translate-y-7 -rotate-1`:`translate-y-3 -rotate-1 group-hover:-translate-y-4`}`,children:[(0,j.jsxs)(`div`,{className:`flex h-9 items-center justify-between border-b border-slate-200 bg-white/95 px-4`,children:[(0,j.jsxs)(`span`,{className:`text-[0.56rem] font-extrabold uppercase tracking-[0.17em] ${i.text}`,children:[`File `,e.fileNumber]}),(0,j.jsx)(`span`,{className:`h-1.5 w-14 rounded-full bg-slate-200`})]}),(0,j.jsx)(`div`,{className:`h-[calc(100%-2.25rem)]`,children:(0,j.jsx)($h,{project:e,compact:!0})})]}),(0,j.jsxs)(`div`,{className:`absolute inset-x-0 bottom-0 min-h-[13.5rem] bg-gradient-to-br p-5 text-white shadow-[0_22px_65px_rgba(15,23,42,0.22)] transition duration-500 sm:min-h-[14rem] sm:p-6 ${i.folder}`,children:[(0,j.jsx)(`div`,{className:`absolute -top-7 left-0 h-8 w-[47%] bg-gradient-to-br ${i.folder}`}),(0,j.jsx)(`div`,{className:`file-light absolute inset-x-0 top-0 h-px overflow-hidden bg-white/20`,children:(0,j.jsx)(`span`,{className:`block h-full w-1/3 bg-white`})}),(0,j.jsxs)(`div`,{className:`flex min-h-[10.5rem] flex-col sm:min-h-[11rem]`,children:[(0,j.jsxs)(`div`,{className:`flex items-start justify-between gap-3`,children:[(0,j.jsxs)(`div`,{className:`min-w-0`,children:[(0,j.jsx)(`p`,{className:`truncate text-[0.58rem] font-extrabold uppercase tracking-[0.17em] text-white/65`,children:e.category}),(0,j.jsx)(`p`,{className:`mt-1 truncate text-xs font-bold text-white/70`,children:e.type})]}),(0,j.jsxs)(`span`,{className:`inline-flex shrink-0 items-center gap-2 border border-white/15 bg-white/10 px-2.5 py-1.5 text-[0.55rem] font-extrabold uppercase tracking-[0.11em]`,children:[(0,j.jsx)(`span`,{className:`h-1.5 w-1.5 rounded-full ${e.status===`Live`?`bg-emerald-300`:`bg-blue-200`}`}),e.status]})]}),(0,j.jsxs)(`div`,{className:`mt-auto pt-6`,children:[(0,j.jsx)(`h2`,{className:`max-w-full text-[1.35rem] font-black leading-[1.05] tracking-[-0.045em] sm:text-2xl`,children:e.title}),(0,j.jsxs)(`span`,{className:`mt-4 inline-flex items-center gap-2 text-xs font-extrabold`,children:[e.websiteUrl&&e.websiteUrl!==`#`?`Visit live website ↗`:t?`File selected`:`Open project`,(0,j.jsx)(Yh,{})]})]})]})]})]})})}function tg({project:e}){let t=e.websiteUrl&&e.websiteUrl!==`#`;return(0,j.jsxs)(`div`,{className:`overflow-hidden border border-blue-200 bg-white shadow-[0_24px_70px_rgba(15,23,42,0.12)]`,children:[(0,j.jsxs)(`div`,{className:`flex h-10 items-center gap-3 border-b border-slate-200 bg-slate-50 px-3`,children:[(0,j.jsxs)(`div`,{className:`flex gap-1.5`,children:[(0,j.jsx)(`span`,{className:`h-2 w-2 rounded-full bg-slate-300`}),(0,j.jsx)(`span`,{className:`h-2 w-2 rounded-full bg-slate-300`}),(0,j.jsx)(`span`,{className:`h-2 w-2 rounded-full bg-slate-300`})]}),(0,j.jsx)(`p`,{className:`min-w-0 flex-1 truncate text-center text-[0.58rem] font-bold text-slate-500`,children:t?e.websiteUrl.replace(`https://`,``):`${e.id}.techuvo.file`})]}),(0,j.jsxs)(`div`,{className:`relative h-[18rem] overflow-hidden sm:h-[22rem] lg:h-[26rem]`,children:[(0,j.jsx)($h,{project:e}),(0,j.jsx)(`div`,{className:`pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/20 to-transparent`}),(0,j.jsx)(`div`,{className:`blueprint-scan pointer-events-none absolute inset-x-0 top-0 h-px bg-blue-500 shadow-[0_0_16px_4px_rgba(37,99,235,0.3)]`})]})]})}function ng({project:e,onClose:t}){let n=qh[e.color],r=e.websiteUrl&&e.websiteUrl!==`#`;return(0,j.jsxs)(`section`,{className:`open-file relative scroll-mt-28 overflow-hidden border-y border-blue-200 bg-blue-50/60`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-55`,style:{backgroundImage:`linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px)`,backgroundSize:`32px 32px`}}),(0,j.jsxs)(`div`,{className:`relative mx-auto max-w-[100rem] px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-14`,children:[(0,j.jsxs)(`div`,{className:`flex items-start justify-between gap-5 border-b border-blue-200 pb-5`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsxs)(`p`,{className:`text-[0.6rem] font-extrabold uppercase tracking-[0.18em] text-blue-700`,children:[`Open file `,e.fileNumber]}),(0,j.jsx)(`h2`,{className:`mt-2 max-w-4xl text-3xl font-black tracking-[-0.055em] text-slate-950 sm:text-4xl`,children:e.title})]}),(0,j.jsx)(`button`,{type:`button`,onClick:t,"aria-label":`Close project file`,className:`grid h-10 w-10 shrink-0 place-items-center border border-slate-300 bg-white text-slate-950 transition hover:bg-slate-950 hover:text-white`,children:(0,j.jsx)(Zh,{})})]}),(0,j.jsxs)(`div`,{className:`mt-7 grid gap-8 xl:grid-cols-[0.72fr_1.45fr_0.72fr] xl:items-start`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-[0.6rem] font-extrabold uppercase tracking-[0.17em] text-slate-500`,children:`Project brief`}),(0,j.jsx)(`p`,{className:`mt-3 text-sm leading-7 text-slate-700`,children:e.brief}),(0,j.jsx)(`dl`,{className:`mt-6 border-t border-slate-300 pt-4`,children:[[`Industry`,e.category],[`Location`,e.location],[`Type`,e.type],[`Status`,e.status]].map(([e,t])=>(0,j.jsxs)(`div`,{className:`grid grid-cols-[5rem_1fr] gap-3 border-b border-slate-200 py-3`,children:[(0,j.jsx)(`dt`,{className:`text-xs font-bold text-slate-400`,children:e}),(0,j.jsx)(`dd`,{className:`text-xs font-extrabold text-slate-800`,children:t})]},e))})]}),(0,j.jsx)(tg,{project:e}),(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-[0.6rem] font-extrabold uppercase tracking-[0.17em] ${n.text}`,children:`Techuvo build`}),(0,j.jsx)(`p`,{className:`mt-3 text-sm leading-7 text-slate-700`,children:e.build}),(0,j.jsxs)(`div`,{className:`mt-6 border-t border-slate-300 pt-4`,children:[(0,j.jsx)(`p`,{className:`text-[0.6rem] font-extrabold uppercase tracking-[0.17em] text-slate-500`,children:`Included`}),(0,j.jsx)(`div`,{className:`mt-4 space-y-2.5`,children:e.capabilities.map((e,t)=>(0,j.jsxs)(`div`,{className:`grid grid-cols-[1.75rem_1fr] gap-2 border-b border-slate-200 pb-2.5`,children:[(0,j.jsx)(`span`,{className:`text-[0.62rem] font-black ${n.text}`,children:String(t+1).padStart(2,`0`)}),(0,j.jsx)(`span`,{className:`text-xs font-bold leading-5 text-slate-700`,children:e})]},e))})]}),(0,j.jsxs)(`div`,{className:`mt-6 grid gap-2.5`,children:[r?(0,j.jsxs)(`a`,{href:e.websiteUrl,target:`_blank`,rel:`noopener noreferrer`,className:`group inline-flex min-h-11 items-center justify-center gap-2 bg-blue-600 px-4 text-xs font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-blue-700`,children:[`Visit live website`,(0,j.jsx)(Xh,{})]}):(0,j.jsx)(`span`,{className:`inline-flex min-h-11 items-center justify-center border border-slate-300 bg-white px-4 text-center text-xs font-extrabold text-slate-500`,children:`Public link unavailable`}),(0,j.jsxs)(A,{to:`/contact`,className:`group inline-flex min-h-11 items-center justify-center gap-2 border border-slate-300 bg-white px-4 text-xs font-extrabold text-slate-950 transition hover:border-blue-300 hover:bg-blue-50`,children:[`Build something similar`,(0,j.jsx)(Yh,{})]})]})]})]})]})]})}function rg(){return(0,j.jsxs)(A,{to:`/contact`,className:`group relative mt-8 flex min-h-[19rem] flex-col overflow-hidden border border-dashed border-blue-300 bg-blue-50/70 p-6 transition duration-500 hover:-translate-y-2 hover:border-blue-600 hover:shadow-[0_24px_65px_rgba(37,99,235,0.14)]`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-60`,style:{backgroundImage:`linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px)`,backgroundSize:`28px 28px`}}),(0,j.jsxs)(`div`,{className:`relative flex h-full flex-1 flex-col`,children:[(0,j.jsxs)(`div`,{className:`flex items-center justify-between`,children:[(0,j.jsx)(`p`,{className:`text-[0.58rem] font-extrabold uppercase tracking-[0.18em] text-blue-700`,children:`File 013`}),(0,j.jsxs)(`span`,{className:`relative flex h-2.5 w-2.5`,children:[(0,j.jsx)(`span`,{className:`absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-40`}),(0,j.jsx)(`span`,{className:`relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-600`})]})]}),(0,j.jsxs)(`div`,{className:`my-auto py-6`,children:[(0,j.jsx)(`p`,{className:`text-[0.58rem] font-extrabold uppercase tracking-[0.18em] text-slate-500`,children:`Reserved`}),(0,j.jsx)(`h2`,{className:`mt-3 text-3xl font-black tracking-[-0.055em] text-slate-950`,children:`Your business belongs here.`}),(0,j.jsx)(`p`,{className:`mt-4 text-sm leading-7 text-slate-600`,children:`Start the next Techuvo project file.`})]}),(0,j.jsxs)(`span`,{className:`inline-flex items-center gap-2 text-xs font-extrabold text-blue-700`,children:[`Create your file`,(0,j.jsx)(Yh,{})]})]})]})}function ig(){return(0,j.jsxs)(`a`,{href:`https://rynewrites.com/`,target:`_blank`,rel:`noopener noreferrer`,"aria-label":`Explore Ryne Writes, a live website built by Techuvo (opens in a new tab)`,className:`techuvo-ryne group relative block h-[245px] w-full overflow-hidden bg-[#24132b] text-[#fff5df] sm:h-[295px] lg:h-[320px] xl:h-[340px]`,children:[(0,j.jsx)(`div`,{className:`pointer-events-none absolute inset-0 opacity-40`,style:{backgroundImage:`linear-gradient(rgba(255,192,158,.14) 1px, transparent 1px),linear-gradient(90deg,rgba(255,192,158,.14) 1px,transparent 1px)`,backgroundSize:`18px 18px`}}),(0,j.jsxs)(`div`,{className:`absolute inset-x-0 top-0 z-20 flex items-start justify-between gap-3 p-4 sm:p-5`,children:[(0,j.jsxs)(`div`,{className:`min-w-0`,children:[(0,j.jsx)(`p`,{className:`text-[9px] font-black uppercase tracking-[.16em] text-[#ffd166] sm:text-[10px]`,children:`Featured client project`}),(0,j.jsxs)(`h3`,{className:`mt-1 text-2xl font-black tracking-[-.05em] sm:text-3xl`,children:[`Ryne Writes`,(0,j.jsx)(`span`,{className:`text-[#ff907f]`,children:`.`})]}),(0,j.jsx)(`p`,{className:`mt-1 hidden text-xs font-semibold text-[#d8bfae] sm:block`,children:`Interactive portfolio experience`})]}),(0,j.jsx)(`div`,{className:`shrink-0 border-2 border-[#ffc09e] bg-[#8f2436] px-2 py-2 text-[9px] font-black uppercase tracking-wider shadow-[3px_3px_0_#100a12]`,children:`LIVE SITE ↗`})]}),(0,j.jsx)($.div,{className:`ryne-sprite-position pointer-events-none absolute inset-x-0 top-[30px] z-10 flex justify-center sm:top-[42px] lg:top-[47px]`,animate:{y:[0,-7,0]},transition:{duration:2,repeat:1/0,ease:`easeInOut`},children:(0,j.jsx)(`div`,{className:`ryne-sprite-scale`,children:(0,j.jsx)(`div`,{className:`pixel-avatar-wrapper`,children:(0,j.jsxs)(`div`,{className:`pixel-avatar character-mario outfit-plumber`,children:[(0,j.jsx)(`div`,{className:`avatar-shadow`}),(0,j.jsxs)(`div`,{className:`avatar-character`,children:[(0,j.jsxs)(`div`,{className:`avatar-head`,children:[(0,j.jsx)(`div`,{className:`avatar-cap`,children:(0,j.jsx)(`span`,{className:`avatar-cap-badge`,children:`M`})}),(0,j.jsx)(`div`,{className:`avatar-ear avatar-ear-left`}),(0,j.jsx)(`div`,{className:`avatar-ear avatar-ear-right`}),(0,j.jsxs)(`div`,{className:`avatar-face`,children:[(0,j.jsx)(`span`,{className:`avatar-eye avatar-eye-left`}),(0,j.jsx)(`span`,{className:`avatar-eye avatar-eye-right`}),(0,j.jsx)(`span`,{className:`avatar-nose`}),(0,j.jsx)(`span`,{className:`avatar-mustache avatar-mustache-left`}),(0,j.jsx)(`span`,{className:`avatar-mustache avatar-mustache-right`})]})]}),(0,j.jsx)(`div`,{className:`avatar-neck`}),(0,j.jsxs)(`div`,{className:`avatar-body`,children:[(0,j.jsx)(`div`,{className:`avatar-shirt`}),(0,j.jsxs)(`div`,{className:`avatar-overalls`,children:[(0,j.jsx)(`span`,{className:`overall-strap overall-strap-left`}),(0,j.jsx)(`span`,{className:`overall-strap overall-strap-right`}),(0,j.jsx)(`span`,{className:`overall-button overall-button-left`}),(0,j.jsx)(`span`,{className:`overall-button overall-button-right`}),(0,j.jsx)(`span`,{className:`overall-pocket`})]}),(0,j.jsx)(`div`,{className:`avatar-arm avatar-arm-left`}),(0,j.jsx)(`div`,{className:`avatar-arm avatar-arm-right`})]}),(0,j.jsxs)(`div`,{className:`avatar-hands`,children:[(0,j.jsx)(`span`,{className:`avatar-hand avatar-hand-left`}),(0,j.jsx)(`span`,{className:`avatar-hand avatar-hand-right`})]}),(0,j.jsxs)(`div`,{className:`avatar-legs`,children:[(0,j.jsx)(`div`,{className:`avatar-leg avatar-leg-left`}),(0,j.jsx)(`div`,{className:`avatar-leg avatar-leg-right`})]})]})]})})})}),(0,j.jsxs)(`div`,{className:`absolute bottom-3 left-1/2 z-20 flex w-[calc(100%-28px)] -translate-x-1/2 items-center justify-center gap-2 border-[3px] border-[#100a12] bg-[#ffd166] px-3 py-3 text-center text-[11px] font-black uppercase tracking-[.08em] text-[#100a12] shadow-[4px_4px_0_#8f2436] transition-transform duration-200 group-hover:-translate-y-1 sm:bottom-5 sm:w-auto sm:px-6 sm:text-xs`,children:[`Click to explore a website we built `,(0,j.jsx)(`span`,{"aria-hidden":`true`,children:`↗`})]}),(0,j.jsx)(`style`,{children:`.techuvo-ryne .pixel-avatar-wrapper{
+
   display: grid;
+
   justify-items: center;
+
 }
+
 .techuvo-ryne .pixel-avatar{
+
   position: relative;
+
   width: 220px;
+
   height: 330px;
+
   image-rendering: pixelated;
+
 }
+
 .techuvo-ryne .avatar-character{
+
   position: absolute;
+
   top: 25px;
+
   left: 50%;
+
   width: 140px;
+
   height: 260px;
+
   transform: translateX(-50%);
+
 }
+
 .techuvo-ryne .avatar-shadow{
+
   position: absolute;
+
   bottom: 12px;
+
   left: 50%;
+
   width: 150px;
+
   height: 24px;
+
   background: rgba(0, 0, 0, 0.42);
+
   transform: translateX(-50%);
+
   clip-path: polygon(
+
     10% 25%,
+
     90% 25%,
+
     100% 75%,
+
     85% 100%,
+
     15% 100%,
+
     0 75%
+
   );
+
 }
+
 .techuvo-ryne .avatar-head{
+
   position: absolute;
+
   top: 22px;
+
   left: 29px;
+
   z-index: 4;
+
   width: 82px;
+
   height: 78px;
+
   border: 7px solid #130a10;
+
   background: #b96d47;
+
   box-shadow:
+
     inset 0 -12px 0 rgba(74, 28, 23, 0.15),
+
     7px 7px 0 rgba(0, 0, 0, 0.19);
+
 }
+
 .techuvo-ryne .avatar-face{
+
   position: absolute;
+
   inset: 0;
+
 }
+
 .techuvo-ryne .avatar-eye{
+
   position: absolute;
+
   top: 31px;
+
   width: 8px;
+
   height: 12px;
+
   background: #160b10;
+
 }
+
 .techuvo-ryne .avatar-eye-left{
+
   left: 18px;
+
 }
+
 .techuvo-ryne .avatar-eye-right{
+
   right: 18px;
+
 }
+
 .techuvo-ryne .avatar-ear{
+
   position: absolute;
+
   top: 27px;
+
   width: 10px;
+
   height: 25px;
+
   background: #b96d47;
+
 }
+
 .techuvo-ryne .avatar-ear-left{
+
   left: -17px;
+
 }
+
 .techuvo-ryne .avatar-ear-right{
+
   right: -17px;
+
 }
+
 .techuvo-ryne .avatar-neck{
+
   position: absolute;
+
   top: 93px;
+
   left: 58px;
+
   z-index: 3;
+
   width: 25px;
+
   height: 26px;
+
   background: #a85d3b;
+
 }
+
 .techuvo-ryne .avatar-body{
+
   position: absolute;
+
   top: 110px;
+
   left: 20px;
+
   z-index: 2;
+
   width: 100px;
+
   height: 100px;
+
 }
+
 .techuvo-ryne .avatar-shirt{
+
   position: absolute;
+
   inset: 0 10px;
+
   border: 7px solid #130a10;
+
   background: #f5ecdb;
+
 }
+
 .techuvo-ryne .avatar-arm{
+
   position: absolute;
+
   top: 13px;
+
   width: 22px;
+
   height: 78px;
+
   border: 6px solid #130a10;
+
   background: #b96d47;
+
 }
+
 .techuvo-ryne .avatar-arm-left{
+
   left: -8px;
+
 }
+
 .techuvo-ryne .avatar-arm-right{
+
   right: -8px;
+
 }
+
 .techuvo-ryne .avatar-legs{
+
   position: absolute;
+
   top: 202px;
+
   left: 37px;
+
   z-index: 1;
+
   display: flex;
+
   gap: 4px;
+
 }
+
 .techuvo-ryne .avatar-leg{
+
   width: 31px;
+
   height: 55px;
+
   border: 6px solid #130a10;
+
   background: #6f3347;
+
 }
+
 .techuvo-ryne .avatar-leg::after{
+
   position: absolute;
+
   bottom: -17px;
+
   width: 34px;
+
   height: 15px;
+
   content: "";
+
   border: 5px solid #130a10;
+
   background: #2c1b26;
+
 }
+
 .techuvo-ryne .avatar-leg-left::after{
+
   left: -6px;
+
 }
+
 .techuvo-ryne .avatar-leg-right::after{
+
   right: -6px;
+
 }
+
 .techuvo-ryne .avatar-head{
+
   overflow: visible;
+
   background: #d58a5d;
+
 }
+
 .techuvo-ryne .avatar-cap{
+
   position: absolute;
+
   top: -28px;
+
   left: -8px;
+
   z-index: 12;
+
   width: 98px;
+
   height: 43px;
+
   border: 6px solid #130a10;
+
   border-bottom-width: 4px;
+
   background: #d83d3d;
+
   box-shadow: inset 0 -10px 0 rgba(0, 0, 0, 0.16);
+
   clip-path: polygon(12% 0, 78% 0, 100% 45%, 96% 76%, 73% 76%, 68% 100%, 18% 100%, 15% 73%, 0 73%, 0 38%);
+
 }
+
 .techuvo-ryne .avatar-cap-badge{
+
   position: absolute;
+
   top: 7px;
+
   left: 42px;
+
   display: grid;
+
   width: 28px;
+
   height: 25px;
+
   border: 4px solid #130a10;
+
   font-family: "Press Start 2P", monospace;
+
   font-size: 10px;
+
   color: #130a10;
+
   background: #fff5df;
+
   place-items: center;
+
 }
+
 .techuvo-ryne .avatar-face{
+
   z-index: 6;
+
 }
+
 .techuvo-ryne .avatar-nose{
+
   position: absolute;
+
   top: 35px;
+
   left: 50%;
+
   z-index: 8;
+
   width: 22px;
+
   height: 17px;
+
   border: 4px solid #130a10;
+
   background: #e39a6b;
+
   transform: translateX(-50%);
+
 }
+
 .techuvo-ryne .avatar-mustache{
+
   position: absolute;
+
   bottom: 8px;
+
   z-index: 7;
+
   width: 27px;
+
   height: 13px;
+
   background: #27130f;
+
 }
+
 .techuvo-ryne .avatar-mustache-left{
+
   left: 15px;
+
   clip-path: polygon(0 35%, 40% 0, 100% 30%, 88% 100%, 20% 85%);
+
 }
+
 .techuvo-ryne .avatar-mustache-right{
+
   right: 15px;
+
   clip-path: polygon(100% 35%, 60% 0, 0 30%, 12% 100%, 80% 85%);
+
 }
+
 .techuvo-ryne .avatar-shirt{
+
   inset: 0;
+
   border: 7px solid #130a10;
+
   background: #d83d3d;
+
 }
+
 .techuvo-ryne .avatar-overalls{
+
   position: absolute;
+
   inset: 24px 14px 0;
+
   z-index: 3;
+
   border: 5px solid #130a10;
+
   background: #326fc2;
+
 }
+
 .techuvo-ryne .overall-strap{
+
   position: absolute;
+
   top: -28px;
+
   width: 14px;
+
   height: 43px;
+
   border: 4px solid #130a10;
+
   background: #326fc2;
+
 }
+
 .techuvo-ryne .overall-strap-left{ left: 8px; }
+
 .techuvo-ryne .overall-strap-right{ right: 8px; }
+
 .techuvo-ryne .overall-button{
+
   position: absolute;
+
   top: 8px;
+
   width: 9px;
+
   height: 9px;
+
   background: var(--gold);
+
 }
+
 .techuvo-ryne .overall-button-left{ left: 12px; }
+
 .techuvo-ryne .overall-button-right{ right: 12px; }
+
 .techuvo-ryne .overall-pocket{
+
   position: absolute;
+
   left: 50%;
+
   bottom: 10px;
+
   width: 30px;
+
   height: 22px;
+
   border: 4px solid #130a10;
+
   transform: translateX(-50%);
+
 }
+
 .techuvo-ryne .avatar-hands{
+
   position: absolute;
+
   top: 180px;
+
   left: 1px;
+
   z-index: 5;
+
   display: flex;
+
   justify-content: space-between;
+
   width: 138px;
+
 }
+
 .techuvo-ryne .avatar-hand{
+
   width: 25px;
+
   height: 24px;
+
   border: 5px solid #130a10;
+
   background: #fff5df;
+
 }
+
 .techuvo-ryne .ryne-sprite-scale {width:220px;height:330px;transform:scale(.57);transform-origin:top center}
+
 @media(min-width:640px){.techuvo-ryne .ryne-sprite-scale {transform:scale(.72)}}
+
 @media(min-width:1024px){.techuvo-ryne .ryne-sprite-scale {transform:scale(.79)}}
+
 .techuvo-ryne .avatar-cap-badge {font-family: monospace}
+
 @media(prefers-reduced-motion:reduce){.techuvo-ryne .ryne-sprite-scale{animation:none}}
-`})]})}function ag(){return(0,j.jsxs)(`a`,{href:`https://xoxoresells.com`,target:`_blank`,rel:`noopener noreferrer`,"aria-label":`Explore XOXO Resells website in a new tab`,className:`group relative block h-[245px] w-full overflow-hidden bg-[#ffdfeb] text-[#51283e] sm:h-[295px] lg:h-[320px] xl:h-[340px]`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`pointer-events-none absolute inset-0 opacity-50`,style:{backgroundImage:`linear-gradient(#e9a5bf 1px,transparent 1px),linear-gradient(90deg,#e9a5bf 1px,transparent 1px)`,backgroundSize:`22px 22px`}}),(0,j.jsxs)(`div`,{className:`absolute inset-x-0 top-0 z-20 flex items-start justify-between gap-2 p-4 sm:p-5`,children:[(0,j.jsxs)(`div`,{className:`min-w-0`,children:[(0,j.jsx)(`p`,{className:`text-[9px] font-black uppercase tracking-[.16em] text-[#ac4a78] sm:text-[10px]`,children:`Featured client project`}),(0,j.jsxs)(`h3`,{className:`mt-1 text-2xl font-black tracking-[-.05em] sm:text-3xl`,children:[`XOXO Resells`,(0,j.jsx)(`span`,{className:`text-[#e5619b]`,children:`.`})]}),(0,j.jsx)(`p`,{className:`mt-1 hidden text-xs font-semibold text-[#85546b] sm:block`,children:`Curated resale shopping experience`})]}),(0,j.jsx)(`span`,{className:`shrink-0 border-2 border-[#51283e] bg-[#f8a8c6] px-2 py-2 text-[9px] font-black uppercase tracking-wider shadow-[3px_3px_0_#51283e]`,children:`LIVE SITE ↗`})]}),(0,j.jsx)($.div,{"aria-hidden":`true`,className:`pointer-events-none absolute inset-x-0 top-[53px] z-10 flex justify-center sm:top-[65px]`,animate:{y:[0,-7,0],rotate:[-1,1,-1]},transition:{duration:2,repeat:1/0,ease:`easeInOut`},children:(0,j.jsxs)(`svg`,{viewBox:`0 0 220 235`,className:`h-[175px] w-[170px] drop-shadow-[7px_8px_0_#a75580] sm:h-[215px] sm:w-[210px]`,shapeRendering:`crispEdges`,xmlns:`http://www.w3.org/2000/svg`,children:[(0,j.jsx)(`path`,{d:`M35 94 V24 H57 L82 47 H139 L164 24 H186 V94`,fill:`#fffafc`,stroke:`#372433`,strokeWidth:`8`,strokeLinejoin:`miter`}),(0,j.jsx)(`path`,{d:`M38 65 H182 V151 H165 V166 H55 V151 H38 Z`,fill:`#fffafc`,stroke:`#372433`,strokeWidth:`8`,strokeLinejoin:`miter`}),(0,j.jsx)(`path`,{d:`M151 38 H166 V23 H183 V37 H198 V57 H184 V71 H166 V57 H151 Z`,fill:`#f16b9a`,stroke:`#372433`,strokeWidth:`5`}),(0,j.jsx)(`rect`,{x:`168`,y:`40`,width:`13`,height:`13`,fill:`#ffe79c`,stroke:`#372433`,strokeWidth:`3`}),(0,j.jsx)(`rect`,{x:`69`,y:`99`,width:`10`,height:`17`,fill:`#372433`}),(0,j.jsx)(`rect`,{x:`143`,y:`99`,width:`10`,height:`17`,fill:`#372433`}),(0,j.jsx)(`rect`,{x:`105`,y:`118`,width:`16`,height:`10`,fill:`#f1bd55`,stroke:`#372433`,strokeWidth:`2`}),(0,j.jsx)(`path`,{d:`M46 113 H15 M46 125 H12 M46 137 H18 M174 113 H205 M174 125 H208 M174 137 H202`,fill:`none`,stroke:`#372433`,strokeWidth:`5`}),(0,j.jsx)(`path`,{d:`M72 167 H148 V214 H72 Z`,fill:`#ed93b3`,stroke:`#372433`,strokeWidth:`8`}),(0,j.jsx)(`path`,{d:`M70 179 H47 V205 H70 M150 179 H173 V205 H150`,fill:`#fffafc`,stroke:`#372433`,strokeWidth:`7`}),(0,j.jsx)(`path`,{d:`M91 208 V229 H70 V216 M129 208 V229 H150 V216`,fill:`#fffafc`,stroke:`#372433`,strokeWidth:`7`}),(0,j.jsx)(`rect`,{x:`102`,y:`178`,width:`16`,height:`17`,fill:`#fffafc`,stroke:`#372433`,strokeWidth:`4`})]})}),(0,j.jsxs)(`div`,{className:`absolute bottom-3 left-1/2 z-20 flex w-[calc(100%-28px)] -translate-x-1/2 items-center justify-center gap-2 border-[3px] border-[#51283e] bg-[#fff3b9] px-3 py-3 text-center text-[11px] font-black uppercase tracking-[.08em] text-[#51283e] shadow-[4px_4px_0_#d46b98] transition-transform duration-200 group-hover:-translate-y-1 sm:bottom-5 sm:w-auto sm:px-6 sm:text-xs`,children:[`Explore the XOXO website `,(0,j.jsx)(`span`,{"aria-hidden":`true`,children:`↗`})]})]})}function og(){let[e,t]=(0,w.useState)(`All`),[n,r]=(0,w.useState)(null),i=(0,w.useMemo)(()=>e===`All`?Gh:Gh.filter(t=>t.category===e),[e]),a=Gh.find(e=>e.id===n);return(0,w.useEffect)(()=>{let e=document.title;document.title=`Techuvo File Room | Website Design Portfolio`;let t=document.querySelector(`meta[name="description"]`),n=!t;t||(t=document.createElement(`meta`),t.setAttribute(`name`,`description`),document.head.appendChild(t));let r=t.getAttribute(`content`);t.setAttribute(`content`,`Explore the Techuvo File Room, featuring responsive websites and digital projects created for paving, food, fashion, music, retail, healthcare, education, media, and service businesses.`);let i=document.querySelector(`link[rel="canonical"]`),a=!i;i||(i=document.createElement(`link`),i.setAttribute(`rel`,`canonical`),document.head.appendChild(i));let o=i.getAttribute(`href`);return i.setAttribute(`href`,`https://techuvo.dev/portfolio`),()=>{document.title=e,n?t.remove():r===null?t.removeAttribute(`content`):t.setAttribute(`content`,r),a?i.remove():o===null?i.removeAttribute(`href`):i.setAttribute(`href`,o)}},[]),(0,w.useEffect)(()=>{if(!n)return;let e=window.setTimeout(()=>{document.getElementById(`open-file`)?.scrollIntoView({behavior:`smooth`,block:`start`})},120);return()=>window.clearTimeout(e)},[n]),(0,j.jsxs)(`main`,{className:`overflow-hidden bg-white`,children:[(0,j.jsxs)(`section`,{className:`relative border-b border-blue-200 bg-blue-50/45`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-65`,style:{backgroundImage:`linear-gradient(rgba(37,99,235,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.055) 1px, transparent 1px)`,backgroundSize:`38px 38px`}}),(0,j.jsx)(`div`,{className:`file-room-scan pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-blue-500 shadow-[0_0_28px_7px_rgba(37,99,235,0.26)]`}),(0,j.jsxs)(`div`,{className:`relative mx-auto max-w-[100rem] px-5 pb-9 pt-12 sm:px-8 sm:pb-11 sm:pt-14 lg:px-12 lg:pb-12 lg:pt-16`,children:[(0,j.jsxs)(`div`,{className:`grid gap-7 lg:grid-cols-[1fr_0.72fr] lg:items-end`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,j.jsx)(`span`,{className:`h-px w-9 bg-blue-600`}),(0,j.jsx)(`p`,{className:`text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-blue-700`,children:`Archive online`})]}),(0,j.jsx)(`h1`,{className:`mt-5 max-w-[11ch] text-5xl font-black leading-[0.91] tracking-[-0.07em] text-slate-950 sm:text-6xl lg:text-7xl`,children:`The Techuvo File Room.`})]}),(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`max-w-xl text-lg font-bold leading-8 tracking-[-0.02em] text-slate-900`,children:`Open the project files behind businesses we helped strengthen online.`}),(0,j.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-slate-600`,children:`Select a folder to see the problem, the build, and the finished digital blueprint.`})]})]}),(0,j.jsx)(`div`,{className:`mt-8 grid grid-cols-2 gap-px border border-blue-200 bg-blue-200 sm:grid-cols-4`,children:[[`12`,`Projects`],[`12`,`Industries`],[`10`,`Live`],[`01`,`Reserved`]].map(([e,t])=>(0,j.jsxs)(`div`,{className:`bg-white/85 px-4 py-3.5`,children:[(0,j.jsx)(`p`,{className:`text-2xl font-black tracking-[-0.05em] text-slate-950`,children:e}),(0,j.jsx)(`p`,{className:`mt-1 text-[0.55rem] font-extrabold uppercase tracking-[0.15em] text-slate-500`,children:t})]},t))})]})]}),(0,j.jsx)(`section`,{"aria-labelledby":`featured-projects-title`,className:`relative border-b border-blue-200 bg-[#f4f8ff] py-10 sm:py-14`,children:(0,j.jsxs)(`div`,{className:`mx-auto max-w-[100rem] px-5 sm:px-8 lg:px-12`,children:[(0,j.jsx)(`p`,{className:`text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-blue-700`,children:`Selected work`}),(0,j.jsx)(`h2`,{id:`featured-projects-title`,className:`mt-2 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl`,children:`Featured projects.`}),(0,j.jsxs)(`div`,{className:`mt-7 grid gap-6 md:grid-cols-2`,children:[(0,j.jsx)(`div`,{className:`min-w-0 overflow-hidden border-[3px] border-slate-950 bg-[#aeecef] p-2.5 shadow-[7px_8px_0_#0f172a] sm:p-3`,children:(0,j.jsxs)(`div`,{className:`overflow-hidden border-[3px] border-slate-950 bg-white`,children:[(0,j.jsxs)(`div`,{className:`flex items-center justify-between border-b-[3px] border-slate-950 px-3 py-2.5`,children:[(0,j.jsxs)(`div`,{className:`flex gap-1.5`,children:[(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#ff8c75]`}),(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-yellow-300`}),(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#6ee7b7]`})]}),(0,j.jsx)(`span`,{className:`text-[9px] font-black uppercase tracking-[0.12em] text-slate-500`,children:`techuvo.dev / 004`})]}),(0,j.jsx)(ig,{})]})}),(0,j.jsx)(`div`,{className:`min-w-0 overflow-hidden border-[3px] border-slate-950 bg-[#ffc8de] p-2.5 shadow-[7px_8px_0_#0f172a] sm:p-3`,children:(0,j.jsxs)(`div`,{className:`overflow-hidden border-[3px] border-slate-950 bg-white`,children:[(0,j.jsxs)(`div`,{className:`flex items-center justify-between border-b-[3px] border-slate-950 px-3 py-2.5`,children:[(0,j.jsxs)(`div`,{className:`flex gap-1.5`,children:[(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#ff8c75]`}),(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-yellow-300`}),(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#6ee7b7]`})]}),(0,j.jsx)(`span`,{className:`text-[9px] font-black uppercase tracking-[0.12em] text-slate-500`,children:`techuvo.dev / 006`})]}),(0,j.jsx)(ag,{})]})})]})]})}),(0,j.jsx)(`section`,{className:`relative py-10 sm:py-12 lg:py-14`,children:(0,j.jsxs)(`div`,{className:`mx-auto max-w-[100rem] px-5 sm:px-8 lg:px-12`,children:[(0,j.jsxs)(`div`,{className:`grid gap-5 border-b border-slate-200 pb-5 lg:grid-cols-[1fr_auto] lg:items-end`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-blue-700`,children:`Project index`}),(0,j.jsx)(`h2`,{className:`mt-2 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl`,children:`Select a file.`})]}),(0,j.jsx)(`div`,{role:`tablist`,"aria-label":`Portfolio categories`,className:`flex gap-2 overflow-x-auto pb-1`,children:Kh.map(n=>{let i=e===n;return(0,j.jsx)(`button`,{type:`button`,role:`tab`,"aria-selected":i,onClick:()=>{t(n),r(null)},className:`shrink-0 border px-3.5 py-2 text-[0.6rem] font-extrabold uppercase tracking-[0.11em] transition ${i?`border-blue-600 bg-blue-600 text-white`:`border-slate-200 bg-white text-slate-500 hover:border-blue-300 hover:text-blue-700`}`,children:n},n)})})]}),(0,j.jsxs)(`div`,{className:`mt-5 grid items-stretch gap-x-6 gap-y-8 md:grid-cols-2 xl:grid-cols-3`,children:[i.map(e=>(0,j.jsx)(eg,{project:e,active:n===e.id,dimmed:!!n&&n!==e.id,onOpen:()=>{e.websiteUrl&&e.websiteUrl!==`#`?window.open(e.websiteUrl,`_blank`,`noopener,noreferrer`):r(e.id)}},e.id)),e===`All`&&(0,j.jsx)(rg,{})]})]})}),a&&(0,j.jsx)(`div`,{id:`open-file`,children:(0,j.jsx)(ng,{project:a,onClose:()=>r(null)})}),(0,j.jsxs)(`section`,{className:`relative overflow-hidden bg-slate-950 text-white`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-20`,style:{backgroundImage:`linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`,backgroundSize:`42px 42px`}}),(0,j.jsxs)(`div`,{className:`relative mx-auto grid max-w-[100rem] gap-7 px-5 py-12 sm:px-8 sm:py-14 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-blue-300`,children:`File 013`}),(0,j.jsx)(`h2`,{className:`mt-3 max-w-3xl text-4xl font-black tracking-[-0.06em] sm:text-5xl`,children:`Reserve the next file for your business.`})]}),(0,j.jsxs)(`div`,{className:`grid gap-2.5`,children:[(0,j.jsxs)(A,{to:`/contact`,className:`group inline-flex min-h-12 items-center justify-center gap-2 bg-white px-6 text-xs font-extrabold text-blue-700 transition hover:-translate-y-0.5 hover:bg-blue-50`,children:[`Start your project`,(0,j.jsx)(Yh,{})]}),(0,j.jsxs)(A,{to:`/pricing`,className:`group inline-flex min-h-12 items-center justify-center gap-2 border border-white/20 bg-white/5 px-6 text-xs font-extrabold text-white transition hover:bg-white/10`,children:[`Review pricing`,(0,j.jsx)(Yh,{})]})]})]})]}),(0,j.jsx)(`style`,{children:`
+
+`})]})}function ag(){return(0,j.jsxs)(`a`,{href:`https://xoxoresells.com`,target:`_blank`,rel:`noopener noreferrer`,"aria-label":`Explore XOXO Resells website in a new tab`,className:`group relative block h-[245px] w-full overflow-hidden bg-[#ffdfeb] text-[#51283e] sm:h-[295px] lg:h-[320px] xl:h-[340px]`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`pointer-events-none absolute inset-0 opacity-50`,style:{backgroundImage:`linear-gradient(#e9a5bf 1px,transparent 1px),linear-gradient(90deg,#e9a5bf 1px,transparent 1px)`,backgroundSize:`22px 22px`}}),(0,j.jsxs)(`div`,{className:`absolute inset-x-0 top-0 z-20 flex items-start justify-between gap-2 p-4 sm:p-5`,children:[(0,j.jsxs)(`div`,{className:`min-w-0`,children:[(0,j.jsx)(`p`,{className:`text-[9px] font-black uppercase tracking-[.16em] text-[#ac4a78] sm:text-[10px]`,children:`Featured client project`}),(0,j.jsxs)(`h3`,{className:`mt-1 text-2xl font-black tracking-[-.05em] sm:text-3xl`,children:[`XOXO Resells`,(0,j.jsx)(`span`,{className:`text-[#e5619b]`,children:`.`})]}),(0,j.jsx)(`p`,{className:`mt-1 hidden text-xs font-semibold text-[#85546b] sm:block`,children:`Curated resale shopping experience`})]}),(0,j.jsx)(`span`,{className:`shrink-0 border-2 border-[#51283e] bg-[#f8a8c6] px-2 py-2 text-[9px] font-black uppercase tracking-wider shadow-[3px_3px_0_#51283e]`,children:`LIVE SITE ↗`})]}),(0,j.jsx)($.div,{"aria-hidden":`true`,className:`pointer-events-none absolute inset-x-0 top-[53px] z-10 flex justify-center sm:top-[65px]`,animate:{y:[0,-7,0],rotate:[-1,1,-1]},transition:{duration:2,repeat:1/0,ease:`easeInOut`},children:(0,j.jsxs)(`svg`,{viewBox:`0 0 220 235`,className:`h-[175px] w-[170px] drop-shadow-[7px_8px_0_#a75580] sm:h-[215px] sm:w-[210px]`,shapeRendering:`crispEdges`,xmlns:`http://www.w3.org/2000/svg`,children:[(0,j.jsx)(`path`,{d:`M35 94 V24 H57 L82 47 H139 L164 24 H186 V94`,fill:`#fffafc`,stroke:`#372433`,strokeWidth:`8`,strokeLinejoin:`miter`}),(0,j.jsx)(`path`,{d:`M38 65 H182 V151 H165 V166 H55 V151 H38 Z`,fill:`#fffafc`,stroke:`#372433`,strokeWidth:`8`,strokeLinejoin:`miter`}),(0,j.jsx)(`path`,{d:`M151 38 H166 V23 H183 V37 H198 V57 H184 V71 H166 V57 H151 Z`,fill:`#f16b9a`,stroke:`#372433`,strokeWidth:`5`}),(0,j.jsx)(`rect`,{x:`168`,y:`40`,width:`13`,height:`13`,fill:`#ffe79c`,stroke:`#372433`,strokeWidth:`3`}),(0,j.jsx)(`rect`,{x:`69`,y:`99`,width:`10`,height:`17`,fill:`#372433`}),(0,j.jsx)(`rect`,{x:`143`,y:`99`,width:`10`,height:`17`,fill:`#372433`}),(0,j.jsx)(`rect`,{x:`105`,y:`118`,width:`16`,height:`10`,fill:`#f1bd55`,stroke:`#372433`,strokeWidth:`2`}),(0,j.jsx)(`path`,{d:`M46 113 H15 M46 125 H12 M46 137 H18 M174 113 H205 M174 125 H208 M174 137 H202`,fill:`none`,stroke:`#372433`,strokeWidth:`5`}),(0,j.jsx)(`path`,{d:`M72 167 H148 V214 H72 Z`,fill:`#ed93b3`,stroke:`#372433`,strokeWidth:`8`}),(0,j.jsx)(`path`,{d:`M70 179 H47 V205 H70 M150 179 H173 V205 H150`,fill:`#fffafc`,stroke:`#372433`,strokeWidth:`7`}),(0,j.jsx)(`path`,{d:`M91 208 V229 H70 V216 M129 208 V229 H150 V216`,fill:`#fffafc`,stroke:`#372433`,strokeWidth:`7`}),(0,j.jsx)(`rect`,{x:`102`,y:`178`,width:`16`,height:`17`,fill:`#fffafc`,stroke:`#372433`,strokeWidth:`4`})]})}),(0,j.jsxs)(`div`,{className:`absolute bottom-3 left-1/2 z-20 flex w-[calc(100%-28px)] -translate-x-1/2 items-center justify-center gap-2 border-[3px] border-[#51283e] bg-[#fff3b9] px-3 py-3 text-center text-[11px] font-black uppercase tracking-[.08em] text-[#51283e] shadow-[4px_4px_0_#d46b98] transition-transform duration-200 group-hover:-translate-y-1 sm:bottom-5 sm:w-auto sm:px-6 sm:text-xs`,children:[`Explore the XOXO website `,(0,j.jsx)(`span`,{"aria-hidden":`true`,children:`↗`})]})]})}function og(){let[e,t]=(0,w.useState)(`All`),[n,r]=(0,w.useState)(null),i=(0,w.useMemo)(()=>e===`All`?Gh:Gh.filter(t=>t.category===e),[e]),a=Gh.find(e=>e.id===n);return(0,w.useEffect)(()=>{let e=document.title;document.title=`Techuvo File Room | Website Design Portfolio`;let t=document.querySelector(`meta[name="description"]`),n=!t;t||(t=document.createElement(`meta`),t.setAttribute(`name`,`description`),document.head.appendChild(t));let r=t.getAttribute(`content`);t.setAttribute(`content`,`Explore the Techuvo File Room, featuring responsive websites and digital projects created for paving, food, fashion, music, retail, healthcare, education, media, and service businesses.`);let i=document.querySelector(`link[rel="canonical"]`),a=!i;i||(i=document.createElement(`link`),i.setAttribute(`rel`,`canonical`),document.head.appendChild(i));let o=i.getAttribute(`href`);return i.setAttribute(`href`,`https://techuvo.dev/portfolio`),()=>{document.title=e,n?t.remove():r===null?t.removeAttribute(`content`):t.setAttribute(`content`,r),a?i.remove():o===null?i.removeAttribute(`href`):i.setAttribute(`href`,o)}},[]),(0,w.useEffect)(()=>{if(!n)return;let e=window.setTimeout(()=>{document.getElementById(`open-file`)?.scrollIntoView({behavior:`smooth`,block:`start`})},120);return()=>window.clearTimeout(e)},[n]),(0,j.jsxs)(`main`,{className:`overflow-hidden bg-white`,children:[(0,j.jsxs)(`section`,{className:`relative border-b border-blue-200 bg-blue-50/45`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-65`,style:{backgroundImage:`linear-gradient(rgba(37,99,235,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.055) 1px, transparent 1px)`,backgroundSize:`38px 38px`}}),(0,j.jsx)(`div`,{className:`file-room-scan pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-blue-500 shadow-[0_0_28px_7px_rgba(37,99,235,0.26)]`}),(0,j.jsxs)(`div`,{className:`relative mx-auto max-w-[100rem] px-5 pb-9 pt-12 sm:px-8 sm:pb-11 sm:pt-14 lg:px-12 lg:pb-12 lg:pt-16`,children:[(0,j.jsxs)(`div`,{className:`grid gap-7 lg:grid-cols-[1fr_0.72fr] lg:items-end`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,j.jsx)(`span`,{className:`h-px w-9 bg-blue-600`}),(0,j.jsx)(`p`,{className:`text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-blue-700`,children:`Archive online`})]}),(0,j.jsx)(`h1`,{className:`mt-5 max-w-[11ch] text-5xl font-black leading-[0.91] tracking-[-0.07em] text-slate-950 sm:text-6xl lg:text-7xl`,children:`The Techuvo File Room.`})]}),(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`max-w-xl text-lg font-bold leading-8 tracking-[-0.02em] text-slate-900`,children:`Open the project files behind businesses we helped strengthen online.`}),(0,j.jsx)(`p`,{className:`mt-3 max-w-xl text-sm leading-7 text-slate-600`,children:`Select a folder to see the problem, the build, and the finished digital blueprint.`})]})]}),(0,j.jsx)(`div`,{className:`mt-8 grid grid-cols-2 gap-px border border-blue-200 bg-blue-200 sm:grid-cols-4`,children:[[`12`,`Projects`],[`12`,`Industries`],[`10`,`Live`],[`01`,`Reserved`]].map(([e,t])=>(0,j.jsxs)(`div`,{className:`bg-white/85 px-4 py-3.5`,children:[(0,j.jsx)(`p`,{className:`text-2xl font-black tracking-[-0.05em] text-slate-950`,children:e}),(0,j.jsx)(`p`,{className:`mt-1 text-[0.55rem] font-extrabold uppercase tracking-[0.15em] text-slate-500`,children:t})]},t))})]})]}),(0,j.jsx)(`section`,{"aria-labelledby":`featured-projects-title`,className:`relative border-b border-blue-200 bg-[#f4f8ff] py-10 sm:py-14`,children:(0,j.jsxs)(`div`,{className:`mx-auto max-w-[100rem] px-5 sm:px-8 lg:px-12`,children:[(0,j.jsx)(`p`,{className:`text-[0.62rem] font-extrabold uppercase tracking-[0.2em] text-blue-700`,children:`Selected work`}),(0,j.jsx)(`h2`,{id:`featured-projects-title`,className:`mt-2 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl`,children:`Custom Digital Branding`}),(0,j.jsxs)(`div`,{className:`mt-7 grid gap-6 md:grid-cols-2`,children:[(0,j.jsx)(`div`,{className:`min-w-0 overflow-hidden border-[3px] border-slate-950 bg-[#aeecef] p-2.5 shadow-[7px_8px_0_#0f172a] sm:p-3`,children:(0,j.jsxs)(`div`,{className:`overflow-hidden border-[3px] border-slate-950 bg-white`,children:[(0,j.jsxs)(`div`,{className:`flex items-center justify-between border-b-[3px] border-slate-950 px-3 py-2.5`,children:[(0,j.jsxs)(`div`,{className:`flex gap-1.5`,children:[(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#ff8c75]`}),(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-yellow-300`}),(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#6ee7b7]`})]}),(0,j.jsx)(`span`,{className:`text-[9px] font-black uppercase tracking-[0.12em] text-slate-500`,children:`techuvo.dev / 004`})]}),(0,j.jsx)(ig,{})]})}),(0,j.jsx)(`div`,{className:`min-w-0 overflow-hidden border-[3px] border-slate-950 bg-[#ffc8de] p-2.5 shadow-[7px_8px_0_#0f172a] sm:p-3`,children:(0,j.jsxs)(`div`,{className:`overflow-hidden border-[3px] border-slate-950 bg-white`,children:[(0,j.jsxs)(`div`,{className:`flex items-center justify-between border-b-[3px] border-slate-950 px-3 py-2.5`,children:[(0,j.jsxs)(`div`,{className:`flex gap-1.5`,children:[(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#ff8c75]`}),(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-yellow-300`}),(0,j.jsx)(`span`,{className:`h-2.5 w-2.5 rounded-full border border-slate-950 bg-[#6ee7b7]`})]}),(0,j.jsx)(`span`,{className:`text-[9px] font-black uppercase tracking-[0.12em] text-slate-500`,children:`techuvo.dev / 006`})]}),(0,j.jsx)(ag,{})]})})]})]})}),(0,j.jsx)(`section`,{className:`relative py-10 sm:py-12 lg:py-14`,children:(0,j.jsxs)(`div`,{className:`mx-auto max-w-[100rem] px-5 sm:px-8 lg:px-12`,children:[(0,j.jsxs)(`div`,{className:`grid gap-5 border-b border-slate-200 pb-5 lg:grid-cols-[1fr_auto] lg:items-end`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-blue-700`,children:`Project index`}),(0,j.jsx)(`h2`,{className:`mt-2 text-3xl font-black tracking-[-0.05em] text-slate-950 sm:text-4xl`,children:`Select a file.`})]}),(0,j.jsx)(`div`,{role:`tablist`,"aria-label":`Portfolio categories`,className:`flex gap-2 overflow-x-auto pb-1`,children:Kh.map(n=>{let i=e===n;return(0,j.jsx)(`button`,{type:`button`,role:`tab`,"aria-selected":i,onClick:()=>{t(n),r(null)},className:`shrink-0 border px-3.5 py-2 text-[0.6rem] font-extrabold uppercase tracking-[0.11em] transition ${i?`border-blue-600 bg-blue-600 text-white`:`border-slate-200 bg-white text-slate-500 hover:border-blue-300 hover:text-blue-700`}`,children:n},n)})})]}),(0,j.jsxs)(`div`,{className:`mt-5 grid items-stretch gap-x-6 gap-y-8 md:grid-cols-2 xl:grid-cols-3`,children:[i.map(e=>(0,j.jsx)(eg,{project:e,active:n===e.id,dimmed:!!n&&n!==e.id,onOpen:()=>{e.websiteUrl&&e.websiteUrl!==`#`?window.open(e.websiteUrl,`_blank`,`noopener,noreferrer`):r(e.id)}},e.id)),e===`All`&&(0,j.jsx)(rg,{})]})]})}),a&&(0,j.jsx)(`div`,{id:`open-file`,children:(0,j.jsx)(ng,{project:a,onClose:()=>r(null)})}),(0,j.jsxs)(`section`,{className:`relative overflow-hidden bg-slate-950 text-white`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-20`,style:{backgroundImage:`linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`,backgroundSize:`42px 42px`}}),(0,j.jsxs)(`div`,{className:`relative mx-auto grid max-w-[100rem] gap-7 px-5 py-12 sm:px-8 sm:py-14 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-blue-300`,children:`File 013`}),(0,j.jsx)(`h2`,{className:`mt-3 max-w-3xl text-4xl font-black tracking-[-0.06em] sm:text-5xl`,children:`Reserve the next file for your business.`})]}),(0,j.jsxs)(`div`,{className:`grid gap-2.5`,children:[(0,j.jsxs)(A,{to:`/contact`,className:`group inline-flex min-h-12 items-center justify-center gap-2 bg-white px-6 text-xs font-extrabold text-blue-700 transition hover:-translate-y-0.5 hover:bg-blue-50`,children:[`Start your project`,(0,j.jsx)(Yh,{})]}),(0,j.jsxs)(A,{to:`/pricing`,className:`group inline-flex min-h-12 items-center justify-center gap-2 border border-white/20 bg-white/5 px-6 text-xs font-extrabold text-white transition hover:bg-white/10`,children:[`Review pricing`,(0,j.jsx)(Yh,{})]})]})]})]}),(0,j.jsx)(`style`,{children:`
+
+
 
           @keyframes scanRoom {
 
+
+
             0% { top: 0%; opacity: 0; }
+
+
 
             10% { opacity: 1; }
 
+
+
             90% { opacity: 1; }
+
+
 
             100% { top: 100%; opacity: 0; }
 
+
+
           }
+
+
+
+
 
 
 
           @keyframes scanBlueprint {
 
+
+
             0% { top: 0%; opacity: 0; }
+
+
 
             12% { opacity: 1; }
 
+
+
             88% { opacity: 1; }
+
+
 
             100% { top: 100%; opacity: 0; }
 
+
+
           }
+
+
+
+
 
 
 
           @keyframes openFile {
 
+
+
             from { opacity: 0; transform: translateY(24px); }
+
+
 
             to { opacity: 1; transform: translateY(0); }
 
+
+
           }
+
+
+
+
 
 
 
           @keyframes moveFileLight {
 
+
+
             from { transform: translateX(-140%); }
+
+
 
             to { transform: translateX(430%); }
 
+
+
           }
+
+
+
+
 
 
 
           .file-room-scan {
 
+
+
             animation: scanRoom 1.4s ease-in-out forwards;
 
+
+
           }
+
+
+
+
 
 
 
           .blueprint-scan {
 
+
+
             animation: scanBlueprint 4.6s ease-in-out infinite;
 
+
+
           }
+
+
+
+
 
 
 
           .open-file {
 
+
+
             animation: openFile 0.55s ease-out both;
 
+
+
           }
+
+
+
+
 
 
 
           .file-light span {
 
+
+
             animation: moveFileLight 3.2s ease-in-out infinite;
 
+
+
           }
+
+
+
+
 
 
 
           @media (max-width: 639px) {
 
+
+
             .file-room-scan,
+
+
 
             .blueprint-scan {
 
+
+
               opacity: 0.65;
+
+
 
             }
 
+
+
           }
+
+
+
+
 
 
 
           @media (prefers-reduced-motion: reduce) {
 
+
+
             .file-room-scan,
+
+
 
             .blueprint-scan,
 
+
+
             .open-file,
+
+
 
             .file-light span {
 
+
+
               animation: none;
+
+
 
             }
 
+
+
           }
+
+
 
         `})]})}var sg=`#book-pricing-call`,cg={starterWebsite:`#starter-website-deposit`,businessWebsite:`#business-website-deposit`,growthWebsite:`#growth-website-deposit`,focusedLandingPage:`#focused-landing-page-deposit`,growthLandingPage:`#growth-landing-page-deposit`,campaignFunnel:`#campaign-funnel-deposit`,brandFoundation:`#brand-foundation-deposit`,growthIdentity:`#growth-identity-deposit`,completeBrandSystem:`#complete-brand-system-deposit`,starterAutomation:`#starter-automation-deposit`,growthAutomation:`#growth-automation-deposit`,customAutomation:`#custom-automation-deposit`},lg=[{id:`websites`,label:`Websites`},{id:`landing-pages`,label:`Landing Pages`},{id:`branding`,label:`Brand Identity`},{id:`automation`,label:`Automation`}],ug=[{id:`starter-website`,category:`websites`,serviceLabel:`Website Development`,name:`Starter Website`,price:`$499`,deposit:`$150 deposit`,timeline:`5–7 business days`,description:`A focused one-page website for a new business, independent professional, or simple service offer.`,bestFor:`Businesses that need a professional online presence without a large multi-page build.`,features:[`One custom website page`,`Responsive mobile and desktop design`,`Business and service overview`,`Contact form or booking connection`,`Basic search metadata`,`Social and contact links`,`One revision round`],depositUrl:cg.starterWebsite,serviceUrl:`/services/website-development`,highlighted:!1},{id:`business-website`,category:`websites`,serviceLabel:`Website Development`,name:`Business Website`,price:`$999`,deposit:`$300 deposit`,timeline:`7–14 business days`,description:`A complete multi-page website designed to improve credibility, explain services, and generate inquiries.`,bestFor:`Established businesses that need stronger service communication and a more complete customer journey.`,features:[`Up to five custom pages`,`Responsive design system`,`Home, services, about, and contact structure`,`Lead form or booking integration`,`Portfolio, reviews, or trust sections`,`Basic local SEO foundations`,`Analytics connection`,`Two revision rounds`],depositUrl:cg.businessWebsite,serviceUrl:`/services/website-development`,highlighted:!0},{id:`growth-website`,category:`websites`,serviceLabel:`Website Development`,name:`Growth Website System`,price:`$1,999+`,deposit:`$600 deposit`,timeline:`2–5 weeks`,description:`A scalable website system for companies with multiple services, locations, integrations, or content needs.`,bestFor:`Growing companies that need more advanced architecture and long-term expansion capability.`,features:[`Custom multi-page architecture`,`Advanced responsive interface design`,`Service and location page systems`,`Content management integration`,`Forms, booking, CRM, or payment connections`,`Advanced analytics and tracking`,`Technical SEO foundations`,`Reusable components`,`Launch support and documentation`],depositUrl:cg.growthWebsite,serviceUrl:`/services/website-development`,highlighted:!1},{id:`focused-landing-page`,category:`landing-pages`,serviceLabel:`Landing Page Design`,name:`Focused Landing Page`,price:`$349`,deposit:`$100 deposit`,timeline:`3–5 business days`,description:`A custom campaign page built around one audience, one offer, and one primary conversion action.`,bestFor:`Businesses promoting one service, event, appointment, offer, or lead-generation campaign.`,features:[`One custom landing page`,`Responsive mobile and desktop design`,`Offer and call-to-action structure`,`Lead form or booking connection`,`Basic search metadata`,`Performance review`,`One revision round`],depositUrl:cg.focusedLandingPage,serviceUrl:`/services/landing-pages`,highlighted:!1},{id:`growth-landing-page`,category:`landing-pages`,serviceLabel:`Landing Page Design`,name:`Growth Landing System`,price:`$699`,deposit:`$225 deposit`,timeline:`5–8 business days`,description:`An advanced conversion page with stronger messaging, proof, analytics, and connected lead capture.`,bestFor:`Businesses running paid campaigns or promoting an important offer that needs a stronger conversion system.`,features:[`One advanced custom landing page`,`Conversion-focused content structure`,`Responsive design system`,`Lead form or booking integration`,`Trust and proof sections`,`Analytics connection`,`Thank-you page`,`Two revision rounds`],depositUrl:cg.growthLandingPage,serviceUrl:`/services/landing-pages`,highlighted:!0},{id:`campaign-funnel`,category:`landing-pages`,serviceLabel:`Landing Page Design`,name:`Campaign Funnel`,price:`$1,199+`,deposit:`$350 deposit`,timeline:`1–3 weeks`,description:`A connected campaign journey with multiple pages, qualification, tracking, and automated follow-up.`,bestFor:`Businesses that need a complete lead-generation or campaign system instead of one standalone page.`,features:[`Multi-page campaign funnel`,`Landing and thank-you pages`,`Lead qualification flow`,`CRM or email integration`,`Automated follow-up connection`,`Analytics and event tracking`,`Campaign-ready responsive design`,`Testing and launch support`],depositUrl:cg.campaignFunnel,serviceUrl:`/services/landing-pages`,highlighted:!1},{id:`brand-foundation`,category:`branding`,serviceLabel:`Brand Identity`,name:`Brand Foundation`,price:`$399`,deposit:`$125 deposit`,timeline:`5–7 business days`,description:`A professional visual foundation for a new company or business preparing to launch.`,bestFor:`Businesses that need a usable logo direction, colors, typography, and basic identity guidance.`,features:[`Brand discovery questionnaire`,`Primary logo direction`,`Core color palette`,`Primary typography selection`,`Basic brand usage sheet`,`Web-ready logo files`,`One revision round`],depositUrl:cg.brandFoundation,serviceUrl:`/services/brand-identity`,highlighted:!1},{id:`growth-identity`,category:`branding`,serviceLabel:`Brand Identity`,name:`Growth Identity`,price:`$799`,deposit:`$250 deposit`,timeline:`7–12 business days`,description:`A stronger visual system designed for businesses expanding across multiple customer touchpoints.`,bestFor:`Growing companies that need greater consistency across websites, social media, documents, and marketing.`,features:[`Brand strategy session`,`Primary and secondary logo system`,`Expanded color palette`,`Typography hierarchy`,`Visual style direction`,`Social profile assets`,`Brand guideline document`,`Two revision rounds`],depositUrl:cg.growthIdentity,serviceUrl:`/services/brand-identity`,highlighted:!0},{id:`complete-brand-system`,category:`branding`,serviceLabel:`Brand Identity`,name:`Complete Brand System`,price:`$1,499+`,deposit:`$450 deposit`,timeline:`2–4 weeks`,description:`A comprehensive identity system for companies that need consistent presentation across many channels.`,bestFor:`Established businesses preparing for larger marketing, sales, website, or company growth initiatives.`,features:[`Brand positioning workshop`,`Complete logo family`,`Advanced color and typography system`,`Photography and imagery direction`,`Graphic element system`,`Presentation and document styling`,`Social and digital asset package`,`Comprehensive brand guidelines`,`Priority implementation support`],depositUrl:cg.completeBrandSystem,serviceUrl:`/services/brand-identity`,highlighted:!1},{id:`starter-automation`,category:`automation`,serviceLabel:`Automation Systems`,name:`Starter Automation`,price:`$499`,deposit:`$150 deposit`,timeline:`5–7 business days`,description:`One focused workflow that reduces repetitive work and organizes incoming business information.`,bestFor:`Small businesses that need one clear automation around leads, forms, notifications, or scheduling.`,features:[`One primary automation workflow`,`Website form or lead-source connection`,`Email or internal notifications`,`Basic data organization`,`Testing and launch support`,`One revision round`],depositUrl:cg.starterAutomation,serviceUrl:`/services/automation-systems`,highlighted:!1},{id:`growth-automation`,category:`automation`,serviceLabel:`Automation Systems`,name:`Growth Automation`,price:`$999`,deposit:`$300 deposit`,timeline:`7–14 business days`,description:`Multiple connected workflows for lead handling, scheduling, tracking, and customer follow-up.`,bestFor:`Businesses that need several tools working together through one organized process.`,features:[`Up to three connected workflows`,`CRM or lead-tracking integration`,`Automated follow-up sequence`,`Booking or scheduling connection`,`Internal status notifications`,`Testing, documentation, and launch`,`Two revision rounds`],depositUrl:cg.growthAutomation,serviceUrl:`/services/automation-systems`,highlighted:!0},{id:`custom-automation`,category:`automation`,serviceLabel:`Automation Systems`,name:`Custom Operations System`,price:`Custom quote`,deposit:`Deposit after scope`,timeline:`Based on project scope`,description:`A custom operational system, dashboard, or multi-step workflow built around your company’s process.`,bestFor:`Companies with larger operational needs, multiple integrations, or custom internal requirements.`,features:[`Custom workflow architecture`,`Multiple software integrations`,`Advanced lead or customer routing`,`Custom dashboards or internal tools`,`Role-based business processes`,`Launch documentation and training`,`Priority implementation planning`],depositUrl:cg.customAutomation,serviceUrl:`/services/automation-systems`,highlighted:!1}],dg=[{number:`01`,title:`Responsive delivery`,description:`Every digital build is designed to remain usable across mobile and desktop screens.`},{number:`02`,title:`Clear project scope`,description:`The package, deliverables, timeline, revisions, and next steps are confirmed before the project begins.`},{number:`03`,title:`Direct communication`,description:`You receive clear updates and work directly with Techuvo throughout the project.`},{number:`04`,title:`Deposit protection`,description:`The deposit is applied toward the total project price and reserves your place in the schedule.`}],fg=[{title:`Additional Website Page`,price:`From $125`,description:`Add another service, location, team, portfolio, FAQ, or content page to an existing website project.`},{title:`Content Management System`,price:`From $250`,description:`Add editable content areas so approved users can manage selected text, images, or project entries.`},{title:`Booking Integration`,price:`From $75`,description:`Connect a scheduling tool to the website or landing page and organize the booking pathway.`},{title:`CRM or Lead Integration`,price:`From $150`,description:`Connect forms and customer information to a supported CRM, spreadsheet, or lead-tracking system.`},{title:`Additional Revision Round`,price:`From $75`,description:`Add another organized revision round after the revisions included in the package are complete.`},{title:`Ongoing Support`,price:`Custom monthly plan`,description:`Receive ongoing updates, maintenance, content support, monitoring, or technical assistance.`}],pg=[{question:`Are the prices shown final?`,answer:`The listed packages provide clear starting prices for standard scopes. Projects requiring additional pages, custom functionality, advanced content, integrations, or accelerated delivery may require a custom quote.`},{question:`Is the deposit separate from the total price?`,answer:`No. The deposit is applied toward the final project total. It reserves the project and allows the planning and production process to begin.`},{question:`When is the remaining balance due?`,answer:`The remaining payment schedule should be confirmed in the project agreement. Smaller projects may require the balance before launch, while larger projects may use milestone-based payments.`},{question:`Can I book a call before paying a deposit?`,answer:`Yes. You can book a strategy call before paying. The call helps confirm the right package, project fit, deliverables, timeline, and any custom requirements.`},{question:`What happens after I pay the deposit?`,answer:`You will complete the project intake, provide the required business information and access, book or confirm the strategy call, and receive the next production steps.`},{question:`Can I request a custom package?`,answer:`Yes. A custom scope can combine website development, landing pages, branding, automation, content management, and other supported services.`},{question:`Are hosting and domain fees included?`,answer:`Unless specifically stated in the project agreement, third-party domain, hosting, software, payment-processing, scheduling, or subscription fees are separate from the development price.`},{question:`Can I pay in installments?`,answer:`Installment or milestone options may be available for larger projects. The exact payment schedule should be agreed upon before work begins.`}];function mg(){return(0,j.jsx)(`svg`,{"aria-hidden":`true`,className:`button-icon`,fill:`none`,viewBox:`0 0 20 20`,children:(0,j.jsx)(`path`,{d:`M4.5 10h11m-4.25-4.25L15.5 10l-4.25 4.25`,stroke:`currentColor`,strokeLinecap:`round`,strokeLinejoin:`round`,strokeWidth:`1.7`})})}function hg(){return(0,j.jsx)(`svg`,{"aria-hidden":`true`,className:`h-4 w-4`,fill:`none`,viewBox:`0 0 20 20`,children:(0,j.jsx)(`path`,{d:`m5 10.5 3 3L15 6.75`,stroke:`currentColor`,strokeLinecap:`round`,strokeLinejoin:`round`,strokeWidth:`1.8`})})}function gg(){return(0,j.jsx)(`svg`,{"aria-hidden":`true`,className:`h-6 w-6`,fill:`none`,viewBox:`0 0 24 24`,children:(0,j.jsx)(`path`,{d:`M12 3.5v17M16 7.25c0-1.52-1.8-2.75-4-2.75S8 5.73 8 7.25 9.8 10 12 10s4 1.23 4 2.75-1.8 2.75-4 2.75-4-1.23-4-2.75`,stroke:`currentColor`,strokeLinecap:`round`,strokeWidth:`1.7`})})}function _g(){let[e,t]=(0,w.useState)(`websites`),n=(0,w.useMemo)(()=>ug.filter(t=>t.category===e),[e]),r=lg.find(t=>t.id===e)?.label||`Services`;return(0,w.useEffect)(()=>{let e=document.title;document.title=`Techuvo Pricing | Websites, Landing Pages, Branding & Automation`;let t=`Compare Techuvo pricing for custom websites, landing pages, brand identity systems, business automation, deposits, timelines, and available add-ons.`,n=document.querySelector(`meta[name="description"]`),r=!n;n||(n=document.createElement(`meta`),n.setAttribute(`name`,`description`),document.head.appendChild(n));let i=n.getAttribute(`content`);n.setAttribute(`content`,t);let a=document.querySelector(`link[rel="canonical"]`),o=!a;a||(a=document.createElement(`link`),a.setAttribute(`rel`,`canonical`),document.head.appendChild(a));let s=a.getAttribute(`href`);a.setAttribute(`href`,`https://techuvo.dev/pricing`);let c=document.createElement(`script`);return c.id=`pricing-page-structured-data`,c.type=`application/ld+json`,c.textContent=JSON.stringify({"@context":`https://schema.org`,"@graph":[{"@type":`CollectionPage`,name:`Techuvo Service Pricing`,url:`https://techuvo.dev/pricing`,description:t,about:{"@type":`Organization`,name:`Techuvo`,url:`https://techuvo.dev`},hasPart:ug.map(e=>({"@type":`Offer`,name:e.name,description:e.description,priceCurrency:`USD`,price:e.price.match(/[\d,]+/)?.[0]?.replace(`,`,``)||void 0,url:`https://techuvo.dev${e.serviceUrl}`,category:e.serviceLabel,offeredBy:{"@type":`Organization`,name:`Techuvo`}}))},{"@type":`BreadcrumbList`,itemListElement:[{"@type":`ListItem`,position:1,name:`Home`,item:`https://techuvo.dev/`},{"@type":`ListItem`,position:2,name:`Pricing`,item:`https://techuvo.dev/pricing`}]},{"@type":`FAQPage`,mainEntity:pg.map(e=>({"@type":`Question`,name:e.question,acceptedAnswer:{"@type":`Answer`,text:e.answer}}))}]}),document.head.appendChild(c),()=>{document.title=e,r?n.remove():i===null?n.removeAttribute(`content`):n.setAttribute(`content`,i),o?a.remove():s===null?a.removeAttribute(`href`):a.setAttribute(`href`,s),c.remove()}},[]),(0,j.jsxs)(j.Fragment,{children:[(0,j.jsxs)(`section`,{className:`hero-section architecture-grid lg:!pt-10 lg:!pb-16 xl:!pt-12 xl:!pb-20`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`glow-orb`,style:{left:`-8rem`,top:`8rem`}}),(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`glow-orb glow-orb-secondary`,style:{right:`-10rem`,top:`10rem`}}),(0,j.jsx)(`div`,{className:`site-container`,children:(0,j.jsxs)(`div`,{className:`grid items-center gap-12 lg:grid-cols-[1.03fr_0.97fr] lg:gap-16`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsxs)(`div`,{className:`inline-flex w-fit items-center gap-2 rounded-full border border-blue-200 bg-white/85 px-3.5 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-700 shadow-sm backdrop-blur-xl`,children:[(0,j.jsx)(gg,{}),`Techuvo Pricing`]}),(0,j.jsx)(`h1`,{className:`page-heading mt-6`,children:`Clear starting prices for serious digital projects.`}),(0,j.jsx)(`p`,{className:`body-large mt-6`,children:`Compare website, landing page, brand identity, and automation packages designed around different business stages and project goals.`}),(0,j.jsx)(`p`,{className:`body-copy mt-5 max-w-2xl`,children:`Every deposit is applied toward the final project price. You can review packages, book a strategy call, and confirm the scope before committing to a larger build.`}),(0,j.jsxs)(`div`,{className:`mt-8 flex flex-col gap-3 sm:flex-row`,children:[(0,j.jsxs)(`a`,{href:`#pricing-packages`,className:`button button-primary`,children:[`Compare packages`,(0,j.jsx)(mg,{})]}),(0,j.jsxs)(`a`,{href:sg,className:`button button-secondary`,children:[`Book a strategy call`,(0,j.jsx)(mg,{})]})]}),(0,j.jsx)(`div`,{className:`mt-8 flex flex-wrap gap-x-6 gap-y-3`,children:[`Deposits applied to total`,`Clear package deliverables`,`Custom scopes available`].map(e=>(0,j.jsxs)(`div`,{className:`flex items-center gap-2 text-sm font-semibold text-slate-600`,children:[(0,j.jsx)(`span`,{className:`grid h-6 w-6 place-items-center rounded-full bg-blue-50 text-blue-700`,children:(0,j.jsx)(hg,{})}),e]},e))})]}),(0,j.jsx)(`div`,{className:`surface-card overflow-hidden p-3 sm:p-4`,children:(0,j.jsxs)(`div`,{className:`relative min-h-[34rem] overflow-hidden rounded-[1.5rem] bg-slate-950 p-5 text-white sm:p-7`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-20`,style:{backgroundImage:`linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`,backgroundSize:`32px 32px`}}),(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-500/30 blur-[90px]`}),(0,j.jsxs)(`div`,{className:`relative flex min-h-[30rem] flex-col`,children:[(0,j.jsxs)(`div`,{className:`flex items-center justify-between gap-4`,children:[(0,j.jsx)(`p`,{className:`text-[0.68rem] font-extrabold uppercase tracking-[0.16em] text-blue-300`,children:`Project pricing system`}),(0,j.jsxs)(`span`,{className:`inline-flex items-center gap-2 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-slate-400`,children:[(0,j.jsx)(`span`,{className:`h-2 w-2 rounded-full bg-emerald-400`}),`Packages available`]})]}),(0,j.jsx)(`h2`,{className:`mt-8 text-3xl font-bold tracking-[-0.045em] sm:text-4xl`,children:`Choose the right starting point, then shape the final scope.`}),(0,j.jsx)(`p`,{className:`mt-5 text-sm leading-7 text-slate-300 sm:text-base`,children:`Every package creates a clear baseline while leaving room for additional pages, integrations, content, functionality, and support.`}),(0,j.jsx)(`div`,{className:`mt-8 grid grid-cols-2 gap-3`,children:lg.map((n,r)=>(0,j.jsxs)(`button`,{type:`button`,onClick:()=>t(n.id),className:`rounded-2xl border p-4 text-left transition hover:-translate-y-1 ${e===n.id?`border-blue-400/40 bg-blue-500/20`:`border-white/10 bg-white/[0.055] hover:bg-white/[0.09]`}`,children:[(0,j.jsx)(`span`,{className:`text-xs font-extrabold text-blue-200`,children:String(r+1).padStart(2,`0`)}),(0,j.jsx)(`p`,{className:`mt-4 text-sm font-bold text-white`,children:n.label})]},n.id))}),(0,j.jsx)(`div`,{className:`mt-auto border-t border-white/10 pt-6`,children:(0,j.jsxs)(`div`,{className:`grid grid-cols-3 gap-3`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-2xl font-black tracking-[-0.04em]`,children:`12`}),(0,j.jsx)(`p`,{className:`mt-1 text-xs font-semibold text-slate-400`,children:`Core packages`})]}),(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-2xl font-black tracking-[-0.04em]`,children:`4`}),(0,j.jsx)(`p`,{className:`mt-1 text-xs font-semibold text-slate-400`,children:`Service categories`})]}),(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-2xl font-black tracking-[-0.04em]`,children:`1:1`}),(0,j.jsx)(`p`,{className:`mt-1 text-xs font-semibold text-slate-400`,children:`Project guidance`})]})]})})]})]})})]})})]}),(0,j.jsx)(`section`,{id:`pricing-packages`,className:`section bg-white`,children:(0,j.jsxs)(`div`,{className:`site-container`,children:[(0,j.jsxs)(`div`,{className:`section-header`,children:[(0,j.jsxs)(`div`,{className:`section-header-copy`,children:[(0,j.jsx)(`span`,{className:`eyebrow`,children:`Service Packages`}),(0,j.jsx)(`h2`,{className:`section-heading`,children:`Compare Techuvo packages by service.`})]}),(0,j.jsx)(`p`,{className:`section-header-description`,children:`Select a category to review its available packages, timelines, deposits, deliverables, and direct project actions.`})]}),(0,j.jsx)(`div`,{role:`tablist`,"aria-label":`Pricing categories`,className:`mb-8 flex gap-2 overflow-x-auto pb-2`,children:lg.map(n=>{let r=e===n.id;return(0,j.jsx)(`button`,{type:`button`,role:`tab`,"aria-selected":r,onClick:()=>t(n.id),className:`shrink-0 rounded-full border px-4 py-2.5 text-sm font-extrabold transition ${r?`border-blue-600 bg-blue-600 text-white shadow-md`:`border-slate-200 bg-white text-slate-600 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700`}`,children:n.label},n.id)})}),(0,j.jsxs)(`div`,{className:`mb-6 flex flex-col gap-3 rounded-[1.4rem] border border-blue-200 bg-blue-50/70 p-5 sm:flex-row sm:items-center sm:justify-between`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-xs font-extrabold uppercase tracking-[0.14em] text-blue-700`,children:`Currently viewing`}),(0,j.jsxs)(`h3`,{className:`mt-2 text-2xl font-bold tracking-[-0.04em] text-slate-950`,children:[r,` Packages`]})]}),(0,j.jsxs)(A,{to:n[0]?.serviceUrl||`/contact`,className:`inline-flex items-center gap-2 text-sm font-extrabold text-blue-700`,children:[`View full service page`,(0,j.jsx)(mg,{})]})]}),(0,j.jsx)(`div`,{className:`grid gap-5 lg:grid-cols-3`,children:n.map(e=>(0,j.jsxs)(`article`,{className:`relative flex min-h-full flex-col overflow-hidden rounded-[1.7rem] border p-5 shadow-[0_18px_55px_rgba(15,23,42,0.08)] sm:p-7 lg:grid lg:grid-rows-[auto_5.5rem_8.5rem_8rem_auto_10rem_1fr_auto] ${e.highlighted?`border-blue-500 bg-slate-950 text-white shadow-[0_30px_80px_rgba(37,99,235,0.22)]`:`border-slate-200 bg-white text-slate-950`}`,children:[(0,j.jsxs)(`div`,{className:`flex items-center gap-3`,children:[(0,j.jsx)(`p`,{className:`text-xs font-extrabold uppercase tracking-[0.15em] ${e.highlighted?`text-blue-300`:`text-blue-700`}`,children:e.serviceLabel}),e.highlighted&&(0,j.jsxs)(`span`,{className:`inline-flex items-center gap-1.5 text-[0.56rem] font-extrabold uppercase tracking-[0.12em] text-blue-300/70`,children:[(0,j.jsx)(`span`,{className:`h-1.5 w-1.5 rounded-full bg-blue-400`}),`Popular`]})]}),(0,j.jsx)(`h3`,{className:`mt-4 text-2xl font-bold tracking-[-0.04em] sm:text-3xl`,children:e.name}),(0,j.jsx)(`p`,{className:`mt-4 text-sm leading-7 ${e.highlighted?`text-slate-300`:`text-slate-600`}`,children:e.description}),(0,j.jsxs)(`div`,{className:`mt-7`,children:[(0,j.jsx)(`p`,{className:`text-4xl font-black tracking-[-0.055em]`,children:e.price}),(0,j.jsx)(`p`,{className:`mt-2 text-sm font-bold ${e.highlighted?`text-blue-200`:`text-blue-700`}`,children:e.deposit}),(0,j.jsxs)(`p`,{className:`mt-1 text-xs ${e.highlighted?`text-slate-400`:`text-slate-500`}`,children:[`Estimated timeline:`,` `,e.timeline]})]}),(0,j.jsx)(`div`,{className:`my-7 h-px ${e.highlighted?`bg-white/10`:`bg-slate-200`}`}),(0,j.jsxs)(`div`,{className:`rounded-[1.2rem] border p-4 ${e.highlighted?`border-white/10 bg-white/[0.055]`:`border-slate-200 bg-slate-50`}`,children:[(0,j.jsx)(`p`,{className:`text-[0.64rem] font-extrabold uppercase tracking-[0.14em] ${e.highlighted?`text-blue-300`:`text-blue-700`}`,children:`Best for`}),(0,j.jsx)(`p`,{className:`mt-2 text-sm leading-6 ${e.highlighted?`text-slate-200`:`text-slate-700`}`,children:e.bestFor})]}),(0,j.jsx)(`ul`,{className:`mt-6 space-y-3`,children:e.features.map(t=>(0,j.jsxs)(`li`,{className:`flex items-start gap-3`,children:[(0,j.jsx)(`span`,{className:`mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full ${e.highlighted?`bg-blue-500/20 text-blue-200`:`bg-blue-50 text-blue-700`}`,children:(0,j.jsx)(hg,{})}),(0,j.jsx)(`span`,{className:`text-sm leading-6 ${e.highlighted?`text-slate-200`:`text-slate-700`}`,children:t})]},t))}),(0,j.jsxs)(`div`,{className:`mt-auto grid gap-3 pt-8 lg:mt-0`,children:[(0,j.jsxs)(`a`,{href:e.depositUrl,className:`inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 text-sm font-extrabold transition hover:-translate-y-1 ${e.highlighted?`bg-white text-slate-950 hover:bg-blue-50`:`bg-blue-600 text-white hover:bg-blue-700`}`,children:[`Pay down deposit`,(0,j.jsx)(mg,{})]}),(0,j.jsxs)(`a`,{href:sg,className:`inline-flex min-h-12 items-center justify-center gap-2 rounded-full border px-5 text-sm font-extrabold transition hover:-translate-y-1 ${e.highlighted?`border-white/15 bg-white/[0.06] text-white hover:bg-white/[0.1]`:`border-slate-200 bg-white text-slate-950 hover:border-blue-200 hover:bg-blue-50`}`,children:[`Book strategy call`,(0,j.jsx)(mg,{})]}),(0,j.jsxs)(A,{to:e.serviceUrl,className:`inline-flex min-h-11 items-center justify-center gap-2 text-sm font-extrabold ${e.highlighted?`text-blue-200`:`text-blue-700`}`,children:[`Review full service`,(0,j.jsx)(mg,{})]})]})]},e.id))})]})}),(0,j.jsx)(`section`,{className:`section architecture-grid`,children:(0,j.jsxs)(`div`,{className:`site-container`,children:[(0,j.jsxs)(`div`,{className:`section-header`,children:[(0,j.jsxs)(`div`,{className:`section-header-copy`,children:[(0,j.jsx)(`span`,{className:`eyebrow`,children:`Included Standards`}),(0,j.jsx)(`h2`,{className:`section-heading`,children:`Every package begins with the same professional foundation.`})]}),(0,j.jsx)(`p`,{className:`section-header-description`,children:`The size of the project changes, but communication, responsive delivery, scope clarity, and organized next steps remain part of the process.`})]}),(0,j.jsx)(`div`,{className:`grid gap-5 sm:grid-cols-2 lg:grid-cols-4`,children:dg.map(e=>(0,j.jsxs)(`article`,{className:`rounded-[1.5rem] border border-slate-200 bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-md sm:p-6`,children:[(0,j.jsx)(`span`,{className:`grid h-11 w-11 place-items-center rounded-xl border border-blue-200 bg-blue-50 text-xs font-extrabold text-blue-700`,children:e.number}),(0,j.jsx)(`h3`,{className:`mt-6 text-xl font-bold tracking-[-0.035em] text-slate-950`,children:e.title}),(0,j.jsx)(`p`,{className:`mt-3 text-sm leading-7 text-slate-600`,children:e.description})]},e.number))})]})}),(0,j.jsx)(`section`,{className:`section bg-white`,children:(0,j.jsxs)(`div`,{className:`site-container`,children:[(0,j.jsxs)(`div`,{className:`section-header`,children:[(0,j.jsxs)(`div`,{className:`section-header-copy`,children:[(0,j.jsx)(`span`,{className:`eyebrow`,children:`Optional Add-Ons`}),(0,j.jsx)(`h2`,{className:`section-heading`,children:`Expand the package around your actual project.`})]}),(0,j.jsx)(`p`,{className:`section-header-description`,children:`Add-ons are quoted based on the existing package, technical requirements, content, and the amount of additional work needed.`})]}),(0,j.jsx)(`div`,{className:`grid gap-5 md:grid-cols-2 lg:grid-cols-3`,children:fg.map((e,t)=>(0,j.jsxs)(`article`,{className:`rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:bg-white hover:shadow-md sm:p-6`,children:[(0,j.jsxs)(`div`,{className:`flex items-start justify-between gap-4`,children:[(0,j.jsx)(`span`,{className:`grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-xs font-extrabold text-blue-700`,children:String(t+1).padStart(2,`0`)}),(0,j.jsx)(`span`,{className:`rounded-full border border-blue-200 bg-white px-3 py-2 text-xs font-extrabold text-blue-700`,children:e.price})]}),(0,j.jsx)(`h3`,{className:`mt-6 text-xl font-bold tracking-[-0.035em] text-slate-950`,children:e.title}),(0,j.jsx)(`p`,{className:`mt-3 text-sm leading-7 text-slate-600`,children:e.description})]},e.title))})]})}),(0,j.jsx)(`section`,{className:`section architecture-grid`,children:(0,j.jsx)(`div`,{className:`site-container`,children:(0,j.jsxs)(`div`,{className:`grid gap-5 lg:grid-cols-[0.92fr_1.08fr]`,children:[(0,j.jsxs)(`div`,{className:`relative overflow-hidden rounded-[1.75rem] bg-slate-950 p-6 text-white shadow-[0_28px_75px_rgba(15,23,42,0.16)] sm:p-8 lg:p-10`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-20`,style:{backgroundImage:`linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`,backgroundSize:`34px 34px`}}),(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute -right-20 -top-20 h-60 w-60 rounded-full bg-blue-500/30 blur-[90px]`}),(0,j.jsxs)(`div`,{className:`relative`,children:[(0,j.jsx)(`p`,{className:`text-xs font-extrabold uppercase tracking-[0.15em] text-blue-300`,children:`Custom project scope`}),(0,j.jsx)(`h2`,{className:`mt-4 text-3xl font-bold tracking-[-0.045em] sm:text-4xl`,children:`Need multiple services inside one project?`}),(0,j.jsx)(`p`,{className:`mt-5 text-sm leading-7 text-slate-300 sm:text-base`,children:`Techuvo can combine website development, brand identity, landing pages, content management, automation, analytics, and integrations into one organized scope.`}),(0,j.jsxs)(`a`,{href:sg,className:`mt-8 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-extrabold text-slate-950 transition hover:-translate-y-1 hover:bg-blue-50 sm:w-auto`,children:[`Request a custom scope`,(0,j.jsx)(mg,{})]})]})]}),(0,j.jsxs)(`div`,{className:`surface-card p-5 sm:p-7 lg:p-9`,children:[(0,j.jsx)(`p`,{className:`text-xs font-extrabold uppercase tracking-[0.15em] text-blue-700`,children:`Custom scope examples`}),(0,j.jsx)(`div`,{className:`mt-6 space-y-4`,children:[{title:`Website + Brand Identity`,description:`Create the business identity and apply it to a complete responsive website.`},{title:`Landing Page + Automation`,description:`Capture campaign leads and connect them to booking, follow-up, notifications, and CRM tracking.`},{title:`Website + Location Pages`,description:`Build the main website and expand it with unique pages for real service areas.`},{title:`Website + CMS`,description:`Create a custom website with approved content areas the client can manage after launch.`}].map((e,t)=>(0,j.jsxs)(`article`,{className:`grid gap-4 rounded-[1.3rem] border border-slate-200 bg-slate-50 p-5 sm:grid-cols-[3rem_1fr]`,children:[(0,j.jsx)(`span`,{className:`grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-xs font-extrabold text-blue-700`,children:String(t+1).padStart(2,`0`)}),(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`h3`,{className:`text-base font-bold text-slate-950`,children:e.title}),(0,j.jsx)(`p`,{className:`mt-2 text-sm leading-6 text-slate-600`,children:e.description})]})]},e.title))})]})]})})}),(0,j.jsx)(`section`,{className:`section bg-white`,children:(0,j.jsxs)(`div`,{className:`site-container`,children:[(0,j.jsxs)(`div`,{className:`section-header`,children:[(0,j.jsxs)(`div`,{className:`section-header-copy`,children:[(0,j.jsx)(`span`,{className:`eyebrow`,children:`Pricing FAQ`}),(0,j.jsx)(`h2`,{className:`section-heading`,children:`Common questions before reserving a project.`})]}),(0,j.jsx)(`p`,{className:`section-header-description`,children:`Review how deposits, final balances, custom scopes, third-party fees, and project-start steps work.`})]}),(0,j.jsx)(`div`,{className:`space-y-4`,children:pg.map((e,t)=>(0,j.jsxs)(`details`,{className:`group rounded-[1.4rem] border border-slate-200 bg-slate-50 p-5 open:bg-white open:shadow-md sm:p-6`,children:[(0,j.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-5`,children:[(0,j.jsxs)(`span`,{className:`flex items-center gap-4`,children:[(0,j.jsx)(`span`,{className:`grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-blue-50 text-xs font-extrabold text-blue-700`,children:String(t+1).padStart(2,`0`)}),(0,j.jsx)(`span`,{className:`text-base font-bold text-slate-950 sm:text-lg`,children:e.question})]}),(0,j.jsx)(`span`,{className:`text-xl font-light text-blue-700 transition group-open:rotate-45`,children:`+`})]}),(0,j.jsx)(`p`,{className:`mt-5 border-t border-slate-200 pt-5 text-sm leading-7 text-slate-600 sm:ml-[3.25rem] sm:text-base`,children:e.answer})]},e.question))})]})}),(0,j.jsx)(`section`,{id:`book-pricing-call`,className:`section architecture-grid`,children:(0,j.jsx)(`div`,{className:`site-container`,children:(0,j.jsxs)(`div`,{className:`relative overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-950 px-5 py-8 text-white shadow-[0_35px_90px_rgba(15,23,42,0.2)] sm:px-8 sm:py-10 lg:px-12 lg:py-14`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-20`,style:{backgroundImage:`linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`,backgroundSize:`36px 36px`}}),(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute -right-24 -top-24 h-72 w-72 rounded-full bg-blue-500/35 blur-[100px]`}),(0,j.jsxs)(`div`,{className:`relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`p`,{className:`text-xs font-extrabold uppercase tracking-[0.15em] text-blue-300`,children:`Pricing consultation`}),(0,j.jsx)(`h2`,{className:`mt-4 max-w-4xl text-4xl font-bold tracking-[-0.055em] sm:text-5xl`,children:`Not sure which package matches your business?`}),(0,j.jsx)(`p`,{className:`mt-5 max-w-2xl text-base leading-8 text-slate-300`,children:`Share the business goal, required features, timeline, and budget. Techuvo will recommend the clearest package or custom scope.`})]}),(0,j.jsxs)(`div`,{className:`grid w-full gap-3 sm:w-auto`,children:[(0,j.jsxs)(`a`,{href:sg,className:`inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-extrabold text-slate-950 transition hover:-translate-y-1 hover:bg-blue-50`,children:[`Book strategy call`,(0,j.jsx)(mg,{})]}),(0,j.jsxs)(A,{to:`/contact`,className:`inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-6 text-sm font-extrabold text-white transition hover:-translate-y-1 hover:bg-white/[0.1]`,children:[`Submit project details`,(0,j.jsx)(mg,{})]})]})]})]})})}),(0,j.jsx)(`div`,{className:`fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 p-2 shadow-[0_-10px_35px_rgba(15,23,42,0.12)] backdrop-blur-xl lg:hidden`,children:(0,j.jsxs)(`div`,{className:`mx-auto grid max-w-xl grid-cols-2 gap-2`,children:[(0,j.jsx)(`a`,{href:sg,className:`inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-200 bg-white px-3 text-center text-sm font-extrabold text-slate-950`,children:`Book call`}),(0,j.jsx)(A,{to:`/contact`,className:`inline-flex min-h-12 items-center justify-center rounded-xl bg-blue-600 px-3 text-center text-sm font-extrabold text-white`,children:`Request quote`})]})})]})}var vg=`https://calendly.com/techuvo-dev/new-meeting`,yg=[`Website Development`,`Landing Page Design`,`Brand Identity`,`Automation Systems`,`Website Redesign`,`Local SEO Foundations`,`Not sure yet`],bg=[`Under $500`,`$500–$1,000`,`$1,000–$2,500`,`$2,500–$5,000`,`$5,000+`,`Not sure yet`],xg=[`As soon as possible`,`Within 2 weeks`,`Within 30 days`,`Within 60 days`,`Flexible`],Sg=[{label:`Email`,value:`hello@techuvo.dev`,href:`mailto:hello@techuvo.dev`},{label:`Primary service area`,value:`Detroit, Ypsilanti, Ann Arbor, Dearborn, Livonia & Southfield`},{label:`Project types`,value:`Websites, landing pages, brand identity, redesigns, and automation systems`},{label:`Availability`,value:`New project inquiries are currently open`}],Cg=[{number:`01`,title:`Submit your project details`,description:`Tell Techuvo what your business does, what you need, what is not working, and what result you want.`},{number:`02`,title:`Receive a project recommendation`,description:`Your request is reviewed and the clearest service, scope, timeline, and next step are identified.`},{number:`03`,title:`Book the strategy call`,description:`We clarify the project, confirm the fit, and discuss the information needed to begin.`},{number:`04`,title:`Reserve the project`,description:`Once the scope is confirmed, the deposit secures your project and the build process begins.`}],wg=[{question:`How quickly will Techuvo respond to my inquiry?`,answer:`Most inquiries should receive a response as soon as possible during normal business availability. More detailed project requests may require additional review before a recommendation is provided.`},{question:`Do I need to know exactly which service I need?`,answer:`No. You can select “Not sure yet” and explain the business problem. Techuvo can recommend whether you need a website, landing page, redesign, identity system, automation workflow, or a combination of services.`},{question:`Do I have to pay before speaking with Techuvo?`,answer:`No. You can submit the project form and book a strategy call before paying a deposit. The deposit should be paid after the package or project scope is clear.`},{question:`Can Techuvo work with businesses outside Michigan?`,answer:`Yes. Techuvo serves businesses in Michigan and can also work remotely with companies in other locations.`},{question:`What should I prepare before the strategy call?`,answer:`Bring your business goals, current website or materials, service information, target audience, examples you like, and any deadline or budget constraints.`},{question:`Can Techuvo help if I already have a website?`,answer:`Yes. Techuvo can review your current website, redesign it, improve specific pages, add service or location pages, connect tools, or rebuild the system completely.`}];function Tg(){return(0,j.jsx)(`svg`,{"aria-hidden":`true`,className:`button-icon`,fill:`none`,viewBox:`0 0 20 20`,children:(0,j.jsx)(`path`,{d:`M4.5 10h11m-4.25-4.25L15.5 10l-4.25 4.25`,stroke:`currentColor`,strokeLinecap:`round`,strokeLinejoin:`round`,strokeWidth:`1.7`})})}function Eg(){return(0,j.jsx)(`svg`,{"aria-hidden":`true`,className:`h-4 w-4`,fill:`none`,viewBox:`0 0 20 20`,children:(0,j.jsx)(`path`,{d:`m5 10.5 3 3L15 6.75`,stroke:`currentColor`,strokeLinecap:`round`,strokeLinejoin:`round`,strokeWidth:`1.8`})})}function Dg(){return(0,j.jsxs)(`svg`,{"aria-hidden":`true`,className:`h-6 w-6`,fill:`none`,viewBox:`0 0 24 24`,children:[(0,j.jsx)(`rect`,{x:`3.5`,y:`5`,width:`17`,height:`14`,rx:`2`,stroke:`currentColor`,strokeWidth:`1.7`}),(0,j.jsx)(`path`,{d:`m5 7 7 5 7-5`,stroke:`currentColor`,strokeLinecap:`round`,strokeLinejoin:`round`,strokeWidth:`1.7`})]})}function Og(){let[e,t]=(0,w.useState)(`idle`);return(0,w.useEffect)(()=>{let e=document.title;document.title=`Contact Techuvo | Start a Website, Branding or Automation Project`;let t=`Contact Techuvo to discuss website design, website development, landing pages, brand identity, redesigns, local SEO foundations, or business automation.`,n=document.querySelector(`meta[name="description"]`),r=!n;n||(n=document.createElement(`meta`),n.setAttribute(`name`,`description`),document.head.appendChild(n));let i=n.getAttribute(`content`);n.setAttribute(`content`,t);let a=document.querySelector(`link[rel="canonical"]`),o=!a;a||(a=document.createElement(`link`),a.setAttribute(`rel`,`canonical`),document.head.appendChild(a));let s=a.getAttribute(`href`);a.setAttribute(`href`,`https://techuvo.dev/contact`);let c=document.createElement(`script`);return c.id=`contact-page-structured-data`,c.type=`application/ld+json`,c.textContent=JSON.stringify({"@context":`https://schema.org`,"@graph":[{"@type":`ContactPage`,name:`Contact Techuvo`,url:`https://techuvo.dev/contact`,description:t,mainEntity:{"@type":`Organization`,name:`Techuvo`,url:`https://techuvo.dev`,email:`hello@techuvo.dev`,areaServed:[`Detroit`,`Ypsilanti`,`Ann Arbor`,`Dearborn`,`Livonia`,`Southfield`,`Michigan`,`United States`]}},{"@type":`BreadcrumbList`,itemListElement:[{"@type":`ListItem`,position:1,name:`Home`,item:`https://techuvo.dev/`},{"@type":`ListItem`,position:2,name:`Contact`,item:`https://techuvo.dev/contact`}]},{"@type":`FAQPage`,mainEntity:wg.map(e=>({"@type":`Question`,name:e.question,acceptedAnswer:{"@type":`Answer`,text:e.answer}}))}]}),document.head.appendChild(c),()=>{document.title=e,r?n.remove():i===null?n.removeAttribute(`content`):n.setAttribute(`content`,i),o?a.remove():s===null?a.removeAttribute(`href`):a.setAttribute(`href`,s),c.remove()}},[]),(0,j.jsxs)(j.Fragment,{children:[(0,j.jsxs)(`section`,{className:`hero-section architecture-grid`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`glow-orb`,style:{left:`-8rem`,top:`8rem`}}),(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`glow-orb glow-orb-secondary`,style:{right:`-10rem`,top:`10rem`}}),(0,j.jsx)(`div`,{className:`site-container`,children:(0,j.jsxs)(`div`,{className:`grid items-center gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-16`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsxs)(`div`,{className:`inline-flex w-fit items-center gap-2 rounded-full border border-blue-200 bg-white/85 px-3.5 py-2 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-700 shadow-sm backdrop-blur-xl`,children:[(0,j.jsx)(Dg,{}),`Contact Techuvo`]}),(0,j.jsx)(`h1`,{className:`page-heading mt-6`,children:`Tell us what your business needs next.`}),(0,j.jsx)(`p`,{className:`body-large mt-6`,children:`Start a conversation about your website, landing page, brand identity, redesign, local visibility, or automation system.`}),(0,j.jsx)(`p`,{className:`body-copy mt-5 max-w-2xl`,children:`The strongest project requests explain the business, the current problem, the desired result, the timeline, and what customers should be able to do after the project is complete.`}),(0,j.jsxs)(`div`,{className:`mt-8 flex flex-col gap-3 sm:flex-row`,children:[(0,j.jsxs)(`a`,{href:vg,target:`_blank`,rel:`noreferrer`,className:`button button-primary`,children:[`Book a strategy call`,(0,j.jsx)(Tg,{})]}),(0,j.jsxs)(`a`,{href:`#project-form`,className:`button button-secondary`,children:[`Submit project details`,(0,j.jsx)(Tg,{})]})]}),(0,j.jsx)(`div`,{className:`mt-8 flex flex-wrap gap-x-6 gap-y-3`,children:[`Direct project communication`,`Clear scope recommendations`,`No obligation to pay first`].map(e=>(0,j.jsxs)(`div`,{className:`flex items-center gap-2 text-sm font-semibold text-slate-600`,children:[(0,j.jsx)(`span`,{className:`grid h-6 w-6 place-items-center rounded-full bg-blue-50 text-blue-700`,children:(0,j.jsx)(Eg,{})}),e]},e))})]}),(0,j.jsx)(`div`,{className:`surface-card overflow-hidden p-3 sm:p-4`,children:(0,j.jsxs)(`div`,{className:`relative min-h-[34rem] overflow-hidden rounded-[1.5rem] bg-slate-950 p-5 text-white sm:p-7`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-20`,style:{backgroundImage:`linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`,backgroundSize:`32px 32px`}}),(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-500/30 blur-[90px]`}),(0,j.jsxs)(`div`,{className:`relative flex min-h-[30rem] flex-col`,children:[(0,j.jsxs)(`div`,{className:`flex items-center justify-between gap-4`,children:[(0,j.jsx)(`p`,{className:`text-[0.68rem] font-extrabold uppercase tracking-[0.16em] text-blue-300`,children:`Project intake`}),(0,j.jsxs)(`span`,{className:`inline-flex items-center gap-2 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-slate-400`,children:[(0,j.jsx)(`span`,{className:`h-2 w-2 rounded-full bg-emerald-400`}),`Inquiries open`]})]}),(0,j.jsx)(`h2`,{className:`mt-8 text-3xl font-bold tracking-[-0.045em] sm:text-4xl`,children:`Start with the business problem, not a random feature list.`}),(0,j.jsx)(`p`,{className:`mt-5 text-sm leading-7 text-slate-300 sm:text-base`,children:`Techuvo will help determine the right service, package, scope, timeline, and next step based on the outcome your business needs.`}),(0,j.jsx)(`div`,{className:`mt-8 space-y-3`,children:Sg.map((e,t)=>(0,j.jsxs)(`div`,{className:`rounded-2xl border border-white/10 bg-white/[0.055] p-4`,children:[(0,j.jsxs)(`div`,{className:`flex items-center justify-between gap-4`,children:[(0,j.jsx)(`p`,{className:`text-[0.64rem] font-extrabold uppercase tracking-[0.14em] text-blue-300`,children:e.label}),(0,j.jsx)(`span`,{className:`text-xs font-extrabold text-slate-500`,children:String(t+1).padStart(2,`0`)})]}),e.href?(0,j.jsx)(`a`,{href:e.href,className:`mt-2 block text-sm font-bold leading-6 text-white transition hover:text-blue-200`,children:e.value}):(0,j.jsx)(`p`,{className:`mt-2 text-sm font-bold leading-6 text-white`,children:e.value})]},e.label))}),(0,j.jsx)(`div`,{className:`mt-auto border-t border-white/10 pt-6`,children:(0,j.jsx)(`p`,{className:`text-xs font-semibold leading-6 text-slate-400`,children:`Techuvo works with Michigan businesses and remote clients throughout the United States.`})})]})]})})]})})]}),(0,j.jsx)(`section`,{id:`project-form`,className:`section bg-white`,children:(0,j.jsx)(`div`,{className:`site-container`,children:(0,j.jsxs)(`div`,{className:`grid gap-5 lg:grid-cols-[0.72fr_1.28fr]`,children:[(0,j.jsxs)(`div`,{className:`relative overflow-hidden rounded-[1.75rem] bg-slate-950 p-6 text-white shadow-[0_28px_75px_rgba(15,23,42,0.16)] sm:p-8 lg:p-10`,children:[(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute inset-0 opacity-20`,style:{backgroundImage:`linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`,backgroundSize:`34px 34px`}}),(0,j.jsx)(`div`,{"aria-hidden":`true`,className:`absolute -right-20 -top-20 h-60 w-60 rounded-full bg-blue-500/30 blur-[90px]`}),(0,j.jsxs)(`div`,{className:`relative`,children:[(0,j.jsx)(`p`,{className:`text-xs font-extrabold uppercase tracking-[0.15em] text-blue-300`,children:`Strong inquiry checklist`}),(0,j.jsx)(`h2`,{className:`mt-4 text-3xl font-bold tracking-[-0.045em] sm:text-4xl`,children:`The more context you provide, the stronger the recommendation.`}),(0,j.jsx)(`p`,{className:`mt-5 text-sm leading-7 text-slate-300 sm:text-base`,children:`You do not need a perfect technical explanation. Focus on the business, the current challenge, and the result you want.`}),(0,j.jsx)(`div`,{className:`mt-8 space-y-3`,children:[`What your business does`,`Who your customers are`,`What is not working now`,`What the project should improve`,`Your preferred timeline`,`Your available budget range`].map((e,t)=>(0,j.jsxs)(`div`,{className:`flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.055] px-4 py-4`,children:[(0,j.jsx)(`span`,{className:`grid h-8 w-8 shrink-0 place-items-center rounded-xl bg-blue-500/20 text-xs font-extrabold text-blue-200`,children:String(t+1).padStart(2,`0`)}),(0,j.jsx)(`span`,{className:`text-sm font-bold text-white`,children:e})]},e))})]})]}),(0,j.jsxs)(`div`,{className:`surface-card p-5 sm:p-7 lg:p-9`,children:[(0,j.jsxs)(`div`,{className:`mb-8`,children:[(0,j.jsx)(`span`,{className:`eyebrow`,children:`Project Request Form`}),(0,j.jsx)(`h2`,{className:`section-heading mt-5`,children:`Share the details of your project.`}),(0,j.jsx)(`p`,{className:`body-copy mt-4 max-w-2xl`,children:`Share your project details below and Techuvo will review your request and follow up with the clearest next step.`})]}),(0,j.jsxs)(`form`,{className:`form-grid`,onSubmit:async e=>{e.preventDefault();let n=e.currentTarget,r=new FormData(n),i=r.get(`name`)?.trim(),a=r.get(`email`)?.trim(),o=r.get(`business`)?.trim(),s=r.get(`service`)?.trim(),c=r.get(`budget`)?.trim(),l=r.get(`timeline`)?.trim(),u=r.get(`message`)?.trim();if(!i||!a||!o||!s||!c||!l||!u){t(`validation-error`);return}try{if(t(`submitting`),!(await fetch(`https://formspree.io/f/mnjprdge`,{method:`POST`,body:r,headers:{Accept:`application/json`}})).ok)throw Error(`Form submission failed`);n.reset(),t(`success`)}catch{t(`submission-error`)}},noValidate:!0,children:[(0,j.jsxs)(`div`,{className:`form-row`,children:[(0,j.jsxs)(`div`,{className:`form-group`,children:[(0,j.jsx)(`label`,{className:`form-label`,htmlFor:`contact-name`,children:`Your name`}),(0,j.jsx)(`input`,{id:`contact-name`,className:`form-control`,name:`name`,type:`text`,autoComplete:`name`,placeholder:`Your full name`,required:!0})]}),(0,j.jsxs)(`div`,{className:`form-group`,children:[(0,j.jsx)(`label`,{className:`form-label`,htmlFor:`contact-email`,children:`Email address`}),(0,j.jsx)(`input`,{id:`contact-email`,className:`form-control`,name:`email`,type:`email`,autoComplete:`email`,placeholder:`you@business.com`,required:!0})]})]}),(0,j.jsxs)(`div`,{className:`form-row`,children:[(0,j.jsxs)(`div`,{className:`form-group`,children:[(0,j.jsx)(`label`,{className:`form-label`,htmlFor:`contact-phone`,children:`Phone number`}),(0,j.jsx)(`input`,{id:`contact-phone`,className:`form-control`,name:`phone`,type:`tel`,autoComplete:`tel`,placeholder:`Optional`})]}),(0,j.jsxs)(`div`,{className:`form-group`,children:[(0,j.jsx)(`label`,{className:`form-label`,htmlFor:`contact-business`,children:`Business name`}),(0,j.jsx)(`input`,{id:`contact-business`,className:`form-control`,name:`business`,type:`text`,autoComplete:`organization`,placeholder:`Your company`,required:!0})]})]}),(0,j.jsxs)(`div`,{className:`form-group`,children:[(0,j.jsx)(`label`,{className:`form-label`,htmlFor:`contact-website`,children:`Current website`}),(0,j.jsx)(`input`,{id:`contact-website`,className:`form-control`,name:`website`,type:`url`,inputMode:`url`,placeholder:`https://yourwebsite.com or leave blank`})]}),(0,j.jsxs)(`div`,{className:`form-row`,children:[(0,j.jsxs)(`div`,{className:`form-group`,children:[(0,j.jsx)(`label`,{className:`form-label`,htmlFor:`contact-service`,children:`Service needed`}),(0,j.jsxs)(`select`,{id:`contact-service`,className:`form-control`,name:`service`,defaultValue:``,required:!0,children:[(0,j.jsx)(`option`,{value:``,disabled:!0,children:`Choose a service`}),yg.map(e=>(0,j.jsx)(`option`,{value:e,children:e},e))]})]}),(0,j.jsxs)(`div`,{className:`form-group`,children:[(0,j.jsx)(`label`,{className:`form-label`,htmlFor:`contact-budget`,children:`Estimated budget`}),(0,j.jsxs)(`select`,{id:`contact-budget`,className:`form-control`,name:`budget`,defaultValue:``,required:!0,children:[(0,j.jsx)(`option`,{value:``,disabled:!0,children:`Choose a range`}),bg.map(e=>(0,j.jsx)(`option`,{value:e,children:e},e))]})]})]}),(0,j.jsxs)(`div`,{className:`form-group`,children:[(0,j.jsx)(`label`,{className:`form-label`,htmlFor:`contact-timeline`,children:`Preferred timeline`}),(0,j.jsxs)(`select`,{id:`contact-timeline`,className:`form-control`,name:`timeline`,defaultValue:``,required:!0,children:[(0,j.jsx)(`option`,{value:``,disabled:!0,children:`Choose a timeline`}),xg.map(e=>(0,j.jsx)(`option`,{value:e,children:e},e))]})]}),(0,j.jsxs)(`div`,{className:`form-group`,children:[(0,j.jsx)(`label`,{className:`form-label`,htmlFor:`contact-message`,children:`Project details`}),(0,j.jsx)(`textarea`,{id:`contact-message`,className:`form-control min-h-[12rem]`,name:`message`,placeholder:`Explain what your business does, what you need, what is not working now, and what result you want from the project.`,required:!0})]}),e===`validation-error`&&(0,j.jsx)(`p`,{role:`alert`,className:`rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700`,children:`Complete every required field before submitting your request.`}),e===`submission-error`&&(0,j.jsx)(`p`,{role:`alert`,className:`rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700`,children:`Your request could not be submitted right now. Please try again or email hello@techuvo.dev.`}),e===`success`&&(0,j.jsx)(`p`,{role:`status`,className:`rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700`,children:`Your project request was submitted successfully. Techuvo will review your details and follow up soon.`}),(0,j.jsxs)(`div`,{className:`flex flex-col gap-3 pt-2 sm:flex-row`,children:[(0,j.jsxs)(`button`,{type:`submit`,disabled:e===`submitting`,className:`button button-primary w-full sm:w-auto`,children:[e===`submitting`?`Submitting...`:`Submit project request`,(0,j.jsx)(Tg,{})]}),(0,j.jsxs)(`a`,{href:vg,target:`_blank`,rel:`noreferrer`,className:`button button-secondary w-full sm:w-auto`,children:[`Book strategy call`,(0,j.jsx)(Tg,{})]})]}),(0,j.jsx)(`p`,{className:`text-xs leading-5 text-slate-500`,children:`Required fields are used only to review and respond to your project inquiry.`})]})]})]})})}),(0,j.jsx)(`section`,{className:`section architecture-grid overflow-hidden`,children:(0,j.jsx)(`div`,{className:`site-container`,children:(0,j.jsxs)(`div`,{className:`grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start lg:gap-16`,children:[(0,j.jsxs)(`div`,{className:`lg:sticky lg:top-28`,children:[(0,j.jsx)(`span`,{className:`eyebrow`,children:`What Happens Next`}),(0,j.jsx)(`h2`,{className:`section-heading mt-5`,children:`A clear path from inquiry to project start.`}),(0,j.jsx)(`p`,{className:`body-copy mt-5 max-w-md`,children:`You should understand the next step before committing to a project or paying a deposit.`}),(0,j.jsxs)(`div`,{className:`mt-8 hidden items-center gap-3 text-xs font-extrabold uppercase tracking-[0.14em] text-slate-400 lg:flex`,children:[(0,j.jsx)(`span`,{className:`relative block h-px w-16 overflow-hidden bg-slate-200`,children:(0,j.jsx)(`span`,{className:`techuvo-process-scan absolute inset-y-0 left-0 w-8 bg-blue-600`})}),`Project path`]})]}),(0,j.jsxs)(`div`,{className:`relative`,children:[(0,j.jsx)(`div`,{className:`absolute bottom-6 left-[1.45rem] top-6 hidden w-px bg-slate-200 sm:block`}),(0,j.jsx)(`div`,{className:`techuvo-process-line absolute left-[1.45rem] top-6 hidden w-px bg-blue-600 sm:block`}),(0,j.jsx)(`div`,{className:`space-y-0`,children:Cg.map((e,t)=>(0,j.jsxs)(`article`,{className:`group relative border-b border-slate-200 py-7 first:pt-0 last:border-b-0 last:pb-0 sm:grid sm:grid-cols-[4rem_1fr] sm:gap-6 sm:py-9`,children:[(0,j.jsx)(`div`,{className:`relative z-10 mb-4 flex sm:mb-0`,children:(0,j.jsx)(`span`,{className:`grid h-12 w-12 place-items-center rounded-full border border-blue-200 bg-white text-xs font-extrabold text-blue-700 shadow-[0_8px_30px_rgba(37,99,235,0.08)] transition duration-300 group-hover:-translate-y-1 group-hover:border-blue-400 group-hover:shadow-[0_12px_35px_rgba(37,99,235,0.16)]`,children:e.number})}),(0,j.jsxs)(`div`,{className:`transition duration-300 group-hover:translate-x-1`,children:[(0,j.jsxs)(`div`,{className:`flex items-start justify-between gap-5`,children:[(0,j.jsx)(`h3`,{className:`text-xl font-bold tracking-[-0.035em] text-slate-950 sm:text-2xl`,children:e.title}),(0,j.jsxs)(`span`,{className:`mt-1 text-xs font-extrabold text-slate-300 transition duration-300 group-hover:text-blue-600`,children:[`0`,t+1]})]}),(0,j.jsx)(`p`,{className:`mt-3 max-w-2xl text-sm leading-7 text-slate-600 sm:text-base`,children:e.description})]})]},e.number))})]})]})})}),(0,j.jsx)(`section`,{className:`section bg-white`,children:(0,j.jsx)(`div`,{className:`site-container`,children:(0,j.jsxs)(`div`,{className:`grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16`,children:[(0,j.jsxs)(`div`,{children:[(0,j.jsx)(`span`,{className:`eyebrow`,children:`Contact FAQ`}),(0,j.jsx)(`h2`,{className:`section-heading mt-5`,children:`Common questions before contacting Techuvo.`}),(0,j.jsx)(`p`,{className:`body-copy mt-5 max-w-md`,children:`Learn what information to provide, when payment is required, and how the project process begins.`}),(0,j.jsxs)(`div`,{className:`mt-8 border-l-2 border-blue-600 pl-5`,children:[(0,j.jsx)(`p`,{className:`text-xs font-extrabold uppercase tracking-[0.14em] text-slate-400`,children:`Still have a question?`}),(0,j.jsxs)(`a`,{href:`mailto:hello@techuvo.dev`,className:`mt-2 inline-flex items-center gap-2 text-base font-bold text-slate-950 transition hover:text-blue-700`,children:[`hello@techuvo.dev`,(0,j.jsx)(Tg,{})]})]})]}),(0,j.jsx)(`div`,{className:`divide-y divide-slate-200 border-y border-slate-200`,children:wg.map((e,t)=>(0,j.jsxs)(`details`,{className:`group`,children:[(0,j.jsxs)(`summary`,{className:`flex cursor-pointer list-none items-center justify-between gap-5 py-6 sm:py-7`,children:[(0,j.jsxs)(`span`,{className:`flex min-w-0 items-start gap-4`,children:[(0,j.jsx)(`span`,{className:`mt-1 text-[0.65rem] font-extrabold tracking-[0.12em] text-slate-400 transition group-open:text-blue-700`,children:String(t+1).padStart(2,`0`)}),(0,j.jsx)(`span`,{className:`text-base font-bold leading-7 text-slate-950 sm:text-lg`,children:e.question})]}),(0,j.jsx)(`span`,{className:`grid h-9 w-9 shrink-0 place-items-center rounded-full border border-slate-200 text-lg font-light text-blue-700 transition duration-300 group-hover:border-blue-300 group-open:rotate-45 group-open:bg-blue-50`,children:`+`})]}),(0,j.jsxs)(`div`,{className:`grid overflow-hidden pb-6 sm:grid-cols-[2.15rem_1fr] sm:pb-7`,children:[(0,j.jsx)(`span`,{className:`hidden sm:block`}),(0,j.jsx)(`p`,{className:`max-w-2xl text-sm leading-7 text-slate-600 sm:text-base`,children:e.answer})]})]},e.question))})]})})}),(0,j.jsx)(`style`,{children:`
         @keyframes techuvoProcessScan {
